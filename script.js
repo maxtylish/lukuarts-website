@@ -148,3 +148,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+const page = window.location.pathname.split("/").pop().replace(".html","");
+
+fetch("images.json")
+.then(res=>res.json())
+.then(images=>{
+
+const gallery = document.getElementById("gallery");
+
+images.forEach(img=>{
+
+if(page==="portfolio" || page==="index" || img.category===page){
+
+const item = document.createElement("div");
+
+item.className="gallery-item";
+
+item.innerHTML=`
+<img src="${img.src}">
+`;
+
+gallery.appendChild(item);
+
+}
+
+});
+
+});
