@@ -371,3 +371,21 @@ padding-top:140px;
 text-align:center;
 margin-bottom:50px;
 }
+.lang-btn{
+
+background:transparent;
+border:1px solid #444;
+color:#ccc;
+padding:6px 12px;
+font-size:12px;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.lang-btn:hover{
+
+border-color:#c9a96e;
+color:white;
+
+}

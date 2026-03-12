@@ -119,3 +119,18 @@ gallery.appendChild(item);
         });
 
     }
+    const langBtn = document.getElementById("lang-toggle");
+
+let currentLang = "en";
+
+langBtn.addEventListener("click", () => {
+
+currentLang = currentLang === "en" ? "zh" : "en";
+
+document.querySelectorAll("[data-en]").forEach(el => {
+
+el.textContent = el.dataset[currentLang];
+
+});
+
+});
