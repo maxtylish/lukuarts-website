@@ -58,3 +58,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+const images = [
+
+{src:"images/portrait/00001.jpg", category:"portrait"},
+{src:"images/portrait/00002.jpg", category:"portrait"},
+
+{src:"images/food/f01.jpg", category:"food"},
+
+{src:"images/event/e01.jpg", category:"event"},
+
+{src:"images/still/still001.jpg", category:"still"},
+{src:"images/still/still002.jpg", category:"still"}
+
+];
+
+const gallery = document.getElementById("gallery");
+
+images.forEach(img => {
+
+const item = document.createElement("div");
+item.className = "gallery-item";
+item.dataset.category = img.category;
+
+item.innerHTML = `
+<img src="${img.src}" class="lightbox-trigger" loading="lazy">
+`;
+
+gallery.appendChild(item);
+
+});
