@@ -175,3 +175,57 @@ footer { text-align: center; padding: 3rem; color: #555; font-size: 0.8rem; lett
 .gallery-item img:hover {
   transform: scale(1.02);
 }
+.masonry-gallery {
+column-count: 3;
+column-gap: 20px;
+padding: 40px;
+}
+
+.masonry-item {
+break-inside: avoid;
+margin-bottom: 20px;
+position: relative;
+overflow: hidden;
+border-radius: 6px;
+}
+
+.masonry-item img {
+width: 100%;
+display: block;
+transition: transform 0.4s ease;
+}
+
+.masonry-item:hover img {
+transform: scale(1.05);
+}
+
+.item-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+padding: 20px;
+background: linear-gradient(transparent, rgba(0,0,0,0.8));
+opacity: 0;
+transition: opacity 0.3s;
+}
+
+.masonry-item:hover .item-overlay {
+opacity: 1;
+}
+
+.label {
+color: white;
+font-size: 14px;
+letter-spacing: 2px;
+}@media (max-width: 900px) {
+.masonry-gallery {
+column-count: 2;
+}
+}
+
+@media (max-width: 600px) {
+.masonry-gallery {
+column-count: 1;
+}
+}
