@@ -119,5 +119,3 @@ gallery.appendChild(item);
         });
 
     }
-
-});
