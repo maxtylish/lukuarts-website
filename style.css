@@ -57,7 +57,7 @@ a { color: var(--text-light); text-decoration: none; transition: var(--transitio
 .hero-content h1 { font-size: 4.5rem; letter-spacing: 6px; margin-bottom: 1rem; }
 .hero-content p { font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 3rem; color: #ccc; }
 .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; }
-
+.hero {position: relative;z-index: 10;}
 /* ================= FEATURED & GRIDS ================= */
 .grid-3x2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .grid-item { position: relative; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; }
@@ -156,13 +156,14 @@ footer { text-align: center; padding: 3rem; color: #555; font-size: 0.8rem; lett
 
 .item-overlay {
 position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
-padding: 20px;
-background: linear-gradient(transparent, rgba(0,0,0,0.8));
+inset: 0;
+background: rgba(15, 15, 15, 0.6);
+display: flex;
+align-items: center;
+justify-content: center;
 opacity: 0;
-transition: opacity 0.3s;
+transition: var(--transition-smooth);
+pointer-events: none;
 }
 
 .masonry-item:hover .item-overlay {
