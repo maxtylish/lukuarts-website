@@ -19,7 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const gallery = document.getElementById("gallery");
 
-        images.forEach(img => {
+if (gallery) {
+
+images.forEach(img => {
+
+const item = document.createElement("div");
+item.className = "gallery-item";
+item.dataset.category = img.category;
+
+item.innerHTML = `
+<img src="${img.src}" class="lightbox-trigger" loading="lazy">
+`;
+
+gallery.appendChild(item);
+
+});
+
+}
 
             const item = document.createElement("div");
             item.className = "gallery-item";
