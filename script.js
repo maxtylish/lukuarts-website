@@ -1,104 +1,107 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-```
-// 1️⃣ Navbar Scroll Effect
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
-});
+    // Navbar scroll
+    const navbar = document.querySelector(".navbar");
 
-// 2️⃣ Load Gallery Images from JSON
-fetch("images.json")
-.then(response => response.json())
-.then(images => {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
 
-    const gallery = document.getElementById("gallery");
 
-    images.forEach(img => {
+    // Load gallery images
+    fetch("images.json")
+    .then(response => response.json())
+    .then(images => {
 
-        const item = document.createElement("div");
-        item.className = "gallery-item";
-        item.dataset.category = img.category;
+        const gallery = document.getElementById("gallery");
 
-        item.innerHTML = `
-            <img src="${img.src}" class="lightbox-trigger" loading="lazy">
-        `;
+        images.forEach(img => {
 
-        gallery.appendChild(item);
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+            item.dataset.category = img.category;
+
+            item.innerHTML = `
+                <img src="${img.src}" class="lightbox-trigger" loading="lazy">
+            `;
+
+            gallery.appendChild(item);
+
+        });
+
+        initFilter();
+        initLightbox();
 
     });
 
-    initFiltering();
-    initLightbox();
 
-});
+    // Filter system
+    function initFilter(){
 
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const galleryItems = document.querySelectorAll(".gallery-item");
 
-// 3️⃣ Portfolio Filtering
-function initFiltering(){
+        filterBtns.forEach(btn => {
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+            btn.addEventListener("click", () => {
 
-    filterBtns.forEach(btn => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
 
-        btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
 
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+                galleryItems.forEach(item => {
 
-            const filterValue = btn.dataset.filter;
+                    if(filter === "all" || item.dataset.category === filter){
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
 
-            galleryItems.forEach(item => {
-
-                if(filterValue === "all" || item.dataset.category === filterValue){
-                    item.style.display = "block";
-                } else {
-                    item.style.display = "none";
-                }
+                });
 
             });
 
         });
 
-    });
-
-}
+    }
 
 
-// 4️⃣ Lightbox Viewer
-function initLightbox(){
+    // Lightbox
+    function initLightbox(){
 
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const closeBtn = document.querySelector(".lightbox-close");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.querySelector(".lightbox-close");
 
-    document.querySelectorAll(".lightbox-trigger").forEach(img => {
+        document.querySelectorAll(".lightbox-trigger").forEach(img => {
 
-        img.addEventListener("click", () => {
+            img.addEventListener("click", () => {
 
-            lightbox.style.display = "flex";
-            lightboxImg.src = img.src;
-            document.body.style.overflow = "hidden";
+                lightbox.style.display = "flex";
+                lightboxImg.src = img.src;
+                document.body.style.overflow = "hidden";
+
+            });
 
         });
 
-    });
+        const closeLightbox = () => {
+            lightbox.style.display = "none";
+            lightboxImg.src = "";
+            document.body.style.overflow = "auto";
+        };
 
-    const closeLightbox = () => {
-        lightbox.style.display = "none";
-        lightboxImg.src = "";
-        document.body.style.overflow = "auto";
-    };
+        closeBtn.addEventListener("click", closeLightbox);
 
-    closeBtn.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", e => {
+            if(e.target === lightbox) closeLightbox();
+        });
 
-    lightbox.addEventListener("click", (e) => {
-        if(e.target === lightbox) closeLightbox();
-    });
-
-}
-```
+    }
 
 });
