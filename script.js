@@ -1,41 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Navbar scroll
+    /* ===== Navbar scroll ===== */
+
     const navbar = document.querySelector(".navbar");
 
     window.addEventListener("scroll", () => {
+
         if (window.scrollY > 50) {
             navbar.classList.add("scrolled");
         } else {
             navbar.classList.remove("scrolled");
         }
+
     });
 
 
-    // Load gallery images
+    /* ===== Load gallery ===== */
+
     fetch("images.json")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(images => {
 
         const gallery = document.getElementById("gallery");
 
-if (gallery) {
+        if(!gallery) return;
 
-images.forEach(img => {
-
-const item = document.createElement("div");
-item.className = "gallery-item";
-item.dataset.category = img.category;
-
-item.innerHTML = `
-<img src="${img.src}" class="lightbox-trigger" loading="lazy">
-`;
-
-gallery.appendChild(item);
-
-});
-
-}
+        images.forEach(img => {
 
             const item = document.createElement("div");
             item.className = "gallery-item";
@@ -55,7 +45,8 @@ gallery.appendChild(item);
     });
 
 
-    // Filter system
+    /* ===== Filter system ===== */
+
     function initFilter(){
 
         const filterBtns = document.querySelectorAll(".filter-btn");
@@ -87,7 +78,8 @@ gallery.appendChild(item);
     }
 
 
-    // Lightbox
+    /* ===== Lightbox ===== */
+
     function initLightbox(){
 
         const lightbox = document.getElementById("lightbox");
@@ -112,25 +104,47 @@ gallery.appendChild(item);
             document.body.style.overflow = "auto";
         };
 
-        closeBtn.addEventListener("click", closeLightbox);
+        if(closeBtn){
+            closeBtn.addEventListener("click", closeLightbox);
+        }
 
         lightbox.addEventListener("click", e => {
             if(e.target === lightbox) closeLightbox();
         });
 
     }
+
+
+    /* ===== Language switch ===== */
+
     const langBtn = document.getElementById("lang-toggle");
 
-let currentLang = "en";
+    let currentLang = localStorage.getItem("site-lang") || "en";
 
-langBtn.addEventListener("click", () => {
+    function applyLanguage(lang){
 
-currentLang = currentLang === "en" ? "zh" : "en";
+        document.querySelectorAll("[data-en]").forEach(el => {
 
-document.querySelectorAll("[data-en]").forEach(el => {
+            el.textContent = el.dataset[lang];
 
-el.textContent = el.dataset[currentLang];
+        });
 
-});
+    }
+
+    applyLanguage(currentLang);
+
+    if(langBtn){
+
+        langBtn.addEventListener("click", ()=>{
+
+            currentLang = currentLang === "en" ? "zh" : "en";
+
+            localStorage.setItem("site-lang", currentLang);
+
+            applyLanguage(currentLang);
+
+        });
+
+    }
 
 });
