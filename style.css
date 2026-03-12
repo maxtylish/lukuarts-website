@@ -61,6 +61,21 @@ justify-content: center;
 text-align: center;
 overflow: hidden;
 }
+
+.hero-bg {
+position: absolute;
+inset: 0;
+background-size: cover;
+background-position: center;
+z-index: -2;
+}
+
+.hero-overlay {
+position: absolute;
+inset: 0;
+background: rgba(15, 15, 15, 0.5);
+z-index: -1;
+}
 /* ================= FEATURED & GRIDS ================= */
 .grid-3x2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .grid-item { position: relative; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; }
