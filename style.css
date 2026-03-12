@@ -335,3 +335,39 @@ column-count:1;
 }
 
 }
+/* ===== Portfolio Filters ===== */
+
+.portfolio-filters{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+margin-bottom:40px;
+}
+
+.filter-btn{
+background:transparent;
+border:1px solid rgba(255,255,255,0.25);
+color:#ccc;
+padding:8px 18px;
+font-size:13px;
+letter-spacing:1px;
+cursor:pointer;
+transition:all .3s ease;
+}
+
+.filter-btn:hover{
+color:white;
+border-color:#c9a96e;
+}
+
+.filter-btn.active{
+background:#c9a96e;
+color:#000;
+border-color:#c9a96e;
+}
+.page-header{
+padding-top:140px;
+text-align:center;
+margin-bottom:50px;
+}
