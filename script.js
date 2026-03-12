@@ -87,3 +87,25 @@ item.innerHTML = `
 gallery.appendChild(item);
 
 });
+{src:"images/portrait/portrait001.jpg", category:"portrait"},
+fetch("images.json")
+.then(response => response.json())
+.then(images => {
+
+const gallery = document.getElementById("gallery");
+
+images.forEach(img => {
+
+const item = document.createElement("div");
+item.className = "gallery-item";
+item.dataset.category = img.category;
+
+item.innerHTML = `
+<img src="${img.src}" class="lightbox-trigger" loading="lazy">
+`;
+
+gallery.appendChild(item);
+
+});
+
+});
