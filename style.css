@@ -467,11 +467,27 @@ transition:transform .4s ease;
 
 }
 
-.gallery-item:hover img{
+.gallery-item{
 
-transform:scale(1.05);
+overflow:hidden;
+border-radius:6px;
 
 }
+
+.gallery-item img{
+
+transition:transform .6s ease, filter .6s ease;
+
+}
+
+.gallery-item:hover img{
+
+transform:scale(1.07);
+filter:brightness(0.9);
+
+}
+
+
 @media (max-width:900px){
 
 .masonry-gallery{
@@ -485,5 +501,21 @@ column-count:2;
 .masonry-gallery{
 column-count:1;
 }
+
+}
+/* ===== Lazy image fade ===== */
+
+.lazy-img{
+
+opacity:0;
+transform:translateY(20px);
+transition:all .8s ease;
+
+}
+
+.lazy-img.loaded{
+
+opacity:1;
+transform:translateY(0);
 
 }

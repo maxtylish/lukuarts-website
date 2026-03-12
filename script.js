@@ -15,10 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* ===== Load gallery ===== */
+    /* ===== Load gallery images ===== */
 
     fetch("images.json")
+
     .then(res => res.json())
+
     .then(images => {
 
         const gallery = document.getElementById("gallery");
@@ -28,11 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
         images.forEach(img => {
 
             const item = document.createElement("div");
+
             item.className = "gallery-item";
+
             item.dataset.category = img.category;
 
             item.innerHTML = `
-                <img src="${img.src}" class="lightbox-trigger" loading="lazy">
+            <img 
+            src="${img.src}" 
+            class="lightbox-trigger lazy-img" 
+            loading="lazy"
+            alt="${img.category}">
             `;
 
             gallery.appendChild(item);
@@ -41,6 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         initFilter();
         initLightbox();
+        initLazyFade();
+        applyURLCategory();
 
     });
 
@@ -50,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function initFilter(){
 
         const filterBtns = document.querySelectorAll(".filter-btn");
+
         const galleryItems = document.querySelectorAll(".gallery-item");
 
         filterBtns.forEach(btn => {
@@ -57,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", () => {
 
                 filterBtns.forEach(b => b.classList.remove("active"));
+
                 btn.classList.add("active");
 
                 const filter = btn.dataset.filter;
@@ -64,9 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 galleryItems.forEach(item => {
 
                     if(filter === "all" || item.dataset.category === filter){
+
                         item.style.display = "block";
+
                     } else {
+
                         item.style.display = "none";
+
                     }
 
                 });
@@ -83,15 +99,21 @@ document.addEventListener("DOMContentLoaded", () => {
     function initLightbox(){
 
         const lightbox = document.getElementById("lightbox");
+
         const lightboxImg = document.getElementById("lightbox-img");
+
         const closeBtn = document.querySelector(".lightbox-close");
+
+        if(!lightbox) return;
 
         document.querySelectorAll(".lightbox-trigger").forEach(img => {
 
             img.addEventListener("click", () => {
 
                 lightbox.style.display = "flex";
+
                 lightboxImg.src = img.src;
+
                 document.body.style.overflow = "hidden";
 
             });
@@ -99,17 +121,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const closeLightbox = () => {
+
             lightbox.style.display = "none";
+
             lightboxImg.src = "";
+
             document.body.style.overflow = "auto";
+
         };
 
         if(closeBtn){
+
             closeBtn.addEventListener("click", closeLightbox);
+
         }
 
         lightbox.addEventListener("click", e => {
+
             if(e.target === lightbox) closeLightbox();
+
+        });
+
+    }
+
+
+    /* ===== Lazy image fade ===== */
+
+    function initLazyFade(){
+
+        const lazyImages = document.querySelectorAll(".lazy-img");
+
+        lazyImages.forEach(img => {
+
+            img.addEventListener("load", () => {
+
+                img.classList.add("loaded");
+
+            });
+
         });
 
     }
@@ -147,31 +196,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
-const page = window.location.pathname.split("/").pop().replace(".html","");
 
-fetch("images.json")
-.then(res=>res.json())
-.then(images=>{
+    /* ===== URL category filter ===== */
 
-const gallery = document.getElementById("gallery");
+    function applyURLCategory(){
 
-images.forEach(img=>{
+        const params = new URLSearchParams(window.location.search);
 
-if(page==="portfolio" || page==="index" || img.category===page){
+        const category = params.get("cat");
 
-const item = document.createElement("div");
+        if(category){
 
-item.className="gallery-item";
+            document.querySelectorAll(".filter-btn").forEach(btn => {
 
-item.innerHTML=`
-<img src="${img.src}">
-`;
+                if(btn.dataset.filter === category){
 
-gallery.appendChild(item);
+                    btn.click();
 
-}
+                }
 
-});
+            });
+
+        }
+
+    }
 
 });
