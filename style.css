@@ -127,7 +127,7 @@ footer { text-align: center; padding: 3rem; color: #555; font-size: 0.8rem; lett
 }
 @media (max-width: 600px) {
     .grid-3x2, .gallery-grid { grid-template-columns: 1fr; }
-<<<<<<< HEAD
+
 }
 .gallery {
   padding: 60px;
@@ -162,11 +162,10 @@ footer { text-align: center; padding: 3rem; color: #555; font-size: 0.8rem; lett
   .gallery-container {
     column-count: 1;
   }
-=======
->>>>>>> dfa459fed398c0ed70823accb96a2105387e26eb
+
 }
 .gallery-item img {
-  width: 100%;
+  width: auto;
   height: auto;
   display: block;
   border-radius: 8px;
