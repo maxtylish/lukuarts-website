@@ -17,33 +17,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ===== Load gallery images ===== */
 
-    fetch("images.json")
+ fetch("images.json")
+.then(res=>res.json())
+.then(images=>{
 
-    .then(res => res.json())
+images.sort((a,b)=>{
 
-    .then(images => {
+return a.src.localeCompare(
+b.src,
+undefined,
+{numeric:true,sensitivity:'base'}
+);
 
-        const gallery = document.getElementById("gallery");
+});
 
-        if(!gallery) return;
+const gallery = document.getElementById("gallery");
 
-        images.forEach(img => {
+images.forEach(img=>{
 
-            const item = document.createElement("div");
+const item = document.createElement("div");
 
-            item.className = "gallery-item";
+item.className="gallery-item";
 
-            item.dataset.category = img.category;
+item.innerHTML=`
+<img src="${img.src}" class="lightbox-trigger">
+`;
 
-            item.innerHTML = `
-            <img 
-            src="${img.src}" 
-            class="lightbox-trigger lazy-img" 
-            loading="lazy"
-            alt="${img.category}">
-            `;
+gallery.appendChild(item);
 
-            gallery.appendChild(item);
 
         });
 
@@ -220,5 +221,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
+
+});
+let startX = 0;
+
+const lightbox = document.getElementById("lightbox");
+
+lightbox.addEventListener("touchstart",(e)=>{
+
+startX = e.touches[0].clientX;
+
+});
+
+lightbox.addEventListener("touchend",(e)=>{
+
+let endX = e.changedTouches[0].clientX;
+
+if(endX - startX > 50){
+
+document.querySelector(".lightbox-prev").click();
+
+}
+
+if(startX - endX > 50){
+
+document.querySelector(".lightbox-next").click();
+
+}
 
 });
