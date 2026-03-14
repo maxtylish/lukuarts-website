@@ -1,6 +1,11 @@
 [
 {"src":"images/portrait/p001.jpg","category":"portrait"},
 {"src":"images/portrait/p002.jpg","category":"portrait"},
+{"src":"images/portrait/p003.jpg","category":"portrait"},
+{"src":"images/portrait/p004.jpg","category":"portrait"},
+{"src":"images/portrait/p005.jpg","category":"portrait"},
+{"src":"images/portrait/p006.jpg","category":"portrait"},
+{"src":"images/portrait/p007.jpg","category":"portrait"},
 
 {"src":"images/wedding/w001.jpg","category":"wedding"},
 {"src":"images/wedding/w002.jpg","category":"wedding"},
