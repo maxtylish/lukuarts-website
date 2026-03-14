@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Generate images.json</h2>
+
+<input type="file" id="files" multiple>
+
+<pre id="output"></pre>
+
+<script>
+
+document.getElementById("files").addEventListener("change",function(e){
+
+const files = e.target.files;
+
+let json = [];
+
+for(let file of files){
+
+const path = file.webkitRelativePath || file.name;
+
+let category = "";
+
+if(path.includes("portrait")) category="portrait";
+if(path.includes("wedding")) category="wedding";
+if(path.includes("food")) category="food";
+if(path.includes("event")) category="event";
+if(path.includes("landscape")) category="landscape";
+if(path.includes("creative")) category="creative";
+
+json.push({
+src:path,
+category:category
+});
+
+}
+
+document.getElementById("output").textContent =
+JSON.stringify(json,null,2);
+
+});
+
+</script>
+
+</body>
+</html>
