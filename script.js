@@ -322,4 +322,3 @@ applyLanguage(currentLang);
 
 }
 
-});
