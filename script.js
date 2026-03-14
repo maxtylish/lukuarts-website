@@ -18,16 +18,61 @@ navbar.classList.remove("scrolled");
 
 
 /* ===== Load gallery ===== */
+const categories = [
+"portrait",
+"wedding",
+"food",
+"event",
+"landscape",
+"creative"
+];
 
-fetch("images.json")
-.then(res => res.json())
-.then(images => {
+const page = window.location.pathname
+.split("/")
+.pop()
+.replace(".html","");
 
 const gallery = document.getElementById("gallery");
 
-if(!gallery) return;
+if(gallery){
 
+categories.forEach(cat=>{
 
+if(page==="portfolio" || page===cat){
+
+for(let i=1;i<=50;i++){
+
+const num = String(i).padStart(3,"0");
+
+const imgPath = `images/${cat}/${cat[0]}${num}.jpg`;
+
+const img = new Image();
+
+img.src = imgPath;
+
+img.onload = ()=>{
+
+const item = document.createElement("div");
+
+item.className="gallery-item";
+
+item.dataset.category = cat;
+
+item.innerHTML=`
+<img src="${imgPath}" class="lightbox-trigger">
+`;
+
+gallery.appendChild(item);
+
+};
+
+}
+
+}
+
+});
+
+}
 /* 自動排序 */
 
 images.sort((a,b)=>{
