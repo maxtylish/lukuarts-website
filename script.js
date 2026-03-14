@@ -1,23 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+/* ===== Navbar Scroll ===== */
+
 const navbar = document.querySelector(".navbar");
 
 if(navbar){
-
 window.addEventListener("scroll", () => {
-
-if (window.scrollY > 50){
+if(window.scrollY > 50){
 navbar.classList.add("scrolled");
 }else{
 navbar.classList.remove("scrolled");
 }
-
 });
-
 }
 
 
-/* ===== Load gallery ===== */
+/* ===== Load Gallery from JSON ===== */
 
 fetch("images.json")
 .then(res => res.json())
@@ -27,38 +25,20 @@ const gallery = document.getElementById("gallery");
 
 if(!gallery) return;
 
-
-/* 自動排序 */
-
-images.sort((a,b)=>{
-
-return a.src.localeCompare(
-b.src,
-undefined,
-{numeric:true}
-);
-
-});
-
-
 images.forEach(img => {
 
 const item = document.createElement("div");
 
 item.className = "gallery-item";
-
 item.dataset.category = img.category;
 
 item.innerHTML = `
-<img src="${img.src}" 
-class="lightbox-trigger lazy-img" 
-loading="lazy">
+<img src="${img.src}" class="lightbox-trigger lazy-img" loading="lazy">
 `;
 
 gallery.appendChild(item);
 
 });
-
 
 initFilter();
 initLightbox();
@@ -68,25 +48,22 @@ applyURLCategory();
 });
 
 
-/* ===== Filter ===== */
+/* ===== Filter System ===== */
 
 function initFilter(){
 
 const filterBtns = document.querySelectorAll(".filter-btn");
-
-const galleryItems = document.querySelectorAll(".gallery-item");
 
 filterBtns.forEach(btn => {
 
 btn.addEventListener("click", () => {
 
 filterBtns.forEach(b => b.classList.remove("active"));
-
 btn.classList.add("active");
 
 const filter = btn.dataset.filter;
 
-galleryItems.forEach(item => {
+document.querySelectorAll(".gallery-item").forEach(item => {
 
 if(filter === "all" || item.dataset.category === filter){
 item.style.display = "block";
@@ -112,46 +89,47 @@ const lightbox = document.getElementById("lightbox");
 if(!lightbox) return;
 
 const lightboxImg = document.getElementById("lightbox-img");
-
 const closeBtn = document.querySelector(".lightbox-close");
 
-const images = document.querySelectorAll(".lightbox-trigger");
-
+let images = [];
 let currentIndex = 0;
 
+function refreshImages(){
+
+images = document.querySelectorAll(".lightbox-trigger");
 
 images.forEach((img,index)=>{
 
-img.addEventListener("click",()=>{
+img.onclick = () => {
 
-lightbox.style.display="flex";
-
+lightbox.style.display = "flex";
 lightboxImg.src = img.src;
 
 currentIndex = index;
 
-document.body.style.overflow="hidden";
+document.body.style.overflow = "hidden";
+
+};
 
 });
 
-});
+}
+
+setTimeout(refreshImages,300);
 
 
 function closeLightbox(){
 
 lightbox.style.display="none";
-
 document.body.style.overflow="auto";
 
 }
 
-if(closeBtn){
-closeBtn.addEventListener("click",closeLightbox);
-}
+if(closeBtn) closeBtn.onclick = closeLightbox;
 
-lightbox.addEventListener("click",e=>{
+lightbox.onclick = (e)=>{
 if(e.target===lightbox) closeLightbox();
-});
+};
 
 
 document.addEventListener("keydown",(e)=>{
@@ -161,7 +139,6 @@ if(lightbox.style.display!=="flex") return;
 if(e.key==="Escape") closeLightbox();
 
 if(e.key==="ArrowRight") showNext();
-
 if(e.key==="ArrowLeft") showPrev();
 
 });
@@ -171,7 +148,7 @@ function showNext(){
 
 currentIndex++;
 
-if(currentIndex>=images.length) currentIndex=0;
+if(currentIndex >= images.length) currentIndex = 0;
 
 lightboxImg.src = images[currentIndex].src;
 
@@ -181,7 +158,7 @@ function showPrev(){
 
 currentIndex--;
 
-if(currentIndex<0) currentIndex=images.length-1;
+if(currentIndex < 0) currentIndex = images.length - 1;
 
 lightboxImg.src = images[currentIndex].src;
 
@@ -201,7 +178,6 @@ lightbox.addEventListener("touchend",e=>{
 let endX = e.changedTouches[0].clientX;
 
 if(endX-startX>50) showPrev();
-
 if(startX-endX>50) showNext();
 
 });
@@ -209,13 +185,11 @@ if(startX-endX>50) showNext();
 }
 
 
-/* ===== Lazy image ===== */
+/* ===== Lazy Image Fade ===== */
 
 function initLazyFade(){
 
-const lazyImages = document.querySelectorAll(".lazy-img");
-
-lazyImages.forEach(img=>{
+document.querySelectorAll(".lazy-img").forEach(img=>{
 
 img.addEventListener("load",()=>{
 img.classList.add("loaded");
@@ -226,12 +200,11 @@ img.classList.add("loaded");
 }
 
 
-/* ===== URL category ===== */
+/* ===== URL Category Filter ===== */
 
 function applyURLCategory(){
 
 const params = new URLSearchParams(window.location.search);
-
 const category = params.get("cat");
 
 if(!category) return;
@@ -247,7 +220,7 @@ btn.click();
 }
 
 
-/* ===== Language switch ===== */
+/* ===== Language Switch ===== */
 
 const langBtn = document.getElementById("lang-toggle");
 
