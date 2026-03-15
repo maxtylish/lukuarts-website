@@ -12,14 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 2. 從 JSON 載入作品集資料 ===== */
+    /* ===== 2. 從 JSON 載入作品集資料 (強化偵錯版) ===== */
+    const gallery = document.getElementById("gallery");
+    
+    // 如果有找到容器，先清空它（避免 HTML 裡的測試圖干擾）
+    if (gallery) {
+        gallery.innerHTML = ""; 
+    }
+
     fetch("images.json")
         .then(res => {
-            if (!res.ok) throw new Error("找不到 images.json 檔案");
+            if (!res.ok) throw new Error("找不到 images.json 檔案，請檢查檔案是否在根目錄且檔名正確（全小寫）。");
             return res.json();
         })
         .then(images => {
-            const gallery = document.getElementById("gallery");
             if (!gallery) return;
 
             images.forEach(img => {
@@ -43,18 +49,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 gallery.appendChild(item);
             });
 
-            // 初始化所有相簿相關功能
+            // 初始化相簿功能
             initFilter();
             initLightbox();
             initLazyFade();
             applyURLCategory();
         })
         .catch(error => {
-            console.error("載入作品失敗:", error);
-            // 如果沒抓到資料，嘗試顯示手動寫在 HTML 裡的作品
+            console.error("【LUKUARTS 系統報錯】:", error.message);
+            // 載入失敗時的後備方案
             initFilter();
             initLightbox();
-            initLazyFade();
         });
 
     /* ===== 3. 作品分類過濾系統 ===== */
@@ -73,13 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         item.style.display = "none";
                     }
                 });
-                // 過濾後重新整理 Lightbox 隊列
-                if (typeof window.refreshLightbox === "function") window.refreshLightbox();
+                if (window.refreshLightbox) window.refreshLightbox();
             });
         });
     }
 
-    /* ===== 4. Lightbox 燈箱系統 (支援左右切換與手機滑動) ===== */
+    /* ===== 4. Lightbox 燈箱系統 ===== */
     function initLightbox() {
         const lightbox = document.getElementById("lightbox");
         if (!lightbox) return;
@@ -142,15 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === "ArrowRight") showNext();
             if (e.key === "ArrowLeft") showPrev();
         });
-
-        // 手機滑動
-        let startX = 0;
-        lightbox.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
-        lightbox.addEventListener("touchend", e => {
-            let endX = e.changedTouches[0].clientX;
-            if (endX - startX > 50) showPrev();
-            if (startX - endX > 50) showNext();
-        });
     }
 
     /* ===== 5. 圖片載入漸顯效果 ===== */
@@ -159,39 +154,34 @@ document.addEventListener("DOMContentLoaded", () => {
             if (img.complete) {
                 img.classList.add("loaded");
             } else {
-                img.addEventListener("load", () => {
-                    img.classList.add("loaded");
-                });
+                img.addEventListener("load", () => img.classList.add("loaded"));
             }
         });
     }
 
-    /* ===== 6. 網址參數分類 (URL Parameter) ===== */
+    /* ===== 6. 網址參數分類 ===== */
     function applyURLCategory() {
         const params = new URLSearchParams(window.location.search);
         const category = params.get("cat");
-        if (!category) return;
-        document.querySelectorAll(".filter-btn").forEach(btn => {
-            if (btn.dataset.filter === category) btn.click();
-        });
+        if (category) {
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                if (btn.dataset.filter === category) btn.click();
+            });
+        }
     }
 
     /* ===== 7. 多語系切換系統 ===== */
-    const langBtn = document.getElementById("lang-toggle");
-    let currentLang = localStorage.getItem("site-lang") || "en";
-
     function applyLanguage(lang) {
         document.querySelectorAll("[data-en]").forEach(el => {
-            if (el.dataset[lang]) {
-                el.textContent = el.dataset[lang];
-            }
+            if (el.dataset[lang]) el.textContent = el.dataset[lang];
         });
-        // 切換 html 標籤的 lang 屬性
         document.documentElement.lang = lang;
     }
 
+    let currentLang = localStorage.getItem("site-lang") || "en";
     applyLanguage(currentLang);
 
+    const langBtn = document.getElementById("lang-toggle");
     if (langBtn) {
         langBtn.addEventListener("click", () => {
             currentLang = (currentLang === "en") ? "zh" : "en";
@@ -200,12 +190,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 8. 來訪人數計數器 (Optional) ===== */
+    /* ===== 8. 來訪人數計數器 ===== */
     const countDisplay = document.getElementById('visit-count');
     if (countDisplay) {
         fetch('https://api.counterapi.dev/v1/lukuarts/homepage/up')
             .then(res => res.json())
             .then(data => { countDisplay.textContent = data.count; })
-            .catch(() => { countDisplay.parentElement.style.display = 'none'; });
+            .catch(() => {});
     }
 });
