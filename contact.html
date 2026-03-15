@@ -52,25 +52,27 @@
                 </div>
 
                 <div class="contact-form-wrapper">
-                    <form class="contact-form" action="#" method="POST">
-                        <div class="form-group">
-                            <label data-en="Your Name" data-zh="您的姓名">Your Name</label>
-                            <input type="text" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label data-en="Email Address" data-zh="電子郵件">Email Address</label>
-                            <input type="email" required>
-                        </div>
+                    <form class="contact-form" action="https://formspree.io/f/mgonlnrq" method="POST">
+    
+    <div class="form-group">
+        <label data-en="Your Name" data-zh="您的姓名">Your Name</label>
+        <input type="text" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label data-en="Email Address" data-zh="電子郵件">Email Address</label>
+        <input type="email" name="email" required>
+    </div>
 
-                        <div class="form-group">
-                            <label data-en="Project Details" data-zh="專案內容 / 拍攝需求">Project Details</label>
-                            <textarea required></textarea>
-                        </div>
+    <div class="form-group">
+        <label data-en="Project Details" data-zh="專案內容 / 拍攝需求">Project Details</label>
+        <textarea name="message" required></textarea>
+    </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-en="Send Message" data-zh="發送訊息">
-                            Send Message
-                        </button>
+    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-en="Send Message" data-zh="發送訊息">
+        Send Message
+    </button>
+</form>
                     </form>
                 </div>
 
