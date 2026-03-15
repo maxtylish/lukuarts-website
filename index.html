@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <div id="splash-screen">
       <img src="images/logo-zh.png" alt="LUKUARTS VISUAL" class="splash-logo">
     </div>
@@ -22,11 +23,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* 這裡確保 transition 有寫對 */
       transition: opacity 0.8s ease, visibility 0.8s ease;
+      opacity: 1;
+      visibility: visible;
     }
 
-    /* 金色發光濾鏡 */
+    /* 把黑色字轉成發光金色的 CSS 煉金術 */
     .splash-logo {
       width: 60%;
       max-width: 400px;
@@ -35,49 +37,5 @@
     }
 
     @keyframes goldPulse {
-      0%, 100% { transform: scale(1); opacity: 1; filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1) drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); }
-      50% { transform: scale(1.05); opacity: 0.9; filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.3) drop-shadow(0 0 25px rgba(201, 169, 110, 0.9)); }
-    }
-    </style>
-
-    <nav class="navbar">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-            <li><a href="contact.html" data-en="Contact" data-zh="聯絡我">Contact</a></li>
-            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');"></div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <p class="hero-en-title">LUKUARTS VISUAL</p>
-                <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
-                <p data-en="Portrait & Commercial Photography" data-zh="人像與商業攝影">Portrait & Commercial Photography</p>
-                <a href="portfolio.html" class="btn btn-primary" data-en="View Portfolio" data-zh="查看作品">View Portfolio</a>
-            </div>
-        </section>
-        
-        <section class="section-padding">
-            <h2 class="section-title" data-en="Selected Works" data-zh="精選作品">Selected Works</h2>
-            
-            <div class="masonry-gallery">
-
-                <div class="masonry-item">
-                    <a href="portfolio.html?cat=portrait" style="display: block;">
-                        <img src="images/homepage/H01.jpg" alt="portrait">
-                        <div class="item-overlay">
-                            <div class="overlay-text">
-                                <h3>Portrait</h3>
-                                <p>人像攝影</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="masonry
+      0%, 100% { transform: scale(1); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1) drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); }
+      50% { transform: scale(1.05); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.3) drop-shadow(0 0 25px rgba(201, 169, 110, 0.9)); }
