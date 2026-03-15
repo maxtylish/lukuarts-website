@@ -2,61 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | LUKUARTS VISUAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav class="navbar scrolled">
+    <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
-<ul class="nav-links">
-
-<li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-
-<li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-
-<li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-
-<li><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
-
-<li>
-<button id="lang-toggle" class="lang-btn">EN / 中</button>
-</li>
-
-</ul>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
+            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+            <li><a href="contact.html" class="active" data-en="Contact" data-zh="聯絡我">Contact</a></li>
+            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+        </ul>
     </nav>
 
-    <main class="section-padding">
-        <div class="contact-container">
-            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Get in Touch</h1>
-            <p style="color: #aaa; margin-bottom: 3rem;">Available for commissions and visual storytelling worldwide.</p>
-            
-            <form onsubmit="event.preventDefault();">
-                <div class="input-group"><input type="text" placeholder="Name" required></div>
-                <div class="input-group"><input type="email" placeholder="Email" required></div>
-                <div class="input-group"><textarea placeholder="Message" rows="5" required></textarea></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-            </form>
-
-            <div class="social-links">
-                <a href="mailto:maxtylish@hotmail.com">Email</a>
-                <a href="https://instagram.com/LUKUARTS" target="_blank">Instagram</a>
-            </div>
+    <main>
+        <div class="page-header">
+            <h1 data-en="Contact" data-zh="聯絡我">Contact</h1>
         </div>
+
+        <section class="section-padding" style="padding-top: 0;">
+            <div class="contact-container">
+                
+                <div class="contact-info">
+                    <h2 data-en="Let's Create Together" data-zh="期待與您合作">Let's Create Together</h2>
+                    <p data-en="Whether it's a commercial project, portrait session, or videography inquiry, I'm always open to discussing new creative ideas. Drop a message below or reach out directly." 
+                       data-zh="無論是商業攝影、專屬人像拍攝，或是動態影音需求，我都非常樂意與您討論新的創意企劃。請填寫右側表單，或透過下方資訊直接與我聯繫。">
+                        Whether it's a commercial project, portrait session, or videography inquiry, I'm always open to discussing new creative ideas. Drop a message below or reach out directly.
+                    </p>
+
+                    <ul class="contact-details">
+                        <li>
+                            <span data-en="Email" data-zh="電子郵件">Email</span>
+                            <a href="mailto:hello@lukuarts.com">hello@lukuarts.com</a>
+                        </li>
+                        <li>
+                            <span data-en="Instagram" data-zh="Instagram">Instagram</span>
+                            <a href="https://instagram.com/lukuarts" target="_blank">@lukuarts</a>
+                        </li>
+                        <li>
+                            <span data-en="Location" data-zh="所在地區">Location</span>
+                            <a href="#" data-en="Taichung City, Taiwan (Available Worldwide)" data-zh="台灣 台中 (接受全球委託)">Taichung City, Taiwan (Available Worldwide)</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label data-en="Your Name" data-zh="您的姓名">Your Name</label>
+                            <input type="text" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-en="Email Address" data-zh="電子郵件">Email Address</label>
+                            <input type="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-en="Project Details" data-zh="專案內容 / 拍攝需求">Project Details</label>
+                            <textarea required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-en="Send Message" data-zh="發送訊息">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
     </main>
-    <div id="lightbox" class="lightbox">
 
-<span class="lightbox-close">&times;</span>
+    <footer>
+        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+    </footer>
 
-<img class="lightbox-content" id="lightbox-img">
-
-<button class="lightbox-prev">&#10094;</button>
-
-<button class="lightbox-next">&#10095;</button>
-
-</div>
-
-    <footer><p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p></footer>
     <script src="script.js"></script>
 </body>
 </html>
