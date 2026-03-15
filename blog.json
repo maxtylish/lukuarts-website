@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "date": "2026-03-15",
+    "title": "如何捕捉光影的溫度",
+    "excerpt": "在攝影中，光線不僅是照明，更是情感的載體...",
+    "thumbnail": "images/portrait/p001.jpg",
+    "link": "blog-post-1.html"
+  },
+  {
+    "id": 2,
+    "date": "2026-03-10",
+    "title": "2026 賽道日拍攝紀實",
+    "excerpt": "這一次的 YOUNG TRACK DAY，我嘗試用快門凝結速度感...",
+    "thumbnail": "images/event/e002_track.jpg",
+    "link": "blog-post-2.html"
+  }
+]
