@@ -1,5 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
+/* ===== Splash Screen Controller ===== */
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    // 預設顯示 3 秒後執行淡出
+    setTimeout(() => {
+      splash.style.opacity = '0';
+      splash.style.visibility = 'hidden';
+      
+      // 動畫結束後，恢復 body 的滾動功能
+      setTimeout(() => {
+        document.body.style.overflow = 'auto';
+      }, 800); // 對應 CSS 的 transition 時間
 
+    }, 3000); // 3000 毫秒 = 3 秒
+
+    // 遮罩顯示時，鎖定 body 滾動
+    document.body.style.overflow = 'hidden';
+  }
   /* ===== Navbar Scroll ===== */
   const navbar = document.querySelector(".navbar");
   if(navbar){
