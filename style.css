@@ -1,250 +1,73 @@
-/* ================= VARIABLES (變數設定) ================= */
 :root {
-  --bg-dark: #0f0f0f;
-  --text-light: #ffffff;
+  --bg-dark: #0a0a0a;
   --accent-gold: #c9a96e;
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
-  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* ================= RESET (基礎重設) ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg-dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-body {
-  background: var(--bg-dark);
-  color: var(--text-light);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-h1, h2, h3 {
-  font-family: var(--font-heading);
-  font-weight: 400;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  height: auto;
-}
-
-a {
-  color: var(--text-light);
-  text-decoration: none;
-  transition: var(--transition-smooth);
-}
-
-/* 客製化捲軸 */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
-::-webkit-scrollbar-track { background: #000; }
-
-/* ================= NAVBAR (導覽列修正) ================= */
+/* 修正 Navbar 黑條與透明度 */
 .navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1.2rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem 5%;
   background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-  transition: var(--transition-smooth);
-  flex-wrap: nowrap; /* ⚡ 防止換行擠壓 */
+  transition: var(--transition);
 }
-
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  letter-spacing: 2px;
-  font-weight: 600;
-  white-space: nowrap;
+.navbar.scrolled {
+  padding: 1rem 5%;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
 }
+.logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: 2px; color: #fff; text-decoration: none; }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.75rem; text-transform: uppercase; color: #fff; text-decoration: none; opacity: 0.7; }
+.nav-links a.active, .nav-links a:hover { opacity: 1; color: var(--accent-gold); }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.nav-links a {
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.7;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--accent-gold);
-  opacity: 1;
-}
-
-.lang-btn {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
-  padding: 4px 10px;
-  font-size: 10px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-/* ================= HERO (首頁區塊修正) ================= */
+/* 修正 Hero 區塊 */
 .hero {
-  height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 5%;
+  height: 100vh; width: 100%; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
 }
-
 .hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');
-  background-size: cover;
-  background-position: center;
+  position: absolute; inset: 0; z-index: -1;
+  background: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover;
   filter: brightness(0.5);
-  z-index: -1;
 }
-
-.hero-content {
-  width: 100%;
-  max-width: 900px;
-}
-
 .hero-en-title {
-  font-size: clamp(1.5rem, 6vw, 2.8rem); /* ⚡ 防止字體過大 */
-  letter-spacing: 5px;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 6vw, 3rem);
+  letter-spacing: 6px; margin-bottom: 0.5rem;
 }
+.hero-zh-logo { width: 50%; max-width: 320px; margin-bottom: 1.5rem; display: block; }
+.hero-content p { font-size: 0.9rem; color: #ccc; margin-bottom: 2.5rem; letter-spacing: 2px; }
 
-.hero-zh-logo {
-  width: 60%;
-  max-width: 350px;
-  margin: 0 auto 1.5rem;
-}
-
-/* ================= GALLERY (作品集瀑布流修正) ================= */
-.section-padding { padding: 6rem 5%; }
-.section-title { font-size: 2rem; text-align: center; margin-bottom: 3rem; letter-spacing: 4px; color: var(--accent-gold); }
-
-.masonry-gallery {
-  column-count: 3; /* ⚡ 電腦版三欄 */
-  column-gap: 25px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 25px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.masonry-item img {
-  width: 100%;
-  transition: var(--transition-smooth);
-}
-
-.item-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 15, 15, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: var(--transition-smooth);
-}
-
-.masonry-item:hover .item-overlay { opacity: 1; }
-.masonry-item:hover img { transform: scale(1.03); }
-
-/* ================= BLOG (部落格樣式) ================= */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.blog-card {
-  background: #151515;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.blog-card:hover { transform: translateY(-8px); }
-.blog-card-img { width: 100%; height: 220px; object-fit: cover; }
-.blog-card-content { padding: 25px; }
-.blog-card-date { font-size: 0.7rem; color: var(--accent-gold); letter-spacing: 1px; }
-.blog-card-title { font-size: 1.3rem; margin: 10px 0; font-family: var(--font-heading); }
-.blog-card-excerpt { font-size: 0.9rem; color: #999; margin-bottom: 20px; }
-
-/* ================= LIGHTBOX ================= */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.98);
-  z-index: 11000;
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox-content { max-width: 90%; max-height: 85vh; object-fit: contain; }
-.lightbox-close { position: absolute; top: 30px; right: 40px; font-size: 40px; cursor: pointer; }
-.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; background: none; border: none; cursor: pointer; padding: 20px; }
-.lightbox-prev { left: 10px; }
-.lightbox-next { right: 10px; }
-
-/* ================= BUTTONS ================= */
+/* 按鈕樣式 */
 .btn {
-  display: inline-block;
-  padding: 0.7rem 1.8rem;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  transition: var(--transition-smooth);
+  padding: 0.8rem 2.2rem; font-size: 0.75rem; letter-spacing: 2px;
+  text-transform: uppercase; border: 1px solid var(--accent-gold);
+  color: var(--accent-gold); text-decoration: none; transition: var(--transition);
 }
-
 .btn-primary { background: var(--accent-gold); color: #000; font-weight: 600; }
 .btn:hover { background: #fff; color: #000; border-color: #fff; }
 
-/* ================= FOOTER ================= */
-footer { text-align: center; padding: 4rem 0; border-top: 1px solid #222; margin-top: 4rem; }
-.visitor-counter { margin-top: 15px; font-size: 0.75rem; color: #444; letter-spacing: 2px; }
+/* 修正圖片過大問題 */
+.section-padding { padding: 8rem 5%; }
+.section-title { text-align: center; font-size: 1.8rem; margin-bottom: 4rem; letter-spacing: 4px; color: var(--accent-gold); font-family: 'Playfair Display', serif; }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 1024px) { 
-  .masonry-gallery { column-count: 2; } 
+.masonry-gallery {
+  column-count: 3; column-gap: 20px; max-width: 1200px; margin: 0 auto;
 }
+.masonry-item { break-inside: avoid; margin-bottom: 20px; cursor: pointer; overflow: hidden; }
+.masonry-item img { width: 100%; display: block; transition: var(--transition); }
+.masonry-item:hover img { transform: scale(1.05); }
 
-@media (max-width: 768px) {
-  .nav-links { display: none; } /* 手機版先隱藏選單 */
-  .hero-en-title { font-size: 2rem; }
-  .hero-zh-logo { width: 85%; }
-  .masonry-gallery { column-count: 1; }
-  .section-padding { padding: 4rem 5%; }
-}
+/* 燈箱樣式 */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 11000; display: none; justify-content: center; align-items: center; }
+.lightbox-content { max-width: 90%; max-height: 85vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 40px; cursor: pointer; }
+
+/* 手機版排版 */
+@media (max-width: 900px) { .masonry-gallery { column-count: 2; } .nav-links { display: none; } }
+@media (max-width: 600px) { .masonry-gallery { column-count: 1; } }
