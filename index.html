@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-    /* 進版畫面強制置頂 */
+    /* 進版畫面強制置頂樣式 */
     #splash-screen {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -17,12 +17,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: opacity 1s ease, visibility 1s ease;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+      opacity: 1;
+      visibility: visible;
     }
 
     .splash-logo {
       width: 60%;
       max-width: 400px;
+      /* 金色發光濾鏡 */
       filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.2) drop-shadow(0 0 20px rgba(201, 169, 110, 0.8));
       animation: goldPulse 2.5s infinite ease-in-out;
     }
@@ -46,6 +49,7 @@
     </div>
 
     <script>
+      /* 設定 1 秒後開始淡出 */
       window.onload = function() {
         setTimeout(function() {
           var splash = document.getElementById('splash-screen');
@@ -53,7 +57,7 @@
             splash.classList.add('splash-fade-out');
             document.body.style.overflow = 'auto'; 
           }
-        }, 2500);
+        }, 1000); 
       };
     </script>
 

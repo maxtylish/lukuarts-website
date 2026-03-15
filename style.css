@@ -1,4 +1,4 @@
-/* ================= VARIABLES (變數設定) ================= */
+/* ================= VARIABLES ================= */
 :root {
   --bg-dark: #0f0f0f;
   --text-light: #ffffff;
@@ -8,7 +8,7 @@
   --transition-smooth: all .4s cubic-bezier(.25,.46,.45,.94);
 }
 
-/* ================= RESET (基礎重設) ================= */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +39,12 @@ a {
   transition: var(--transition-smooth);
 }
 
-/* ================= NAVBAR (導覽列) ================= */
+/* 客製化捲軸 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+
+/* ================= NAVBAR ================= */
 .navbar {
   position: fixed;
   top: 0;
@@ -50,6 +55,7 @@ a {
   align-items: center;
   z-index: 100;
   background: linear-gradient(to bottom, rgba(15,15,15,.9), transparent);
+  transition: 0.3s;
 }
 
 .logo {
@@ -73,13 +79,22 @@ a {
   opacity: .8;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover {
   color: var(--accent-gold);
   opacity: 1;
 }
 
-/* ================= HERO (首頁區塊) ================= */
+.lang-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #ccc;
+  padding: 6px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* ================= HERO ================= */
 .hero {
   height: 100vh;
   position: relative;
@@ -87,7 +102,6 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
 }
 
 .hero-bg {
@@ -98,17 +112,6 @@ a {
   background-position: center;
   filter: brightness(.6);
   z-index: -1;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(15,15,15,.4);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
 }
 
 .hero-en-title {
@@ -122,24 +125,13 @@ a {
   width: 80%;
   max-width: 450px;
   margin: 0 auto 2rem;
-  filter: brightness(1);
 }
 
-/* ================= MASONRY GALLERY (作品集瀑布流) ================= */
-.section-padding {
-  padding: 6rem 5%;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 4rem;
-  letter-spacing: 4px;
-  color: var(--accent-gold);
-}
+/* ================= GALLERY ================= */
+.section-padding { padding: 6rem 5%; }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 4rem; letter-spacing: 4px; color: var(--accent-gold); }
 
 .masonry-gallery {
-  /* ⚡ 這裡控制電腦版顯示三欄，寬度會自動平均分配 */
   column-count: 3;
   column-gap: 30px;
   max-width: 1400px;
@@ -153,151 +145,52 @@ a {
   overflow: hidden;
   border-radius: 4px;
   cursor: pointer;
-  background: #1a1a1a;
 }
 
 .masonry-item img {
   width: 100%;
-  height: auto;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s ease, opacity 1s ease;
 }
 
-.masonry-item:hover img {
-  transform: scale(1.05);
-}
-
-/* 作品懸停遮罩 */
 .item-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 15, 15, 0.7);
+  background: rgba(15, 15, 15, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: var(--transition-smooth);
+  transition: 0.4s;
 }
 
-.masonry-item:hover .item-overlay {
-  opacity: 1;
-}
+.masonry-item:hover .item-overlay { opacity: 1; }
+.masonry-item:hover img { transform: scale(1.05); }
 
-.overlay-text {
-  text-align: center;
-  padding: 20px;
-}
-
-.overlay-text h3 {
-  font-size: 1.4rem;
-  margin-bottom: 5px;
-  letter-spacing: 1px;
-}
-
-.overlay-text p {
-  font-size: 0.8rem;
-  color: var(--accent-gold);
-  text-transform: uppercase;
-}
-
-/* ================= LIGHTBOX (燈箱) ================= */
+/* ================= LIGHTBOX ================= */
 .lightbox {
   display: none;
   position: fixed;
-  z-index: 11000;
   inset: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.98);
+  z-index: 11000;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(10px);
 }
 
-.lightbox-content {
-  max-width: 85%;
-  max-height: 85vh;
-  object-fit: contain;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-}
+.lightbox-content { max-width: 90%; max-height: 85vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 30px; right: 40px; font-size: 40px; cursor: pointer; }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; background: none; border: none; cursor: pointer; padding: 20px; }
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
 
-.lightbox-close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 40px;
-  cursor: pointer;
-  color: #fff;
-}
+/* ================= FOOTER ================= */
+footer { text-align: center; padding: 5rem 0; border-top: 1px solid #222; }
+.visitor-counter { margin-top: 10px; font-size: 0.8rem; color: #555; letter-spacing: 2px; }
 
-.lightbox-prev, .lightbox-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 35px;
-  color: #fff;
-  background: rgba(255,255,255,0.1);
-  border: none;
-  padding: 20px 15px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.lightbox-prev { left: 0; border-radius: 0 5px 5px 0; }
-.lightbox-next { right: 0; border-radius: 5px 0 0 5px; }
-
-.lightbox-prev:hover, .lightbox-next:hover {
-  background: rgba(201, 169, 110, 0.4);
-}
-
-/* ================= FOOTER & MISC ================= */
-.btn {
-  display: inline-block;
-  padding: .8rem 2rem;
-  font-size: .8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  background: transparent;
-  transition: var(--transition-smooth);
-}
-
-.btn-primary {
-  background: var(--accent-gold);
-  color: #000;
-}
-
-.btn:hover {
-  background: white;
-  color: black;
-  border-color: white;
-}
-
-footer {
-  text-align: center;
-  padding: 5rem 5%;
-  border-top: 1px solid #222;
-  margin-top: 4rem;
-}
-
-.visitor-counter {
-  margin-top: 20px;
-  font-size: 0.8rem;
-  color: #666;
-  letter-spacing: 2px;
-}
-
-/* ================= RESPONSIVE (手機版) ================= */
-@media (max-width: 1024px) {
-  .masonry-gallery { column-count: 2; }
-}
-
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) { .masonry-gallery { column-count: 2; } }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hero-en-title { font-size: 2.5rem; }
-  .hero-zh-logo { width: 90%; }
-  .section-padding { padding: 4rem 5%; }
-}
-
-@media (max-width: 600px) {
   .masonry-gallery { column-count: 1; }
-  .section-title { font-size: 2rem; }
 }
