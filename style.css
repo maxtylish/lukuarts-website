@@ -1,253 +1,116 @@
-<<<<<<< HEAD
-:root {
-  --bg-dark: #0a0a0a;
-  --accent-gold: #c9a96e;
-  --text-light: #ffffff;
-}
-
-/* 基礎重設 */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg-dark); color: var(--text-light); font-family: 'Inter', sans-serif; }
-a { text-decoration: none !important; color: inherit !important; }
-
-/* 導覽列：確保不占空間但浮在最上面 */
-.navbar {
-  position: fixed; top: 0; width: 100%; z-index: 1000;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.5rem 5%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-}
-
-/* Hero 區塊：關鍵修復 */
-.hero {
-  position: relative;
-  min-height: 100vh; /* ⚡ 使用 min-height 確保至少一屏高 */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 100px 5%; /* ⚡ 給頂部留位置給導覽列 */
-}
-
-.hero-bg {
-  position: absolute; 
-  top: 0; left: 0; width: 100%; height: 100%; 
-  z-index: -1;
-  background: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
-  filter: brightness(0.4);
-}
-
-.hero-content {
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.hero-en-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  letter-spacing: 6px;
-  color: #fff !important;
-}
-
-.hero-zh-logo { 
-  width: 50%; 
-  max-width: 320px; 
-  height: auto; 
-}
-
-/* 按鈕：強制金色外觀 */
-.btn {
-  display: inline-block;
-  padding: 1rem 3rem;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: 1px solid var(--accent-gold) !important;
-  background-color: var(--accent-gold) !important;
-  color: #000 !important;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.btn:hover { background-color: #fff !important; color: #000 !important; border-color: #fff !important; }
-
-/* 作品集區塊：解決黑條重疊 */
-.section-padding {
-  position: relative;
-  padding: 100px 5%; /* ⚡ 增加上下間距，把內容推開 */
-  background: var(--bg-dark);
-  z-index: 2; /* 確保它在背景圖上方 */
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 50px;
-  letter-spacing: 4px;
-  color: var(--accent-gold);
-  font-family: 'Playfair Display', serif;
-}
-
-/* 修正圖片排版 */
-.masonry-gallery {
-  column-count: 3;
-  column-gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.masonry-item { break-inside: avoid; margin-bottom: 20px; }
-.masonry-item img { width: 100%; display: block; }
-=======
-/* 變數設定 */
+/* ================= 1. 全域變數與重設 ================= */
 :root {
     --bg-dark: #0a0a0a;
     --accent-gold: #c9a96e;
+    --text-light: #ffffff;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
     --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Hero 區塊：確保背景圖滿版且文字置中 */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    background: var(--bg-dark); 
+    color: var(--text-light); 
+    font-family: var(--font-body); 
+    overflow-x: hidden; 
+}
+
+a { 
+    text-decoration: none !important; 
+    color: inherit !important; 
+}
+
+/* ================= 2. 導覽列 (Navbar) ================= */
+.navbar {
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 1000;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    transition: var(--transition);
+}
+
+/* ================= 3. 首頁 Hero 區塊 (穩定排版) ================= */
 .hero {
-    height: 100vh;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
     text-align: center;
+    padding: 100px 5%;
+    overflow: hidden;
 }
 
 .hero-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%; 
     z-index: -1;
-    transform: scale(1.1); /* 增加一點放大感，可配合 JS 做動態效果 */
-}
-
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 0;
+    background: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+    filter: brightness(0.4);
+    transform: scale(1.05); /* 輕微放大感 */
 }
 
 .hero-content {
-    position: relative;
     z-index: 1;
-}
-
-/* 作品集網格 (Masonry 風格) */
-.masonry-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
-}
-
-.masonry-item {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 3/4; /* 或者根據圖片比例調整 */
-}
-
-.masonry-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-/* 懸停效果：文字浮現與圖片縮放 */
-.item-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: var(--transition);
+    gap: 1.5rem;
 }
 
-.masonry-item:hover .item-overlay {
-    opacity: 1;
+.hero-en-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    letter-spacing: 6px;
+    color: #fff !important;
 }
 
-.masonry-item:hover img {
-    transform: scale(1.1);
+.hero-zh-logo { 
+    width: 50%; 
+    max-width: 320px; 
+    height: auto; 
 }
 
-.overlay-text {
-    text-align: center;
-    transform: translateY(20px);
-    transition: var(--transition);
+/* ================= 4. 按鈕樣式 (強效金色) ================= */
+.btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--accent-gold) !important;
+    background-color: var(--accent-gold) !important;
+    color: #000 !important;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-.masonry-item:hover .overlay-text {
-    transform: translateY(0);
+.btn:hover { 
+    background-color: #fff !important; 
+    color: #000 !important; 
+    border-color: #fff !important; 
 }
 
-/* 服務項目網格 (Services Grid) */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 0; /* 讓圖片緊貼，增加現代感 */
-}
-
-.service-block {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-}
-
-.service-block img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.5);
-    transition: var(--transition);
-}
-
-.service-block:hover img {
-    filter: grayscale(0);
-}
-
-.service-block h3 {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-size: 1.5rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
-/* 作品集頁面頂部間距，防止被 Navbar 擋住 */
-.portfolio-section, 
-main {
-    padding-top: 120px; /* 給導覽列留空間 */
+/* ================= 5. 作品集分類頁面與過濾按鈕 ================= */
+.portfolio-section, main {
+    padding-top: 140px; /* 防止被 Navbar 擋住 */
     min-height: 80vh;
 }
 
-.page-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.page-header h1 {
-    font-size: 3rem;
-    font-family: var(--font-heading);
-    letter-spacing: 5px;
-    color: var(--accent-gold);
-}
-
-/* 過濾按鈕容器 */
 .portfolio-filters {
     display: flex;
     flex-wrap: wrap;
@@ -274,4 +137,79 @@ main {
     border-color: var(--accent-gold);
     color: #000;
 }
->>>>>>> c80fedc (update portfolio categories)
+
+/* ================= 6. 作品集網格 (Masonry) ================= */
+.section-padding {
+    position: relative;
+    padding: 80px 5%;
+    background: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 50px;
+    letter-spacing: 4px;
+    color: var(--accent-gold);
+    font-family: var(--font-heading);
+}
+
+.masonry-gallery {
+    column-count: 3;
+    column-gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.masonry-item { 
+    break-inside: avoid; 
+    margin-bottom: 20px; 
+    position: relative;
+    overflow: hidden;
+}
+
+.masonry-item img { 
+    width: 100%; 
+    display: block; 
+    transition: var(--transition);
+}
+
+.masonry-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 懸停遮罩效果 */
+.item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.masonry-item:hover .item-overlay {
+    opacity: 1;
+}
+
+/* ================= 7. 燈箱樣式 ================= */
+.lightbox { 
+    position: fixed; inset: 0; background: rgba(0,0,0,0.95); 
+    z-index: 11000; display: none; justify-content: center; align-items: center; 
+}
+.lightbox-content { max-width: 90%; max-height: 85vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 40px; cursor: pointer; }
+
+/* ================= 8. RWD 響應式 ================= */
+@media (max-width: 1024px) {
+    .masonry-gallery { column-count: 2; }
+}
+
+@media (max-width: 768px) {
+    .hero-en-title { font-size: 2.2rem; }
+    .nav-links { display: none; }
+    .masonry-gallery { column-count: 1; }
+}
