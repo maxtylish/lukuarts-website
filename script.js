@@ -12,28 +12,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 2. 從 JSON 載入作品集資料 (強化偵錯版) ===== */
+    /* ===== 2. 從 JSON 載入作品集資料 ===== */
     const gallery = document.getElementById("gallery");
     
-    // 如果有找到容器，先清空它（避免 HTML 裡的測試圖干擾）
-    if (gallery) {
-        gallery.innerHTML = ""; 
-    }
-
+    // 執行載入
     fetch("images.json")
         .then(res => {
-            if (!res.ok) throw new Error("找不到 images.json 檔案，請檢查檔案是否在根目錄且檔名正確（全小寫）。");
+            if (!res.ok) throw new Error("找不到 images.json 檔案");
             return res.json();
         })
         .then(images => {
             if (!gallery) return;
+
+            // 清空 HTML 預設的內容，改由 JSON 動態生成
+            gallery.innerHTML = ""; 
 
             images.forEach(img => {
                 const item = document.createElement("div");
                 item.className = "masonry-item";
                 item.dataset.category = img.category;
 
-                // 處理標題與分類文字
                 const titleText = img.title ? img.title : "LUKUARTS VISUAL";
                 const categoryText = img.category ? img.category.charAt(0).toUpperCase() + img.category.slice(1) : "Photography";
 
@@ -49,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 gallery.appendChild(item);
             });
 
-            // 初始化相簿功能
+            // 初始化所有動態生成後的相簿功能
             initFilter();
             initLightbox();
             initLazyFade();
@@ -57,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => {
             console.error("【LUKUARTS 系統報錯】:", error.message);
-            // 載入失敗時的後備方案
+            // 失敗時仍要確保基本功能能跑
             initFilter();
             initLightbox();
         });
@@ -67,10 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const filterBtns = document.querySelectorAll(".filter-btn");
         filterBtns.forEach(btn => {
             btn.addEventListener("click", () => {
+                // 按鈕樣式切換
                 filterBtns.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
 
                 const filter = btn.dataset.filter;
+                // 過濾圖片顯示
                 document.querySelectorAll(".masonry-item").forEach(item => {
                     if (filter === "all" || item.dataset.category === filter) {
                         item.style.display = "block";
@@ -78,12 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         item.style.display = "none";
                     }
                 });
+                // 過濾後需更新燈箱的圖片隊列
                 if (window.refreshLightbox) window.refreshLightbox();
             });
         });
     }
 
-    /* ===== 4. Lightbox 燈箱系統 ===== */
+    /* ===== 4. Lightbox 燈箱系統 (支援過濾與切換) ===== */
     function initLightbox() {
         const lightbox = document.getElementById("lightbox");
         if (!lightbox) return;
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let currentImages = [];
         let currentIndex = 0;
 
+        // 定義一個刷新隊列的函式，讓分類過濾後也能正確切換
         window.refreshLightbox = function() {
             const visibleItems = Array.from(document.querySelectorAll(".masonry-item"))
                                     .filter(item => item.style.display !== "none");
@@ -148,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 5. 圖片載入漸顯效果 ===== */
+    /* ===== 5. 圖片漸顯效果 ===== */
     function initLazyFade() {
         document.querySelectorAll(".lazy-img").forEach(img => {
             if (img.complete) {
@@ -159,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 6. 網址參數分類 ===== */
+    /* ===== 6. 網址參數偵測 ===== */
     function applyURLCategory() {
         const params = new URLSearchParams(window.location.search);
         const category = params.get("cat");
@@ -170,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    /* ===== 7. 多語系切換系統 ===== */
+    /* ===== 7. 多語系切換 ===== */
     function applyLanguage(lang) {
         document.querySelectorAll("[data-en]").forEach(el => {
             if (el.dataset[lang]) el.textContent = el.dataset[lang];
@@ -190,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 8. 來訪人數計數器 ===== */
+    /* ===== 8. 來訪計數器 ===== */
     const countDisplay = document.getElementById('visit-count');
     if (countDisplay) {
         fetch('https://api.counterapi.dev/v1/lukuarts/homepage/up')
