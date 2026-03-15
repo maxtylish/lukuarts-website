@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
     <div id="splash-screen">
       <img src="images/logo-zh.png" alt="LUKUARTS VISUAL" class="splash-logo">
     </div>
 
     <style>
-    /* 進版畫面滿版黑底 */
+    /* 進版畫面樣式 */
     #splash-screen {
       position: fixed;
       inset: 0;
@@ -23,10 +22,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      /* 這裡確保 transition 有寫對 */
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
-    /* CSS 魔法：把黑色字體變成發光的金色！ */
+    /* 金色發光濾鏡 */
     .splash-logo {
       width: 60%;
       max-width: 400px;
@@ -34,10 +34,9 @@
       animation: goldPulse 2.5s infinite ease-in-out;
     }
 
-    /* 讓金色 Logo 有呼吸凝聚的動態感 */
     @keyframes goldPulse {
-      0%, 100% { transform: scale(1); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1) drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); }
-      50% { transform: scale(1.05); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.3) drop-shadow(0 0 25px rgba(201, 169, 110, 0.9)); }
+      0%, 100% { transform: scale(1); opacity: 1; filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1) drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); }
+      50% { transform: scale(1.05); opacity: 0.9; filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.3) drop-shadow(0 0 25px rgba(201, 169, 110, 0.9)); }
     }
     </style>
 
