@@ -12,5 +12,6 @@
   {"src":"images/event/e001.jpg", "category":"event"},
   {"src":"images/event/e002_track.jpg", "category":"event", "title":"YOUNG TRACK DAY"},
   {"src":"images/landscape/l001.jpg", "category":"landscape"},
-  {"src":"images/creative/c001.jpg", "category":"creative"}
+  {"src":"images/creative/c001.jpg", "category":"creative"},
+    {"src":"images/creative/c002.jpg", "category":"creative"}
 ]
