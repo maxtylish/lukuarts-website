@@ -2,46 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | LUKUARTS VISUAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav class="navbar scrolled">
+    <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
         <ul class="nav-links">
-
-<li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-
-<li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-
-<li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-
-<li><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
-
-<li>
-<button id="lang-toggle" class="lang-btn">EN / 中</button>
-</li>
-
-</ul>
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
+            <li><a href="about.html" class="active" data-en="About" data-zh="關於">About</a></li>
+            <li><a href="contact.html" data-en="Contact" data-zh="聯絡我">Contact</a></li>
+            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+        </ul>
     </nav>
 
-    <main class="section-padding">
-        <div class="split-container">
-            <div>
-                <img src="https://images.unsplash.com/photo-1554046920-90dc2d2ac6f2?auto=format&fit=crop&q=80&w=800" alt="Qingyue Portrait">
-            </div>
-            <div class="about-text">
-                <h2>Qingyue</h2>
-                <p>Qingyue is a photographer focused on portrait and commercial photography, operating under the brand LUKUARTS VISUAL.</p>
-                <p>With a profound understanding of light, shadow, and human emotion, he crafts elegant visual storytelling that elevates brands and captures raw authenticity. Beyond his commercial assignments, Qingyue is deeply passionate about education. He frequently teaches smartphone photography and visual storytelling workshops, empowering the next generation of visual artists to find their unique perspective.</p>
-                <br>
-                <a href="contact.html" class="btn btn-primary">Work with me</a>
-            </div>
+    <main>
+        <div class="page-header">
+            <h1 data-en="About Me" data-zh="關於青玥">About Me</h1>
         </div>
+
+        <section class="section-padding" style="padding-top: 0;">
+            <div class="about-container">
+                
+                <div class="about-text">
+                    <h2 data-en="Behind the Lens" data-zh="鏡頭背後">Behind the Lens</h2>
+                    
+                    <p data-en="Hello, I'm Qingyue. LUKUARTS VISUAL is a creative studio dedicated to capturing the tension of light, shadow, and emotion. We focus on portrait photography, commercial visual design, and high-dynamic storytelling." 
+                       data-zh="你好，我是青玥。LUKUARTS VISUAL 是一個專注於捕捉光影張力與情感的影像工作室。我致力於人像攝影、商業視覺設計，以及極具動態感的影像紀錄。">
+                        Hello, I'm Qingyue. LUKUARTS VISUAL is a creative studio dedicated to capturing the tension of light, shadow, and emotion. We focus on portrait photography, commercial visual design, and high-dynamic storytelling.
+                    </p>
+
+                    <p data-en="Beyond just pressing the shutter, my expertise lies in post-production and atmospheric creation. From high-octane motorsport events to cinematic lighting adjustments and precise audio-visual integration, I deliver complete visual solutions that make brands stand out." 
+                       data-zh="除了按下快門，我更擅長影像的後製與氛圍塑造。從充滿速度感的賽道日拍攝、電影感的光影調控，到結合專業收音與 DaVinci Resolve 的動態影音專案，我致力於提供完整的視覺解決方案，讓作品更具衝擊力。">
+                        Beyond just pressing the shutter, my expertise lies in post-production and atmospheric creation. From high-octane motorsport events to cinematic lighting adjustments and precise audio-visual integration, I deliver complete visual solutions that make brands stand out.
+                    </p>
+
+                    <div class="skills-container">
+                        <span class="skill-tag">Portrait Photography</span>
+                        <span class="skill-tag">Commercial Visuals</span>
+                        <span class="skill-tag">Post-Processing Magic</span>
+                        <span class="skill-tag">Videography & Audio</span>
+                        <span class="skill-tag">High-Speed Actions</span>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554046920-90dc2d2ac2eb?auto=format&fit=crop&q=80&w=1000" alt="Qingyue - Photographer">
+                </div>
+
+            </div>
+        </section>
     </main>
 
-    <footer><p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p></footer>
+    <footer>
+        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
