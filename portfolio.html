@@ -1,85 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Portfolio | LUKUARTS VISUAL</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | LUKUARTS VISUAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<nav class="navbar scrolled">
-<a href="index.html" class="logo">LUKUARTS</a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="portfolio.html" class="active" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
+            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+            <li><a href="contact.html" data-en="Contact" data-zh="聯絡我">Contact</a></li>
+            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+        </ul>
+    </nav>
 
-<ul class="nav-links">
+    <main>
+        <div class="page-header">
+            <h1 data-en="Portfolio" data-zh="作品集">Portfolio</h1>
+        </div>
 
-<li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all" data-en="All" data-zh="全部">All</button>
+            <button class="filter-btn" data-filter="portrait" data-en="Portrait" data-zh="人像攝影">Portrait</button>
+            <button class="filter-btn" data-filter="wedding" data-en="Wedding" data-zh="婚禮紀錄">Wedding</button>
+            <button class="filter-btn" data-filter="food" data-en="Food" data-zh="美食商攝">Food</button>
+            <button class="filter-btn" data-filter="event" data-en="Event" data-zh="活動紀錄">Event</button>
+            <button class="filter-btn" data-filter="landscape" data-en="Landscape" data-zh="風景攝影">Landscape</button>
+            <button class="filter-btn" data-filter="creative" data-en="Creative" data-zh="創意合成">Creative</button>
+        </div>
 
-<li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
+        <div class="masonry-gallery" id="gallery"></div>
+    </main>
 
-<li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <button class="lightbox-prev">&#10094;</button>
+        <button class="lightbox-next">&#10095;</button>
+    </div>
 
-<li><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
+    <footer>
+        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+    </footer>
 
-<li>
-<button id="lang-toggle" class="lang-btn">EN / 中</button>
-</li>
-
-</ul>
-</nav>
-
-
-<main>
-
-<div class="page-header">
-<h1>Portfolio</h1>
-</div>
-
-
-<div class="portfolio-filters">
-
-<button class="filter-btn active" data-filter="all">All</button>
-
-<button class="filter-btn" data-filter="portrait">Portrait</button>
-
-<button class="filter-btn" data-filter="wedding">Wedding</button>
-
-<button class="filter-btn" data-filter="food">Food</button>
-
-<button class="filter-btn" data-filter="event">Event</button>
-
-<button class="filter-btn" data-filter="landscape">Landscape</button>
-
-<button class="filter-btn" data-filter="creative">Creative</button>
-
-</div>
-
-
-<div class="masonry-gallery" id="gallery"></div>
-
-</main>
-
-<div id="lightbox" class="lightbox">
-
-<span class="lightbox-close">&times;</span>
-
-<img class="lightbox-content" id="lightbox-img">
-
-<button class="lightbox-prev">&#10094;</button>
-
-<button class="lightbox-next">&#10095;</button>
-
-</div>
-
-
-<footer>
-<p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

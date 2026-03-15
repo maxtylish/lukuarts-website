@@ -1,53 +1,268 @@
-/* ================= MASONRY GALLERY & HOVER EFFECTS ================= */
+/* ================= VARIABLES ================= */
+:root {
+  --bg-dark: #0f0f0f;
+  --text-light: #ffffff;
+  --accent-gold: #c9a96e;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --transition-smooth: all .4s cubic-bezier(.25,.46,.45,.94);
+}
 
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 2rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(15,15,15,.9), transparent);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-size: .85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: .8;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-gold);
+  opacity: 1;
+}
+
+/* ================= HERO ================= */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(.7);
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15,15,15,.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 5rem;
+  letter-spacing: 6px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 2rem;
+  letter-spacing: 6px;
+  color: #ddd;
+  margin-bottom: 30px;
+  font-family: var(--font-heading);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* ================= BUTTONS & MISC ================= */
+.btn {
+  display: inline-block;
+  padding: .6rem 1.6rem;
+  font-size: .75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--text-light);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary {
+  background: var(--accent-gold);
+  color: #000;
+  border-color: var(--accent-gold);
+}
+
+.btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.section-padding {
+  padding: 8rem 5%;
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  letter-spacing: 2px;
+}
+
+.page-header {
+  padding-top: 140px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #ccc;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lang-btn:hover {
+  border-color: var(--accent-gold);
+  color: white;
+}
+
+/* ================= PORTFOLIO FILTERS ================= */
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #ccc;
+  padding: 8px 18px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.filter-btn:hover {
+  color: white;
+  border-color: var(--accent-gold);
+}
+
+.filter-btn.active {
+  background: var(--accent-gold);
+  color: #000;
+  border-color: var(--accent-gold);
+}
+
+/* ================= MASONRY GALLERY & HOVER EFFECTS ================= */
 .masonry-gallery {
   column-count: 3;
   column-gap: 20px;
-  padding: 40px; /* 保留你原本底部的 padding 設定 */
+  padding: 0 40px 40px 40px;
 }
 
-/* 統一使用 masonry-item 作為容器 */
 .masonry-item {
   break-inside: avoid;
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
-  border-radius: 6px; /* 保留你的圓角設定 */
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .masonry-item img {
   width: 100%;
   display: block;
-  /* 使用你自定義的平滑變數，讓放大更具電影感 */
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
 }
 
-/* 1. 滑鼠懸停時：圖片平滑放大 (拿掉 filter 變暗，交給遮罩處理) */
 .masonry-item:hover img {
   transform: scale(1.08);
 }
 
-/* 2. 黑色半透明遮罩層 */
 .item-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 15, 15, 0.65); /* 稍微加深一點，完美襯托高反差影像 */
+  background: rgba(15, 15, 15, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; /* 讓內部的標題和副標題垂直排列 */
-  
+  flex-direction: column;
   opacity: 0;
   transition: var(--transition-smooth);
 }
 
-/* 滑鼠懸停時：遮罩浮現 */
 .masonry-item:hover .item-overlay {
   opacity: 1;
 }
 
-/* 3. 遮罩內的文字動態 (新增的層級) */
 .overlay-text {
   text-align: center;
 }
@@ -58,8 +273,6 @@
   color: var(--text-light);
   letter-spacing: 2px;
   margin-bottom: 4px;
-  
-  /* 預設稍微往下沉 */
   transform: translateY(15px);
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -67,17 +280,14 @@
 .overlay-text p {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--accent-gold); /* 結合你設定的品牌香檳金 */
+  color: var(--accent-gold);
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  
-  /* 預設透明且下沉，並加上一點點延遲，製造進場的層次感 */
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.5s ease 0.1s; 
 }
 
-/* 滑鼠懸停時：文字往上浮現歸位 */
 .masonry-item:hover .overlay-text h3 {
   transform: translateY(0);
 }
@@ -87,11 +297,121 @@
   opacity: 1;
 }
 
+/* ================= SERVICES ================= */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.service-block {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.service-block img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: .5;
+  transition: transform 1s ease;
+  z-index: -1;
+}
+
+.service-block h3 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  transition: var(--transition-smooth);
+}
+
+.service-block:hover img {
+  transform: scale(1.03);
+  opacity: .3;
+}
+
+.service-block:hover h3 {
+  color: var(--accent-gold);
+}
+
+/* ================= LIGHTBOX (整合乾淨版) ================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 30px;
+}
+
+.lightbox-next {
+  right: 30px;
+}
+
+/* ===== Lazy image fade ===== */
+.lazy-img {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .8s ease;
+}
+
+.lazy-img.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
   .masonry-gallery {
     column-count: 2;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
+  }
+  .nav-links {
+    display: none;
   }
 }
 
