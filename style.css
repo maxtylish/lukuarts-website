@@ -95,13 +95,17 @@ a {
 }
 
 /* ================= HERO ================= */
+/* ================= HERO (修正版：確保不爆版) ================= */
 .hero {
   height: 100vh;
   position: relative;
   display: flex;
+  flex-direction: column; /* 強制垂直排列 */
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 5%;
+  overflow: hidden;
 }
 
 .hero-bg {
@@ -110,24 +114,61 @@ a {
   background-image: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');
   background-size: cover;
   background-position: center;
-  filter: brightness(.6);
+  filter: brightness(.5); /* 稍微調深，字才清楚 */
   z-index: -1;
 }
 
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px; /* 限制寬度防止字拉太長 */
+}
+
+/* 修正 LUKUARTS VISUAL 字體太大的問題 */
 .hero-en-title {
-  font-size: 3.5rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 6vw, 3rem); /* 隨螢幕縮放，最大 3rem */
   letter-spacing: 6px;
+  color: var(--text-light);
   margin-bottom: 0.5rem;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
+/* 修正青玥 Logo 大小 */
 .hero-zh-logo {
-  width: 80%;
-  max-width: 450px;
-  margin: 0 auto 2rem;
+  width: 50%;
+  max-width: 320px; /* 縮小一點點，留位置給按鈕 */
+  margin: 0 auto 1.5rem;
+  display: block;
 }
 
-/* ================= GALLERY ================= */
+.hero-content p {
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  letter-spacing: 2px;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+/* 確保按鈕顏色與大小正確 */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-gold);
+  background: var(--accent-gold); /* 讓它有金色背景比較好找 */
+  color: #000 !important;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.btn:hover {
+  background: white;
+  border-color: white;
+}/* ================= GALLERY ================= */
 .section-padding { padding: 6rem 5%; }
 .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 4rem; letter-spacing: 4px; color: var(--accent-gold); }
 
