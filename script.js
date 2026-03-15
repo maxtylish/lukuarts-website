@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===== Navbar Scroll ===== */
   const navbar = document.querySelector(".navbar");
-
   if(navbar){
     window.addEventListener("scroll", () => {
       if(window.scrollY > 50){
@@ -23,19 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
       images.forEach(img => {
         const item = document.createElement("div");
         
-        // 【修改點 1】統一使用 masonry-item 來對應新的 CSS
         item.className = "masonry-item"; 
         item.dataset.category = img.category;
 
-        // 【修改點 2】設定預設文字 (如果 JSON 裡沒有 title，就顯示品牌名)
         const titleText = img.title ? img.title : "LUKUARTS VISUAL";
-        // 將 category 的第一個字母大寫作為副標題
         const categoryText = img.category ? img.category.charAt(0).toUpperCase() + img.category.slice(1) : "Photography";
 
-        // 【修改點 3】注入帶有遮罩層的 HTML 結構，並加入 pointer-events: none 確保 Lightbox 點擊不失效
         item.innerHTML = `
           <img src="${img.src}" class="lightbox-trigger lazy-img" loading="lazy" alt="${titleText}">
-          
           <div class="item-overlay" style="pointer-events: none;">
             <div class="overlay-text">
               <h3>${titleText}</h3>
@@ -43,15 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         `;
-
         gallery.appendChild(item);
       });
 
+      // 當圖片都載入 HTML 後，初始化所有功能
       initFilter();
       initLightbox();
       initLazyFade();
       applyURLCategory();
-    });
+    })
+    .catch(error => console.log("載入作品失敗:", error));
 
 
   /* ===== Filter System ===== */
@@ -60,12 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filterBtns.forEach(btn => {
       btn.addEventListener("click", () => {
+        // 切換按鈕的 Active 狀態
         filterBtns.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
         const filter = btn.dataset.filter;
 
-        // 【修改點 4】配合上方的 class 更改，這裡也要改成選取 masonry-item
+        // 隱藏或顯示對應的作品
         document.querySelectorAll(".masonry-item").forEach(item => {
           if(filter === "all" || item.dataset.category === filter){
             item.style.display = "block";
@@ -78,43 +74,80 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ===== Lightbox ===== */
+  /* ===== Lightbox (升級版：支援左右按鈕與分類過濾) ===== */
   function initLightbox(){
     const lightbox = document.getElementById("lightbox");
     if(!lightbox) return;
 
     const lightboxImg = document.getElementById("lightbox-img");
     const closeBtn = document.querySelector(".lightbox-close");
+    const prevBtn = document.querySelector(".lightbox-prev");
+    const nextBtn = document.querySelector(".lightbox-next");
 
-    let images = [];
+    let currentImages = [];
     let currentIndex = 0;
 
+    // 重新抓取目前「顯示中」的圖片
     function refreshImages(){
-      images = document.querySelectorAll(".lightbox-trigger");
+      // 只抓取沒有被 Filter 隱藏的作品
+      const visibleItems = Array.from(document.querySelectorAll(".masonry-item"))
+                                .filter(item => item.style.display !== "none");
+                                
+      currentImages = visibleItems.map(item => item.querySelector(".lightbox-trigger"))
+                                  .filter(img => img !== null);
 
-      images.forEach((img,index)=>{
-        img.onclick = () => {
+      currentImages.forEach((img, index)=>{
+        img.onclick = (e) => {
+          e.preventDefault();
           lightbox.style.display = "flex";
           lightboxImg.src = img.src;
           currentIndex = index;
-          document.body.style.overflow = "hidden";
+          document.body.style.overflow = "hidden"; // 鎖定背景滾動
         };
       });
     }
 
-    setTimeout(refreshImages,300);
+    // 初次載入時綁定點擊事件
+    setTimeout(refreshImages, 300);
 
+    // 當使用者點擊分類 (Filter) 時，重新整理 Lightbox 的陣列
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        setTimeout(refreshImages, 300); // 等待過濾動畫完成後重新抓取
+      });
+    });
+
+    // 關閉 Lightbox
     function closeLightbox(){
       lightbox.style.display="none";
-      document.body.style.overflow="auto";
+      document.body.style.overflow="auto"; // 恢復背景滾動
     }
 
     if(closeBtn) closeBtn.onclick = closeLightbox;
-
     lightbox.onclick = (e)=>{
-      if(e.target===lightbox) closeLightbox();
+      if(e.target === lightbox) closeLightbox();
     };
 
+    // 切換下一張 / 上一張
+    function showNext(){
+      if(currentImages.length === 0) return;
+      currentIndex++;
+      if(currentIndex >= currentImages.length) currentIndex = 0; // 回到第一張
+      lightboxImg.src = currentImages[currentIndex].src;
+    }
+
+    function showPrev(){
+      if(currentImages.length === 0) return;
+      currentIndex--;
+      if(currentIndex < 0) currentIndex = currentImages.length - 1; // 回到最後一張
+      lightboxImg.src = currentImages[currentIndex].src;
+    }
+
+    // 綁定畫面的左右箭頭按鈕
+    if(prevBtn) prevBtn.onclick = showPrev;
+    if(nextBtn) nextBtn.onclick = showNext;
+
+    // 綁定鍵盤控制
     document.addEventListener("keydown",(e)=>{
       if(lightbox.style.display!=="flex") return;
       if(e.key==="Escape") closeLightbox();
@@ -122,29 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if(e.key==="ArrowLeft") showPrev();
     });
 
-    function showNext(){
-      currentIndex++;
-      if(currentIndex >= images.length) currentIndex = 0;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    function showPrev(){
-      currentIndex--;
-      if(currentIndex < 0) currentIndex = images.length - 1;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    /* 手機滑動 */
+    // 綁定手機滑動控制
     let startX = 0;
-
-    lightbox.addEventListener("touchstart",e=>{
+    lightbox.addEventListener("touchstart", e => {
       startX = e.touches[0].clientX;
     });
-
-    lightbox.addEventListener("touchend",e=>{
+    lightbox.addEventListener("touchend", e => {
       let endX = e.changedTouches[0].clientX;
-      if(endX-startX>50) showPrev();
-      if(startX-endX>50) showNext();
+      if(endX - startX > 50) showPrev(); // 向右滑
+      if(startX - endX > 50) showNext(); // 向左滑
     });
   }
 
@@ -152,9 +171,14 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===== Lazy Image Fade ===== */
   function initLazyFade(){
     document.querySelectorAll(".lazy-img").forEach(img=>{
-      img.addEventListener("load",()=>{
+      // 如果圖片已經載入完成 (快取)，直接顯示
+      if(img.complete) {
         img.classList.add("loaded");
-      });
+      } else {
+        img.addEventListener("load", ()=>{
+          img.classList.add("loaded");
+        });
+      }
     });
   }
 
@@ -166,8 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(!category) return;
 
+    // 如果網址有帶參數 (例如 ?cat=wedding)，自動點擊對應的分類按鈕
     document.querySelectorAll(".filter-btn").forEach(btn=>{
-      if(btn.dataset.filter===category){
+      if(btn.dataset.filter === category){
         btn.click();
       }
     });
@@ -184,12 +209,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // 載入時套用記憶的語系
   applyLanguage(currentLang);
 
   if(langBtn){
-    langBtn.addEventListener("click",()=>{
-      currentLang = currentLang==="en" ? "zh":"en";
-      localStorage.setItem("site-lang",currentLang);
+    langBtn.addEventListener("click", ()=>{
+      currentLang = currentLang === "en" ? "zh" : "en";
+      localStorage.setItem("site-lang", currentLang);
       applyLanguage(currentLang);
     });
   }
