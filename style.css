@@ -1,4 +1,4 @@
-/* ================= VARIABLES (全域變數) ================= */
+/* ================= VARIABLES (變數設定) ================= */
 :root {
   --bg-dark: #0f0f0f;
   --text-light: #ffffff;
@@ -31,7 +31,6 @@ h1, h2, h3 {
 img {
   width: 100%;
   display: block;
-  object-fit: cover;
 }
 
 a {
@@ -45,7 +44,7 @@ a {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 2rem 5%;
+  padding: 1.5rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,6 +63,7 @@ a {
   list-style: none;
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .nav-links a {
@@ -79,7 +79,7 @@ a {
   opacity: 1;
 }
 
-/* ================= HERO (首頁大圖區) ================= */
+/* ================= HERO (首頁區塊) ================= */
 .hero {
   height: 100vh;
   position: relative;
@@ -93,17 +93,17 @@ a {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000");
+  background-image: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');
   background-size: cover;
   background-position: center;
-  filter: brightness(.7);
+  filter: brightness(.6);
   z-index: -1;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15,15,15,.5);
+  background: rgba(15,15,15,.4);
 }
 
 .hero-content {
@@ -111,95 +111,69 @@ a {
   z-index: 1;
 }
 
-/* 首頁英文標題 */
 .hero-en-title {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  letter-spacing: 4px;
-  color: var(--text-light);
-  margin-bottom: 5px;
+  font-size: 3.5rem;
+  letter-spacing: 6px;
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
-/* 首頁中文書法 Logo */
 .hero-zh-logo {
-  width: 60%;
+  width: 80%;
   max-width: 450px;
-  margin: 0 auto 30px auto;
-  display: block;
+  margin: 0 auto 2rem;
   filter: brightness(1);
 }
 
-.hero-content p {
-  font-size: 2rem;
-  letter-spacing: 6px;
-  color: #ddd;
-  margin-bottom: 30px;
-  font-family: var(--font-heading);
+/* ================= MASONRY GALLERY (作品集瀑布流) ================= */
+.section-padding {
+  padding: 6rem 5%;
 }
 
-/* ================= BUTTONS ================= */
-.btn {
-  display: inline-block;
-  padding: .6rem 1.6rem;
-  font-size: .75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: 1px solid var(--text-light);
-  background: transparent;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.btn-primary {
-  background: var(--accent-gold);
-  color: #000;
-  border-color: var(--accent-gold);
-}
-
-.btn:hover {
-  border-color: var(--accent-gold);
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  letter-spacing: 4px;
   color: var(--accent-gold);
 }
 
-/* ================= PORTFOLIO (作品集瀑布流) ================= */
-.section-padding {
-  padding: 8rem 5%;
-}
-
 .masonry-gallery {
+  /* ⚡ 這裡控制電腦版顯示三欄，寬度會自動平均分配 */
   column-count: 3;
-  column-gap: 20px;
-  padding: 0 40px;
+  column-gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   position: relative;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
+  background: #1a1a1a;
 }
 
 .masonry-item img {
   width: 100%;
+  height: auto;
   transition: transform 0.6s ease;
 }
 
 .masonry-item:hover img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-/* 作品懸停遮罩 - 修正之前 404 報錯的地方 */
+/* 作品懸停遮罩 */
 .item-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 15, 15, 0.65);
+  background: rgba(15, 15, 15, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   opacity: 0;
   transition: var(--transition-smooth);
 }
@@ -210,11 +184,19 @@ a {
 
 .overlay-text {
   text-align: center;
+  padding: 20px;
 }
 
 .overlay-text h3 {
-  font-size: 1.5rem;
-  letter-spacing: 2px;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.overlay-text p {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
 }
 
 /* ================= LIGHTBOX (燈箱) ================= */
@@ -222,15 +204,18 @@ a {
   display: none;
   position: fixed;
   z-index: 11000;
-  top: 0; left: 0; width: 100%; height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.95);
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(10px);
 }
 
 .lightbox-content {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 85%;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 .lightbox-close {
@@ -239,72 +224,80 @@ a {
   right: 40px;
   font-size: 40px;
   cursor: pointer;
+  color: #fff;
 }
 
 .lightbox-prev, .lightbox-next {
   position: absolute;
   top: 50%;
-  font-size: 30px;
+  transform: translateY(-50%);
+  font-size: 35px;
   color: #fff;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 20px 15px;
   cursor: pointer;
-  padding: 20px;
+  transition: 0.3s;
 }
 
-.lightbox-prev { left: 20px; }
-.lightbox-next { right: 20px; }
+.lightbox-prev { left: 0; border-radius: 0 5px 5px 0; }
+.lightbox-next { right: 0; border-radius: 5px 0 0 5px; }
 
-/* ================= ABOUT & CONTACT ================= */
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+.lightbox-prev:hover, .lightbox-next:hover {
+  background: rgba(201, 169, 110, 0.4);
 }
 
-.skill-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 5px 15px;
-  font-size: 0.8rem;
-  border-radius: 20px;
+/* ================= FOOTER & MISC ================= */
+.btn {
+  display: inline-block;
+  padding: .8rem 2rem;
+  font-size: .8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  background: transparent;
+  transition: var(--transition-smooth);
 }
 
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.btn-primary {
+  background: var(--accent-gold);
+  color: #000;
 }
 
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 15px;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #fff;
+.btn:hover {
+  background: white;
+  color: black;
+  border-color: white;
 }
 
-/* ================= FOOTER & COUNTER ================= */
 footer {
   text-align: center;
-  padding: 4rem 0;
+  padding: 5rem 5%;
   border-top: 1px solid #222;
+  margin-top: 4rem;
 }
 
 .visitor-counter {
-  margin-top: 15px;
-  font-size: 0.75rem;
-  color: #555;
-  letter-spacing: 1px;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 2px;
 }
 
 /* ================= RESPONSIVE (手機版) ================= */
-@media (max-width: 900px) {
-  .hero-en-title { font-size: 2.2rem; }
-  .hero-zh-logo { width: 85%; }
+@media (max-width: 1024px) {
   .masonry-gallery { column-count: 2; }
+}
+
+@media (max-width: 768px) {
   .nav-links { display: none; }
+  .hero-en-title { font-size: 2.5rem; }
+  .hero-zh-logo { width: 90%; }
+  .section-padding { padding: 4rem 5%; }
 }
 
 @media (max-width: 600px) {
   .masonry-gallery { column-count: 1; }
+  .section-title { font-size: 2rem; }
 }
