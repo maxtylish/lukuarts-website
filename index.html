@@ -8,53 +8,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease;">
-  <img src="images/splash-logo.png" alt="LUKUARTS VISUAL" style="max-width: 300px; width: 80%; filter: drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); animation: pulse 2s infinite ease-in-out;">
-</div>
+    
+    <div id="splash-screen">
+      <img src="images/logo-zh.png" alt="LUKUARTS VISUAL" class="splash-logo">
+    </div>
 
-<style>
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.03); opacity: 0.95; }
-}
-</style>
-<div id="splash-screen">
-  <img src="images/logo-zh.png" alt="LUKUARTS VISUAL" class="splash-logo">
-</div>
+    <style>
+    /* 進版畫面滿版黑底 */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
 
-<style>
-/* 進版畫面滿版黑底 */
-#splash-screen {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
+    /* CSS 魔法：把黑色字體變成發光的金色！ */
+    .splash-logo {
+      width: 60%;
+      max-width: 400px;
+      filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.2) drop-shadow(0 0 20px rgba(201, 169, 110, 0.8));
+      animation: goldPulse 2.5s infinite ease-in-out;
+    }
 
-/* CSS 魔法：把黑色字體變成發光的金色！ */
-.splash-logo {
-  width: 60%;
-  max-width: 400px;
-  /* 濾鏡魔法解析：
-    1. invert(1): 把黑色字變白色
-    2. sepia(1): 把白色染成復古黃褐色
-    3. saturate(3) brightness(1.2): 增加飽和度與亮度，變成金色
-    4. drop-shadow: 加上你品牌色(--accent-gold)的發光光暈
-  */
-  filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.2) drop-shadow(0 0 20px rgba(201, 169, 110, 0.8));
-  animation: goldPulse 2.5s infinite ease-in-out;
-}
+    /* 讓金色 Logo 有呼吸凝聚的動態感 */
+    @keyframes goldPulse {
+      0%, 100% { transform: scale(1); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1) drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); }
+      50% { transform: scale(1.05); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.3) drop-shadow(0 0 25px rgba(201, 169, 110, 0.9)); }
+    }
+    </style>
 
-/* 讓金色 Logo 有呼吸凝聚的動態感 */
-@keyframes goldPulse {
-  0%, 100% { transform: scale(1); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1) drop-shadow(0 0 10px rgba(201, 169, 110, 0.4)); }
-  50% { transform: scale(1.05); filter: invert(1) sepia(1) saturate(3) hue-rotate(350deg) brightness(1.3) drop-shadow(0 0 25px rgba(201, 169, 110, 0.9)); }
-}
-</style>
     <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
         <ul class="nav-links">
@@ -71,7 +57,8 @@
             <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');"></div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 data-en="LUKUARTS VISUAL" data-zh="青玥影像">LUKUARTS VISUAL</h1>
+                <p class="hero-en-title">LUKUARTS VISUAL</p>
+                <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
                 <p data-en="Portrait & Commercial Photography" data-zh="人像與商業攝影">Portrait & Commercial Photography</p>
                 <a href="portfolio.html" class="btn btn-primary" data-en="View Portfolio" data-zh="查看作品">View Portfolio</a>
             </div>
@@ -94,102 +81,4 @@
                     </a>
                 </div>
 
-                <div class="masonry-item">
-                    <a href="portfolio.html?cat=wedding" style="display: block;">
-                        <img src="images/homepage/H02.jpg" alt="wedding">
-                        <div class="item-overlay">
-                            <div class="overlay-text">
-                                <h3>Wedding</h3>
-                                <p>婚禮紀錄</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="masonry-item">
-                    <a href="portfolio.html?cat=food" style="display: block;">
-                        <img src="images/homepage/H03.jpg" alt="food">
-                        <div class="item-overlay">
-                            <div class="overlay-text">
-                                <h3>Food</h3>
-                                <p>美食商攝</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="masonry-item">
-                    <a href="portfolio.html?cat=event" style="display: block;">
-                        <img src="images/homepage/H04.jpg" alt="event">
-                        <div class="item-overlay">
-                            <div class="overlay-text">
-                                <h3>Event</h3>
-                                <p>活動紀錄</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="masonry-item">
-                    <a href="portfolio.html?cat=landscape" style="display: block;">
-                        <img src="images/homepage/H05.jpg" alt="landscape">
-                        <div class="item-overlay">
-                            <div class="overlay-text">
-                                <h3>Landscape</h3>
-                                <p>風景攝影</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="masonry-item">
-                    <a href="portfolio.html?cat=creative" style="display: block;">
-                        <img src="images/homepage/H06.jpg" alt="creative">
-                        <div class="item-overlay">
-                            <div class="overlay-text">
-                                <h3>Creative</h3>
-                                <p>創意合成</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="services-grid">
-            <div class="service-block">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=1200" alt="Portrait" loading="lazy">
-                <h3>Portrait Photography</h3>
-            </div>
-            <div class="service-block">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1200" alt="Food" loading="lazy">
-                <h3>Food Photography</h3>
-            </div>
-            <div class="service-block">
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200" alt="Event" loading="lazy">
-                <h3>Event Photography</h3>
-            </div>
-            <div class="service-block">
-                <img src="https://images.unsplash.com/photo-1542044896530-05d3c056e158?auto=format&fit=crop&q=80&w=1200" alt="Training" loading="lazy">
-                <h3>Photography Training</h3>
-            </div>
-        </section>
-
-        <section class="section-padding" style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <p style="font-size: 1.5rem; font-family: var(--font-heading); font-style: italic; margin-bottom: 3rem; color: #ccc;">
-                "Qingyue is a photographer dedicated to portrait and commercial visual storytelling."
-            </p>
-            <a href="about.html" class="btn">Learn More</a>
-        </section>
-
-        <section class="section-padding" style="background: #111; text-align: center;">
-            <h2 style="font-size: 3rem; margin-bottom: 2rem;">Let's create something beautiful together.</h2>
-            <a href="contact.html" class="btn btn-primary">Contact Me</a>
-        </section>
-    </main>
-
-    <footer><p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p></footer>
-    <script src="script.js"></script>
-</body>
-</html>
+                <div class="masonry
