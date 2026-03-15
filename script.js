@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+<<<<<<< HEAD
     /* ===== 1. 導覽列滾動效果 ===== */
     const navbar = document.querySelector(".navbar");
     window.addEventListener("scroll", () => {
@@ -110,4 +111,63 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => { countEl.textContent = data.count; })
             .catch(() => {});
     }
+=======
+    // 1. 取得 DOM 元素
+    const gallery = document.getElementById("gallery");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+
+    // 2. 從 JSON 載入資料
+    fetch("images.json")
+        .then(res => res.json())
+        .then(images => {
+            renderGallery(images);
+            initFilter(images);
+            // ⚡ 關鍵：檢查網址是否有分類參數 (例如 ?cat=portrait)
+            checkURLParams();
+        });
+
+    // 渲染畫廊
+    function renderGallery(images) {
+        if (!gallery) return;
+        gallery.innerHTML = images.map(img => `
+            <div class="masonry-item" data-category="${img.category}">
+                <img src="${img.src}" class="lightbox-trigger" alt="Lukuarts Photography">
+            </div>
+        `).join('');
+        initLightbox(); // 渲染後初始化燈箱
+    }
+
+    // 3. 過濾功能邏輯
+    function initFilter(allImages) {
+        filterBtns.forEach(btn => {
+            btn.onclick = () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                
+                const filter = btn.dataset.filter;
+                const items = document.querySelectorAll(".masonry-item");
+                
+                items.forEach(item => {
+                    if (filter === "all" || item.dataset.category === filter) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            };
+        });
+    }
+
+    // 4. 偵測網址參數 (?cat=...)
+    function checkURLParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('cat');
+        if (category) {
+            const targetBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+            if (targetBtn) targetBtn.click(); // 自動點擊該分類
+        }
+    }
+
+    /* 語系切換與其他功能維持原樣... */
+>>>>>>> c80fedc (update portfolio categories)
 });
