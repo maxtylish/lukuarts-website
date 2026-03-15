@@ -97,10 +97,46 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     column-count: 3; column-gap: 20px; max-width: 1200px; margin: 0 auto;
 }
 
-.masonry-item { break-inside: avoid; margin-bottom: 20px; cursor: pointer; }
-.masonry-item img { width: 100%; display: block; transition: var(--transition); }
-.masonry-item:hover img { transform: scale(1.03); }
+/* 讓容器可以定位遮罩 */
+.masonry-item {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 20px;
+  cursor: pointer;
+  overflow: hidden;
+}
 
+/* 預設隱藏遮罩 */
+.item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* 黑色半透明背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* ⚡ 預設透明 */
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* 確保不會干擾點擊 */
+}
+
+/* 滑鼠移入時顯示遮罩 */
+.masonry-item:hover .item-overlay {
+  opacity: 1; /* ⚡ 顯示出來 */
+}
+
+/* 金色分類文字樣式 */
+.overlay-text p {
+  color: var(--accent-gold); /* 使用你的品牌金 */
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid var(--accent-gold);
+  padding: 8px 15px;
+}
 /* 燈箱 */
 .lightbox {
     position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 11000;

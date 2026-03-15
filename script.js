@@ -16,31 +16,47 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("images.json")
             .then(res => res.json())
             .then(images => {
-                gallery.innerHTML = "";
-                images.forEach((img, index) => {
+                gallery.innerHTML = ""; // 先清空容器
+                images.forEach(img => {
                     const item = document.createElement("div");
                     item.className = "masonry-item";
-                    item.innerHTML = `<img src="${img.src}" alt="Lukuarts Works" loading="lazy">`;
                     
-                    item.onclick = () => {
-                        const lightbox = document.getElementById("lightbox");
-                        const lightboxImg = document.getElementById("lightbox-img");
-                        lightbox.style.display = "flex";
-                        lightboxImg.src = img.src;
-                        document.body.style.overflow = "hidden";
-                    };
+                    // ⚡ 這裡包含 item-overlay 結構，CSS 的金色字才跑得出來
+                    item.innerHTML = `
+                        <img src="${img.src}" alt="Works" loading="lazy">
+                        <div class="item-overlay">
+                            <div class="overlay-text">
+                                <p>${img.category ? img.category.toUpperCase() : 'VIEW'}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    item.onclick = () => openLightbox(img.src);
                     gallery.appendChild(item);
                 });
-            });
+            })
+            .catch(err => console.error("無法載入 images.json:", err));
     }
 
-    // 3. 關閉燈箱
+    // 3. 燈箱邏輯
     const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    function openLightbox(src) {
+        if (lightbox && lightboxImg) {
+            lightbox.style.display = "flex";
+            lightboxImg.src = src;
+            document.body.style.overflow = "hidden"; // 禁止背景捲動
+        }
+    }
+
     if (lightbox) {
+        // 點擊關閉按鈕
         document.querySelector(".lightbox-close").onclick = () => {
             lightbox.style.display = "none";
             document.body.style.overflow = "auto";
         };
+        // 點擊背景關閉
         lightbox.onclick = (e) => {
             if (e.target === lightbox) {
                 lightbox.style.display = "none";
