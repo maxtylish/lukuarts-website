@@ -2,9 +2,9 @@
 :root {
     --bg-dark: #0a0a0a;
     --text-light: #ffffff;
-    --accent-gold: #c9a96e; /* 沉穩金 */
-    --font-heading: 'Playfair Display', serif; /* 襯線體：用於標題、Logo、導覽 */
-    --font-body: 'Inter', sans-serif; /* 無襯線體：用於內文 */
+    --accent-gold: #c9a96e;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -12,13 +12,21 @@
 body { background: var(--bg-dark); color: var(--text-light); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
 a { text-decoration: none !important; color: inherit !important; transition: var(--transition-smooth); }
 
+/* 圖片效能與預留空間優化 */
+.logo img, .hero-zh-logo, .masonry-item img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+}
+
 /* ================= 2. 導覽列 (Navbar) ================= */
 .navbar {
     position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 5%;
     display: flex; justify-content: space-between; align-items: center;
     z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
 }
-.logo { font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 3px; font-weight: 700; color: #fff !important; }
+.logo { font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 2px; color: #fff !important; }
 .nav-links { list-style: none; display: flex; gap: 1.5rem; }
 .nav-links a { font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; opacity: 0.7; }
 .nav-links a.active, .nav-links a:hover { color: var(--accent-gold); opacity: 1; }
@@ -35,30 +43,13 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .sakura-petal { position: absolute; background: linear-gradient(135deg, #ffd7e6, #ffb7d5); border-radius: 90% 0 90% 90%; opacity: 0.8; animation: sakura-fall linear infinite; }
 @keyframes sakura-fall { 0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 100% { top: 110%; transform: translateX(100px) rotate(720deg); opacity: 0; } }
 
-/* ================= 4. 內頁結構與標題 (解決左上角重疊的核心) ================= */
-/* 讓作品集、部落格等內頁，頂部空出 140px，就不會被導覽列擋住 */
+/* ================= 4. 內頁結構與標題 ================= */
 .section-padding, .portfolio-section, .blog-section { 
-    padding-top: 140px; 
-    padding-bottom: 5rem; 
-    background-color: var(--bg-dark); 
-    position: relative; 
-    z-index: 10; 
-    min-height: 100vh;
+    padding-top: 140px; padding-bottom: 5rem; background-color: var(--bg-dark); position: relative; z-index: 10; min-height: 100vh;
 }
-.section-title { 
-    font-family: var(--font-heading); 
-    font-size: 2.5rem; 
-    color: var(--accent-gold); 
-    margin-bottom: 30px; 
-    text-align: center; 
-    letter-spacing: 5px; 
-    text-transform: uppercase;
-}
+.section-title { font-family: var(--font-heading); font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 30px; text-align: center; letter-spacing: 5px; text-transform: uppercase; }
 
-/* 分類按鈕美化 (解決你截圖中醜醜的白色按鈕) */
-.filter-container {
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 50px;
-}
+.filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 50px; }
 .filter-btn {
     font-family: var(--font-heading); background: transparent; border: 1px solid rgba(201, 169, 110, 0.4);
     color: var(--text-light); padding: 8px 24px; font-size: 0.85rem; letter-spacing: 2px;
@@ -72,7 +63,6 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .masonry-item img { width: 100%; display: block; transition: 0.5s; }
 .masonry-item:hover img { transform: scale(1.05); }
 
-/* 照片滑鼠移上去的黑底文字特效 */
 .item-overlay { position: absolute; inset: 0; background: rgba(15, 15, 15, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; pointer-events: none; }
 .masonry-item:hover .item-overlay { opacity: 1; }
 .overlay-text p { color: var(--accent-gold); font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
@@ -85,7 +75,7 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 }
 .btn.btn-primary:hover, .btn-primary:hover { background-color: #ffffff; transform: translateY(-3px); }
 
-/* ================= 7. 燈箱 (Lightbox) 點擊放大 ================= */
+/* ================= 7. 燈箱 (Lightbox) ================= */
 .lightbox {
     display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.98);
     z-index: 11000; justify-content: center; align-items: center; backdrop-filter: blur(10px);
@@ -103,7 +93,7 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .lightbox-prev { left: 5%; }
 .lightbox-next { right: 5%; }
 
-/* ================= 8. 部落格卡片 (Blog Cards) ================= */
+/* ================= 8. 部落格卡片 ================= */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; padding: 0 5%; max-width: 1400px; margin: 0 auto; }
 .blog-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition-smooth); overflow: hidden; display: flex; flex-direction: column; border-radius: 4px; }
 .blog-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -118,15 +108,63 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .blog-link { display: inline-block; color: var(--accent-gold) !important; font-weight: 700; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; align-self: flex-start; }
 .blog-link:hover { color: #fff !important; letter-spacing: 4px; }
 
-/* ================= 9. 響應式 (必須放最後) ================= */
-@media (max-width: 900px) { 
-    .masonry-gallery { column-count: 2; } 
-}
-@media (max-width: 600px) { 
-    .navbar { padding: 1rem 3%; }
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.75rem; }
-    .hero-en-title { font-size: clamp(1.2rem, 6vw, 2.5rem); }
-    .masonry-gallery { column-count: 1; }
-    .lightbox-prev, .lightbox-next { font-size: 30px; }
+/* ================= 9. 響應式：手機版專屬優化 ================= */
+@media (max-width: 600px) {
+    /* 1. 導覽列：縮小 Logo 並把連結間距拉開 */
+    .navbar {
+        padding: 15px 5%;
+        flex-direction: column; /* 讓 Logo 與連結上下排，避免擠在一起 */
+        gap: 10px;
+    }
+    .logo {
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+    }
+    .nav-links {
+        gap: 12px;
+    }
+    .nav-links a {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    /* 2. Hero 視覺區：解決重疊問題 */
+    .hero-content {
+        padding: 0 15px;
+        margin-top: 40px; /* 往下推，避開導覽列 */
+    }
+    .hero-en-title {
+        font-size: 1.2rem;
+        letter-spacing: 4px;
+        margin-bottom: 5px;
+    }
+    .hero-zh-logo {
+        width: 70%; /* 縮小書法 Logo */
+        max-width: 250px;
+        margin: 20px auto;
+    }
+    .hero p {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+    }
+
+    /* 3. 作品集：瀑布流改為單欄 */
+    .section-padding {
+        padding: 60px 5%;
+    }
+    .section-title {
+        font-size: 1.8rem;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+    }
+    .masonry-gallery {
+        column-count: 1; /* 手機上一欄最好看 */
+    }
+    
+    /* 4. 預約表單：讓輸入框更適合點擊 */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
 }
