@@ -9,7 +9,7 @@
     
     <style>
         .about-page-container {
-            padding-top: 180px; /* 完美避開導覽列 */
+            padding-top: 180px;
             padding-bottom: 100px;
             min-height: 100vh;
             background-color: var(--bg-dark);
@@ -21,7 +21,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            align-items: center; /* 左右垂直置中對齊 */
+            align-items: center; 
         }
         .about-image {
             width: 100%;
@@ -29,39 +29,103 @@
             border-radius: 4px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             object-fit: cover;
-            aspect-ratio: 3/4; /* 固定圖片比例，保證排版不塌陷 */
+            aspect-ratio: 3/4;
         }
-        .about-text-area {
-            color: #ccc;
-        }
+        .about-text-area { color: #ccc; }
         .about-main-title {
-            font-family: var(--font-heading);
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--accent-gold);
-            margin-bottom: 15px;
-            letter-spacing: 5px;
+            font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 5px;
         }
         .about-sub-title {
-            font-size: 1.6rem;
-            color: #fff;
-            margin-bottom: 30px;
-            font-weight: 600;
-            line-height: 1.4;
+            font-size: 1.6rem; color: #fff; margin-bottom: 30px; font-weight: 600; line-height: 1.4;
         }
         .about-text-area p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-            font-weight: 300;
-            font-size: 1.05rem;
+            margin-bottom: 20px; line-height: 1.8; font-weight: 300; font-size: 1.05rem;
         }
         
-        /* 手機版變成上下排列 */
+        /* --- 補回：專業標籤 (Skills) --- */
+        .skills-container {
+            margin-top: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .skill-tag {
+            border: 1px solid rgba(212, 175, 55, 0.5); /* 金色半透明邊框 */
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.3s;
+        }
+        .skill-tag:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        /* --- 補回：預約表單 (Booking Form) --- */
+        .booking-section {
+            max-width: 800px;
+            margin: 100px auto 0;
+            padding: 0 5%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 80px;
+        }
+        .booking-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        .booking-subtitle {
+            text-align: center; color: #888; margin-bottom: 40px; font-size: 0.95rem;
+        }
+        .contact-form {
+            display: grid;
+            gap: 25px;
+        }
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 25px;
+        }
+        .form-group {
+            display: flex; flex-direction: column;
+        }
+        .form-group label {
+            font-size: 0.8rem; color: #ccc; margin-bottom: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 18px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            outline: none; border-color: var(--accent-gold); background: rgba(255, 255, 255, 0.06);
+        }
+        textarea.form-control {
+            resize: vertical; min-height: 150px;
+        }
+        .submit-btn {
+            background: var(--accent-gold); color: #000; font-weight: 700; border: none;
+            padding: 16px; cursor: pointer; letter-spacing: 3px; text-transform: uppercase;
+            transition: 0.3s; margin-top: 10px; font-size: 1rem;
+        }
+        .submit-btn:hover { background: #fff; transform: translateY(-3px); }
+
+        /* 手機版響應式 */
         @media (max-width: 900px) {
-            .about-content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                text-align: center;
-            }
+            .about-content-wrapper { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .skills-container { justify-content: center; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -79,7 +143,6 @@
 
     <main class="about-page-container">
         <div class="about-content-wrapper">
-            
             <div class="about-img-col">
                 <img src="images/about-profile.jpg" alt="LUKUARTS Photography" class="about-image">
             </div>
@@ -90,16 +153,59 @@
                 
                 <div class="lang-en" style="display: block;">
                     <p>LUKUARTS VISUAL is a photography brand focusing on portrait and commercial photography. To me, photography is not just about pressing the shutter; it's a way of observing the world.</p>
-                    <p>Through the delicate capture of light, shadow, composition, and emotion, I am dedicated to transforming every moment into a timeless visual story. Whether it's a warm personal portrait or a highly textured commercial project, I deliver the highest quality visual solutions.</p>
+                    <p>Through the delicate capture of light, shadow, composition, and emotion, I am dedicated to transforming every moment into a timeless visual story. Whether it's a warm personal portrait, a highly textured commercial project, or a high-speed track day event, I deliver the highest quality visual solutions.</p>
                 </div>
                 
                 <div class="lang-zh" style="display: none;">
                     <p>青玥影像 (LUKUARTS VISUAL) 是一個專注於人像與商業攝影的影像品牌。對我而言，攝影不只是按下快門，而是一種觀察世界的方式。</p>
-                    <p>透過光影、構圖與情感的細膩捕捉，我致力於將每一個瞬間轉化為雋永的視覺故事。無論是充滿溫度的個人肖像，還是強調質感的商業企劃，我都能提供最高品質的影像方案。</p>
+                    <p>透過光影、構圖與情感的細膩捕捉，我致力於將每一個瞬間轉化為雋永的視覺故事。無論是充滿溫度的個人肖像、強調質感的商業企劃，還是熱血的高速賽事紀錄，我都能提供最高品質的影像方案。</p>
+                </div>
+
+                <div class="skills-container">
+                    <span class="skill-tag" data-en="Portrait" data-zh="人像攝影">人像攝影</span>
+                    <span class="skill-tag" data-en="Commercial" data-zh="商業企劃">商業企劃</span>
+                    <span class="skill-tag" data-en="Motorsports" data-zh="賽事追焦">賽事追焦</span>
+                    <span class="skill-tag" data-en="Retouching" data-zh="進階影像後製">進階影像後製</span>
                 </div>
             </div>
-            
         </div>
+
+        <section class="booking-section">
+            <h2 class="booking-title" data-en="BOOKING" data-zh="預約洽詢">預約洽詢</h2>
+            <p class="booking-subtitle" data-en="Let's create something beautiful together." data-zh="期待與您共同創造美好的影像作品。">期待與您共同創造美好的影像作品。</p>
+
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-en="Your Name" data-zh="您的姓名">您的姓名</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Email Address" data-zh="電子郵件">電子郵件</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label data-en="Service Type" data-zh="需要什麼類型的服務？">需要什麼類型的服務？</label>
+                    <select class="form-control" required>
+                        <option value="" disabled selected data-en="Select a service..." data-zh="請選擇服務項目...">請選擇服務項目...</option>
+                        <option value="portrait" data-en="Portrait Photography" data-zh="人像攝影">人像攝影</option>
+                        <option value="commercial" data-en="Commercial Photography" data-zh="商業企劃">商業企劃</option>
+                        <option value="motorsports" data-en="Motorsports / Track Day" data-zh="賽事紀錄 / 賽道日">賽事紀錄 / 賽道日</option>
+                        <option value="other" data-en="Other Inquiries" data-zh="其他合作洽詢">其他合作洽詢</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-en="Message Details" data-zh="拍攝細節與需求">拍攝細節與需求</label>
+                    <textarea class="form-control" placeholder="請簡述您的拍攝想法、預計時間或地點..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" data-en="SEND MESSAGE" data-zh="送出表單">送出表單</button>
+            </form>
+        </section>
+
     </main>
 
     <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px;">
