@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | LUKUARTS VISUAL</title>
+    <title>LUKUARTS VISUAL | 青玥影像</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,22 +22,22 @@
         </ul>
     </nav>
 
-    <main class="portfolio-section">
-        <h1 class="page-title">Portfolio</h1>
-
+   <main>
+    <section class="portfolio-section">
+        
+        <h1 class="section-title">Portfolio</h1>
+        
         <div class="filter-container">
             <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="portrait">Portrait</button>
-            <button class="filter-btn" data-filter="wedding">Wedding</button>
-            <button class="filter-btn" data-filter="food">Food</button>
-            <button class="filter-btn" data-filter="event">Event</button>
-            <button class="filter-btn" data-filter="landscape">Landscape</button>
-            <button class="filter-btn" data-filter="creative">Creative</button>
+            <button class="filter-btn" data-filter="Portrait">Portrait</button>
+            <button class="filter-btn" data-filter="Wedding">Wedding</button>
+            <button class="filter-btn" data-filter="Commercial">Commercial</button>
         </div>
 
         <div class="masonry-gallery" id="gallery"></div>
-    </main>
-
+        
+    </section>
+</main>
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
