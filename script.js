@@ -104,26 +104,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ===== 6. 燈箱功能保底 ===== */
     window.initLightbox = function() {
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = document.getElementById("lightbox-img");
-        if (!lightbox || !lightboxImg) return;
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const prevBtn = document.querySelector(".lightbox-prev");
+    const nextBtn = document.querySelector(".lightbox-next");
+    const closeBtn = document.querySelector(".lightbox-close");
 
-        document.querySelectorAll(".masonry-item img").forEach(img => {
-            img.onclick = () => {
-                lightbox.style.display = "flex";
-                lightboxImg.src = img.src;
-                document.body.style.overflow = "hidden";
-            };
-        });
+    if (!lightbox || !lightboxImg) return;
 
-        const closeBtn = document.querySelector(".lightbox-close");
-        if (closeBtn) {
-            closeBtn.onclick = () => {
-                lightbox.style.display = "none";
-                document.body.style.overflow = "auto";
-            };
-        }
+    // 獲取目前畫面上顯示的所有圖片（考量到過濾後的結果）
+    const allImgs = Array.from(document.querySelectorAll(".masonry-item img"));
+    let currentIndex = 0;
+
+    allImgs.forEach((img, index) => {
+        img.onclick = () => {
+            currentIndex = index;
+            showImage(currentIndex);
+            lightbox.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        };
+    });
+
+    function showImage(index) {
+        if (index < 0) currentIndex = allImgs.length - 1;
+        else if (index >= allImgs.length) currentIndex = 0;
+        else currentIndex = index;
+
+        lightboxImg.src = allImgs[currentIndex].src;
+    }
+
+    // 綁定左右按鈕點擊事件
+    if (prevBtn) {
+        prevBtn.onclick = (e) => {
+            e.stopPropagation(); // 防止點擊按鈕時觸發關閉燈箱
+            showImage(currentIndex - 1);
+        };
+    }
+
+    if (nextBtn) {
+        nextBtn.onclick = (e) => {
+            e.stopPropagation();
+            showImage(currentIndex + 1);
+        };
+    }
+
+    // 關閉邏輯
+    const closeLightbox = () => {
+        lightbox.style.display = "none";
+        document.body.style.overflow = "auto";
     };
+
+    if (closeBtn) closeBtn.onclick = closeLightbox;
+    
+    // 點擊背景也可以關閉
+    lightbox.onclick = (e) => {
+        if (e.target === lightbox) closeLightbox();
+    };
+};
 
     // 初次載入多語系
     applyLang(localStorage.getItem("site-lang") || "en");
