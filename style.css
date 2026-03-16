@@ -54,18 +54,12 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     position: relative; width: 100%; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; 
 }
 .hero-bg {
-    position: absolute; 
-    inset: 0; 
-    z-index: -1; 
-    background-color: var(--bg-dark); /* 左右留白的地方會用高質感的深色填補 */
-    
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');
-    
-    background-position: center center;
-    /* 關鍵在這裡：改成 contain，強迫完整顯示 */
-    background-size: contain; 
-    background-repeat: no-repeat;
-}.hero-content { 
+    position: absolute; inset: 0; z-index: -1; background-color: var(--bg-dark);
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+    background-attachment: fixed;
+}
+.hero-content { 
     z-index: 5; text-align: center; width: 100%; padding: 0 20px; transform: translateY(-5%); 
 }
 .hero-en-title { font-family: var(--font-heading); font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 8px; margin-bottom: 10px; color: #fff; }
@@ -132,12 +126,23 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .blog-link { display: inline-block; color: var(--accent-gold) !important; font-weight: 700; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; align-self: flex-start; }
 .blog-link:hover { color: #fff !important; letter-spacing: 4px; }
 
-/* ================= 9. 響應式：手機版專屬優化 ================= */
+/* ================= 9. Swiper 輪播圖樣式 ================= */
+.swiper {
+    width: 100%; max-width: 1200px; height: 60vh; min-height: 400px; margin: 0 auto; border-radius: 4px; overflow: hidden;
+}
+.swiper-slide { display: flex; justify-content: center; align-items: center; background: #000; }
+.swiper-slide img {
+    display: block; width: 100%; height: 100%; 
+    object-fit: contain; /* 保證攝影作品 100% 完整顯示，絕不裁切放大 */
+}
+.swiper-button-next, .swiper-button-prev { color: var(--accent-gold) !important; }
+.swiper-pagination-bullet-active { background: var(--accent-gold) !important; }
+
+/* ================= 10. 響應式：手機版專屬優化 ================= */
 .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
 .menu-toggle .bar { width: 25px; height: 2px; background-color: #fff; transition: 0.3s; }
 
 @media (max-width: 600px) {
-    /* 導覽列與漢堡選單 */
     .menu-toggle { display: flex; }
     .navbar { padding: 15px 5%; flex-direction: row; justify-content: space-between; }
     .nav-links {
@@ -152,10 +157,11 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    /* Hero 視覺區手機版 */
     .hero-content { margin-top: 40px; padding: 0 15px; transform: translateY(0); }
     .hero-en-title { font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 5px; }
     .hero-zh-logo { width: 70%; max-width: 250px; margin: 20px auto; }
     .hero p { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 25px; }
-    } /*
+    
+    /* 移除手機版背景固定，防止滾動問題 */
+    .hero-bg { background-attachment: scroll; background-position: center top; }
+} /* 👈 這是最重要的關門大括號！ */
