@@ -213,3 +213,25 @@ document.addEventListener("DOMContentLoaded", () => {
     applyLang(localStorage.getItem("site-lang") || "en");
 
 }); // 👈 整個腳本的結尾
+// 初始化 Swiper 輪播圖
+document.addEventListener('DOMContentLoaded', () => {
+    // 確保只在有 swiper 元素的頁面上執行
+    if (document.querySelector('.mySwiper')) {
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    }
+});

@@ -1,0 +1,34 @@
+# --- 1. 系統自動產生的垃圾暫存檔 ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- 2. 編輯器設定檔 (這會因人而異，不需要上傳) ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- 3. 攝影師專屬：避免誤傳超大原檔與專案檔 ---
+# (如果你把修圖檔也放在這個資料夾裡，這段能保命)
+*.psd
+*.psb
+*.ai
+*.raw
+*.cr2
+*.cr3
+*.nef
+*.arw
+*.dng
+*.lrcat
+*.lrdata
+
+# --- 4. 影片剪輯大檔案 (如有) ---
+*.prproj
+*.drp
+*.mp4
+*.mov
