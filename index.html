@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" id="html-root">
 <head>
-    <meta property="og:title" content="LUKUARTS VISUAL | 青玥影像">
-<meta property="og:description" content="專業人像與商業攝影，用光影捕捉故事的情感溫度。">
-<meta property="og:image" content="https://你的網址/images/og-preview.jpg"> <meta property="og:type" content="website">
-    <meta name="description" content="LUKUARTS VISUAL - 專業人像、婚禮與商業攝影服務">
-<meta name="keywords" content="攝影, 人像, 婚禮紀錄, 商業攝影, LUKUARTS">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUKUARTS VISUAL | 青玥影像</title>
+    
+    <meta property="og:title" content="LUKUARTS VISUAL | 青玥影像">
+    <meta property="og:description" content="專業人像與商業攝影，用光影捕捉故事的情感溫度。">
+    <meta property="og:image" content="images/og-preview.jpg"> 
+    <meta property="og:type" content="website">
+    <meta name="description" content="LUKUARTS VISUAL - 專業人像、婚禮與商業攝影服務">
+    <meta name="keywords" content="攝影, 人像, 婚禮紀錄, 商業攝影, LUKUARTS">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
     <style>
         /* 進版畫面 */
         #splash-screen {
@@ -23,7 +27,8 @@
 <body style="overflow: hidden;">
 
     <div id="splash-screen">
-<img src="images/logo-zh.png" alt="LUKUARTS" style="width:50%; max-width:300px;">    </div>
+        <img src="images/logo-zh.png" alt="LUKUARTS" style="width:50%; max-width:300px;">
+    </div>
 
     <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
@@ -39,6 +44,9 @@
     <main>
         <section class="hero">
             <div class="hero-bg"></div>
+            
+            <div id="sakura-rain" class="sakura-container"></div>
+
             <div class="hero-content">
                 <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
                 <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
@@ -77,8 +85,10 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                splash.style.visibility = 'hidden';
+                if(splash) {
+                    splash.style.opacity = '0';
+                    splash.style.visibility = 'hidden';
+                }
                 document.body.style.overflow = 'auto';
             }, 1000);
         });
