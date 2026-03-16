@@ -1436,3 +1436,1449 @@ input:focus, textarea:focus {
     color: #000000 !important;
     transform: translateY(-3px);
 }
+/* ================= VARIABLES ================= */
+:root {
+  --bg-dark: #0a0a0a;
+  --text-light: #ffffff;
+  --accent-gold: #c9a96e;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ================= RESET & BASIC ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: var(--transition-smooth);
+}
+
+/* 客製化捲軸 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+
+/* ================= NAVBAR (導覽列修正) ================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  transition: var(--transition-smooth);
+  flex-wrap: nowrap; /* 防止換行擠壓 */
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #fff !important;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-gold) !important;
+  opacity: 1;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+.lang-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* ================= PORTFOLIO PAGE (作品集頁面修正) ================= */
+
+/* 1. 給予 Main 或 Section 頂部間距，防止內容被 Navbar 遮擋 */
+.portfolio-section {
+  padding-top: 140px; /* ⚡ 增加這個高度，讓按鈕與箭頭離開導覽列 */
+  padding-bottom: 4rem;
+  text-align: center;
+  min-height: 100vh; /* 確保至少有滿版高度 */
+}
+
+/* 浮動大背景文字效果 */
+.page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 15vw, 8rem);
+  letter-spacing: 10px;
+  color: #fff;
+  opacity: 0.05;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: -1;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+/* 2. 過濾按鈕容器：美化排版，防止與 Logo 衝突 */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 50px;
+  padding: 0 5%;
+  position: relative;
+  z-index: 10; /* 確保在圖片上方 */
+}
+
+/* 3. 過濾按鈕樣式：符合品牌風格 */
+.filter-btn {
+  padding: 10px 22px;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border-radius: 2px;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #000;
+  box-shadow: 0 5px 15px rgba(201, 169, 110, 0.3);
+}
+
+/* ================= MASONRY GALLERY (瀑布流排版) ================= */
+.masonry-gallery {
+  column-count: 3; /* 電腦版三欄 */
+  column-gap: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  /* ⚡ JS 會控制顯示或隱藏 */
+}
+
+.masonry-item img {
+  width: 100%;
+  display: block;
+  transition: var(--transition-smooth);
+}
+
+/* 作品懸停遮罩 */
+.item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none; /* 防止干擾點擊 */
+}
+
+.masonry-item:hover .item-overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay-text p {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  border: 1px solid var(--accent-gold);
+  padding: 8px 15px;
+}
+
+/* ================= LIGHTBOX (燈箱修正與箭頭增大) ================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.98);
+  z-index: 11000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+.lightbox-close:hover { opacity: 1; }
+
+/* ⚡ 強大箭頭：增大字體與懸停效果 */
+.lightbox-prev, .lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px; /* 從原本的 40px 增大到 60px */
+  color: #fff;
+  background: transparent;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  opacity: 0.5; /* 預設淡一點 */
+  transition: 0.3s ease;
+  z-index: 10;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5); /* 增加陰影防止過曝 */
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-prev:hover, .lightbox-next:hover {
+  opacity: 1; /* 懸停時完全顯示 */
+  color: var(--accent-gold); /* 懸停變金色 */
+}
+
+/* 鍵盤對焦效果 (無障礙) */
+.filter-btn:focus, .lang-btn:focus, .lightbox-prev:focus, .lightbox-next:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+/* ================= RESPONSIVE (手機版) ================= */
+@media (max-width: 1024px) { 
+  .masonry-gallery { column-count: 2; } 
+  .lightbox-prev, .lightbox-next { font-size: 50px; padding: 10px; } /* 手機版箭頭稍微縮小 */
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; } /* 手機版先隱藏選單 */
+  .section-padding { padding-top: 100px; }
+  .page-title { font-size: 5rem; }
+  .filter-container { gap: 8px; margin-bottom: 30px; }
+  .filter-btn { padding: 8px 16px; font-size: 0.65rem; }
+}
+
+@media (max-width: 600px) { 
+  .masonry-gallery { column-count: 1; column-gap: 0; } 
+  .masonry-item { margin-bottom: 20px; }
+  .lightbox-content { max-width: 95%; }
+}
+/* ================= HERO 區塊終極修正 ================= */
+/* ⚡ 找回失蹤的櫻花背景 */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 確保它在文字後方 */
+
+    /* 你的櫻花網址 */
+    background-image: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') !important;
+    
+    background-size: cover;          /* 強制滿版 */
+    background-position: center;      /* 置中對齊 */
+    background-repeat: no-repeat;
+    
+    /* 讓櫻花暗一點，中間的白色書法字才不會被吃掉 */
+    filter: brightness(0.5) contrast(1.1); 
+    
+    /* 增加質感：微調縮放防止邊緣出現白線 */
+    transform: scale(1.05); 
+}
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* ⚡ 水平置中 */
+    justify-content: center; /* ⚡ 垂直置中 */
+    text-align: center;
+    padding: 120px 5% 60px; /* ⚡ 頂部留 120px 給導覽列 */
+    overflow: hidden;
+}
+
+/* 巨大的書法 Logo 修正 */
+.hero-zh-logo {
+    width: 80%;           /* ⚡ 縮小寬度比例 */
+    max-width: 450px;     /* ⚡ 限制最大尺寸，不讓它爆開 */
+    height: auto;
+    margin: 1.5rem 0;     /* ⚡ 給上下留一點空間 */
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+}
+
+/* 英文標題修正 */
+.hero-en-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 5vw, 2rem); /* ⚡ 字體縮小，防止跟 Logo 打架 */
+    letter-spacing: 10px;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.hero-content {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 修正導覽列防止 Logo 重疊 */
+.navbar {
+    padding: 1.2rem 5%; /* ⚡ 讓導覽列變細 */
+    background: rgba(0, 0, 0, 0.8); /* ⚡ 增加一點背景黑度 */
+}
+/* ================= BLOG PAGE (部落格列表修正) ================= */
+.blog-section {
+    padding-top: 140px; /* 與作品集保持一致的頂部間距 */
+    padding-bottom: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.blog-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent-gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.blog-card-img-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.blog-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.blog-card:hover .blog-card-img {
+    transform: scale(1.1);
+}
+
+.blog-card-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card-date {
+    font-size: 0.7rem;
+    color: var(--accent-gold);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.blog-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.blog-card-excerpt {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 25px;
+
+    /* ⚡ 標準屬性 (未來導向) */
+    line-clamp: 3;
+    
+    /* ⚡ 現行主流相容性屬性 (Webkit 核心) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    
+    /* ⚡ 備用方案：防止在不支援上述屬性的極老舊瀏覽器中爆版 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-card-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-gold) !important;
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.blog-card-link::after {
+    content: ' →';
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.blog-card-link:hover::after {
+    transform: translateX(5px);
+}
+
+/* 手機版 Blog 微調 */
+@media (max-width: 768px) {
+    .blog-grid { gap: 30px; }
+    .blog-card-title { font-size: 1.2rem; }
+}
+/* ================= 按鈕樣式 (View Portfolio) ================= */
+.hero-btns {
+    margin-top: 2.5rem;
+    z-index: 10;
+}
+
+/* 基礎按鈕設定 */
+.btn {
+    display: inline-block !important;
+    padding: 1rem 2.8rem !important;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    border-radius: 2px;
+    text-align: center;
+}
+
+/* 金色實心按鈕 (主按鈕) */
+.btn-primary {
+    background-color: var(--accent-gold) !important;
+    color: #000 !important; /* ⚡ 金色背景配黑字最專業 */
+    border: 1px solid var(--accent-gold) !important;
+    font-weight: 600;
+}
+
+/* 按鈕懸停效果 */
+.btn-primary:hover {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    color: #000 !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 針對 Section 內的通用按鈕 (如 About 下方的 Learn More) */
+.section-padding .btn {
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold) !important;
+}
+
+.section-padding .btn:hover {
+    background: var(--accent-gold);
+    color: #000 !important;
+}
+/* 首頁精選作品區塊微調 */
+.section-padding {
+    padding: 100px 5%;
+    background: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 60px;
+    letter-spacing: 5px;
+    color: var(--accent-gold);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+/* 讓圖片更有層次感 */
+.masonry-item {
+    transition: var(--transition-smooth);
+}
+
+.masonry-item img {
+    border-radius: 2px; /* 攝影網站適合小圓角或直角 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+/* ⚡ 金色按鈕強力補釘 */
+.hero-btns .btn.btn-primary {
+    background-color: #c9a96e !important; /* 強制金色背景 */
+    color: #000000 !important;           /* 強制黑字 */
+    border: 1px solid #c9a96e !important;
+    display: inline-block !important;
+    padding: 12px 35px !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-btns .btn.btn-primary:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    transform: translateY(-3px);
+}
+/* ⚡ 作品集頁面強制修正 */
+.portfolio-section {
+    background-color: #0a0a0a !important; /* 強制變黑 */
+    padding-top: 140px !important;       /* 強制推開導覽列 */
+    min-height: 100vh;
+    text-align: center;
+}
+
+.filter-btn {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid #c9a96e !important; /* 金色邊框 */
+    color: #fff !important;
+    padding: 10px 20px !important;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.filter-btn.active {
+    background: #c9a96e !important;
+    color: #000 !important;
+}
+
+/* 確保標題可見 */
+.page-title {
+    color: #fff !important;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    display: block !important;
+}
+/* ================= ABOUT PAGE 美化 ================= */
+/* ⚡ 確保 About 頁面的 Main 也是深色背景 */
+body.about-page,
+body.about-page main {
+    background-color: #0a0a0a !important; /* ⚡ 暴力強制變黑 */
+    color: #ffffff;
+}
+
+/* ⚡ 頂部大標題美化 ( About Me ) */
+.about-page .page-header h1 {
+    font-family: 'Playfair Display', serif; /* ⚡ 襯線體提升質感 */
+    font-size: clamp(2.5rem, 8vw, 4rem); /* ⚡ 響應式字體大小 */
+    color: var(--accent-gold); /* ⚡ 使用金色 */
+    letter-spacing: 5px; /* ⚡ 字距拉開 */
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    margin-top: 50px; /* ⚡ 增加上方間距 */
+}
+
+/* ⚡ Capturing Moments 標題美化 */
+.about-page h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+/* ⚡ Specialties 樣式 */
+.about-page h3.specialties {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Specialties 中的文字樣式 */
+.about-page h3.specialties span {
+    color: rgba(255,255,255,0.8); /* ⚡ 後方項目稍微淡一點 */
+}
+
+/* Specialties 中的斜線樣式 */
+.about-page h3.specialties .separator {
+    color: rgba(201, 169, 110, 0.4);
+    margin: 0 10px;
+}
+
+/* ⚡ 英文段落美化 */
+.about-page p.about-en {
+    color: rgba(255,255,255,0.6); /* ⚡ 英文稍淡，增加層次 */
+    font-style: italic; /* ⚡ 英文斜體 */
+    margin-bottom: 3rem;
+}
+
+/* ⚡ Start a Project 按鈕美化 */
+.about-page .btn-start {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ⚡ 修正文字區塊在手機版的排版 */
+@media (max-width: 768px) {
+    .about-page .page-header h1 {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+    .about-page h2 {
+        font-size: 1.5rem;
+    }
+    .about-page p {
+        font-size: 0.95rem;
+    }
+}
+/* 讓中英文切換時有一點點淡入感 */
+.lang-zh, .lang-en {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ⚡ 表單輸入框對焦效果 */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 10px rgba(201, 169, 110, 0.2);
+    transition: 0.3s;
+}
+
+/* 手機版表單調整 */
+@media (max-width: 600px) {
+    form div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* ⚡ 聯絡表單按鈕文字強力補釘 */
+.submit-btn {
+    display: inline-block !important;
+    min-width: 220px !important;    /* ⚡ 確保按鈕夠寬，字不會被擠掉 */
+    color: #000000 !important;      /* ⚡ 強制字體為黑色 */
+    font-weight: 700 !important;    /* ⚡ 字體加粗 */
+    letter-spacing: 2px !important;
+    text-transform: uppercase;
+    background-color: var(--accent-gold) !important;
+    border: none !important;
+    padding: 15px 40px !important;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* 懸停效果：變白色底，增加互動感 */
+.submit-btn:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+/* ================= VARIABLES ================= */
+:root {
+  --bg-dark: #0a0a0a;
+  --text-light: #ffffff;
+  --accent-gold: #c9a96e;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ================= RESET & BASIC ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: var(--transition-smooth);
+}
+
+/* 客製化捲軸 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+
+/* ================= NAVBAR (導覽列修正) ================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  transition: var(--transition-smooth);
+  flex-wrap: nowrap; /* 防止換行擠壓 */
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #fff !important;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-gold) !important;
+  opacity: 1;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+.lang-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* ================= PORTFOLIO PAGE (作品集頁面修正) ================= */
+
+/* 1. 給予 Main 或 Section 頂部間距，防止內容被 Navbar 遮擋 */
+.portfolio-section {
+  padding-top: 140px; /* ⚡ 增加這個高度，讓按鈕與箭頭離開導覽列 */
+  padding-bottom: 4rem;
+  text-align: center;
+  min-height: 100vh; /* 確保至少有滿版高度 */
+}
+
+/* 浮動大背景文字效果 */
+.page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 15vw, 8rem);
+  letter-spacing: 10px;
+  color: #fff;
+  opacity: 0.05;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: -1;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+/* 2. 過濾按鈕容器：美化排版，防止與 Logo 衝突 */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 50px;
+  padding: 0 5%;
+  position: relative;
+  z-index: 10; /* 確保在圖片上方 */
+}
+
+/* 3. 過濾按鈕樣式：符合品牌風格 */
+.filter-btn {
+  padding: 10px 22px;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border-radius: 2px;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #000;
+  box-shadow: 0 5px 15px rgba(201, 169, 110, 0.3);
+}
+
+/* ================= MASONRY GALLERY (瀑布流排版) ================= */
+.masonry-gallery {
+  column-count: 3; /* 電腦版三欄 */
+  column-gap: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  /* ⚡ JS 會控制顯示或隱藏 */
+}
+
+.masonry-item img {
+  width: 100%;
+  display: block;
+  transition: var(--transition-smooth);
+}
+
+/* 作品懸停遮罩 */
+.item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none; /* 防止干擾點擊 */
+}
+
+.masonry-item:hover .item-overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay-text p {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  border: 1px solid var(--accent-gold);
+  padding: 8px 15px;
+}
+
+/* ================= LIGHTBOX (燈箱修正與箭頭增大) ================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.98);
+  z-index: 11000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+.lightbox-close:hover { opacity: 1; }
+
+/* ⚡ 強大箭頭：增大字體與懸停效果 */
+.lightbox-prev, .lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px; /* 從原本的 40px 增大到 60px */
+  color: #fff;
+  background: transparent;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  opacity: 0.5; /* 預設淡一點 */
+  transition: 0.3s ease;
+  z-index: 10;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5); /* 增加陰影防止過曝 */
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-prev:hover, .lightbox-next:hover {
+  opacity: 1; /* 懸停時完全顯示 */
+  color: var(--accent-gold); /* 懸停變金色 */
+}
+
+/* 鍵盤對焦效果 (無障礙) */
+.filter-btn:focus, .lang-btn:focus, .lightbox-prev:focus, .lightbox-next:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+/* ================= RESPONSIVE (手機版) ================= */
+@media (max-width: 1024px) { 
+  .masonry-gallery { column-count: 2; } 
+  .lightbox-prev, .lightbox-next { font-size: 50px; padding: 10px; } /* 手機版箭頭稍微縮小 */
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; } /* 手機版先隱藏選單 */
+  .section-padding { padding-top: 100px; }
+  .page-title { font-size: 5rem; }
+  .filter-container { gap: 8px; margin-bottom: 30px; }
+  .filter-btn { padding: 8px 16px; font-size: 0.65rem; }
+}
+
+@media (max-width: 600px) { 
+  .masonry-gallery { column-count: 1; column-gap: 0; } 
+  .masonry-item { margin-bottom: 20px; }
+  .lightbox-content { max-width: 95%; }
+}
+/* ================= HERO 區塊終極修正 ================= */
+/* ⚡ 找回失蹤的櫻花背景 */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 確保它在文字後方 */
+
+    /* 你的櫻花網址 */
+    background-image: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') !important;
+    
+    background-size: cover;          /* 強制滿版 */
+    background-position: center;      /* 置中對齊 */
+    background-repeat: no-repeat;
+    
+    /* 讓櫻花暗一點，中間的白色書法字才不會被吃掉 */
+    filter: brightness(0.5) contrast(1.1); 
+    
+    /* 增加質感：微調縮放防止邊緣出現白線 */
+    transform: scale(1.05); 
+}
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* ⚡ 水平置中 */
+    justify-content: center; /* ⚡ 垂直置中 */
+    text-align: center;
+    padding: 120px 5% 60px; /* ⚡ 頂部留 120px 給導覽列 */
+    overflow: hidden;
+}
+
+/* 巨大的書法 Logo 修正 */
+.hero-zh-logo {
+    width: 80%;           /* ⚡ 縮小寬度比例 */
+    max-width: 450px;     /* ⚡ 限制最大尺寸，不讓它爆開 */
+    height: auto;
+    margin: 1.5rem 0;     /* ⚡ 給上下留一點空間 */
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+}
+
+/* 英文標題修正 */
+.hero-en-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 5vw, 2rem); /* ⚡ 字體縮小，防止跟 Logo 打架 */
+    letter-spacing: 10px;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.hero-content {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 修正導覽列防止 Logo 重疊 */
+.navbar {
+    padding: 1.2rem 5%; /* ⚡ 讓導覽列變細 */
+    background: rgba(0, 0, 0, 0.8); /* ⚡ 增加一點背景黑度 */
+}
+/* ================= BLOG PAGE (部落格列表修正) ================= */
+.blog-section {
+    padding-top: 140px; /* 與作品集保持一致的頂部間距 */
+    padding-bottom: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.blog-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent-gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.blog-card-img-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.blog-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.blog-card:hover .blog-card-img {
+    transform: scale(1.1);
+}
+
+.blog-card-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card-date {
+    font-size: 0.7rem;
+    color: var(--accent-gold);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.blog-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.blog-card-excerpt {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 25px;
+
+    /* ⚡ 標準屬性 (未來導向) */
+    line-clamp: 3;
+    
+    /* ⚡ 現行主流相容性屬性 (Webkit 核心) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    
+    /* ⚡ 備用方案：防止在不支援上述屬性的極老舊瀏覽器中爆版 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-card-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-gold) !important;
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.blog-card-link::after {
+    content: ' →';
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.blog-card-link:hover::after {
+    transform: translateX(5px);
+}
+
+/* 手機版 Blog 微調 */
+@media (max-width: 768px) {
+    .blog-grid { gap: 30px; }
+    .blog-card-title { font-size: 1.2rem; }
+}
+/* ================= 按鈕樣式 (View Portfolio) ================= */
+.hero-btns {
+    margin-top: 2.5rem;
+    z-index: 10;
+}
+
+/* 基礎按鈕設定 */
+.btn {
+    display: inline-block !important;
+    padding: 1rem 2.8rem !important;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    border-radius: 2px;
+    text-align: center;
+}
+
+/* 金色實心按鈕 (主按鈕) */
+.btn-primary {
+    background-color: var(--accent-gold) !important;
+    color: #000 !important; /* ⚡ 金色背景配黑字最專業 */
+    border: 1px solid var(--accent-gold) !important;
+    font-weight: 600;
+}
+
+/* 按鈕懸停效果 */
+.btn-primary:hover {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    color: #000 !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 針對 Section 內的通用按鈕 (如 About 下方的 Learn More) */
+.section-padding .btn {
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold) !important;
+}
+
+.section-padding .btn:hover {
+    background: var(--accent-gold);
+    color: #000 !important;
+}
+/* 首頁精選作品區塊微調 */
+.section-padding {
+    padding: 100px 5%;
+    background: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 60px;
+    letter-spacing: 5px;
+    color: var(--accent-gold);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+/* 讓圖片更有層次感 */
+.masonry-item {
+    transition: var(--transition-smooth);
+}
+
+.masonry-item img {
+    border-radius: 2px; /* 攝影網站適合小圓角或直角 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+/* ⚡ 金色按鈕強力補釘 */
+.hero-btns .btn.btn-primary {
+    background-color: #c9a96e !important; /* 強制金色背景 */
+    color: #000000 !important;           /* 強制黑字 */
+    border: 1px solid #c9a96e !important;
+    display: inline-block !important;
+    padding: 12px 35px !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-btns .btn.btn-primary:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    transform: translateY(-3px);
+}
+/* ⚡ 作品集頁面強制修正 */
+.portfolio-section {
+    background-color: #0a0a0a !important; /* 強制變黑 */
+    padding-top: 140px !important;       /* 強制推開導覽列 */
+    min-height: 100vh;
+    text-align: center;
+}
+
+.filter-btn {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid #c9a96e !important; /* 金色邊框 */
+    color: #fff !important;
+    padding: 10px 20px !important;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.filter-btn.active {
+    background: #c9a96e !important;
+    color: #000 !important;
+}
+
+/* 確保標題可見 */
+.page-title {
+    color: #fff !important;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    display: block !important;
+}
+/* ================= ABOUT PAGE 美化 ================= */
+/* ⚡ 確保 About 頁面的 Main 也是深色背景 */
+body.about-page,
+body.about-page main {
+    background-color: #0a0a0a !important; /* ⚡ 暴力強制變黑 */
+    color: #ffffff;
+}
+
+/* ⚡ 頂部大標題美化 ( About Me ) */
+.about-page .page-header h1 {
+    font-family: 'Playfair Display', serif; /* ⚡ 襯線體提升質感 */
+    font-size: clamp(2.5rem, 8vw, 4rem); /* ⚡ 響應式字體大小 */
+    color: var(--accent-gold); /* ⚡ 使用金色 */
+    letter-spacing: 5px; /* ⚡ 字距拉開 */
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    margin-top: 50px; /* ⚡ 增加上方間距 */
+}
+
+/* ⚡ Capturing Moments 標題美化 */
+.about-page h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+/* ⚡ Specialties 樣式 */
+.about-page h3.specialties {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Specialties 中的文字樣式 */
+.about-page h3.specialties span {
+    color: rgba(255,255,255,0.8); /* ⚡ 後方項目稍微淡一點 */
+}
+
+/* Specialties 中的斜線樣式 */
+.about-page h3.specialties .separator {
+    color: rgba(201, 169, 110, 0.4);
+    margin: 0 10px;
+}
+
+/* ⚡ 英文段落美化 */
+.about-page p.about-en {
+    color: rgba(255,255,255,0.6); /* ⚡ 英文稍淡，增加層次 */
+    font-style: italic; /* ⚡ 英文斜體 */
+    margin-bottom: 3rem;
+}
+
+/* ⚡ Start a Project 按鈕美化 */
+.about-page .btn-start {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ⚡ 修正文字區塊在手機版的排版 */
+@media (max-width: 768px) {
+    .about-page .page-header h1 {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+    .about-page h2 {
+        font-size: 1.5rem;
+    }
+    .about-page p {
+        font-size: 0.95rem;
+    }
+}
+/* 讓中英文切換時有一點點淡入感 */
+.lang-zh, .lang-en {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ⚡ 表單輸入框對焦效果 */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 10px rgba(201, 169, 110, 0.2);
+    transition: 0.3s;
+}
+
+/* 手機版表單調整 */
+@media (max-width: 600px) {
+    form div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* 懸停效果：變白色底，增加互動感 */
+.submit-btn:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+/* ⚡ 聯絡表單按鈕文字強力修正 */
+.submit-btn {
+    display: flex !important;
+    align-items: center;           /* 垂直置中 */
+    justify-content: center;       /* 水平置中 */
+    min-width: 220px !important;   /* 確保寬度 */
+    min-height: 55px !important;   /* 確保高度 */
+    color: #000000 !important;     /* ⚡ 強制字體為黑色 */
+    font-weight: 700 !important;   /* 字體加粗 */
+    letter-spacing: 2px !important;
+    background-color: var(--accent-gold) !important;
+    text-transform: uppercase;
+    border: none !important;
+    cursor: pointer;
+    font-size: 0.9rem !important;  /* 調整字體大小 */
+    transition: 0.3s ease;
+}
+
+/* 懸停時的視覺反饋 */
+.submit-btn:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    transform: translateY(-3px);
+}
+.submit-btn {
+    color: #000000 !important;   /* ⚡ 強制黑字 */
+    font-size: 1rem !important;  /* ⚡ 強制字體大小 */
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
