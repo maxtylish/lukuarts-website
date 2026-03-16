@@ -20,6 +20,11 @@
   {"src":"images/food/f006.jpg", "category":"food"},
   {"src":"images/event/e001.jpg", "category":"event"},
   {"src":"images/landscape/l001.jpg", "category":"landscape"},
+  {"src":"images/landscape/l002.jpg", "category":"landscape"},
+  {"src":"images/landscape/l003.jpg", "category":"landscape"},
+  {"src":"images/landscape/l004.jpg", "category":"landscape"},
+  {"src":"images/landscape/l005.jpg", "category":"landscape"},
+  {"src":"images/landscape/l006.jpg", "category":"landscape"},
   {"src":"images/creative/c001.jpg", "category":"creative"},
   {"src":"images/creative/c002.jpg", "category":"creative"}
 ]
