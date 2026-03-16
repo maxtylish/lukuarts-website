@@ -16,24 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 2. 作品集核心載入邏輯 ===== */
+    /* ===== 2. 作品集 (Portfolio) 邏輯 ===== */
     const gallery = document.getElementById("gallery");
     if (gallery) {
         fetch("images.json")
-            .then(res => {
-                if (!res.ok) throw new Error("找不到 images.json");
-                return res.json();
-            })
+            .then(res => res.json())
             .then(images => {
                 renderGallery(images);
                 initFilter(images);
                 initLightbox();
                 applyLang(localStorage.getItem("site-lang") || "en");
             })
-            .catch(err => {
-                console.error("載入失敗:", err);
-                gallery.innerHTML = `<p style="color:red; text-align:center; padding:2rem;">圖片載入失敗</p>`;
-            });
+            .catch(err => console.error("Gallery 載入失敗:", err));
     }
 
     function renderGallery(items) {
@@ -54,7 +48,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 3. 分類過濾功能 ===== */
+    /* ===== 3. 部落格 (Blog) 邏輯 ===== */
+    const blogContainer = document.getElementById("blog-container");
+    if (blogContainer) {
+        fetch("blogs.json")
+            .then(res => res.json())
+            .then(posts => {
+                renderBlogs(posts);
+                applyLang(localStorage.getItem("site-lang") || "en");
+            })
+            .catch(err => console.error("Blog 載入失敗:", err));
+    }
+
+    function renderBlogs(posts) {
+        if (!blogContainer) return;
+        const lang = localStorage.getItem("site-lang") || "en";
+        blogContainer.innerHTML = posts.map(post => `
+            <article class="blog-card">
+                <div class="blog-card-img-wrap">
+                    <img src="${post.image}" class="blog-card-img" alt="cover">
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">${post.date}</span>
+                        <span class="blog-category">${post.category}</span>
+                    </div>
+                    <h2 class="blog-title">${lang === 'zh' ? post.title_zh : post.title_en}</h2>
+                    <p class="blog-excerpt">${lang === 'zh' ? post.excerpt_zh : post.excerpt_en}</p>
+                    <a href="post.html?id=${post.id}" class="blog-link" data-zh="閱讀全文" data-en="READ MORE">
+                        ${lang === 'zh' ? '閱讀全文' : 'READ MORE'}
+                    </a>
+                </div>
+            </article>
+        `).join("");
+    }
+
+    /* ===== 4. 分類過濾與燈箱 (Portfolio 專用) ===== */
     function initFilter(allData) {
         const filterBtns = document.querySelectorAll(".filter-btn");
         filterBtns.forEach(btn => {
@@ -70,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 4. 燈箱系統 (Lightbox) ===== */
     function initLightbox() {
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
@@ -96,14 +124,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ===== 5. 多語系切換核心 ===== */
     function applyLang(l) {
-        // A. 短句切換
+        // A. 靜態文字切換
         document.querySelectorAll("[data-en]").forEach(el => {
             if (el.dataset[l]) {
                 el.textContent = el.dataset[l];
             }
         });
 
-        // B. About 頁面區塊切換
+        // B. 重新渲染部落格以更新動態標題 (如果人在 Blog 頁面)
+        if (blogContainer) {
+            fetch("blogs.json")
+                .then(res => res.json())
+                .then(posts => renderBlogs(posts));
+        }
+
+        // C. About 頁面區塊切換
         const zhBlocks = document.querySelectorAll(".lang-zh");
         const enBlocks = document.querySelectorAll(".lang-en");
         if (zhBlocks.length > 0) {
@@ -111,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
             enBlocks.forEach(b => b.style.display = (l === "en" ? "block" : "none"));
         }
         
-        // C. 設定 HTML lang 屬性
         document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
     }
 
@@ -137,4 +171,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // 初次載入執行一次語系設定
     applyLang(localStorage.getItem("site-lang") || "en");
 
-}); // DOMContentLoaded 結束
+});
