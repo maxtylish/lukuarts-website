@@ -519,3 +519,28 @@ a {
     background: var(--accent-gold);
     color: #000 !important;
 }
+/* 首頁精選作品區塊微調 */
+.section-padding {
+    padding: 100px 5%;
+    background: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 60px;
+    letter-spacing: 5px;
+    color: var(--accent-gold);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+/* 讓圖片更有層次感 */
+.masonry-item {
+    transition: var(--transition-smooth);
+}
+
+.masonry-item img {
+    border-radius: 2px; /* 攝影網站適合小圓角或直角 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
