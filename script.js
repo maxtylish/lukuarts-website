@@ -124,21 +124,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ===== 5. 多語系切換核心 ===== */
     function applyLang(l) {
-        // A. 靜態文字切換
         document.querySelectorAll("[data-en]").forEach(el => {
             if (el.dataset[l]) {
                 el.textContent = el.dataset[l];
             }
         });
 
-        // B. 重新渲染部落格以更新動態標題 (如果人在 Blog 頁面)
         if (blogContainer) {
             fetch("blogs.json")
                 .then(res => res.json())
-                .then(posts => renderBlogs(posts));
+                .then(posts => renderBlogs(posts))
+                .catch(err => console.log("Blog reload skip: ", err));
         }
 
-        // C. About 頁面區塊切換
         const zhBlocks = document.querySelectorAll(".lang-zh");
         const enBlocks = document.querySelectorAll(".lang-en");
         if (zhBlocks.length > 0) {
@@ -168,7 +166,34 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(() => { if(visitCount.parentElement) visitCount.parentElement.style.display = 'none'; });
     }
 
-    // 初次載入執行一次語系設定
+    /* ===== 9. 動態櫻花雨產生器 ===== */
+    const sakuraBox = document.getElementById('sakura-rain');
+    if (sakuraBox) {
+        const createPetal = () => {
+            const petal = document.createElement('div');
+            petal.classList.add('sakura-petal');
+            
+            const size = Math.random() * 7 + 8 + 'px';
+            petal.style.width = size;
+            petal.style.height = size;
+            petal.style.left = Math.random() * 100 + '%';
+            
+            const duration = Math.random() * 6 + 6 + 's';
+            petal.style.animationDuration = duration;
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            
+            sakuraBox.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, parseFloat(duration) * 1000 + 5000);
+        };
+
+        // 啟動花瓣循環
+        setInterval(createPetal, 400);
+    }
+
+    // 初次載入執行語系
     applyLang(localStorage.getItem("site-lang") || "en");
 
 });

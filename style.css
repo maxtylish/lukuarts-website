@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
 }
 
-/* 確保所有內頁背景一致 */
+/* 內頁背景統一強制補丁 */
 body.about-page, body.about-page main, .portfolio-section, .blog-section {
     background-color: var(--bg-dark) !important;
 }
@@ -192,23 +192,19 @@ a {
 }
 
 .blog-card-img-wrap { height: 220px; overflow: hidden; }
-
 .blog-card-img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
-
 .blog-card:hover .blog-card-img { transform: scale(1.1); }
 
 .blog-card-content { padding: 25px; flex-grow: 1; text-align: left; }
-
 .blog-meta { display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--accent-gold); font-size: 0.7rem; letter-spacing: 1px; }
-
 .blog-title { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
 
 .blog-excerpt {
     font-size: 0.9rem;
     color: #999;
     margin-bottom: 20px;
-    line-clamp: 3; /* 標準屬性 */
-    display: -webkit-box; /* Webkit 相容 */
+    line-clamp: 3;
+    display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -253,7 +249,7 @@ input:focus, textarea:focus {
     box-shadow: 0 0 10px rgba(201, 169, 110, 0.2);
 }
 
-/* ================= 7. 燈箱與動畫 ================= */
+/* ================= 7. 燈箱、動畫與特效 ================= */
 .lightbox {
     display: none;
     position: fixed;
@@ -282,6 +278,34 @@ input:focus, textarea:focus {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* 櫻花雨特效樣式 */
+.sakura-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.sakura-petal {
+    position: absolute;
+    background: linear-gradient(135deg, #ffd7e6, #ffb7d5);
+    border-radius: 90% 0 90% 90%;
+    opacity: 0.8;
+    z-index: 1;
+    animation: sakura-fall linear infinite;
+}
+
+@keyframes sakura-fall {
+    0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { top: 110%; transform: translateX(150px) rotate(720deg); opacity: 0; }
 }
 
 /* ================= 8. 響應式微調 ================= */
