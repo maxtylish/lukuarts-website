@@ -168,3 +168,70 @@ a { text-decoration: none !important; color: inherit !important; transition: var
         gap: 15px;
     }
 }
+/* --- 漢堡按鈕樣式 --- */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+/* 手機版適配 (max-width: 600px) 內的修改 */
+@media (max-width: 600px) {
+    .menu-toggle { display: flex; } /* 顯示漢堡按鈕 */
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* 平時藏在右邊 */
+        width: 70%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s ease;
+        gap: 3rem;
+    }
+
+    .nav-links.active {
+        right: 0; /* 點擊後滑入 */
+    }
+
+    /* 漢堡按鈕變叉叉 */
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease;
+}
+
+.splash-logo-text {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 10px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1); }
+}

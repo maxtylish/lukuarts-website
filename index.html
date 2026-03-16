@@ -11,12 +11,18 @@
 </head>
 <body style="overflow: hidden;">
 
-    <div id="splash-screen">
-    <img src="images/logo-zh.png" alt="LUKUARTS" style="width:120px; filter: brightness(0) invert(1);">
+   <div id="splash-screen">
+    <div class="splash-logo-text">LUKUARTS</div>
 </div>
-
     <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
         <ul class="nav-links">
             <li><a href="index.html" class="active" data-en="Home" data-zh="首頁">Home</a></li>
             <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
@@ -25,7 +31,6 @@
             <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
         </ul>
     </nav>
-
     <main>
         <section class="hero">
             <div class="hero-bg"></div>

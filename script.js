@@ -1,5 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+/* ===== 9. 手機漢堡選單控制 ===== */
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // 點擊連結後自動收起選單
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });    
     /* ===== 1. 導覽列效果 ===== */
     const navbar = document.querySelector(".navbar");
     if (navbar) {
