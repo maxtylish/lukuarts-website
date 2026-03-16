@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <h2 class="blog-title">${lang === 'zh' ? post.title_zh : post.title_en}</h2>
                     <p class="blog-excerpt">${lang === 'zh' ? post.excerpt_zh : post.excerpt_en}</p>
-                    <a href="post.html?id=${post.id}" class="blog-link" data-zh="閱讀全文" data-en="READ MORE">
+                    <a href="post.html?id=${post.id}" class="blog-link">
                         ${lang === 'zh' ? '閱讀全文' : 'READ MORE'}
                     </a>
                 </div>
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `).join("");
     }
 
-    /* ===== 4. 分類過濾與燈箱 (Portfolio 專用) ===== */
+    /* ===== 4. 分類過濾與燈箱 ===== */
     function initFilter(allData) {
         const filterBtns = document.querySelectorAll(".filter-btn");
         filterBtns.forEach(btn => {
@@ -130,20 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        if (blogContainer) {
-            fetch("blogs.json")
-                .then(res => res.json())
-                .then(posts => renderBlogs(posts))
-                .catch(err => console.log("Blog reload skip: ", err));
-        }
-
         const zhBlocks = document.querySelectorAll(".lang-zh");
         const enBlocks = document.querySelectorAll(".lang-en");
         if (zhBlocks.length > 0) {
             zhBlocks.forEach(b => b.style.display = (l === "zh" ? "block" : "none"));
             enBlocks.forEach(b => b.style.display = (l === "en" ? "block" : "none"));
         }
-        
         document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
     }
 
@@ -154,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentLang = localStorage.getItem("site-lang") === "zh" ? "en" : "zh";
             localStorage.setItem("site-lang", currentLang);
             applyLang(currentLang);
+            if (blogContainer) {
+                fetch("blogs.json").then(res => res.json()).then(posts => renderBlogs(posts));
+            }
         };
     }
 
@@ -166,34 +161,25 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(() => { if(visitCount.parentElement) visitCount.parentElement.style.display = 'none'; });
     }
 
-    /* ===== 9. 動態櫻花雨產生器 ===== */
+    /* ===== 8. 動態櫻花雨產生器 ===== */
     const sakuraBox = document.getElementById('sakura-rain');
     if (sakuraBox) {
         const createPetal = () => {
             const petal = document.createElement('div');
             petal.classList.add('sakura-petal');
-            
             const size = Math.random() * 7 + 8 + 'px';
             petal.style.width = size;
             petal.style.height = size;
             petal.style.left = Math.random() * 100 + '%';
-            
             const duration = Math.random() * 6 + 6 + 's';
             petal.style.animationDuration = duration;
             petal.style.animationDelay = Math.random() * 5 + 's';
-            
             sakuraBox.appendChild(petal);
-
-            setTimeout(() => {
-                petal.remove();
-            }, parseFloat(duration) * 1000 + 5000);
+            setTimeout(() => { petal.remove(); }, parseFloat(duration) * 1000 + 5000);
         };
-
-        // 啟動花瓣循環
         setInterval(createPetal, 400);
     }
 
-    // 初次載入執行語系
+    // 初次載入執行語系設定
     applyLang(localStorage.getItem("site-lang") || "en");
-
 });
