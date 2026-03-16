@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    /* ===== 1. 導覽列滾動效果 ===== */
+    // 1. 導覽列效果
     const navbar = document.querySelector(".navbar");
     if (navbar) {
         window.addEventListener("scroll", () => {
@@ -16,120 +16,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 2. 作品集 (Portfolio) 邏輯 ===== */
+    // 2. 作品集載入
     const gallery = document.getElementById("gallery");
     if (gallery) {
-        fetch("images.json")
-            .then(res => res.json())
-            .then(images => {
-                renderGallery(images);
-                initFilter(images);
-                initLightbox();
-                applyLang(localStorage.getItem("site-lang") || "en");
-            })
-            .catch(err => console.error("Gallery 載入失敗:", err));
-    }
-
-    function renderGallery(items) {
-        if (!gallery) return;
-        gallery.innerHTML = items.map(item => `
-            <div class="masonry-item" data-category="${item.category}">
-                <img src="${item.url || item.src}" class="lazy-img" loading="lazy" alt="${item.title}">
-                <div class="item-overlay">
-                    <div class="overlay-text">
-                        <p>${item.title || 'LUKUARTS'}</p>
-                    </div>
-                </div>
-            </div>
-        `).join("");
-        
-        document.querySelectorAll(".lazy-img").forEach(img => {
-            img.onload = () => img.style.opacity = "1";
+        fetch("images.json").then(res => res.json()).then(images => {
+            gallery.innerHTML = images.map(item => 
+                '<div class="masonry-item" data-category="' + item.category + '">' +
+                '<img src="' + (item.url || item.src) + '" class="lazy-img" loading="lazy">' +
+                '<div class="item-overlay"><div class="overlay-text"><p>' + (item.title || 'LUKUARTS') + '</p></div></div>' +
+                '</div>'
+            ).join("");
+            initFilter(images);
+            initLightbox();
+            applyLang(localStorage.getItem("site-lang") || "en");
         });
     }
 
-    /* ===== 3. 部落格 (Blog) 邏輯 ===== */
+    // 3. 部落格載入
     const blogContainer = document.getElementById("blog-container");
     if (blogContainer) {
-        fetch("blogs.json")
-            .then(res => res.json())
-            .then(posts => {
-                renderBlogs(posts);
-                applyLang(localStorage.getItem("site-lang") || "en");
-            })
-            .catch(err => console.error("Blog 載入失敗:", err));
+        fetch("blogs.json").then(res => res.json()).then(posts => {
+            renderBlogs(posts);
+            applyLang(localStorage.getItem("site-lang") || "en");
+        });
     }
-
     function renderBlogs(posts) {
         if (!blogContainer) return;
         const lang = localStorage.getItem("site-lang") || "en";
-        blogContainer.innerHTML = posts.map(post => `
-            <article class="blog-card">
-                <div class="blog-card-img-wrap">
-                    <img src="${post.image}" class="blog-card-img" alt="cover">
-                </div>
-                <div class="blog-card-content">
-                    <div class="blog-meta">
-                        <span class="blog-date">${post.date}</span>
-                        <span class="blog-category">${post.category}</span>
-                    </div>
-                    <h2 class="blog-title">${lang === 'zh' ? post.title_zh : post.title_en}</h2>
-                    <p class="blog-excerpt">${lang === 'zh' ? post.excerpt_zh : post.excerpt_en}</p>
-                    <a href="post.html?id=${post.id}" class="blog-link">
-                        ${lang === 'zh' ? '閱讀全文' : 'READ MORE'}
-                    </a>
-                </div>
-            </article>
-        `).join("");
+        blogContainer.innerHTML = posts.map(post => 
+            '<article class="blog-card">' +
+            '<div class="blog-card-img-wrap"><img src="' + post.image + '" class="blog-card-img"></div>' +
+            '<div class="blog-card-content">' +
+            '<div class="blog-meta"><span class="blog-date">' + post.date + '</span></div>' +
+            '<h2 class="blog-title">' + (lang === 'zh' ? post.title_zh : post.title_en) + '</h2>' +
+            '<p class="blog-excerpt">' + (lang === 'zh' ? post.excerpt_zh : post.excerpt_en) + '</p>' +
+            '<a href="post.html?id=' + post.id + '" class="blog-link">' + (lang === 'zh' ? '閱讀全文' : 'READ MORE') + '</a>' +
+            '</div></article>'
+        ).join("");
     }
 
-    /* ===== 4. 分類過濾與燈箱 ===== */
-    function initFilter(allData) {
-        const filterBtns = document.querySelectorAll(".filter-btn");
-        filterBtns.forEach(btn => {
-            btn.onclick = () => {
-                filterBtns.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                const filter = btn.dataset.filter;
-                const filtered = (filter === "all") ? allData : allData.filter(i => i.category === filter);
-                renderGallery(filtered);
-                initLightbox();
-                applyLang(localStorage.getItem("site-lang") || "en");
-            };
-        });
-    }
-
-    function initLightbox() {
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = document.getElementById("lightbox-img");
-        if (!lightbox || !lightboxImg) return;
-
-        const items = document.querySelectorAll(".masonry-item img");
-        items.forEach(img => {
-            img.onclick = () => {
-                lightbox.style.display = "flex";
-                lightboxImg.src = img.src;
-                document.body.style.overflow = "hidden";
-            };
-        });
-
-        const closeBtn = document.querySelector(".lightbox-close");
-        if (closeBtn) {
-            closeBtn.onclick = () => {
-                lightbox.style.display = "none";
-                document.body.style.overflow = "auto";
-            };
-        }
-    }
-
-    /* ===== 5. 多語系切換核心 ===== */
     function applyLang(l) {
         document.querySelectorAll("[data-en]").forEach(el => {
-            if (el.dataset[l]) {
-                el.textContent = el.dataset[l];
-            }
+            if (el.dataset[l]) el.textContent = el.dataset[l];
         });
-
         const zhBlocks = document.querySelectorAll(".lang-zh");
         const enBlocks = document.querySelectorAll(".lang-en");
         if (zhBlocks.length > 0) {
@@ -138,48 +67,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
     }
+    function renderBlogs(posts) {
+        if (!blogContainer) return;
+        const lang = localStorage.getItem("site-lang") || "en";
+        blogContainer.innerHTML = posts.map(post => 
+            '<article class="blog-card">' +
+            '<div class="blog-card-img-wrap"><img src="' + post.image + '" class="blog-card-img"></div>' +
+            '<div class="blog-card-content">' +
+            '<div class="blog-meta"><span class="blog-date">' + post.date + '</span></div>' +
+            '<h2 class="blog-title">' + (lang === 'zh' ? post.title_zh : post.title_en) + '</h2>' +
+            '<p class="blog-excerpt">' + (lang === 'zh' ? post.excerpt_zh : post.excerpt_en) + '</p>' +
+            '<a href="post.html?id=' + post.id + '" class="blog-link">' + (lang === 'zh' ? '閱讀全文' : 'READ MORE') + '</a>' +
+            '</div></article>'
+        ).join("");
+    }
 
-    /* ===== 6. 語系按鈕監聽 ===== */
+    function applyLang(l) {
+        document.querySelectorAll("[data-en]").forEach(el => {
+            if (el.dataset[l]) el.textContent = el.dataset[l];
+        });
+        const zhBlocks = document.querySelectorAll(".lang-zh");
+        const enBlocks = document.querySelectorAll(".lang-en");
+        if (zhBlocks.length > 0) {
+            zhBlocks.forEach(b => b.style.display = (l === "zh" ? "block" : "none"));
+            enBlocks.forEach(b => b.style.display = (l === "en" ? "block" : "none"));
+        }
+        document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
+    }
     const langBtn = document.getElementById("lang-toggle");
     if (langBtn) {
         langBtn.onclick = () => {
             const currentLang = localStorage.getItem("site-lang") === "zh" ? "en" : "zh";
             localStorage.setItem("site-lang", currentLang);
             applyLang(currentLang);
-            if (blogContainer) {
-                fetch("blogs.json").then(res => res.json()).then(posts => renderBlogs(posts));
-            }
+            if (blogContainer) fetch("blogs.json").then(res => res.json()).then(p => renderBlogs(p));
         };
     }
 
-    /* ===== 7. 訪客計數器 ===== */
-    const visitCount = document.getElementById('visit-count');
-    if (visitCount) {
-        fetch('https://api.counterapi.dev/v1/lukuarts/homepage/up')
-            .then(res => res.json())
-            .then(data => { visitCount.textContent = data.count; })
-            .catch(() => { if(visitCount.parentElement) visitCount.parentElement.style.display = 'none'; });
-    }
-
-    /* ===== 8. 動態櫻花雨產生器 ===== */
     const sakuraBox = document.getElementById('sakura-rain');
     if (sakuraBox) {
-        const createPetal = () => {
+        setInterval(() => {
             const petal = document.createElement('div');
             petal.classList.add('sakura-petal');
             const size = Math.random() * 7 + 8 + 'px';
-            petal.style.width = size;
-            petal.style.height = size;
+            petal.style.width = size; petal.style.height = size;
             petal.style.left = Math.random() * 100 + '%';
-            const duration = Math.random() * 6 + 6 + 's';
-            petal.style.animationDuration = duration;
-            petal.style.animationDelay = Math.random() * 5 + 's';
+            const duration = Math.random() * 6 + 6;
+            petal.style.animationDuration = duration + 's';
             sakuraBox.appendChild(petal);
-            setTimeout(() => { petal.remove(); }, parseFloat(duration) * 1000 + 5000);
-        };
-        setInterval(createPetal, 400);
+            setTimeout(() => petal.remove(), duration * 1000 + 2000);
+        }, 400);
     }
-
-    // 初次載入執行語系設定
     applyLang(localStorage.getItem("site-lang") || "en");
-});
+}); // DOMContentLoaded 結束
