@@ -3,18 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUKUARTS VISUAL | 青玥影像</title>
-    
+    <title>About | LUKUARTS VISUAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .about-page-container {
+            padding-top: 180px; /* 完美避開導覽列 */
+            padding-bottom: 100px;
+            min-height: 100vh;
+            background-color: var(--bg-dark);
+        }
+        .about-content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center; /* 左右垂直置中對齊 */
+        }
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            object-fit: cover;
+            aspect-ratio: 3/4; /* 固定圖片比例，保證排版不塌陷 */
+        }
+        .about-text-area {
+            color: #ccc;
+        }
+        .about-main-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+        }
+        .about-sub-title {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 30px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .about-text-area p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+        
+        /* 手機版變成上下排列 */
+        @media (max-width: 900px) {
+            .about-content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
-<body class="about-page" style="overflow: hidden;">
-
-    <div id="splash-screen">
-        <img src="images/logo-zh.png" alt="LUKUARTS" style="width:50%; max-width:300px;">
-    </div>
-
+<body>
     <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
         <ul class="nav-links">
@@ -26,66 +77,35 @@
         </ul>
     </nav>
 
-   <main class="section-padding">
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 5%;">
+    <main class="about-page-container">
+        <div class="about-content-wrapper">
             
-            <h1 class="section-title" style="text-align: left; margin-bottom: 50px;" data-en="About Me" data-zh="關於我">關於我</h1>
-            
-            <div class="about-grid" style="display: grid; gap: 60px; align-items: center;">
-                
-                <div class="about-image-wrap">
-                    <img src="images/your-photo.jpg" alt="About Me" style="width: 100%; border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); object-fit: cover;">
-                </div>
-                
-                <div class="about-text-wrap">
-                    <h2 style="font-family: var(--font-heading); color: var(--accent-gold); font-size: 2.2rem; margin-bottom: 25px; line-height: 1.4;">
-                        用光影捕捉故事的情感溫度
-                    </h2>
-                    
-                    <div style="color: #ccc; font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
-                        <p style="margin-bottom: 20px;">
-                            青玥影像 (LUKUARTS VISUAL) 是一個專注於人像與商業攝影的影像品牌。對我而言，攝影不只是按下快門，而是一種觀察世界的方式。
-                        </p>
-                        <p style="margin-bottom: 20px;">
-                            透過光影、構圖與情感的細膩捕捉，我致力於將每一個瞬間轉化為雋永的視覺故事。無論是充滿溫度的個人肖像，還是強調質感的商業企劃，我都能提供最高品質的影像方案。
-                        </p>
-                    </div>
-                </div>
-
+            <div class="about-img-col">
+                <img src="https://images.unsplash.com/photo-1554046920-90dc20696264?auto=format&fit=crop&q=80&w=800" alt="LUKUARTS Photography" class="about-image">
             </div>
+            
+            <div class="about-text-area">
+                <h1 class="about-main-title" data-en="ABOUT ME" data-zh="關於我">關於我</h1>
+                <h2 class="about-sub-title" data-en="Capturing Emotional Warmth Through Light and Shadow" data-zh="用光影捕捉故事的情感溫度">用光影捕捉故事的情感溫度</h2>
+                
+                <div class="lang-en" style="display: block;">
+                    <p>LUKUARTS VISUAL is a photography brand focusing on portrait and commercial photography. To me, photography is not just about pressing the shutter; it's a way of observing the world.</p>
+                    <p>Through the delicate capture of light, shadow, composition, and emotion, I am dedicated to transforming every moment into a timeless visual story. Whether it's a warm personal portrait or a highly textured commercial project, I deliver the highest quality visual solutions.</p>
+                </div>
+                
+                <div class="lang-zh" style="display: none;">
+                    <p>青玥影像 (LUKUARTS VISUAL) 是一個專注於人像與商業攝影的影像品牌。對我而言，攝影不只是按下快門，而是一種觀察世界的方式。</p>
+                    <p>透過光影、構圖與情感的細膩捕捉，我致力於將每一個瞬間轉化為雋永的視覺故事。無論是充滿溫度的個人肖像，還是強調質感的商業企劃，我都能提供最高品質的影像方案。</p>
+                </div>
+            </div>
+            
         </div>
-
-        <style>
-            .about-grid {
-                grid-template-columns: 1fr 1fr; /* 電腦版雙欄 */
-            }
-            @media (max-width: 900px) {
-                .about-grid {
-                    grid-template-columns: 1fr; /* 手機版單欄 */
-                    text-align: left;
-                }
-                .section-title {
-                    text-align: center !important;
-                }
-            }
-        </style>
     </main>
 
-    <footer style="margin-top: 4rem; padding-bottom: 2rem; opacity: 0.6; font-size: 0.8rem; text-align: center;">
-        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+    <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px;">
+        <p style="color: #666; font-size: 0.8rem;">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // 進版動畫邏輯
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                splash.style.visibility = 'hidden';
-                document.body.style.overflow = 'auto';
-            }, 1000);
-        });
-    </script>
 </body>
 </html>
