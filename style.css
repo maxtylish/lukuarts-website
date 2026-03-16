@@ -57,19 +57,15 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     position: absolute; 
     inset: 0; 
     z-index: -1; 
-    background-color: var(--bg-dark);
+    background-color: var(--bg-dark); /* 左右留白的地方會用高質感的深色填補 */
     
-    /* 1. 載入漸層遮罩與圖片 */
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000');
     
-    /* 2. 對齊正中央 */
     background-position: center center;
-    
-    /* 3. 使用 cover 鋪滿，但因為拿掉了 fixed，它不會再異常放大了 */
-    background-size: cover; 
+    /* 關鍵在這裡：改成 contain，強迫完整顯示 */
+    background-size: contain; 
     background-repeat: no-repeat;
-}
-.hero-content { 
+}.hero-content { 
     z-index: 5; text-align: center; width: 100%; padding: 0 20px; transform: translateY(-5%); 
 }
 .hero-en-title { font-family: var(--font-heading); font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 8px; margin-bottom: 10px; color: #fff; }
