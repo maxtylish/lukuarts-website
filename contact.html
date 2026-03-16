@@ -1,28 +1,35 @@
 <main class="portfolio-section">
-    <div class="page-header">
-        <h1 data-en="Contact" data-zh="聯絡我">Contact</h1>
+    <div class="page-header" style="text-align: center; margin-bottom: 50px;">
+        <h1 data-en="Contact Me" data-zh="聯絡預約">Contact Me</h1>
     </div>
 
-    <section class="section-padding" style="max-width: 800px; margin: 0 auto;">
-        <p style="text-align: center; margin-bottom: 3rem; color: #ccc;" data-en="Let's create something beautiful together." data-zh="讓我們一起創造美麗的影像。">
-            讓我們一起創造美麗的影像。
-        </p>
-
-        <form style="display: grid; gap: 1.5rem;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <input type="text" placeholder="Name" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff;">
-                <input type="email" placeholder="Email" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff;">
-            </div>
-            <input type="text" placeholder="Subject" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff;">
-            <textarea placeholder="Message" rows="6" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff; resize: none;"></textarea>
+    <section class="section-padding" style="max-width: 800px; margin: 0 auto; padding: 0 5%;">
+        <form action="https://formspree.io/f/mgonlnrq" method="POST" style="display: grid; gap: 1.5rem; text-align: left;">
             
-            <button type="submit" class="btn btn-primary" style="width: 200px; margin: 0 auto;">SEND MESSAGE</button>
-        </form>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                    <label style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 1px;">NAME</label>
+                    <input type="text" name="name" required style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px;">
+                </div>
+                <div class="form-group">
+                    <label style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 1px;">EMAIL</label>
+                    <input type="email" name="email" required style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px;">
+                </div>
+            </div>
 
-        <div style="margin-top: 4rem; text-align: center; display: flex; justify-content: center; gap: 2rem; color: var(--accent-gold);">
-            <a href="#">INSTAGRAM</a>
-            <a href="#">FACEBOOK</a>
-            <a href="#">THREADS</a>
-        </div>
+            <div class="form-group">
+                <label style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 1px;">SUBJECT (e.g. Portrait, Wedding...)</label>
+                <input type="text" name="subject" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px;">
+            </div>
+
+            <div class="form-group">
+                <label style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 1px;">MESSAGE</label>
+                <textarea name="message" rows="6" required style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px; resize: none;"></textarea>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="btn btn-primary" style="padding: 15px 60px;">SEND MESSAGE</button>
+            </div>
+        </form>
     </section>
 </main>
