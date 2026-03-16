@@ -563,3 +563,32 @@ a {
     border-color: #ffffff !important;
     transform: translateY(-3px);
 }
+/* ⚡ 作品集頁面強制修正 */
+.portfolio-section {
+    background-color: #0a0a0a !important; /* 強制變黑 */
+    padding-top: 140px !important;       /* 強制推開導覽列 */
+    min-height: 100vh;
+    text-align: center;
+}
+
+.filter-btn {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid #c9a96e !important; /* 金色邊框 */
+    color: #fff !important;
+    padding: 10px 20px !important;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.filter-btn.active {
+    background: #c9a96e !important;
+    color: #000 !important;
+}
+
+/* 確保標題可見 */
+.page-title {
+    color: #fff !important;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    display: block !important;
+}
