@@ -592,3 +592,78 @@ a {
     margin-bottom: 2rem;
     display: block !important;
 }
+/* ================= ABOUT PAGE 美化 ================= */
+/* ⚡ 確保 About 頁面的 Main 也是深色背景 */
+body.about-page,
+body.about-page main {
+    background-color: #0a0a0a !important; /* ⚡ 暴力強制變黑 */
+    color: #ffffff;
+}
+
+/* ⚡ 頂部大標題美化 ( About Me ) */
+.about-page .page-header h1 {
+    font-family: 'Playfair Display', serif; /* ⚡ 襯線體提升質感 */
+    font-size: clamp(2.5rem, 8vw, 4rem); /* ⚡ 響應式字體大小 */
+    color: var(--accent-gold); /* ⚡ 使用金色 */
+    letter-spacing: 5px; /* ⚡ 字距拉開 */
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    margin-top: 50px; /* ⚡ 增加上方間距 */
+}
+
+/* ⚡ Capturing Moments 標題美化 */
+.about-page h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+/* ⚡ Specialties 樣式 */
+.about-page h3.specialties {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Specialties 中的文字樣式 */
+.about-page h3.specialties span {
+    color: rgba(255,255,255,0.8); /* ⚡ 後方項目稍微淡一點 */
+}
+
+/* Specialties 中的斜線樣式 */
+.about-page h3.specialties .separator {
+    color: rgba(201, 169, 110, 0.4);
+    margin: 0 10px;
+}
+
+/* ⚡ 英文段落美化 */
+.about-page p.about-en {
+    color: rgba(255,255,255,0.6); /* ⚡ 英文稍淡，增加層次 */
+    font-style: italic; /* ⚡ 英文斜體 */
+    margin-bottom: 3rem;
+}
+
+/* ⚡ Start a Project 按鈕美化 */
+.about-page .btn-start {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ⚡ 修正文字區塊在手機版的排版 */
+@media (max-width: 768px) {
+    .about-page .page-header h1 {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+    .about-page h2 {
+        font-size: 1.5rem;
+    }
+    .about-page p {
+        font-size: 0.95rem;
+    }
+}
