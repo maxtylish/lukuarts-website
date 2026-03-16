@@ -16,23 +16,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 2. 作品集載入 ===== */
+    /* ===== 2. 作品集載入與過濾核心 ===== */
     const gallery = document.getElementById("gallery");
+    
+    // 定義渲染函數 (放在外層讓 initFilter 可以抓到)
+    function renderGallery(items) {
+        if (!gallery) return;
+        gallery.innerHTML = items.map(item => 
+            '<div class="masonry-item" data-category="' + item.category + '">' +
+            '<img src="' + (item.url || item.src) + '" class="lazy-img" loading="lazy">' +
+            '<div class="item-overlay"><div class="overlay-text"><p>' + (item.title || 'LUKUARTS') + '</p></div></div>' +
+            '</div>'
+        ).join("");
+        
+        // 重新綁定燈箱，否則新產生的圖片點不開
+        if (typeof initLightbox === "function") initLightbox();
+    }
+
+    function initFilter(allData) {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        if (!filterBtns.length || !gallery) return;
+
+        filterBtns.forEach(btn => {
+            btn.onclick = () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const filter = btn.dataset.filter;
+                const filteredData = (filter === "all") 
+                    ? allData 
+                    : allData.filter(item => item.category === filter);
+
+                renderGallery(filteredData);
+                applyLang(localStorage.getItem("site-lang") || "en");
+            };
+        });
+    }
+
     if (gallery) {
         fetch("images.json")
             .then(res => res.json())
             .then(images => {
-                gallery.innerHTML = images.map(item => 
-                    '<div class="masonry-item" data-category="' + item.category + '">' +
-                    '<img src="' + (item.url || item.src) + '" class="lazy-img" loading="lazy">' +
-                    '<div class="item-overlay"><div class="overlay-text"><p>' + (item.title || 'LUKUARTS') + '</p></div></div>' +
-                    '</div>'
-                ).join("");
-                
-                // 執行濾鏡與燈箱初始化 (確保這些函數已定義)
-                if (typeof initFilter === "function") initFilter(images);
-                if (typeof initLightbox === "function") initLightbox();
-                
+                renderGallery(images);
+                initFilter(images);
                 applyLang(localStorage.getItem("site-lang") || "en");
             })
             .catch(err => console.error("作品集加載失敗:", err));
@@ -86,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentLang = localStorage.getItem("site-lang") === "zh" ? "en" : "zh";
             localStorage.setItem("site-lang", currentLang);
             applyLang(currentLang);
-            // 如果在部落格頁面，切換語系時重新渲染內容
             if (blogContainer) {
                 fetch("blogs.json").then(res => res.json()).then(p => renderBlogs(p));
             }
@@ -99,23 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
         setInterval(() => {
             const petal = document.createElement('div');
             petal.classList.add('sakura-petal');
-            
             const size = Math.random() * 7 + 8 + 'px';
             petal.style.width = size; 
             petal.style.height = size;
             petal.style.left = Math.random() * 100 + '%';
-            
             const duration = Math.random() * 5 + 5;
             petal.style.animationDuration = duration + 's';
-            
             sakuraBox.appendChild(petal);
-            
-            // 動畫結束後移除，避免瀏覽器卡頓
             setTimeout(() => petal.remove(), duration * 1000 + 1000);
         }, 400);
     }
 
-    // 初次載入
-    applyLang(localStorage.getItem("site-lang") || "en");
-
-});
+    /* ===== 6.
