@@ -1,21 +1,45 @@
-<nav class="navbar"> ... </nav>
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | LUKUARTS VISUAL</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<main class="portfolio-section">
-    <h1 class="page-title">Portfolio</h1>
+    <nav class="navbar">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="portfolio.html" class="active" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
+            <li><a href="blog.html" data-en="Blog" data-zh="部落格">Blog</a></li>
+            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+        </ul>
+    </nav>
 
-    <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="portrait">Portrait</button>
-        <button class="filter-btn" data-filter="wedding">Wedding</button>
-        <button class="filter-btn" data-filter="food">Food</button>
-        <button class="filter-btn" data-filter="event">Event</button>
-        <button class="filter-btn" data-filter="landscape">Landscape</button>
-        <button class="filter-btn" data-filter="creative">Creative</button>
+    <main class="portfolio-section">
+        <h1 class="page-title">Portfolio</h1>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="portrait">Portrait</button>
+            <button class="filter-btn" data-filter="wedding">Wedding</button>
+            <button class="filter-btn" data-filter="food">Food</button>
+            <button class="filter-btn" data-filter="event">Event</button>
+            <button class="filter-btn" data-filter="landscape">Landscape</button>
+            <button class="filter-btn" data-filter="creative">Creative</button>
+        </div>
+
+        <div class="masonry-gallery" id="gallery"></div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
     </div>
 
-    <div class="masonry-gallery" id="gallery">
-        </div>
-</main>
+    <script src="script.js"></script>
+</body>
+</html>
