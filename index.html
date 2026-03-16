@@ -31,22 +31,37 @@
         </ul>
     </nav>
 
-  <main>
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div id="sakura-rain" class="sakura-container"></div>
-        <div class="hero-content">
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div id="sakura-rain" class="sakura-container"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
+                <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
+                <p data-en="Portrait & Commercial Photography" data-zh="人像與商業攝影" style="color:#fff; letter-spacing: 2px; margin-bottom: 20px;">Portrait & Commercial Photography</p>
+                <div class="hero-btns">
+                    <a href="portfolio.html" class="btn btn-primary" data-en="View Portfolio" data-zh="查看作品集">VIEW PORTFOLIO</a>
+                </div>
             </div>
-    </section>
+        </section>
 
-    <section class="section-padding">
-        <h2 class="section-title" data-en="Selected Works" data-zh="精選作品">Selected Works</h2>
-        <div class="masonry-gallery" id="gallery"></div>
-    </section>
-</main>
+        <section class="section-padding">
+            <h2 class="section-title" data-en="Selected Works" data-zh="精選作品">Selected Works</h2>
+            <div class="masonry-gallery" id="gallery"></div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img">
+        <button class="lightbox-next">&#10095;</button>
+    </div>
 
     <script src="script.js"></script>
     <script>
+        // 進場動畫解鎖
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');

@@ -1,4 +1,4 @@
-/* ================= 1. 核心變數與重置 ================= */
+/* ================= 1. 核心與變數 ================= */
 :root {
     --bg-dark: #0a0a0a;
     --text-light: #ffffff;
@@ -9,103 +9,78 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    background: var(--bg-dark);
-    color: var(--text-light);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
+body { background: var(--bg-dark); color: var(--text-light); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
 a { text-decoration: none !important; color: inherit !important; transition: var(--transition-smooth); }
 
-/* ================= 2. 導覽列 (Navbar) ================= */
+/* ================= 2. 導覽列 ================= */
 .navbar {
     position: fixed; top: 0; left: 0; width: 100%; padding: 1.2rem 5%;
     display: flex; justify-content: space-between; align-items: center;
     z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-    transition: var(--transition-smooth);
 }
-
 .logo { font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 2px; color: #fff !important; }
 .nav-links { list-style: none; display: flex; gap: 1.5rem; }
-.nav-links a { font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.7; color: #fff; }
+.nav-links a { font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; opacity: 0.7; }
 .nav-links a.active, .nav-links a:hover { color: var(--accent-gold); opacity: 1; }
+.lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 4px 10px; font-size: 10px; cursor: pointer; }
 
 /* ================= 3. Hero 視覺區 ================= */
-.hero {
-    position: relative; width: 100%; height: 100vh;
-    display: flex; align-items: center; justify-content: center; overflow: hidden;
-}
-
-.hero-bg {
-    position: absolute; inset: 0; z-index: -1;
-    background: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
-    filter: brightness(0.4);
-}
+.hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; z-index: -1; background: url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat; filter: brightness(0.4); }
 
 .hero-content { z-index: 5; text-align: center; width: 100%; padding: 0 20px; }
-.hero-en-title { font-family: var(--font-heading); font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 8px; margin-bottom: 10px; }
-.hero-zh-logo { width: 85%; max-width: 480px; height: auto; margin: 30px auto !important; display: block; }
+.hero-en-title { font-family: var(--font-heading); font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 8px; margin-bottom: 10px; color: #fff; }
+.hero-zh-logo { width: 85%; max-width: 480px; height: auto; margin: 30px auto; display: block; }
 
-/* 🌸 櫻花特效 */
+/* 櫻花 */
 .sakura-container { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-.sakura-petal {
-    position: absolute; background: linear-gradient(135deg, #ffd7e6, #ffb7d5);
-    border-radius: 90% 0 90% 90%; opacity: 0.8; animation: sakura-fall linear infinite;
-}
-@keyframes sakura-fall {
-    0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    100% { top: 110%; transform: translateX(100px) rotate(720deg); opacity: 0; }
-}
+.sakura-petal { position: absolute; background: linear-gradient(135deg, #ffd7e6, #ffb7d5); border-radius: 90% 0 90% 90%; opacity: 0.8; animation: sakura-fall linear infinite; }
+@keyframes sakura-fall { 0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 100% { top: 110%; transform: translateX(100px) rotate(720deg); opacity: 0; } }
 
-/* ================= 4. 內容區塊佈局 (作品集與部落格) ================= */
-.section-padding {
-    position: relative; padding: 100px 5%; background-color: var(--bg-dark);
-}
+/* ================= 4. 作品集與瀑布流 ================= */
+.section-padding { padding: 100px 5%; background-color: var(--bg-dark); position: relative; z-index: 10; }
+.section-title { font-family: var(--font-heading); font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 50px; text-align: center; letter-spacing: 3px; }
 
-.section-title {
-    font-family: var(--font-heading); font-size: 2.2rem; color: var(--accent-gold);
-    margin-bottom: 50px; text-align: center; letter-spacing: 3px;
-}
-
-/* 📸 瀑布流 */
-.masonry-gallery {
-    display: block; column-count: 3; column-gap: 25px; width: 100%;
-}
-
-.masonry-item {
-    break-inside: avoid; margin-bottom: 25px; position: relative; overflow: hidden; cursor: pointer;
-}
-
-.masonry-item img {
-    width: 100%; display: block; transition: transform 0.5s var(--transition-smooth);
-}
-
+.masonry-gallery { display: block; column-count: 3; column-gap: 25px; width: 100%; }
+.masonry-item { break-inside: avoid; margin-bottom: 25px; position: relative; overflow: hidden; cursor: pointer; border-radius: 2px; }
+.masonry-item img { width: 100%; display: block; transition: 0.5s; }
 .masonry-item:hover img { transform: scale(1.05); }
 
-/* ================= 5. 按鈕樣式 (支援多類別) ================= */
+/* 照片滑鼠移上去的黑底文字特效 */
+.item-overlay { position: absolute; inset: 0; background: rgba(15, 15, 15, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; pointer-events: none; }
+.masonry-item:hover .item-overlay { opacity: 1; }
+.overlay-text p { color: #fff; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+
+/* ================= 5. 按鈕 ================= */
 .btn.btn-primary, .btn-primary {
-    display: inline-block; background-color: var(--accent-gold);
-    color: #000 !important; padding: 14px 40px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; margin-top: 2rem;
-    transition: 0.3s; border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; background-color: var(--accent-gold); color: #000 !important;
+    padding: 14px 40px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    transition: 0.3s; border: none; cursor: pointer;
 }
+.btn.btn-primary:hover, .btn-primary:hover { background-color: #ffffff; transform: translateY(-3px); }
 
-.btn.btn-primary:hover, .btn-primary:hover {
-    background-color: #ffffff; transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+/* ================= 6. 燈箱 (Lightbox) 點擊放大 ================= */
+.lightbox {
+    display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.98);
+    z-index: 11000; justify-content: center; align-items: center; backdrop-filter: blur(10px);
 }
+.lightbox-content { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 4px; }
+.lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 45px; cursor: pointer; z-index: 11002; transition: 0.3s; }
+.lightbox-close:hover { color: var(--accent-gold); }
 
-/* ================= 6. 響應式設計 ================= */
-@media (max-width: 900px) {
-    .masonry-gallery { column-count: 2; }
+.lightbox-prev, .lightbox-next {
+    position: absolute; top: 50%; transform: translateY(-50%); background: transparent;
+    border: none; color: white; font-size: 50px; cursor: pointer; padding: 20px;
+    z-index: 11001; transition: 0.3s; opacity: 0.5;
 }
+.lightbox-prev:hover, .lightbox-next:hover { opacity: 1; color: var(--accent-gold); }
+.lightbox-prev { left: 5%; }
+.lightbox-next { right: 5%; }
 
+/* ================= 7. 響應式 ================= */
+@media (max-width: 900px) { .masonry-gallery { column-count: 2; } }
 @media (max-width: 600px) {
-    .nav-links { display: none; } /* 手機版暫時隱藏，或可改為漢堡選單 */
+    .nav-links { display: none; }
     .masonry-gallery { column-count: 1; }
-    .hero-en-title { letter-spacing: 4px; }
+    .lightbox-prev, .lightbox-next { font-size: 30px; }
 }
