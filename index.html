@@ -4,19 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUKUARTS VISUAL | 青玥影像</title>
-    
-    <meta property="og:title" content="LUKUARTS VISUAL | 青玥影像">
-    <meta property="og:description" content="專業人像與商業攝影，用光影捕捉故事的情感溫度。">
-    <meta property="og:image" content="https://你的網址/images/og-preview.jpg"> 
-    <meta property="og:type" content="website">
-    <meta name="description" content="LUKUARTS VISUAL - 專業人像、婚禮與商業攝影服務">
-    <meta name="keywords" content="攝影, 人像, 婚禮紀錄, 商業攝影, LUKUARTS">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
     <style>
-        /* 進版畫面 */
         #splash-screen {
             position: fixed; inset: 0; background: #000; z-index: 10000;
             display: flex; justify-content: center; align-items: center;
@@ -27,7 +17,7 @@
 <body style="overflow: hidden;">
 
     <div id="splash-screen">
-        <img src="images/logo-zh.png" alt="LUKUARTS" style="width:50%; max-width:300px;">
+        <img src="images/logo-zh.png" alt="LUKUARTS" style="width:50%; max-width:250px;">
     </div>
 
     <nav class="navbar">
@@ -44,14 +34,11 @@
     <main>
         <section class="hero">
             <div class="hero-bg"></div>
-            
             <div id="sakura-rain" class="sakura-container"></div>
-
             <div class="hero-content">
                 <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
                 <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
                 <p data-en="Portrait & Commercial Photography" data-zh="人像與商業攝影">Portrait & Commercial Photography</p>
-                
                 <div class="hero-btns">
                     <a href="portfolio.html" class="btn btn-primary" data-en="View Portfolio" data-zh="查看作品">View Portfolio</a>
                 </div>
@@ -60,36 +47,16 @@
 
         <section class="section-padding">
             <h2 class="section-title" data-en="Selected Works" data-zh="精選作品">Selected Works</h2>
-            <div class="masonry-gallery" id="gallery">
-                </div>
+            <div class="masonry-gallery" id="gallery"></div>
         </section>
     </main>
 
-    <div id="lightbox" class="lightbox">
-    <span class="lightbox-close">&times;</span>
-    <button class="lightbox-prev">&#10094;</button> 
-    <img class="lightbox-content" id="lightbox-img">
-    <button class="lightbox-next">&#10095;</button>
-</div>
-
-    <footer>
-        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
-        <div class="visitor-counter">
-            <span data-en="VISITORS:" data-zh="來訪人數:">VISITORS:</span> 
-            <span id="visit-count">...</span>
-        </div>
-    </footer>
-
     <script src="script.js"></script>
     <script>
-        // 進版動畫邏輯
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
-                if(splash) {
-                    splash.style.opacity = '0';
-                    splash.style.visibility = 'hidden';
-                }
+                if(splash) splash.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }, 1000);
         });
