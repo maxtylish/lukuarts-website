@@ -26,55 +26,49 @@
         </ul>
     </nav>
 
-    <main class="portfolio-section">
-        <div class="page-header">
-            <h1 data-en="About Me" data-zh="關於我">About Me</h1>
-        </div>
-
-        <section class="section-padding" style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 5%;">
+   <main class="section-padding">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 5%;">
             
-            <div style="flex: 1; min-width: 320px;">
-                <img src="images/about-profile.jpg" alt="Photographer" style="width: 100%; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);">
+            <h1 class="section-title" style="text-align: left; margin-bottom: 50px;" data-en="About Me" data-zh="關於我">關於我</h1>
+            
+            <div class="about-grid" style="display: grid; gap: 60px; align-items: center;">
+                
+                <div class="about-image-wrap">
+                    <img src="images/your-photo.jpg" alt="About Me" style="width: 100%; border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); object-fit: cover;">
+                </div>
+                
+                <div class="about-text-wrap">
+                    <h2 style="font-family: var(--font-heading); color: var(--accent-gold); font-size: 2.2rem; margin-bottom: 25px; line-height: 1.4;">
+                        用光影捕捉故事的情感溫度
+                    </h2>
+                    
+                    <div style="color: #ccc; font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+                        <p style="margin-bottom: 20px;">
+                            青玥影像 (LUKUARTS VISUAL) 是一個專注於人像與商業攝影的影像品牌。對我而言，攝影不只是按下快門，而是一種觀察世界的方式。
+                        </p>
+                        <p style="margin-bottom: 20px;">
+                            透過光影、構圖與情感的細膩捕捉，我致力於將每一個瞬間轉化為雋永的視覺故事。無論是充滿溫度的個人肖像，還是強調質感的商業企劃，我都能提供最高品質的影像方案。
+                        </p>
+                    </div>
+                </div>
+
             </div>
-
-           <div style="flex: 1.2; min-width: 320px; text-align: left;">
-    <h2 data-en="Capturing Moments, Defining Stories" data-zh="用光影捕捉故事的情感溫度" style="font-family: var(--font-heading); color: var(--accent-gold); margin-bottom: 2rem; font-size: 2rem; letter-spacing: 2px;">
-        用光影捕捉故事的情感溫度
-    </h2>
-    
-    <div class="about-text-content" style="line-height: 1.8; font-size: 0.95rem;">
-        
-        <div class="lang-zh" style="color: #ccc;">
-            <p style="margin-bottom: 1.2rem;">
-                青玥影像（LUKUARTS VISUAL）是一個專注於人像與商業攝影的影像品牌。對我而言，攝影不只是按下快門，而是一種觀察世界的方式。透過對光影的細膩捕捉與構圖的嚴謹要求，我致力於讓每一張照片都能傳遞出最純粹的氛圍與故事。
-            </p>
-            <p style="margin-bottom: 1.2rem;">
-                無論是唯美的人像、充滿溫度的婚禮紀錄，還是充滿質感的商業攝影，我始終相信「真誠」是影像的核心。我希望在畫面中保留最自然的真實瞬間，讓影像不只是瞬間的定格，而是一段能被反覆回味的珍貴記憶。
-            </p>
         </div>
 
-        <div class="lang-en" style="color: rgba(255,255,255,0.7); display: none; font-style: italic;">
-            <p style="margin-bottom: 1.2rem;">
-                LUKUARTS VISUAL is a boutique photography brand specializing in portrait and commercial storytelling. For me, photography is more than just a craft—it’s a perspective. I believe that through the delicate interplay of light and shadow, every image can evoke a deep sense of time and emotion.
-            </p>
-            <p style="margin-bottom: 1.2rem;">
-                Whether capturing intimate portraits, heartfelt wedding stories, or sophisticated commercial aesthetics, my philosophy remains the same: authenticity is paramount. My mission is to preserve the natural essence of every moment, turning fleeting glimpses into timeless visual legacies.
-            </p>
-        </div>
-    </div>
-
-    <h3 class="specialties" style="font-size: 0.8rem; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; margin: 2.5rem 0;">
-        <span data-en="Specialties:" data-zh="專業領域：">專業領域：</span>
-        <span style="color: #fff;">Portrait</span> <span style="opacity: 0.3; margin: 0 8px;">/</span>
-        <span style="color: #fff;">Commercial</span> <span style="opacity: 0.3; margin: 0 8px;">/</span>
-        <span style="color: #fff;">Events</span>
-    </h3>
-
-    <div class="hero-btns" style="text-align: left; margin-top: 0;">
-        <a href="contact.html" class="btn btn-primary" data-en="Start a Project" data-zh="開始預約">開始預約</a>
-    </div>
-</div>
-        </section>
+        <style>
+            .about-grid {
+                grid-template-columns: 1fr 1fr; /* 電腦版雙欄 */
+            }
+            @media (max-width: 900px) {
+                .about-grid {
+                    grid-template-columns: 1fr; /* 手機版單欄 */
+                    text-align: left;
+                }
+                .section-title {
+                    text-align: center !important;
+                }
+            }
+        </style>
     </main>
 
     <footer style="margin-top: 4rem; padding-bottom: 2rem; opacity: 0.6; font-size: 0.8rem; text-align: center;">
