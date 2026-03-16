@@ -55,7 +55,10 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 }
 .hero-bg {
     position: absolute; inset: 0; z-index: -1; background-color: var(--bg-dark);
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('images/hero-bg.jpg') center center / contain no-repeat;
+    /* 使用 Unsplash 櫻花大圖網址 + 深色漸層遮罩 */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+    background-attachment: fixed; /* 視差捲動效果 */
 }
 .hero-content { 
     z-index: 5; text-align: center; width: 100%; padding: 0 20px; transform: translateY(-5%); 
@@ -150,13 +153,4 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     .hero-en-title { font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 5px; }
     .hero-zh-logo { width: 70%; max-width: 250px; margin: 20px auto; }
     .hero p { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 25px; }
-    
-    /* 在極窄手機上，改變背景縮放方式以保留上方 */
-    .hero-bg { background-size: cover; background-position: center top; }
-
-    /* 作品集與其他排版 */
-    .section-padding { padding: 60px 5%; }
-    .section-title { font-size: 1.8rem; letter-spacing: 3px; margin-bottom: 30px; }
-    .masonry-gallery { column-count: 1; }
-    .form-row { grid-template-columns: 1fr; gap: 15px; }
-}
+    } /*
