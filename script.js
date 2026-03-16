@@ -94,12 +94,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ===== 5. 多語系與計數器 ===== */
-    const applyLang = (l) => {
-        document.querySelectorAll("[data-en]").forEach(el => {
-            if (el.dataset[l]) el.textContent = el.dataset[l];
-        });
-    };
+    /* ===== 5. 多語系切換 (升級版：支援大段落隱藏) ===== */
+const applyLang = (l) => {
+    // A. 處理一般短句 (data-en, data-zh)
+    document.querySelectorAll("[data-en]").forEach(el => {
+        if (el.dataset[l]) el.textContent = el.dataset[l];
+    });
 
+    // B. 處理 About 頁面的整塊段落顯示/隱藏
+    const zhBlocks = document.querySelectorAll(".lang-zh");
+    const enBlocks = document.querySelectorAll(".lang-en");
+
+    if (l === "zh") {
+        zhBlocks.forEach(b => b.style.display = "block");
+        enBlocks.forEach(b => b.style.display = "none");
+    } else {
+        zhBlocks.forEach(b => b.style.display = "none");
+        enBlocks.forEach(b => b.style.display = "block");
+    }
+
+    // C. 確保導覽列或頁面標籤的語系正確性
+    document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
+};
+/* ===== 6. 語系切換按鈕監聽 (確保呼叫新版 applyLang) ===== */
     const langBtn = document.getElementById("lang-toggle");
     if (langBtn) {
         langBtn.onclick = () => {
@@ -109,11 +126,13 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
+    /* ===== 7. 訪客計數器實作 ===== */
     const visitCount = document.getElementById('visit-count');
     if (visitCount) {
+        // 使用 Counter API，如果失敗則隱藏該區域
         fetch('https://api.counterapi.dev/v1/lukuarts/homepage/up')
             .then(res => res.json())
             .then(data => { visitCount.textContent = data.count; })
-            .catch(() => {});
+            .catch(() => { if(visitCount.parentElement) visitCount.parentElement.style.display = 'none'; });
     }
-});
+}); // 這是原本 DOMContentLoaded 的結尾括號，請確保對齊
