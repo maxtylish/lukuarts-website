@@ -544,3 +544,22 @@ a {
     border-radius: 2px; /* 攝影網站適合小圓角或直角 */
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+/* ⚡ 金色按鈕強力補釘 */
+.hero-btns .btn.btn-primary {
+    background-color: #c9a96e !important; /* 強制金色背景 */
+    color: #000000 !important;           /* 強制黑字 */
+    border: 1px solid #c9a96e !important;
+    display: inline-block !important;
+    padding: 12px 35px !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-btns .btn.btn-primary:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    transform: translateY(-3px);
+}
