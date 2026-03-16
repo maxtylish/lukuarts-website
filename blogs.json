@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "date": "2026.03.10",
+    "category": "Photography Tips",
+    "title_zh": "如何捕捉自然的雨景光影",
+    "title_en": "Capturing Natural Light in the Rain",
+    "excerpt_zh": "雨天不代表不能拍照，反而能創造出極具氛圍感的作品...",
+    "excerpt_en": "Rainy days don't mean you can't shoot; they create unique moods...",
+    "image": "images/blog-1.jpg"
+  },
+  {
+    "id": 2,
+    "date": "2026.02.15",
+    "category": "Behind the Scenes",
+    "title_zh": "南投山林間的婚紗紀實",
+    "title_en": "Wedding Session in Nantou Forest",
+    "excerpt_zh": "這次我們走進霧氣繚繞的山林，用鏡頭記錄最真誠的誓言...",
+    "excerpt_en": "Stepping into the misty forest to record authentic vows...",
+    "image": "images/blog-2.jpg"
+  }
+]
