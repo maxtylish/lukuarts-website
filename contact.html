@@ -1,89 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | LUKUARTS VISUAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <ul class="nav-links">
-            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-            <li><a href="contact.html" class="active" data-en="Contact" data-zh="聯絡我">Contact</a></li>
-            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
-        </ul>
-    </nav>
-
-    <main>
-        <div class="page-header">
-            <h1 data-en="Contact" data-zh="聯絡我">Contact</h1>
-        </div>
-
-        <section class="section-padding" style="padding-top: 0;">
-            <div class="contact-container">
-                
-                <div class="contact-info">
-                    <h2 data-en="Let's Create Together" data-zh="期待與您合作">Let's Create Together</h2>
-                    <p data-en="Whether it's a commercial project, portrait session, or videography inquiry, I'm always open to discussing new creative ideas. Drop a message below or reach out directly." 
-                       data-zh="無論是商業攝影、專屬人像拍攝，或是動態影音需求，我都非常樂意與您討論新的創意企劃。請填寫右側表單，或透過下方資訊直接與我聯繫。">
-                        Whether it's a commercial project, portrait session, or videography inquiry, I'm always open to discussing new creative ideas. Drop a message below or reach out directly.
-                    </p>
-
-                    <ul class="contact-details">
-                        <li>
-                            <span data-en="Email" data-zh="電子郵件">Email</span>
-                            <a href="mailto:maxtylish@hotmail.com">maxtylish@hotmail.com</a>
-                        </li>
-                        <li>
-                            <span data-en="Instagram" data-zh="Instagram">Instagram</span>
-                            <a href="https://instagram.com/lukuarts" target="_blank">@lukuarts</a>
-                        </li>
-                        <li>
-                            <span data-en="Location" data-zh="所在地區">Location</span>
-                            <a href="#" data-en="Taichung City, Taiwan (Available Worldwide)" data-zh="台灣 台中 (接受全球委託)">Taichung City, Taiwan (Available Worldwide)</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" action="https://formspree.io/f/mgonlnrq" method="POST">
-    
-    <div class="form-group">
-        <label data-en="Your Name" data-zh="您的姓名">Your Name</label>
-        <input type="text" name="name" required>
-    </div>
-    
-    <div class="form-group">
-        <label data-en="Email Address" data-zh="電子郵件">Email Address</label>
-        <input type="email" name="email" required>
+<main class="portfolio-section">
+    <div class="page-header">
+        <h1 data-en="Contact" data-zh="聯絡我">Contact</h1>
     </div>
 
-    <div class="form-group">
-        <label data-en="Project Details" data-zh="專案內容 / 拍攝需求">Project Details</label>
-        <textarea name="message" required></textarea>
-    </div>
+    <section class="section-padding" style="max-width: 800px; margin: 0 auto;">
+        <p style="text-align: center; margin-bottom: 3rem; color: #ccc;" data-en="Let's create something beautiful together." data-zh="讓我們一起創造美麗的影像。">
+            讓我們一起創造美麗的影像。
+        </p>
 
-    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-en="Send Message" data-zh="發送訊息">
-        Send Message
-    </button>
-</form>
-                    </form>
-                </div>
-
+        <form style="display: grid; gap: 1.5rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <input type="text" placeholder="Name" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff;">
+                <input type="email" placeholder="Email" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff;">
             </div>
-        </section>
-    </main>
+            <input type="text" placeholder="Subject" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff;">
+            <textarea placeholder="Message" rows="6" style="background: #111; border: 1px solid #333; padding: 1rem; color: #fff; resize: none;"></textarea>
+            
+            <button type="submit" class="btn btn-primary" style="width: 200px; margin: 0 auto;">SEND MESSAGE</button>
+        </form>
 
-    <footer>
-        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <div style="margin-top: 4rem; text-align: center; display: flex; justify-content: center; gap: 2rem; color: var(--accent-gold);">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">FACEBOOK</a>
+            <a href="#">THREADS</a>
+        </div>
+    </section>
+</main>
