@@ -32,7 +32,7 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .hero-en-title { font-family: var(--font-heading); font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 8px; margin-bottom: 10px; color: #fff; }
 .hero-zh-logo { width: 85%; max-width: 480px; height: auto; margin: 30px auto; display: block; }
 
-/* 櫻花 */
+/* 🌸 櫻花 */
 .sakura-container { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .sakura-petal { position: absolute; background: linear-gradient(135deg, #ffd7e6, #ffb7d5); border-radius: 90% 0 90% 90%; opacity: 0.8; animation: sakura-fall linear infinite; }
 @keyframes sakura-fall { 0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 100% { top: 110%; transform: translateX(100px) rotate(720deg); opacity: 0; } }
@@ -49,7 +49,7 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 /* 照片滑鼠移上去的黑底文字特效 */
 .item-overlay { position: absolute; inset: 0; background: rgba(15, 15, 15, 0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; pointer-events: none; }
 .masonry-item:hover .item-overlay { opacity: 1; }
-.overlay-text p { color: #fff; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+.overlay-text p { color: var(--accent-gold); font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
 
 /* ================= 5. 按鈕 ================= */
 .btn.btn-primary, .btn-primary {
@@ -77,10 +77,47 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .lightbox-prev { left: 5%; }
 .lightbox-next { right: 5%; }
 
-/* ================= 7. 響應式 ================= */
-@media (max-width: 900px) { .masonry-gallery { column-count: 2; } }
-@media (max-width: 600px) {
-    .nav-links { display: none; }
+/* ================= 7. 部落格卡片 (Blog Cards) ================= */
+.blog-section {
+    padding-top: 140px;
+    padding-bottom: 4rem;
+    text-align: center;
+    min-height: 100vh;
+}
+.blog-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; padding: 0 5%; max-width: 1400px; margin: 0 auto;
+}
+.blog-card {
+    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition-smooth);
+    overflow: hidden; display: flex; flex-direction: column; border-radius: 4px;
+}
+.blog-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.blog-card-img-wrap { height: 240px; overflow: hidden; position: relative; }
+.blog-card-img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
+.blog-card:hover .blog-card-img { transform: scale(1.08); }
+
+.blog-card-content { padding: 30px 25px; flex-grow: 1; text-align: left; display: flex; flex-direction: column; }
+.blog-meta { display: flex; justify-content: space-between; margin-bottom: 15px; color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+.blog-title { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 15px; color: #fff; line-height: 1.4; }
+
+.blog-excerpt {
+    font-size: 0.95rem; color: #aaa; margin-bottom: 25px; flex-grow: 1;
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; text-overflow: ellipsis; max-height: 4.5rem;
+}
+
+.blog-link {
+    display: inline-block; color: var(--accent-gold) !important; font-weight: 700; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; align-self: flex-start;
+}
+.blog-link:hover { color: #fff !important; letter-spacing: 4px; }
+
+/* ================= 8. 響應式 (必須放最後) ================= */
+@media (max-width: 900px) { 
+    .masonry-gallery { column-count: 2; } 
+}
+@media (max-width: 600px) { 
+    .navbar { padding: 1rem 3%; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.75rem; }
+    .hero-en-title { font-size: clamp(1.2rem, 6vw, 2.5rem); }
     .masonry-gallery { column-count: 1; }
-    .lightbox-prev, .lightbox-next { font-size: 30px; }
 }

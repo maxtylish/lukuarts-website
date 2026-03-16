@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post | LUKUARTS VISUAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 文章頁面專屬排版微調 */
+        .post-container {
+            max-width: 900px;
+            margin: 140px auto 4rem;
+            padding: 0 5%;
+            color: #ccc;
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .post-meta {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .post-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .post-hero-img {
+            width: 100%;
+            height: auto;
+            max-height: 60vh;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* 內容中的圖片 */
+        .post-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .back-btn-container {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        /* 載入中與錯誤訊息 */
+        .loading-msg, .error-msg {
+            text-align: center;
+            margin-top: 200px;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            min-height: 60vh;
+        }
+    </style>
+</head>
+<body class="about-page"> <nav class="navbar">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
+            <li><a href="blog.html" class="active" data-en="Blog" data-zh="部落格">Blog</a></li>
+            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
+            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+        </ul>
+    </nav>
+
+    <main class="post-container" id="single-post-content">
+        <div class="loading-msg" data-en="Loading..." data-zh="載入中...">Loading...</div>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;">
+        <p style="color: #666; font-size: 0.8rem;">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const postContainer = document.getElementById('single-post-content');
+            
+            // 1. 從網址抓取 ID (例如: ?id=1)
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            // 2. 如果沒有 ID，顯示錯誤並返回
+            if (!postId) {
+                showError();
+                return;
+            }
+
+            // 3. 讀取 JSON 並尋找對應的文章
+            fetch('blogs.json')
+                .then(res => res.json())
+                .then(posts => {
+                    const post = posts.find(p => p.id == postId); 
+                    
+                    if (post) {
+                        renderPost(post);
+                    } else {
+                        showError();
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to load post:", err);
+                    showError();
+                });
+
+            // 渲染文章 HTML
+            function renderPost(post) {
+                const lang = localStorage.getItem("site-lang") || "en";
+                
+                // ⚡ 將邏輯判斷全部分離，編輯器就不會再報錯了
+                const title = lang === 'zh' ? post.title_zh : post.title_en;
+                const content = lang === 'zh' ? post.content_zh : post.content_en;
+                
+                const authorZh = post.author_zh ? post.author_zh : '青玥影像';
+                const authorEn = post.author_en ? post.author_en : 'LUKUARTS';
+                const author = lang === 'zh' ? authorZh : authorEn;
+                
+                const btnText = lang === 'zh' ? '回到部落格' : 'BACK TO BLOG';
+                
+                // 更新網頁標題
+                document.title = title + " | LUKUARTS VISUAL";
+
+                // 乾淨的 HTML 渲染
+                postContainer.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-meta">
+                            <span>${post.date}</span>
+                            <span>•</span>
+                            <span>${author}</span>
+                        </div>
+                        <h1 class="post-title">${title}</h1>
+                    </div>
+                    
+                    <img src="${post.image}" alt="${title}" class="post-hero-img">
+                    
+                    <div class="post-content">
+                        ${content}
+                    </div>
+
+                    <div class="back-btn-container">
+                        <a href="blog.html" class="btn btn-primary">${btnText}</a>
+                    </div>
+                `;
+            }
+
+            // 顯示錯誤畫面
+            function showError() {
+                const lang = localStorage.getItem("site-lang") || "en";
+                
+                // ⚡ 分離錯誤訊息的邏輯判斷
+                const errorTitle = lang === 'zh' ? '找不到文章' : 'Post Not Found';
+                const btnText = lang === 'zh' ? '回到部落格' : 'BACK TO BLOG';
+
+                postContainer.innerHTML = `
+                    <div class="error-msg">
+                        <h2>${errorTitle}</h2>
+                        <br>
+                        <a href="blog.html" class="btn btn-primary">${btnText}</a>
+                    </div>
+                `;
+            }
+        });
+    </script>

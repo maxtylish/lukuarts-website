@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ===== 2. 作品集渲染與過濾 ===== */
     const gallery = document.getElementById("gallery");
     
-    // 渲染函數 (加入 item.category 顯示分類)
     function renderGallery(items) {
         if (!gallery) return;
         gallery.innerHTML = items.map(item => `
@@ -27,16 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 <img src="${item.url || item.src}" class="lazy-img" loading="lazy">
                 <div class="item-overlay">
                     <div class="overlay-text">
-                        <p>${item.category}</p> </div>
+                        <p>${item.category}</p>
+                    </div>
                 </div>
             </div>
         `).join("");
         
-        // 每次重新渲染圖片後，都必須重新綁定燈箱
         if (typeof initLightbox === "function") initLightbox();
     }
 
-    // 分類按鈕邏輯
     function initFilter(allData) {
         const filterBtns = document.querySelectorAll(".filter-btn");
         if (!filterBtns.length) return;
@@ -52,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 啟動抓取資料 (確保只執行一次)
     if (gallery) {
         fetch("images.json")
             .then(res => res.json())
@@ -83,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentLang = localStorage.getItem("site-lang") === "zh" ? "en" : "zh";
             localStorage.setItem("site-lang", currentLang);
             applyLang(currentLang);
-            // 避免整頁刷新，這裡只執行語系切換即可
         };
     }
 
@@ -114,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!lightbox || !lightboxImg) return;
 
-        // 重新抓取目前畫面上顯示的圖片
         const allImgs = Array.from(document.querySelectorAll(".masonry-item img"));
         let currentIndex = 0;
 
@@ -160,6 +155,44 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     };
 
+    /* ===== 6. 部落格清單渲染 (Blog List) ===== */
+    const blogGrid = document.getElementById("blog-grid");
+    if (blogGrid) {
+        fetch("blogs.json")
+            .then(res => res.json())
+            .then(posts => {
+                const lang = localStorage.getItem("site-lang") || "en";
+                
+                blogGrid.innerHTML = posts.map(post => {
+                    const title = lang === 'zh' ? post.title_zh : post.title_en;
+                    const excerpt = lang === 'zh' ? post.excerpt_zh : post.excerpt_en;
+                    const btnText = lang === 'zh' ? '閱讀全文' : 'READ MORE';
+                    
+                    return `
+                        <div class="blog-card">
+                            <div class="blog-card-img-wrap">
+                                <img src="${post.image}" class="blog-card-img" alt="${title}" loading="lazy">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-meta">
+                                    <span>${post.date}</span>
+                                    <span>${post.category || 'NOTE'}</span>
+                                </div>
+                                <h3 class="blog-title">${title}</h3>
+                                <p class="blog-excerpt">${excerpt}</p>
+                                <a href="post.html?id=${post.id}" class="blog-link">${btnText}</a>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            })
+            .catch(err => {
+                console.error("部落格載入失敗:", err);
+                blogGrid.innerHTML = `<p style="color: #ff4d4d; grid-column: 1/-1;">無法載入文章，請檢查 blogs.json 檔案。</p>`;
+            });
+    }
+
     // 初次載入
     applyLang(localStorage.getItem("site-lang") || "en");
-});
+
+}); // 👈 整個腳本的結尾
