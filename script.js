@@ -16,43 +16,40 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== 2. 作品集載入與過濾核心 ===== */
+    /* ===== 2. 作品集渲染函數 ===== */
     const gallery = document.getElementById("gallery");
     
-    // 定義渲染函數 (放在外層讓 initFilter 可以抓到)
     function renderGallery(items) {
         if (!gallery) return;
-        gallery.innerHTML = items.map(item => 
-            '<div class="masonry-item" data-category="' + item.category + '">' +
-            '<img src="' + (item.url || item.src) + '" class="lazy-img" loading="lazy">' +
-            '<div class="item-overlay"><div class="overlay-text"><p>' + (item.title || 'LUKUARTS') + '</p></div></div>' +
-            '</div>'
-        ).join("");
+        gallery.innerHTML = items.map(item => `
+            <div class="masonry-item" data-category="${item.category}">
+                <img src="${item.url || item.src}" class="lazy-img" loading="lazy">
+                <div class="item-overlay"><div class="overlay-text"><p>${item.title || 'LUKUARTS'}</p></div></div>
+            </div>
+        `).join("");
         
-        // 重新綁定燈箱，否則新產生的圖片點不開
+        // 渲染完後嘗試綁定燈箱
         if (typeof initLightbox === "function") initLightbox();
     }
 
+    /* ===== 3. 分類過濾邏輯 ===== */
     function initFilter(allData) {
         const filterBtns = document.querySelectorAll(".filter-btn");
-        if (!filterBtns.length || !gallery) return;
+        if (!filterBtns.length) return;
 
         filterBtns.forEach(btn => {
             btn.onclick = () => {
                 filterBtns.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
-
                 const filter = btn.dataset.filter;
-                const filteredData = (filter === "all") 
-                    ? allData 
-                    : allData.filter(item => item.category === filter);
-
+                const filteredData = (filter === "all") ? allData : allData.filter(i => i.category === filter);
                 renderGallery(filteredData);
                 applyLang(localStorage.getItem("site-lang") || "en");
             };
         });
     }
 
+    // 啟動作品集載入
     if (gallery) {
         fetch("images.json")
             .then(res => res.json())
@@ -61,42 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 initFilter(images);
                 applyLang(localStorage.getItem("site-lang") || "en");
             })
-            .catch(err => console.error("作品集加載失敗:", err));
+            .catch(err => console.error("圖片資料載入失敗:", err));
     }
 
-    /* ===== 3. 部落格邏輯 ===== */
-    const blogContainer = document.getElementById("blog-container");
-    
-    function renderBlogs(posts) {
-        if (!blogContainer) return;
-        const lang = localStorage.getItem("site-lang") || "en";
-        blogContainer.innerHTML = posts.map(post => 
-            '<article class="blog-card">' +
-            '<div class="blog-card-img-wrap"><img src="' + post.image + '" class="blog-card-img"></div>' +
-            '<div class="blog-card-content">' +
-            '<div class="blog-meta"><span class="blog-date">' + post.date + '</span></div>' +
-            '<h2 class="blog-title">' + (lang === 'zh' ? post.title_zh : post.title_en) + '</h2>' +
-            '<p class="blog-excerpt">' + (lang === 'zh' ? post.excerpt_zh : post.excerpt_en) + '</p>' +
-            '<a href="post.html?id=' + post.id + '" class="blog-link">' + (lang === 'zh' ? '閱讀全文' : 'READ MORE') + '</a>' +
-            '</div></article>'
-        ).join("");
-    }
-
-    if (blogContainer) {
-        fetch("blogs.json")
-            .then(res => res.json())
-            .then(posts => {
-                renderBlogs(posts);
-                applyLang(localStorage.getItem("site-lang") || "en");
-            });
-    }
-
-    /* ===== 4. 多語系切換 ===== */
+    /* ===== 4. 多語系核心 ===== */
     function applyLang(l) {
         document.querySelectorAll("[data-en]").forEach(el => {
             if (el.dataset[l]) el.textContent = el.dataset[l];
         });
-        
         const zhBlocks = document.querySelectorAll(".lang-zh");
         const enBlocks = document.querySelectorAll(".lang-en");
         if (zhBlocks.length > 0) {
@@ -112,13 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentLang = localStorage.getItem("site-lang") === "zh" ? "en" : "zh";
             localStorage.setItem("site-lang", currentLang);
             applyLang(currentLang);
-            if (blogContainer) {
-                fetch("blogs.json").then(res => res.json()).then(p => renderBlogs(p));
-            }
+            location.reload(); // 重新整理以確保所有動態內容更新
         };
     }
 
-    /* ===== 5. 動態櫻花雨 ===== */
+    /* ===== 5. 櫻花雨產生器 (放在最後確保不被卡住) ===== */
     const sakuraBox = document.getElementById('sakura-rain');
     if (sakuraBox) {
         setInterval(() => {
@@ -135,4 +102,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 400);
     }
 
-    /* ===== 6.
+    /* ===== 6. 燈箱功能保底 ===== */
+    window.initLightbox = function() {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        if (!lightbox || !lightboxImg) return;
+
+        document.querySelectorAll(".masonry-item img").forEach(img => {
+            img.onclick = () => {
+                lightbox.style.display = "flex";
+                lightboxImg.src = img.src;
+                document.body.style.overflow = "hidden";
+            };
+        });
+
+        const closeBtn = document.querySelector(".lightbox-close");
+        if (closeBtn) {
+            closeBtn.onclick = () => {
+                lightbox.style.display = "none";
+                document.body.style.overflow = "auto";
+            };
+        }
+    };
+
+    // 初次載入多語系
+    applyLang(localStorage.getItem("site-lang") || "en");
+});
