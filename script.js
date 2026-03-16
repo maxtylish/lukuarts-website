@@ -32,11 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(err => {
                 console.error("載入失敗:", err);
-                gallery.innerHTML = `<p style="color:red; text-align:center; padding:2rem;">圖片載入失敗，請確認 images.json 是否存在於根目錄</p>`;
+                gallery.innerHTML = `<p style="color:red; text-align:center; padding:2rem;">圖片載入失敗</p>`;
             });
     }
 
     function renderGallery(items) {
+        if (!gallery) return;
         gallery.innerHTML = items.map(item => `
             <div class="masonry-item" data-category="${item.category}">
                 <img src="${item.url || item.src}" class="lazy-img" loading="lazy" alt="${item.title}">
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `).join("");
         
-        // 觸發圖片漸顯效果
         document.querySelectorAll(".lazy-img").forEach(img => {
             img.onload = () => img.style.opacity = "1";
         });
@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const filter = btn.dataset.filter;
                 const filtered = (filter === "all") ? allData : allData.filter(i => i.category === filter);
                 renderGallery(filtered);
-                initLightbox(); // 重新綁定燈箱給新生成的圖片
+                initLightbox();
+                applyLang(localStorage.getItem("site-lang") || "en");
             };
         });
     }
@@ -93,30 +94,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    /* ===== 5. 多語系與計數器 ===== */
-    /* ===== 5. 多語系切換 (升級版：支援大段落隱藏) ===== */
-const applyLang = (l) => {
-    // A. 處理一般短句 (data-en, data-zh)
-    document.querySelectorAll("[data-en]").forEach(el => {
-        if (el.dataset[l]) el.textContent = el.dataset[l];
-    });
+    /* ===== 5. 多語系切換核心 ===== */
+    function applyLang(l) {
+        // A. 短句切換
+        document.querySelectorAll("[data-en]").forEach(el => {
+            if (el.dataset[l]) {
+                el.textContent = el.dataset[l];
+            }
+        });
 
-    // B. 處理 About 頁面的整塊段落顯示/隱藏
-    const zhBlocks = document.querySelectorAll(".lang-zh");
-    const enBlocks = document.querySelectorAll(".lang-en");
-
-    if (l === "zh") {
-        zhBlocks.forEach(b => b.style.display = "block");
-        enBlocks.forEach(b => b.style.display = "none");
-    } else {
-        zhBlocks.forEach(b => b.style.display = "none");
-        enBlocks.forEach(b => b.style.display = "block");
+        // B. About 頁面區塊切換
+        const zhBlocks = document.querySelectorAll(".lang-zh");
+        const enBlocks = document.querySelectorAll(".lang-en");
+        if (zhBlocks.length > 0) {
+            zhBlocks.forEach(b => b.style.display = (l === "zh" ? "block" : "none"));
+            enBlocks.forEach(b => b.style.display = (l === "en" ? "block" : "none"));
+        }
+        
+        // C. 設定 HTML lang 屬性
+        document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
     }
 
-    // C. 確保導覽列或頁面標籤的語系正確性
-    document.documentElement.lang = (l === "zh" ? "zh-Hant" : "en");
-};
-/* ===== 6. 語系切換按鈕監聽 (確保呼叫新版 applyLang) ===== */
+    /* ===== 6. 語系按鈕監聽 ===== */
     const langBtn = document.getElementById("lang-toggle");
     if (langBtn) {
         langBtn.onclick = () => {
@@ -126,13 +125,16 @@ const applyLang = (l) => {
         };
     }
 
-    /* ===== 7. 訪客計數器實作 ===== */
+    /* ===== 7. 訪客計數器 ===== */
     const visitCount = document.getElementById('visit-count');
     if (visitCount) {
-        // 使用 Counter API，如果失敗則隱藏該區域
         fetch('https://api.counterapi.dev/v1/lukuarts/homepage/up')
             .then(res => res.json())
             .then(data => { visitCount.textContent = data.count; })
             .catch(() => { if(visitCount.parentElement) visitCount.parentElement.style.display = 'none'; });
     }
-}); // 這是原本 DOMContentLoaded 的結尾括號，請確保對齊
+
+    // 初次載入執行一次語系設定
+    applyLang(localStorage.getItem("site-lang") || "en");
+
+}); // DOMContentLoaded 結束
