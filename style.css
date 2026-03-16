@@ -473,3 +473,49 @@ a {
     .blog-grid { gap: 30px; }
     .blog-card-title { font-size: 1.2rem; }
 }
+/* ================= 按鈕樣式 (View Portfolio) ================= */
+.hero-btns {
+    margin-top: 2.5rem;
+    z-index: 10;
+}
+
+/* 基礎按鈕設定 */
+.btn {
+    display: inline-block !important;
+    padding: 1rem 2.8rem !important;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    border-radius: 2px;
+    text-align: center;
+}
+
+/* 金色實心按鈕 (主按鈕) */
+.btn-primary {
+    background-color: var(--accent-gold) !important;
+    color: #000 !important; /* ⚡ 金色背景配黑字最專業 */
+    border: 1px solid var(--accent-gold) !important;
+    font-weight: 600;
+}
+
+/* 按鈕懸停效果 */
+.btn-primary:hover {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    color: #000 !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 針對 Section 內的通用按鈕 (如 About 下方的 Learn More) */
+.section-padding .btn {
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold) !important;
+}
+
+.section-padding .btn:hover {
+    background: var(--accent-gold);
+    color: #000 !important;
+}
