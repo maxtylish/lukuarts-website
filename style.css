@@ -148,3 +148,7 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     100% { stroke-dashoffset: 0; stroke: var(--accent-gold); filter: drop-shadow(0 0 2px rgba(201, 169, 110, 0.3)); }
 }
 @keyframes spinAperture { 100% { transform: rotate(360deg); } }
+/* === 10.1 新增：中間動態光圈樣式 === */
+.svg-aperture-middle {
+    margin: 40px auto; /* 調整與上下內容的間距 */
+}
