@@ -47,3 +47,80 @@
                 </div>
             </div>
         </section>
+
+        <section class="section-padding">
+            <h2 class="section-title" data-en="Featured Shoots" data-zh="精選企劃">Featured Shoots</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/portrait/p001.jpg" alt="Featured 1"></div>
+                    <div class="swiper-slide"><img src="images/wedding/w001.jpg" alt="Featured 2"></div>
+                    <div class="swiper-slide"><img src="images/creative/c001.jpg" alt="Featured 3"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <h2 class="section-title" data-en="Selected Works" data-zh="精選作品">Selected Works</h2>
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all" data-en="ALL" data-zh="全部作品">ALL</button>
+                <button class="filter-btn" data-filter="portrait" data-en="PORTRAIT" data-zh="人像攝影">PORTRAIT</button>
+                <button class="filter-btn" data-filter="wedding" data-en="WEDDING" data-zh="婚禮紀錄">WEDDING</button>
+                <button class="filter-btn" data-filter="culture" data-en="CULTURE" data-zh="人文神像">CULTURE</button>
+                <button class="filter-btn" data-filter="street" data-en="STREET" data-zh="街頭攝影">STREET</button>
+                <button class="filter-btn" data-filter="food" data-en="FOOD" data-zh="商業美食">FOOD</button>
+                <button class="filter-btn" data-filter="event" data-en="EVENT" data-zh="活動紀錄">EVENT</button>
+                <button class="filter-btn" data-filter="landscape" data-en="LANDSCAPE" data-zh="風景攝影">LANDSCAPE</button>
+                <button class="filter-btn" data-filter="creative" data-en="CREATIVE" data-zh="影像創作">CREATIVE</button>
+            </div>
+            <div class="masonry-gallery" id="gallery"></div>
+        </section>
+
+        <div class="svg-aperture-container" id="back-to-top">
+            <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" class="aperture-circle"/>
+                <g stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" class="aperture-blades">
+                    <line x1="50" y1="5" x2="65" y2="30" />
+                    <line x1="95" y1="50" x2="70" y2="35" />
+                    <line x1="80" y1="85" x2="55" y2="70" />
+                    <line x1="20" y1="85" x2="45" y2="70" />
+                    <line x1="5" y1="50" x2="30" y2="65" />
+                    <line x1="20" y1="15" x2="45" y2="30" />
+                    <polygon points="50,30 65,40 65,60 50,70 35,60 35,40" fill="none" />
+                </g>
+            </svg>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img">
+        <button class="lightbox-next">&#10095;</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        function removeSplashScreen() {
+            const splash = document.getElementById('splash-screen');
+            if(splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 800);
+            }
+            document.body.style.overflow = 'auto';
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(removeSplashScreen, 500);
+        });
+
+        setTimeout(removeSplashScreen, 2500);
+    </script>
+</body>
+</html>
