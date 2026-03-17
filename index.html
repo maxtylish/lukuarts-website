@@ -80,15 +80,16 @@
 
         <div class="svg-aperture-container" id="back-to-top">
             <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" class="aperture-circle"/>
-                <g stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" class="aperture-blades">
-                    <line x1="50" y1="5" x2="65" y2="30" />
-                    <line x1="95" y1="50" x2="70" y2="35" />
-                    <line x1="80" y1="85" x2="55" y2="70" />
-                    <line x1="20" y1="85" x2="45" y2="70" />
-                    <line x1="5" y1="50" x2="30" y2="65" />
-                    <line x1="20" y1="15" x2="45" y2="30" />
-                    <polygon points="50,30 65,40 65,60 50,70 35,60 35,40" fill="none" />
+                <circle cx="50" cy="50" r="45" fill="none" stroke-width="1.5" class="laser-circle" pathLength="100"/>
+                
+                <g stroke-width="1.5" stroke-linecap="round">
+                    <line x1="50" y1="5" x2="65" y2="30" class="laser-line l1" pathLength="100"/>
+                    <line x1="95" y1="50" x2="70" y2="35" class="laser-line l2" pathLength="100"/>
+                    <line x1="80" y1="85" x2="55" y2="70" class="laser-line l3" pathLength="100"/>
+                    <line x1="20" y1="85" x2="45" y2="70" class="laser-line l4" pathLength="100"/>
+                    <line x1="5" y1="50" x2="30" y2="65" class="laser-line l5" pathLength="100"/>
+                    <line x1="20" y1="15" x2="45" y2="30" class="laser-line l6" pathLength="100"/>
+                    <polygon points="50,30 65,40 65,60 50,70 35,60 35,40" fill="none" class="laser-poly" pathLength="100"/>
                 </g>
             </svg>
         </div>
