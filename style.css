@@ -100,17 +100,15 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .lightbox {
     display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.98); z-index: 11000; justify-content: center; align-items: center; backdrop-filter: blur(10px);
 }
-.lightbox-content { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 4px; }
-.lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 45px; cursor: pointer; z-index: 11002; transition: 0.3s; }
-.lightbox-close:hover { color: var(--accent-gold); }
-
-.lightbox-prev, .lightbox-next {
-    position: absolute; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: white; font-size: 50px; cursor: pointer; padding: 20px; z-index: 11001; transition: 0.3s; opacity: 0.5;
+.lightbox-content { 
+    max-width: 90%; 
+    max-height: 85vh; 
+    object-fit: contain; 
+    border-radius: 4px;
+    /* ✨ 合併後的金色發光效果 */
+    box-shadow: 0 0 50px rgba(201, 169, 110, 0.2); 
 }
-.lightbox-prev:hover, .lightbox-next:hover { opacity: 1; color: var(--accent-gold); }
-.lightbox-prev { left: 5%; }
-.lightbox-next { right: 5%; }
-
+/* ... 後續的 close, prev, next 按鈕保持不變 ... */
 /* ================= 8. 部落格卡片 ================= */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; padding: 0 5%; max-width: 1400px; margin: 0 auto; }
 .blog-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition-smooth); overflow: hidden; display: flex; flex-direction: column; border-radius: 4px; }
@@ -137,12 +135,12 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 }
 .swiper-button-next, .swiper-button-prev { color: var(--accent-gold) !important; }
 .swiper-pagination-bullet-active { background: var(--accent-gold) !important; }
-
 /* ================= 10. 響應式：手機版專屬優化 ================= */
 .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
 .menu-toggle .bar { width: 25px; height: 2px; background-color: #fff; transition: 0.3s; }
 
 @media (max-width: 600px) {
+    /* 1. 漢堡選單控制 */
     .menu-toggle { display: flex; }
     .navbar { padding: 15px 5%; flex-direction: row; justify-content: space-between; }
     .nav-links {
@@ -157,11 +155,40 @@ a { text-decoration: none !important; color: inherit !important; transition: var
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* 2. Hero 視覺與標題優化 */
     .hero-content { margin-top: 40px; padding: 0 15px; transform: translateY(0); }
     .hero-en-title { font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 5px; }
     .hero-zh-logo { width: 70%; max-width: 250px; margin: 20px auto; }
     .hero p { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 25px; }
     
-    /* 移除手機版背景固定，防止滾動問題 */
+    /* 移除手機版背景固定，防止滾動閃爍 */
     .hero-bg { background-attachment: scroll; background-position: center top; }
-} /* 👈 這是最重要的關門大括號！ */
+
+    /* 3. 分類按鈕：橫向滑動不換行 */
+    .filter-container {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px 5% 20px;
+        gap: 10px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .filter-container::-webkit-scrollbar { display: none; }
+    .filter-btn { flex: 0 0 auto; padding: 6px 16px; font-size: 0.75rem; }
+
+    /* 4. 瀑布流：改為雙欄顯示 */
+    .masonry-gallery {
+        column-count: 2;
+        column-gap: 15px;
+        padding: 0 15px;
+    }
+    .masonry-item { margin-bottom: 15px; }
+
+    /* 5. 間距與 Swiper 高度 */
+    .section-padding { padding-top: 100px; }
+    .section-title { font-size: 1.8rem; margin-bottom: 20px; }
+    .swiper { height: 40vh; min-height: 250px; }
+    .swiper-slide img { object-fit: contain; width: 100%; }
+}
