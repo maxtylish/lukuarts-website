@@ -165,5 +165,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-
+/* ===== 8. 雷達感測器：滑到才觸發雷射動畫 ===== */
+    const laserAperture = document.querySelector('.animated-aperture');
+    if (laserAperture) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 當光圈進入畫面一半的時候，打開開關
+                if (entry.isIntersecting) {
+                    laserAperture.classList.add('play-laser');
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(laserAperture);
+    }
 }); // 👈 整個腳本在這裡完美結束
