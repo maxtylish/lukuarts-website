@@ -123,11 +123,12 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 
 .animated-aperture { width: 100%; height: 100%; animation: spinAperture 40s linear infinite; }
 
-/* 初始狀態：線條長度隱藏 */
-.laser-circle, .laser-line, .laser-poly { stroke-dasharray: 100; stroke-dashoffset: 100; stroke: var(--accent-gold); }
+/* ✨ 將動畫類名包裝在 .play-laser 下，由 JavaScript 控制觸發 */
+.play-laser .laser-circle, .play-laser .laser-line, .play-laser .laser-poly { stroke-dasharray: 100; stroke-dashoffset: 100; stroke: var(--accent-gold); }
 
-/* ✨ 加入 play-laser 開關後，才開始播放動畫 */
+/* 第 1 筆刻：外圈 */
 .play-laser .laser-circle { animation: laserDraw 1.5s cubic-bezier(0.8, 0, 0.2, 1) forwards; }
+/* 第 2~7 筆刻：線條 */
 .play-laser .laser-line { animation: laserDraw 0.5s cubic-bezier(0.8, 0, 0.2, 1) forwards; }
 .play-laser .laser-line.l1 { animation-delay: 1.5s; }
 .play-laser .laser-line.l2 { animation-delay: 1.6s; }
@@ -135,9 +136,10 @@ a { text-decoration: none !important; color: inherit !important; transition: var
 .play-laser .laser-line.l4 { animation-delay: 1.8s; }
 .play-laser .laser-line.l5 { animation-delay: 1.9s; }
 .play-laser .laser-line.l6 { animation-delay: 2.0s; }
-
+/* 最後 1 筆刻：六角形 */
 .play-laser .laser-poly { animation: laserDraw 1s cubic-bezier(0.8, 0, 0.2, 1) forwards; animation-delay: 2.3s; }
 
+/* ===== 雷射高溫白光 ➔ 冷卻成金色的魔法 ===== */
 @keyframes laserDraw {
     0% { stroke-dashoffset: 100; stroke: #ffffff; filter: drop-shadow(0 0 8px #ffffff); }
     50% { stroke: #fff6d9; filter: drop-shadow(0 0 5px var(--accent-gold)); }

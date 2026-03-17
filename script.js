@@ -165,18 +165,21 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-/* ===== 8. 雷達感測器：滑到才觸發雷射動畫 ===== */
+
+    /* ===== ✨ 8. 雷達感測器：滑到才觸發雷射動畫 ===== */
     const laserAperture = document.querySelector('.animated-aperture');
     if (laserAperture) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // 當光圈進入畫面一半的時候，打開開關
+                // 當光圈進入畫面一半的時候，為容器添加 .play-laser 類，觸發 CSS 動畫
                 if (entry.isIntersecting) {
-                    laserAperture.classList.add('play-laser');
+                    // entry.target 是監聽的 SVG 元素，它的父容器是 .svg-aperture-container
+                    entry.target.parentElement.classList.add('play-laser');
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.5 }); // 50% 進入畫面時觸發
         
         observer.observe(laserAperture);
     }
-}); // 👈 整個腳本在這裡完美結束
+
+});
