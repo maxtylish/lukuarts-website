@@ -32,10 +32,11 @@
   {"src":"images/landscape/l005.jpg", "category":"landscape"},
   {"src":"images/landscape/l006.jpg", "category":"landscape"},
   {"src":"images/creative/c001.jpg", "category":"creative"},
-  {"src":"images/creative/c002.jpg", "category":"creative"}
-]{"src":"images/culture/c001.jpg", "category":"culture"},
-{"src":"images/culture/c002.jpg", "category":"culture"},
-{"src":"images/culture/c003.jpg", "category":"culture"},
-{"src":"images/culture/c004.jpg", "category":"culture"},
-{"src":"images/culture/c005.jpg", "category":"culture"},
-{"src":"images/culture/c006.jpg", "category":"culture"}
+  {"src":"images/creative/c002.jpg", "category":"creative"},
+  {"src":"images/culture/c001.jpg", "category":"culture"},
+  {"src":"images/culture/c002.jpg", "category":"culture"},
+  {"src":"images/culture/c003.jpg", "category":"culture"},
+  {"src":"images/culture/c004.jpg", "category":"culture"},
+  {"src":"images/culture/c005.jpg", "category":"culture"},
+  {"src":"images/culture/c006.jpg", "category":"culture"}
+]
