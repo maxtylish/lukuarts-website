@@ -12,6 +12,12 @@
   {"src":"images/wedding/w004.jpg", "category":"wedding"},
   {"src":"images/wedding/w005.jpg", "category":"wedding"},
   {"src":"images/wedding/w006.jpg", "category":"wedding"},
+  {"src":"images/street/s001.jpg", "category":"street"},
+  {"src":"images/street/s002.jpg", "category":"street"},
+  {"src":"images/street/s003.jpg", "category":"street"},
+  {"src":"images/street/s004.jpg", "category":"street"},
+  {"src":"images/street/s005.jpg", "category":"street"},
+  {"src":"images/street/s006.jpg", "category":"street"},
   {"src":"images/food/f001.jpg", "category":"food"},
   {"src":"images/food/f002.jpg", "category":"food"},
   {"src":"images/food/f003.jpg", "category":"food"},
@@ -27,4 +33,9 @@
   {"src":"images/landscape/l006.jpg", "category":"landscape"},
   {"src":"images/creative/c001.jpg", "category":"creative"},
   {"src":"images/creative/c002.jpg", "category":"creative"}
-]
+]{"src":"images/culture/c001.jpg", "category":"culture"},
+{"src":"images/culture/c002.jpg", "category":"culture"},
+{"src":"images/culture/c003.jpg", "category":"culture"},
+{"src":"images/culture/c004.jpg", "category":"culture"},
+{"src":"images/culture/c005.jpg", "category":"culture"},
+{"src":"images/culture/c006.jpg", "category":"culture"}
