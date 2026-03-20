@@ -132,3 +132,49 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     .masonry-gallery { column-count: 2; column-gap: 15px; }
     .swiper { aspect-ratio: 1 / 1; }
 }
+/* ================= 📷 SVG 雷射光圈 (修復版) ================= */
+/* 鎖定容器大小，絕對不允許變大 */
+.svg-aperture-container { 
+    width: 60px !important; 
+    height: 60px !important; 
+    margin: 60px auto; /* 上下留白，置中 */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* 調整與上下區塊的間距 */
+.svg-aperture-middle { 
+    margin-top: 80px; 
+    margin-bottom: 20px; 
+}
+
+/* 讓 SVG 填滿容器並慢慢旋轉 */
+.animated-aperture { 
+    width: 100% !important; 
+    height: 100% !important; 
+    animation: spinAperture 40s linear infinite; 
+}
+
+/* 初始狀態：隱藏線條 */
+.laser-circle, .laser-line, .laser-poly { 
+    stroke-dasharray: 100; 
+    stroke-dashoffset: 100; 
+    stroke: var(--accent-gold); 
+}
+
+/* 當 JS 加入 play-laser class 時觸發動畫 */
+.play-laser .laser-circle { animation: laserDraw 1.5s forwards; }
+.play-laser .laser-line { animation: laserDraw 0.5s forwards; }
+.play-laser .laser-poly { animation: laserDraw 1s forwards; animation-delay: 2.1s; }
+
+/* 雷射描繪動畫 */
+@keyframes laserDraw { 
+    0% { stroke-dashoffset: 100; stroke: #fff; } 
+    100% { stroke-dashoffset: 0; stroke: var(--accent-gold); } 
+}
+
+/* 緩慢旋轉動畫 */
+@keyframes spinAperture { 
+    100% { transform: rotate(360deg); } 
+}
