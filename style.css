@@ -75,3 +75,44 @@ a { text-decoration: none !important; color: inherit; transition: 0.3s; }
 .filter-container { margin-bottom: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .filter-btn { background: transparent; border: 1px solid var(--accent-gold); color: #fff; padding: 8px 20px; cursor: pointer; }
 .filter-btn.active, .filter-btn:hover { background: var(--accent-gold); color: #000; }
+/* ================= 🌸 櫻花飄落動畫 (Sakura Rain) ================= */
+.sakura-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* 🌟 關鍵：放在背景層 hero-bg 之上，但內容層 hero-content 之下 */
+    pointer-events: none; /* 確保滑鼠可以點擊到後面的按鈕和內容 */
+    overflow: hidden;
+}
+
+.sakura-petal {
+    position: absolute;
+    top: -10px; /* 從螢幕上方開始掉落 */
+    background-color: #fff; /* 白色 */
+    /* 這裡可以選擇要用純白色，或是帶有一點點粉色漸層 */
+    background-image: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,192,203,0.5));
+    opacity: 0.8;
+    border-radius: 5px 1px 5px 1px; /* 🌟 關鍵：花瓣形狀 */
+    animation-name: fall; /* 對應下方的 animation-name */
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    filter: blur(1px); /* 輕微模糊，增加夢幻感和景深 */
+}
+
+/* 🌸 櫻花瓣掉落與旋轉動畫 */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    70% {
+        opacity: 0.8;
+    }
+    100% {
+        /* 下墜高度：100vh 是整張螢幕，360deg 旋轉一圈 */
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
