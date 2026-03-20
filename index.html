@@ -1,143 +1,81 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" id="html-root">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUKUARTS VISUAL | 青玥影像</title>
-    
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    
+    <title>LUKUARTS VISUAL | 青玥影像 | 台中攝影師</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
 </head>
-<body style="overflow: hidden;">
-
-    <div id="splash-screen">
-        <div class="splash-logo-text">LUKUARTS</div>
-    </div>
+<body>
 
     <nav class="navbar">
         <a href="index.html" class="logo">LUKUARTS</a>
         <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html" class="active" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-            <li><a href="blog.html" data-en="Blog" data-zh="部落格">Blog</a></li>
-            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+            <li><a href="#home" class="active">首頁</a></li>
+            <li><a href="#services">服務項目</a></li>
+            <li><a href="#portfolio">作品集</a></li>
+            <li><a href="#about">關於我</a></li>
         </ul>
     </nav>
 
     <main>
-        <section class="hero">
+        <section id="home" class="hero">
             <div class="hero-bg"></div>
-            <div id="sakura-rain" class="sakura-container"></div>
             <div class="hero-content">
                 <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
                 <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
-                <p data-en="Portrait & Commercial Photography" data-zh="人像與商業攝影" style="color:#fff; letter-spacing: 2px; margin-bottom: 20px;">Portrait & Commercial Photography</p>
+                <h2 class="hero-subtitle">台中攝影師｜人像・商業攝影</h2>
+                <p class="hero-description">Portrait & Branding Photography<br>打造具有價值的形象與品牌畫面</p>
                 <div class="hero-btns">
-                    <a href="portfolio.html" class="btn btn-primary" data-en="View Portfolio" data-zh="查看作品集">VIEW PORTFOLIO</a>
+                    <a href="#portfolio" class="btn btn-outline">查看作品</a>
+                    <a href="https://line.me/ti/p/~0932754860" target="_blank" class="btn btn-primary">立即預約</a>
+                </div>
+                <p class="hero-location-tag">台中｜全台接案</p>
+            </div>
+        </section>
+
+        <section id="services" class="section-padding bg-darker">
+            <h2 class="section-title">SERVICES</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>人像攝影</h3>
+                    <p>形象照 / 個人品牌 / 社群頭像</p>
+                </div>
+                <div class="service-card">
+                    <h3>商業攝影</h3>
+                    <p>品牌形象 / 商品 / 店家拍攝</p>
+                </div>
+                <div class="service-card">
+                    <h3>活動紀錄</h3>
+                    <p>講座 / 活動 / 現場紀實</p>
+                </div>
+                <div class="service-card">
+                    <h3>親子寫真</h3>
+                    <p>自然互動 / 戶外拍攝</p>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding">
-            
-            <div class="svg-aperture-container svg-aperture-middle">
-                <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke-width="1.5" class="laser-circle" pathLength="100"/>
-                    <circle cx="50" cy="50" r="39" fill="none" stroke-width="1" class="laser-circle" pathLength="100" style="animation-delay: 0.2s; opacity: 0.5;"/>
-                    <g stroke-width="1.5" stroke-linecap="round">
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l1" transform="rotate(0 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l2" transform="rotate(45 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l3" transform="rotate(90 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l4" transform="rotate(135 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l5" transform="rotate(180 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l6" transform="rotate(225 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l7" transform="rotate(270 50 50)" pathLength="100"/>
-                        <line x1="50" y1="5" x2="65" y2="35" class="laser-line l8" transform="rotate(315 50 50)" pathLength="100"/>
-                        <polygon points="65,35 71.2,50 65,65 50,71.2 35,65 28.8,50 35,35 50,28.8" fill="none" class="laser-poly" pathLength="100"/>
-                    </g>
-                </svg>
-            </div>
-
-            <h2 class="section-title" data-en="Featured Shoots" data-zh="精選企劃">Featured Shoots</h2>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="images/portrait/p001.jpg" alt="Featured 1"></div>
-                    <div class="swiper-slide"><img src="images/wedding/w001.jpg" alt="Featured 2"></div>
-                    <div class="swiper-slide"><img src="images/creative/c001.jpg" alt="Featured 3"></div>
-                    <div class="swiper-slide"><img src="images/kids/k001.jpg" alt="Featured 4"></div>
-                    <div class="swiper-slide"><img src="images/food/f007.jpg" alt="Featured 5"></div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </section>
-
-        <section class="section-padding">
-            <h2 class="section-title" data-en="Selected Works" data-zh="精選作品">Selected Works</h2>
+        <section id="portfolio" class="section-padding">
+            <h2 class="section-title">PORTFOLIO</h2>
             <div class="filter-container">
-                <button class="filter-btn active" data-filter="all" data-en="ALL" data-zh="全部作品">ALL</button>
-                <button class="filter-btn" data-filter="portrait" data-en="PORTRAIT" data-zh="人像攝影">PORTRAIT</button>
-                <button class="filter-btn" data-filter="wedding" data-en="WEDDING" data-zh="婚禮紀錄">WEDDING</button>
-                <button class="filter-btn" data-filter="kids" data-en="KIDS" data-zh="兒童攝影">KIDS</button>
-                <button class="filter-btn" data-filter="culture" data-en="CULTURE" data-zh="人文神像">CULTURE</button>
-                <button class="filter-btn" data-filter="street" data-en="STREET" data-zh="街頭攝影">STREET</button>
-                <button class="filter-btn" data-filter="food" data-en="FOOD" data-zh="商業美食">FOOD</button>
-                <button class="filter-btn" data-filter="event" data-en="EVENT" data-zh="活動紀錄">EVENT</button>
-                <button class="filter-btn" data-filter="landscape" data-en="LANDSCAPE" data-zh="風景攝影">LANDSCAPE</button>
-                <button class="filter-btn" data-filter="creative" data-en="CREATIVE" data-zh="影像創作">CREATIVE</button>
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="portrait">人像攝影</button>
+                <button class="filter-btn" data-filter="commercial">商業攝影</button>
+                <button class="filter-btn" data-filter="event">活動紀錄</button>
+                <button class="filter-btn" data-filter="kids">親子寫真</button>
             </div>
             <div class="masonry-gallery" id="gallery"></div>
         </section>
 
-        <div class="svg-aperture-container" id="back-to-top">
-            <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke-width="1.5" class="laser-circle" pathLength="100"/>
-                <circle cx="50" cy="50" r="39" fill="none" stroke-width="1" class="laser-circle" pathLength="100" style="animation-delay: 0.2s; opacity: 0.5;"/>
-                <g stroke-width="1.5" stroke-linecap="round">
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l1" transform="rotate(0 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l2" transform="rotate(45 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l3" transform="rotate(90 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l4" transform="rotate(135 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l5" transform="rotate(180 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l6" transform="rotate(225 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l7" transform="rotate(270 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l8" transform="rotate(315 50 50)" pathLength="100"/>
-                    <polygon points="65,35 71.2,50 65,65 50,71.2 35,65 28.8,50 35,35 50,28.8" fill="none" class="laser-poly" pathLength="100"/>
-                </g>
-            </svg>
-        </div>
     </main>
-
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <button class="lightbox-prev">&#10094;</button>
-        <img class="lightbox-content" id="lightbox-img">
-        <button class="lightbox-next">&#10095;</button>
-    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        function removeSplashScreen() {
-            const splash = document.getElementById('splash-screen');
-            if(splash) {
-                splash.style.opacity = '0';
-                setTimeout(() => { splash.style.display = 'none'; }, 800);
-            }
-            document.body.style.overflow = 'auto';
-        }
-        window.addEventListener('load', () => { setTimeout(removeSplashScreen, 500); });
-        setTimeout(removeSplashScreen, 2500);
-    </script>
 </body>
 </html>
