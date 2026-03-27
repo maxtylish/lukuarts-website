@@ -184,5 +184,47 @@ document.addEventListener("DOMContentLoaded", () => {
             observer.observe(aperture);
         });
     }
+/* ===== 9. 多國語言切換邏輯 ===== */
+const langToggle = document.getElementById('lang-toggle');
+// 從 localStorage 讀取語系設定，預設為 'zh'
+let currentLang = localStorage.getItem('preferred-lang') || 'zh';
 
+function updateLanguage(lang) {
+    // 儲存選擇到本地
+    localStorage.setItem('preferred-lang', lang);
+    
+    // 1. 處理帶有 data-en/data-zh 的一般文字標籤
+    const translatableElements = document.querySelectorAll('[data-en][data-zh]');
+    translatableElements.forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+
+    // 2. 處理關於我頁面的特殊區塊 (lang-en / lang-zh div)
+    const langEnDivs = document.querySelectorAll('.lang-en');
+    const langZhDivs = document.querySelectorAll('.lang-zh');
+    
+    if (lang === 'en') {
+        langEnDivs.forEach(div => div.style.display = 'block');
+        langZhDivs.forEach(div => div.style.display = 'none');
+    } else {
+        langEnDivs.forEach(div => div.style.display = 'none');
+        langZhDivs.forEach(div => div.style.display = 'block');
+    }
+
+    // 3. 更新按鈕本身的文字 (選擇性)
+    if (langToggle) {
+        langToggle.textContent = lang === 'en' ? '中 / EN' : 'EN / 中';
+    }
+}
+
+// 初始化語系
+updateLanguage(currentLang);
+
+// 綁定點擊事件
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        currentLang = (currentLang === 'zh') ? 'en' : 'zh';
+        updateLanguage(currentLang);
+    });
+}
 });
