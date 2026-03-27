@@ -33,50 +33,72 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* ===== 3. 作品集渲染與過濾 ===== */
-    const gallery = document.getElementById("gallery");
+   /* ===== 3. 作品集渲染與過濾 (優化版) ===== */
+const gallery = document.getElementById("gallery");
+
+// 渲染畫廊
+function renderGallery(items) {
+    if (!gallery) return;
     
-    function renderGallery(items) {
-        if (!gallery) return;
-        gallery.innerHTML = items.map(item => `
-            <div class="masonry-item" data-category="${item.category}">
-                <img src="${item.url || item.src}" class="lazy-img" loading="lazy">
-                <div class="item-overlay">
-                    <div class="overlay-text">
-                        <p>${item.category}</p>
-                    </div>
+    // 取得當前語系，用於過濾按鈕或潛在的文字顯示
+    const currentLang = localStorage.getItem('preferred-lang') || 'zh';
+
+    gallery.innerHTML = items.map(item => `
+        <div class="masonry-item" data-category="${item.category}">
+            <img src="${item.url || item.src}" class="lazy-img" alt="${item.category}" loading="lazy">
+            <div class="item-overlay">
+                <div class="overlay-text">
+                    <p>${item.category}</p>
                 </div>
             </div>
-        `).join("");
-        
-        if (typeof initLightbox === "function") initLightbox();
+        </div>
+    `).join("");
+    
+    // 渲染完後重新綁定燈箱事件
+    if (typeof window.initLightbox === "function") {
+        window.initLightbox();
     }
+}
 
-    function initFilter(allData) {
-        const filterBtns = document.querySelectorAll(".filter-btn");
-        if (!filterBtns.length) return;
+// 初始化過濾器
+function initFilter(allData) {
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    if (!filterBtns.length) return;
 
-        filterBtns.forEach(btn => {
-            btn.onclick = () => {
-                filterBtns.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                const filter = btn.dataset.filter;
-                const filteredData = (filter === "all") ? allData : allData.filter(i => i.category === filter);
-                renderGallery(filteredData);
-            };
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // 切換 Active 樣式
+            filterBtns.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+
+            const filterValue = this.dataset.filter;
+            
+            // 過濾資料：如果選 'all' 則顯示全部，否則比對 category
+            const filteredData = (filterValue === "all") 
+                ? allData 
+                : allData.filter(item => item.category === filterValue);
+
+            renderGallery(filteredData);
         });
-    }
+    });
+}
 
-    if (gallery) {
-        fetch("images.json")
-            .then(res => res.json())
-            .then(images => {
-                renderGallery(images);
-                initFilter(images);
-            })
-            .catch(err => console.error("圖片資料載入失敗:", err));
-    }
-
+// 執行載入
+if (gallery) {
+    fetch("images.json")
+        .then(res => {
+            if (!res.ok) throw new Error("找不到 images.json 檔案");
+            return res.json();
+        })
+        .then(images => {
+            renderGallery(images);
+            initFilter(images);
+        })
+        .catch(err => {
+            console.error("圖片資料載入失敗:", err);
+            gallery.innerHTML = `<p style="text-align:center; color:gray;">暫時無法載入作品，請稍後再試。</p>`;
+        });
+}
     /* ===== 4. 櫻花雨產生器 ===== */
     const sakuraBox = document.getElementById('sakura-rain');
     if (sakuraBox) {
@@ -166,24 +188,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== ✨ 8. 升級版雙重雷達感測器：支援多個光圈 ===== */
-    // 使用 querySelectorAll 抓取畫面上所有的光圈
-    const laserApertures = document.querySelectorAll('.animated-aperture');
-    if (laserApertures.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // 當任一個光圈滑入視窗內，就觸發它的專屬雷射動畫
-                if (entry.isIntersecting) {
-                    entry.target.parentElement.classList.add('play-laser');
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        // 讓感測器監視每一個光圈
-        laserApertures.forEach(aperture => {
-            observer.observe(aperture);
+/* ===== ✨ 8. 升級版雙重雷達感測器：支援多個光圈 (精修版) ===== */
+const laserApertures = document.querySelectorAll('.animated-aperture');
+if (laserApertures.length > 0) {
+    const observerOptions = {
+        root: null, 
+        threshold: 0.2, // 進入 20% 就開始跑動畫，視覺感更即時
+        rootMargin: "0px 0px -50px 0px" // 稍微提前觸發
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 觸發雷射描繪
+                entry.target.parentElement.classList.add('play-laser');
+                // 一旦觸發後就停止監視，避免重複跑描繪動畫（除非你希望每次滑過都重跑）
+                // observer.unobserve(entry.target); 
+            }
         });
-    }
+    }, observerOptions);
+    
+    laserApertures.forEach(aperture => {
+        observer.observe(aperture);
+    });
+}
 /* ===== 9. 多國語言切換邏輯 ===== */
 const langToggle = document.getElementById('lang-toggle');
 // 從 localStorage 讀取語系設定，預設為 'zh'

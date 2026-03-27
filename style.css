@@ -73,17 +73,42 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
 
-/* ================= 📷 5. SVG 雷射光圈 ================= */
-.svg-aperture-container { width: 60px !important; height: 60px !important; margin: 60px auto; display: flex; justify-content: center; align-items: center; }
-.svg-aperture-middle { margin-top: 80px; margin-bottom: 20px; }
-.animated-aperture { width: 100% !important; height: 100% !important; animation: spinAperture 40s linear infinite; }
-.laser-circle, .laser-line, .laser-poly { stroke-dasharray: 100; stroke-dashoffset: 100; stroke: var(--accent-gold); }
-.play-laser .laser-circle { animation: laserDraw 1.5s forwards; }
-.play-laser .laser-line { animation: laserDraw 0.5s forwards; }
-.play-laser .laser-poly { animation: laserDraw 1s forwards; animation-delay: 2.1s; }
-@keyframes laserDraw { 0% { stroke-dashoffset: 100; stroke: #fff; } 100% { stroke-dashoffset: 0; stroke: var(--accent-gold); } }
-@keyframes spinAperture { 100% { transform: rotate(360deg); } }
+/* ================= 📷 5. SVG 雷射光圈 (效能優化版) ================= */
+.svg-aperture-container { 
+    width: 60px !important; 
+    height: 60px !important; 
+    margin: 60px auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
 
+.animated-aperture { 
+    width: 100% !important; 
+    height: 100% !important; 
+    animation: spinAperture 40s linear infinite; 
+}
+
+.laser-circle, .laser-line, .laser-poly { 
+    stroke-dasharray: 100; 
+    stroke-dashoffset: 100; 
+    stroke: var(--accent-gold); 
+    will-change: stroke-dashoffset, stroke; 
+}
+
+/* 動畫觸發序列 */
+.play-laser .laser-circle { animation: laserDraw 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.play-laser .laser-line { animation: laserDraw 0.5s ease-out forwards; }
+.play-laser .laser-poly { animation: laserDraw 1s ease-in-out forwards; animation-delay: 1.2s; }
+
+@keyframes laserDraw { 
+    0% { stroke-dashoffset: 100; stroke: #fff; } 
+    100% { stroke-dashoffset: 0; stroke: var(--accent-gold); } 
+}
+
+@keyframes spinAperture { 
+    100% { transform: rotate(360deg); } 
+}
 /* ================= 6. 內容區塊 (服務、作品牆) ================= */
 .bg-darker { background-color: var(--bg-darker); }
 .section-padding { padding: 80px 5%; text-align: center; }
