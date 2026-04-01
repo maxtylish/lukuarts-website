@@ -75,55 +75,71 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
 
 /* ================= 📷 5. SVG 雷射光圈 (發光強化版) ================= */
 
-/* 核心樣式：加入濾鏡與發光 */
+/* 1. 容器與基本旋轉設定 */
+.svg-aperture-container { 
+    width: 60px !important; 
+    height: 60px !important; 
+    margin: 60px auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.svg-aperture-middle { 
+    margin-top: 80px; 
+    margin-bottom: 20px; 
+}
+
+.animated-aperture { 
+    width: 100% !important; 
+    height: 100% !important; 
+    animation: spinAperture 40s linear infinite; 
+}
+
+/* 2. 核心樣式與發光預設 */
 .laser-circle, .laser-line, .laser-poly { 
     stroke-dasharray: 100; 
     stroke-dashoffset: 100; 
     stroke: var(--accent-gold); 
     will-change: stroke-dashoffset, filter;
-    /* 💡 預設加入一點點光暈 */
     filter: drop-shadow(0 0 2px rgba(201, 169, 110, 0.3));
 }
 
-/* 當雷射正在「繪製」時的動畫 */
-@keyframes laserDraw { 
-    0% { 
-        stroke-dashoffset: 100; 
-        stroke: #fff; 
-        filter: drop-shadow(0 0 8px #fff); /* 繪製起始點閃爍強光 */
-    } 
-    50% {
-        stroke: #fff;
-        filter: drop-shadow(0 0 12px var(--accent-gold)); /* 中間過程發出金光 */
-    }
-    100% { 
-        stroke-dashoffset: 0; 
-        stroke: var(--accent-gold); 
-        filter: drop-shadow(0 0 4px var(--accent-gold)); /* 結束時維持柔和金光 */
-    } 
-}
-
-/* 讓整顆光圈在旋轉時有一種呼吸感 (選用) */
-.play-laser .animated-aperture {
-    animation: spinAperture 40s linear infinite, aperturePulse 4s ease-in-out infinite;
-}
-
-@keyframes aperturePulse {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
-}
-/* 動畫觸發序列 */
+/* 3. 動畫觸發序列 (JS 加入 .play-laser 時啟動) */
 .play-laser .laser-circle { animation: laserDraw 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 .play-laser .laser-line { animation: laserDraw 0.5s ease-out forwards; }
 .play-laser .laser-poly { animation: laserDraw 1s ease-in-out forwards; animation-delay: 1.2s; }
 
-@keyframes laserDraw { 
-    0% { stroke-dashoffset: 100; stroke: #fff; } 
-    100% { stroke-dashoffset: 0; stroke: var(--accent-gold); } 
+/* 4. 整體呼吸感 (選用) */
+.play-laser .animated-aperture {
+    animation: spinAperture 40s linear infinite, aperturePulse 4s ease-in-out infinite;
 }
 
-@keyframes spinAperture { 
-    100% { transform: rotate(360deg); } 
+/* 5. 關鍵影格定義 */
+
+/* 雷射描繪：從白光強閃到金色穩定 */
+@keyframes laserDraw { 
+    0% { 
+        stroke-dashoffset: 100; 
+        stroke: #fff; 
+        filter: drop-shadow(0 0 8px #fff); 
+    } 
+    50% {
+        stroke: #fff;
+        filter: drop-shadow(0 0 12px var(--accent-gold));
+    }
+    100% { 
+        stroke-dashoffset: 0; 
+        stroke: var(--accent-gold); 
+        filter: drop-shadow(0 0 4px var(--accent-gold)); 
+    } 
+}
+
+@keyframes spinAperture { 100% { transform: rotate(360deg); } }
+
+@keyframes aperturePulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
 }
 /* ================= 6. 內容區塊 (服務、作品牆) ================= */
 .bg-darker { background-color: var(--bg-darker); }
