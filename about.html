@@ -1,221 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh-Hant" id="html-root">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | LUKUARTS VISUAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<div class="about-text-area">
+    <h1 class="about-main-title" data-en="ABOUT ME" data-zh="關於我">關於我</h1>
+    <h2 class="about-sub-title" data-en="Nikon School Official Instructor | LUKUARTS Visual Founder" 
+        data-zh="Nikon School 官方攝影講師 | 青玥影像創辦人">
+        Nikon School 官方攝影講師 | 青玥影像創辦人
+    </h2>
     
-    <style>
-        .about-page-container {
-            padding-top: 180px;
-            padding-bottom: 100px;
-            min-height: 100vh;
-            background-color: var(--bg-dark);
-        }
-        .about-content-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center; 
-        }
-        .about-image {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            object-fit: cover;
-            aspect-ratio: 3/4;
-        }
-        .about-text-area { color: #ccc; }
-        .about-main-title {
-            font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 5px;
-        }
-        .about-sub-title {
-            font-size: 1.6rem; color: #fff; margin-bottom: 30px; font-weight: 600; line-height: 1.4;
-        }
-        .about-text-area p {
-            margin-bottom: 20px; line-height: 1.8; font-weight: 300; font-size: 1.05rem;
-        }
-        
-        .skills-container {
-            margin-top: 35px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .skill-tag {
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            color: var(--accent-gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.02);
-            transition: 0.3s;
-        }
-        .skill-tag:hover {
-            background: var(--accent-gold);
-            color: #000;
-        }
+    <div class="lang-zh" style="display: block;">
+        <p>我是劉志恆，青玥影像（Luku Arts）負責人 [cite: 3, 4, 29]。具備多年專業攝影與系統化教學經驗，長期擔任 <strong>Nikon School 尼康學院官方攝影講師</strong>，並與 Nikon Taiwan、NiSi Filters 等品牌深度合作 [cite: 6, 20, 21, 25]。</p>
+        <p>我的教學與拍攝足跡涵蓋東海及逢甲大學 EMBA、政府部門及各大企業 [cite: 23, 24, 33, 41]。擅長以淺顯易懂的方式引導學員，並致力於用光影捕捉具備情感溫度的畫面 [cite: 6]。</p>
+    </div>
+    
+    <div class="lang-en" style="display: none;">
+        <p>I am Chih-Heng Liu, the founder of Luku Arts Visual[cite: 3, 29]. As an <strong>Official Instructor for Nikon School Taiwan</strong>, I possess extensive experience in professional photography and systematic teaching[cite: 6, 21].</p>
+        <p>I have collaborated with prestigious organizations including Tokai University and Feng Chia University EMBA programs[cite: 23, 24]. My expertise lies in capturing emotional warmth through light and shadow[cite: 6].</p>
+    </div>
 
-        .booking-section {
-            max-width: 800px;
-            margin: 100px auto 0;
-            padding: 0 5%;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 80px;
-        }
-        .booking-title {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
-            color: var(--accent-gold);
-            text-align: center;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
-        }
-        .booking-subtitle {
-            text-align: center; color: #888; margin-bottom: 40px; font-size: 0.95rem;
-        }
-        .contact-form {
-            display: grid;
-            gap: 25px;
-        }
-        .form-row {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 25px;
-        }
-        .form-group {
-            display: flex; flex-direction: column;
-        }
-        .form-group label {
-            font-size: 0.8rem; color: #ccc; margin-bottom: 8px; letter-spacing: 1.5px; text-transform: uppercase;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 14px 18px;
-            color: #fff;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            border-radius: 2px;
-            transition: 0.3s;
-            color-scheme: dark; /* ⚡ 關鍵：解決下拉選單在手機版看不到字的問題 */
-        }
-        .form-control:focus {
-            outline: none; border-color: var(--accent-gold); background: rgba(255, 255, 255, 0.08);
-        }
-        
-        /* ⚡ 強制設定下拉選單選項的背景色，解決白色看不見的問題 */
-        select.form-control option {
-            background-color: #1a1a1a; 
-            color: #ffffff;
-        }
-
-        textarea.form-control {
-            resize: vertical; min-height: 150px;
-        }
-        .submit-btn {
-            background: var(--accent-gold); color: #000; font-weight: 700; border: none;
-            padding: 16px; cursor: pointer; letter-spacing: 3px; text-transform: uppercase;
-            transition: 0.3s; margin-top: 10px; font-size: 1rem;
-        }
-        .submit-btn:hover { background: #fff; transform: translateY(-3px); }
-
-        @media (max-width: 900px) {
-            .about-content-wrapper { grid-template-columns: 1fr; gap: 50px; text-align: center; }
-            .skills-container { justify-content: center; }
-            .form-row { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <ul class="nav-links">
-            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-            <li><a href="blog.html" data-en="Blog" data-zh="部落格">Blog</a></li>
-            <li><a href="about.html" class="active" data-en="About" data-zh="關於">About</a></li>
-            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
+    <div class="experience-list" style="margin-top: 30px;">
+        <h3 style="color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 15px;">Professional Experience</h3>
+        <ul style="list-style: none; padding: 0; font-size: 0.95rem; line-height: 2; opacity: 0.9;">
+            <li>🏆 Nikon School 尼康學院 官方攝影講師 </li>
+            <li>🎓 東海/逢甲大學 EMBA 攝影美學社 講師 [cite: 23, 24]</li>
+            <li>🏛️ 南投之美藝文協會 理事長 [cite: 26]</li>
+            <li>📷 NiSi Filters 台灣攝影講座 合作老師 [cite: 25]</li>
+            <li>🖼️ 《藍畫布》攝影個展及多次公益聯展 [cite: 36, 37]</li>
         </ul>
-    </nav>
-
-    <main class="about-page-container">
-        <div class="about-content-wrapper">
-            <div class="about-img-col">
-                <img src="images/about-profile.jpg" alt="LUKUARTS Photography" class="about-image">
-            </div>
-            
-            <div class="about-text-area">
-                <h1 class="about-main-title" data-en="ABOUT ME" data-zh="關於我">關於我</h1>
-                <h2 class="about-sub-title" data-en="Capturing Emotional Warmth Through Light and Shadow" data-zh="用光影捕捉故事的情感溫度">用光影捕捉故事的情感溫度</h2>
-                
-                <div class="lang-en" style="display: block;">
-                    <p>LUKUARTS VISUAL is a photography brand focusing on portrait and commercial photography. To me, photography is not just about pressing the shutter; it's a way of observing the world.</p>
-                </div>
-                
-                <div class="lang-zh" style="display: none;">
-                    <p>青玥影像 (LUKUARTS VISUAL) 是一個專注於人像與商業攝影的影像品牌。對我而言，攝影不只是按下快門，而是一種觀察世界的方式。</p>
-                </div>
-
-                <div class="skills-container">
-                    <span class="skill-tag" data-en="Portrait" data-zh="人像攝影">人像攝影</span>
-                    <span class="skill-tag" data-en="Wedding" data-zh="婚禮平面紀錄">婚禮平面紀錄</span>
-                    <span class="skill-tag" data-en="Video" data-zh="影片記錄">影片記錄</span>
-                    <span class="skill-tag" data-en="Teaching" data-zh="攝影教學">攝影教學</span>
-                    <span class="skill-tag" data-en="Retouching" data-zh="進階影像後製">進階影像後製</span>
-                    <span class="skill-tag" data-en="Other" data-zh="其他項目">其他項目</span>
-                </div>
-            </div>
-        </div>
-
-        <section class="booking-section">
-            <h2 class="booking-title" data-en="BOOKING" data-zh="預約洽詢">預約洽詢</h2>
-            <p class="booking-subtitle">期待與您共同創造美好的影像作品。</p>
-
-            <form class="contact-form" action="https://formspree.io/f/mgonlnrq" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>您的姓名</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>電子郵件</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>需要什麼類型的服務？</label>
-                    <select name="service" class="form-control" required>
-                        <option value="" disabled selected>請選擇服務項目...</option>
-                        <option value="portrait">人像攝影</option>
-                        <option value="wedding">婚禮平面紀錄</option>
-                        <option value="video">影片記錄</option>
-                        <option value="retouching">進階影像後製</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>拍攝細節與需求</label>
-                    <textarea name="message" class="form-control" placeholder="請簡述您的想法..." required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">送出表單</button>
-            </form>
-        </section>
-    </main>
-
-    <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px;">
-        <p style="color: #666; font-size: 0.8rem;">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    </div>
+</div>
