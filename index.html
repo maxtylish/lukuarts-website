@@ -23,146 +23,47 @@
         </ul>
     </nav>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-bg"></div>
-            <div id="sakura-rain" class="sakura-container"></div>
-            <div class="hero-content">
-                <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
-                <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
-                <h2 class="hero-subtitle">台中攝影師｜人像・商業攝影</h2>
-                <p class="hero-description">Portrait & Branding Photography<br>打造具有價值的形象與品牌畫面</p>
-                <div class="hero-btns">
-                    <a href="#portfolio" class="btn btn-outline">查看作品</a>
-                    <a href="https://line.me/ti/p/~0932754860" target="_blank" class="btn btn-primary">立即預約</a>
-                </div>
-                <p class="hero-location-tag">台中｜全台接案</p>
+   <main>
+    <section id="home" class="hero"> ... </section>
+
+    <div class="svg-aperture-container svg-aperture-middle"> ... </div>
+
+    <section class="section-padding bg-darker">
+        <h2 class="section-title">FEATURED SHOOTS</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="images/kids/k001.jpg" alt="親子攝影精選"></div>
+                <div class="swiper-slide"><img src="images/portrait/p001.jpg" alt="人像攝影精選"></div>
+                <div class="swiper-slide"><img src="images/food/f001.jpg" alt="商業攝影精選"></div>
             </div>
-        </section>
-
-        <div class="svg-aperture-container svg-aperture-middle">
-            <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke-width="1.5" class="laser-circle" pathLength="100"/>
-                <circle cx="50" cy="50" r="39" fill="none" stroke-width="1" class="laser-circle" pathLength="100" style="animation-delay: 0.2s; opacity: 0.3;"/>
-                <g stroke-width="1.5" stroke-linecap="round">
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l1" transform="rotate(0 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l2" transform="rotate(45 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l3" transform="rotate(90 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l4" transform="rotate(135 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l5" transform="rotate(180 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l6" transform="rotate(225 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l7" transform="rotate(270 50 50)" pathLength="100"/>
-                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l8" transform="rotate(315 50 50)" pathLength="100"/>
-                    <polygon points="65,35 71.2,50 65,65 50,71.2 35,65 28.8,50 35,35 50,28.8" fill="none" class="laser-poly" pathLength="100"/>
-                </g>
-            </svg>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
+    </section>
 
-        <section id="services" class="section-padding bg-darker">
-            <h2 class="section-title">SERVICES</h2>
-            <div class="services-grid">
-    <a href="portfolio.html?filter=portrait" class="service-card">
-        <h3>人像攝影</h3>
-        <p>形象照 / 個人品牌 / 社群頭像</p>
-    </a>
-    
-    <a href="portfolio.html?filter=commercial" class="service-card">
-        <h3>商業攝影</h3>
-        <p>品牌形象 / 商品 / 店家拍攝</p>
-    </a>
-    
-    <a href="portfolio.html?filter=event" class="service-card">
-        <h3>活動紀錄</h3>
-        <p>講座 / 活動 / 現場紀實</p>
-    </a>
-    
-    <a href="portfolio.html?filter=teaching" class="service-card">
-        <h3>攝影教學</h3>
-        <p>相機手機攝影 / 構圖美學</p>
-    </a>
-</div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="section-padding">
-            <h2 class="section-title">PORTFOLIO</h2>
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">ALL</button>
-                <button class="filter-btn" data-filter="portrait">人像攝影</button>
-                <button class="filter-btn" data-filter="commercial">商業攝影</button>
-                <button class="filter-btn" data-filter="event">活動紀錄</button>
-                <button class="filter-btn" data-filter="kids">親子寫真</button>
-            </div>
-            <div class="masonry-gallery" id="gallery"></div>
-        </section>
-
-        <section class="section-padding bg-darker">
-            <h2 class="section-title">FEATURED SHOOTS</h2>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="images/portrait/p001.jpg" alt="Featured Portrait"></div>
-                    <div class="swiper-slide"><img src="images/creative/c001.jpg" alt="Featured Commercial"></div>
-                    <div class="swiper-slide"><img src="images/kids/k001.jpg" alt="Featured Kids"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
-
-        <section class="section-padding value-section">
-            <div class="value-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <h2 class="value-title">讓照片不只是好看，而是有價值</h2>
-                <p class="value-text">
-                    無論是個人形象、品牌經營，或是活動紀錄，我會幫你把畫面做到「能使用」的程度。
-                </p>
-                <ul class="value-benefits" style="list-style: none; display: flex; justify-content: center; gap: 20px; margin: 30px 0;">
-                    <li>✨ 提升專業形象</li>
-                    <li>💎 增加品牌質感</li>
-                    <li>👁️ 讓作品真正被看見</li>
-                </ul>
-                <div class="hero-btns" style="margin-top: 40px;">
-                    <a href="https://line.me/ti/p/~0932754860" target="_blank" class="btn btn-primary">立即預約拍攝</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section-padding bg-darker">
-    <div class="about-content" style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <h2 class="section-title">ABOUT</h2>
-        
-        <h3 style="color: var(--accent-gold); margin-bottom: 20px; letter-spacing: 2px; font-family: var(--font-heading);">
-            Nikon School 官方攝影講師 | 青玥影像負責人
-        </h3>
-        
-        <div style="margin-bottom: 30px;">
-            <p style="opacity: 0.9; line-height: 2; margin-bottom: 15px;">
-                我是劉志恆，長期擔任 <strong>Nikon School 尼康學院官方攝影講師</strong>，並與 Nikon Taiwan、NiSi Filters 等品牌深度合作。
-            </p>
-            <p style="opacity: 0.9; line-height: 2;">
-                教學與拍攝足跡遍及東海、逢甲大學 EMBA 及各大企業。致力於用光影捕捉情感溫度，打造兼具美感與實用性的影像作品。
-            </p>
+    <section id="services" class="section-padding">
+        <h2 class="section-title">SERVICES</h2>
+        <div class="services-grid">
+            <a href="portfolio.html?filter=portrait" class="service-card">
+                <h3>人像攝影</h3>
+                <p>形象照 / 個人品牌 / 社群頭像 [cite: 8]</p>
+            </a>
+            <a href="portfolio.html?filter=commercial" class="service-card">
+                <h3>商業攝影</h3>
+                <p>品牌形象 / 商品 / 店家拍攝 [cite: 10]</p>
+            </a>
+            <a href="portfolio.html?filter=event" class="service-card">
+                <h3>活動紀錄</h3>
+                <p>講座 / 活動 / 現場紀實 [cite: 11]</p>
+            </a>
+            <a href="portfolio.html?filter=teaching" class="service-card">
+                <h3>攝影教學</h3>
+                <p>相機手機攝影 / 構圖美學 [cite: 12]</p>
+            </a>
         </div>
+    </section>
 
-        <div class="skills-container" style="justify-content: center; display: flex; flex-wrap: wrap; gap: 10px;">
-            <span class="skill-tag">Nikon 官方講師</span>
-            <span class="skill-tag">EMBA 攝影講師</span>
-            <span class="skill-tag">南投之美藝文協會理事長</span>
-            <span class="skill-tag">《藍畫布》個展攝影師</span>
-        </div>
-
-        <div style="margin-top: 40px;">
-            <a href="about.html" class="btn btn-outline" style="font-size: 0.8rem; padding: 10px 25px;">查看詳細資歷</a>
-        </div>
-    </div>
-</section>
-
-        <div class="svg-aperture-container" id="back-to-top" style="margin: 80px auto; cursor: pointer;">
-            <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"/>
-                <polyline points="35,60 50,40 65,60" fill="none" stroke="var(--accent-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
     </main>
     
     <footer id="contact" class="footer">
