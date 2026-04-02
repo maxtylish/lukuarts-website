@@ -33,16 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-   /* ===== 3. 作品集渲染與過濾 (優化版) ===== */
+   /* ===== 3. 作品集渲染與過濾 (整合優化版) ===== */
 const gallery = document.getElementById("gallery");
 
-// 渲染畫廊
+// 渲染畫廊函式
 function renderGallery(items) {
     if (!gallery) return;
     
-    // 取得當前語系，用於過濾按鈕或潛在的文字顯示
-    const currentLang = localStorage.getItem('preferred-lang') || 'zh';
-
     gallery.innerHTML = items.map(item => `
         <div class="masonry-item" data-category="${item.category}">
             <img src="${item.url || item.src}" class="lazy-img" alt="${item.category}" loading="lazy">
@@ -60,7 +57,7 @@ function renderGallery(items) {
     }
 }
 
-// 初始化過濾器
+// 初始化過濾器函式
 function initFilter(allData) {
     const filterBtns = document.querySelectorAll(".filter-btn");
     if (!filterBtns.length) return;
@@ -72,8 +69,6 @@ function initFilter(allData) {
             this.classList.add("active");
 
             const filterValue = this.dataset.filter;
-            
-            // 過濾資料：如果選 'all' 則顯示全部，否則比對 category
             const filteredData = (filterValue === "all") 
                 ? allData 
                 : allData.filter(item => item.category === filterValue);
@@ -83,7 +78,7 @@ function initFilter(allData) {
     });
 }
 
-// 執行載入
+// 單一 Fetch 進入點：執行載入與自動過濾
 if (gallery) {
     fetch("images.json")
         .then(res => {
@@ -91,8 +86,25 @@ if (gallery) {
             return res.json();
         })
         .then(images => {
+            // 1. 先執行初始渲染與綁定過濾按鈕
             renderGallery(images);
             initFilter(images);
+
+            // 2. ✨ 自動過濾邏輯：檢查網址是否有 ?filter=xxx
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterParam = urlParams.get('filter');
+
+            if (filterParam) {
+                const targetBtn = document.querySelector(`.filter-btn[data-filter="${filterParam}"]`);
+                if (targetBtn) {
+                    // 模擬點擊按鈕來觸發過濾
+                    targetBtn.click();
+                    // 滾動到作品集位置
+                    setTimeout(() => {
+                        gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300); // 稍微延遲確保圖片已開始渲染
+                }
+            }
         })
         .catch(err => {
             console.error("圖片資料載入失敗:", err);
