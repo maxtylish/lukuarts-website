@@ -23,49 +23,79 @@
         </ul>
     </nav>
 
-   <main>
-    <section id="home" class="hero"> ... </section>
-
-    <div class="svg-aperture-container svg-aperture-middle"> ... </div>
-
-    <section class="section-padding bg-darker">
-        <h2 class="section-title">FEATURED SHOOTS</h2>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="images/kids/k001.jpg" alt="親子攝影精選"></div>
-                <div class="swiper-slide"><img src="images/portrait/p001.jpg" alt="人像攝影精選"></div>
-                <div class="swiper-slide"><img src="images/food/f001.jpg" alt="商業攝影精選"></div>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-bg"></div>
+            <div id="sakura-rain" class="sakura-container"></div>
+            <div class="hero-content">
+                <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
+                <img src="images/logo-zh.png" alt="青玥影像" class="hero-zh-logo">
+                <h2 class="hero-subtitle">台中攝影師｜人像・商業攝影</h2>
+                <p class="hero-description">Portrait & Branding Photography<br>打造具有價值的形象與品牌畫面</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn btn-outline">查看作品</a>
+                    <a href="https://line.me/ti/p/~0932754860" target="_blank" class="btn btn-primary">立即預約</a>
+                </div>
+                <p class="hero-location-tag">台中｜全台接案</p>
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </section>
+        </section>
 
-    <section id="services" class="section-padding">
-        <h2 class="section-title">SERVICES</h2>
-        <div class="services-grid">
-            <a href="portfolio.html?filter=portrait" class="service-card">
-                <h3>人像攝影</h3>
-                <p>形象照 / 個人品牌 / 社群頭像 [cite: 8]</p>
-            </a>
-            <a href="portfolio.html?filter=commercial" class="service-card">
-                <h3>商業攝影</h3>
-                <p>品牌形象 / 商品 / 店家拍攝 [cite: 10]</p>
-            </a>
-            <a href="portfolio.html?filter=event" class="service-card">
-                <h3>活動紀錄</h3>
-                <p>講座 / 活動 / 現場紀實 [cite: 11]</p>
-            </a>
-            <a href="portfolio.html?filter=teaching" class="service-card">
-                <h3>攝影教學</h3>
-                <p>相機手機攝影 / 構圖美學 [cite: 12]</p>
-            </a>
+        <div class="svg-aperture-container svg-aperture-middle">
+            <svg class="animated-aperture" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke-width="1.5" class="laser-circle" pathLength="100"/>
+                <circle cx="50" cy="50" r="39" fill="none" stroke-width="1" class="laser-circle" pathLength="100" style="animation-delay: 0.2s; opacity: 0.3;"/>
+                <g stroke-width="1.5" stroke-linecap="round">
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l1" transform="rotate(0 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l2" transform="rotate(45 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l3" transform="rotate(90 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l4" transform="rotate(135 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l5" transform="rotate(180 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l6" transform="rotate(225 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l7" transform="rotate(270 50 50)" pathLength="100"/>
+                    <line x1="50" y1="5" x2="65" y2="35" class="laser-line l8" transform="rotate(315 50 50)" pathLength="100"/>
+                    <polygon points="65,35 71.2,50 65,65 50,71.2 35,65 28.8,50 35,35 50,28.8" fill="none" class="laser-poly" pathLength="100"/>
+                </g>
+            </svg>
         </div>
-    </section>
 
-    </main>
-    
+        <section class="section-padding bg-darker">
+            <h2 class="section-title">FEATURED SHOOTS</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/kids/k001.jpg" alt="親子攝影精選"></div>
+                    <div class="swiper-slide"><img src="images/portrait/p001.jpg" alt="人像攝影精選"></div>
+                    <div class="swiper-slide"><img src="images/food/f001.jpg" alt="商業攝影精選"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+        <section id="services" class="section-padding">
+            <h2 class="section-title">SERVICES</h2>
+            <div class="services-grid">
+                <a href="portfolio.html?filter=portrait" class="service-card">
+                    <h3>人像攝影</h3>
+                    <p>形象照 / 個人品牌 / 社群頭像</p>
+                </a>
+                <a href="portfolio.html?filter=commercial" class="service-card">
+                    <h3>商業攝影</h3>
+                    <p>品牌形象 / 商品 / 店家拍攝</p>
+                </a>
+                <a href="portfolio.html?filter=event" class="service-card">
+                    <h3>活動紀錄</h3>
+                    <p>講座 / 活動 / 現場紀實</p>
+                </a>
+                <a href="portfolio.html?filter=teaching" class="service-card">
+                    <h3>攝影教學</h3>
+                    <p>相機手機攝影 / 構圖美學</p>
+                </a>
+            </div>
+        </section>
+
+        </main>
+
     <footer id="contact" class="footer">
         <div class="footer-content">
             <div class="footer-logo">LUKUARTS VISUAL</div>
