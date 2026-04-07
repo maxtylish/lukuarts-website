@@ -69,27 +69,85 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
-/* ================= 💎 5. 服務與卡片設計 (修復版) ================= */
+/* ================= 💎 服務項目高級感排版 ================= */
+<div class="services-grid">
+    <div class="service-card">
+        <div class="service-text-content">
+            <h3>人像形象攝影</h3>
+            <p>專業引導不尷尬，為您的個人品牌打造最具信任感的社群頭像與專業形象照。</p>
+        </div>
+        <div class="service-image-box">
+            <img src="images/service_portrait.jpg" alt="台中人像攝影推薦">
+        </div>
+    </div>
+
+    <div class="service-card">
+        <div class="service-text-content">
+            <h3>品牌商業攝影</h3>
+            <p>結合美學與商業思維，針對商品、店家空間進行氛圍捕捉，提升品牌轉化價值。</p>
+        </div>
+        <div class="service-image-box">
+            <img src="images/service_commercial.jpg" alt="台中商業攝影推薦">
+        </div>
+    </div>
+</div>
+
 .service-card {
-    position: relative;
-    min-height: 300px; /* 確保卡片有高度，圖片才出得來 */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row; /* 左右分欄 */
     align-items: center;
+    min-height: 450px;
+    background: var(--bg-darker);
+    border: none;
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    transition: var(--transition-smooth);
-    
-    /* 1. 先用正斜線修正路徑 2. 建議檔名改為純英文 */
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/20250316_2.jpg');
 }
 
-.service-card:hover {
-    /* 滑鼠移入時，背景變亮 */
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/about-profile.jpg');
-    transform: translateY(-10px);
+/* 偶數列反轉：形成左右交錯視覺 */
+.service-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* 文字區域：佔 40% */
+.service-card .service-text-content {
+    width: 40%;
+    padding: 60px;
+    text-align: left;
+    z-index: 2;
+}
+
+.service-card h3 {
+    font-size: 2rem;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    color: var(--accent-gold);
+}
+
+.service-card p {
+    font-size: 1rem;
+    line-height: 2;
+    opacity: 0.7;
+}
+
+/* 圖片區域：佔 60% */
+.service-card .service-image-box {
+    width: 60%;
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+
+.service-card .service-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+    filter: brightness(0.8); /* 稍微壓暗，保持暗黑系質感 */
+}
+
+/* 滑鼠移入：圖片緩緩放大，變亮 */
+.service-card:hover .service-image-box img {
+    transform: scale(1.1);
+    filter: brightness(1);
 }
 /* ================= 🛠️ 6. 流程與信任區塊 (優化內容間距) ================= */
 .process-container, .trust-grid { 
@@ -121,13 +179,25 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
 
 /* ================= 📱 9. 手機版響應式優化 ================= */
 @media (max-width: 768px) {
-    :root { --section-spacing: 80px; }
-    .navbar { padding: 1rem 5%; }
-    .nav-links { display: none; } /* 手機版建議使用漢堡選單 JS 控制 */
-    .hero-zh-logo { max-width: 280px; }
-    .hero-subtitle { font-size: 1.1rem; }
-    .masonry-gallery { column-count: 2; column-gap: 15px; }
-    .swiper { height: 450px; }
-    .section-title { font-size: 1.8rem; }
-    .pricing-container { padding: 25px; }
+    /* ... 你原本的設定 ... */
+
+    .service-card, .service-card:nth-child(even) {
+        flex-direction: column; /* 手機上一律改為垂直排列 */
+        min-height: auto;
+    }
+
+    .service-card .service-text-content, 
+    .service-card .service-image-box {
+        width: 100%; /* 手機上佔滿寬度 */
+        height: auto;
+    }
+
+    .service-card .service-text-content {
+        padding: 40px 20px; /* 縮小手機版的內距 */
+        text-align: center; /* 手機版文字置中更美觀 */
+    }
+
+    .service-card .service-image-box {
+        height: 300px; /* 固定手機版圖片高度 */
+    }
 }
