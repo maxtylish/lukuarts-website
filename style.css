@@ -69,25 +69,28 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
-/* ================= 💎 5. 服務與卡片設計 ================= */
-.section-padding { padding: var(--section-spacing) 8%; text-align: center; }
-.bg-darker { background-color: var(--bg-darker); }
-.section-title { font-family: var(--font-heading); color: var(--accent-gold); letter-spacing: 6px; margin-bottom: 70px; font-size: 2.2rem; position: relative; }
-.section-title::after { content: ''; display: block; width: 40px; height: 1px; background: var(--accent-gold); margin: 20px auto 0; opacity: 0.5; }
-
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto; }
+/* ================= 💎 5. 服務與卡片設計 (修復版) ================= */
 .service-card {
     position: relative;
+    min-height: 300px; /* 確保卡片有高度，圖片才出得來 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     background-size: cover;
     background-position: center;
-    /* 預設一張半透明黑底遮罩，讓文字清晰 */
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('\photography-website\images\RS-20230722_5574--已修復.jpg');
-}
-.service-card:hover {
-    /* 滑鼠移上去時，遮罩變淡，圖片亮起來 */
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('\photography-website\images\RS-_20250316_22589-EV.jpg');
+    transition: var(--transition-smooth);
+    
+    /* 1. 先用正斜線修正路徑 2. 建議檔名改為純英文 */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/20250316_2.jpg');
 }
 
+.service-card:hover {
+    /* 滑鼠移入時，背景變亮 */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/about-profile.jpg');
+    transform: translateY(-10px);
+}
 /* ================= 🛠️ 6. 流程與信任區塊 (優化內容間距) ================= */
 .process-container, .trust-grid { 
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
