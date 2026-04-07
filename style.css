@@ -201,3 +201,48 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
         height: 300px; /* 固定手機版圖片高度 */
     }
 }
+/* --- WHY CHOOSE US 優化 --- */
+.trust-item h4 {
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 25px; /* 拉開標題與內容的距離 */
+    letter-spacing: 2px;
+}
+
+.trust-item p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7); /* 內文稍微壓暗，讓標題更突出 */
+    line-height: 1.8;
+}
+
+/* --- PROCESS 數字美化 --- */
+.process-step {
+    position: relative;
+    padding-top: 40px; /* 為上方的數字留空間 */
+}
+
+.step-num {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    font-size: 4rem; /* 放大數字 */
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    opacity: 0.1; /* 關鍵：調超淡，當作背景裝飾 */
+    z-index: 1;
+}
+
+.process-step h3 {
+    position: relative;
+    z-index: 2; /* 確保標題壓在數字上面 */
+    margin-bottom: 20px;
+}
+
+/* --- PRICING 集中視覺 --- */
+.pricing-container {
+    max-width: 600px; /* 縮窄一點會更好看 */
+    margin: 0 auto;
+    padding: 60px 40px;
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+}
