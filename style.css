@@ -56,7 +56,51 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     10% { opacity: 0.8; }
     100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
+/* ================= 💰 PRICING & PROCESS 專屬優化 ================= */
 
+/* 1. 拉開區塊整體的上下間距 */
+.pricing-section, .process-section {
+    padding: 100px 10% !important; /* 增加上下內距，左右縮小讓視覺更集中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2. 標題與內容的距離 */
+.section-title {
+    margin-bottom: 60px !important; /* 讓標題大口呼吸 */
+    letter-spacing: 6px !important;
+}
+
+/* 3. 文字行距優化 */
+.pricing-list, .process-list {
+    list-style: none;
+    margin-bottom: 50px; /* 跟下方按鈕拉開距離 */
+    text-align: center;
+}
+
+.pricing-list li, .process-list li {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px; /* 🌟 關鍵：每一行之間空大一點 */
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+/* 4. 特別強調小字（客製報價） */
+.price-note {
+    font-size: 0.9rem;
+    color: var(--accent-gold);
+    opacity: 0.7;
+    margin-top: 10px;
+    display: block;
+}
+
+/* 5. 按鈕的間距調整 */
+.section-btn {
+    margin-top: 20px;
+    padding: 15px 45px !important; /* 讓按鈕變寬一點更有份量 */
+}
 /* ================= 📷 5. SVG 雷射光圈 (強化版) ================= */
 .svg-aperture-container { 
     width: 60px !important; height: 60px !important; margin: 60px auto; 
