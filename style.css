@@ -77,12 +77,16 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
 
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto; }
 .service-card {
-    padding: 50px 30px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.01);
-    transition: var(--transition-smooth); display: flex; flex-direction: column; align-items: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    /* 預設一張半透明黑底遮罩，讓文字清晰 */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('你的作品路徑.jpg');
 }
-.service-card:hover { border-color: var(--accent-gold); transform: translateY(-12px); background: rgba(201, 169, 110, 0.04); }
-.service-card h3 { font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 20px; letter-spacing: 2px; }
-.service-card p { font-size: 0.95rem; opacity: 0.7; line-height: 1.8; }
+.service-card:hover {
+    /* 滑鼠移上去時，遮罩變淡，圖片亮起來 */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('你的作品路徑.jpg');
+}
 
 /* ================= 🛠️ 6. 流程與信任區塊 (優化內容間距) ================= */
 .process-container, .trust-grid { 
