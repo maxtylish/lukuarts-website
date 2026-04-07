@@ -81,11 +81,11 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     background-size: cover;
     background-position: center;
     /* 預設一張半透明黑底遮罩，讓文字清晰 */
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('D:\photography-website\images\RS-20230722_5574--已修復.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('\photography-website\images\RS-20230722_5574--已修復.jpg');
 }
 .service-card:hover {
     /* 滑鼠移上去時，遮罩變淡，圖片亮起來 */
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('D:\photography-website\images\RS-_20250316_22589-EV.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('\photography-website\images\RS-_20250316_22589-EV.jpg');
 }
 
 /* ================= 🛠️ 6. 流程與信任區塊 (優化內容間距) ================= */
