@@ -95,3 +95,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+/* ===== Sakura effect ===== */
+
+const sakuraBox = document.getElementById('sakura-rain');
+
+if (sakuraBox) {
+
+    setInterval(() => {
+
+        const petal = document.createElement('div');
+        petal.classList.add('sakura-petal');
+
+        const size = Math.random() * 8 + 6 + 'px';
+        petal.style.width = size;
+        petal.style.height = size;
+
+        petal.style.left = Math.random() * 100 + '%';
+
+        const duration = Math.random() * 5 + 6;
+        petal.style.animationDuration = duration + 's';
+
+        sakuraBox.appendChild(petal);
+
+        setTimeout(() => {
+            petal.remove();
+        }, duration * 1000);
+
+    }, 300);
+
+}
