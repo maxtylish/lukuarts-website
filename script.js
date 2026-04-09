@@ -124,3 +124,15 @@ if (sakuraBox) {
     }, 300);
 
 }
+/* ===== Parallax Effect ===== */
+
+const heroBg = document.querySelector(".hero-bg");
+
+window.addEventListener("scroll", () => {
+
+    if (!heroBg) return;
+
+    const offset = window.scrollY * 0.3;
+    heroBg.style.transform = `scale(1.1) translateY(${offset}px)`;
+
+});

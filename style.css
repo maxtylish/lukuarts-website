@@ -131,3 +131,67 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     .section-title { font-size: 1.8rem; }
     .pricing-container { padding: 25px; }
 }
+/* ===== Hero Animation ===== */
+
+.hero-content {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroFade 1.2s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    letter-spacing: 4px;
+}
+
+.hero-content p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+@keyframes heroFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===== Buttons Upgrade ===== */
+
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(6px);
+    transition: all 0.4s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    border-color: #c9a96e;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.btn-primary {
+    background: #c9a96e;
+    color: #000;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #d8ba85;
+}
+
+
+/* ===== Parallax BG ===== */
+
+.hero-bg {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
