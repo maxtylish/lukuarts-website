@@ -210,3 +210,13 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
   margin-top: 10px;
   color: #c9a96e;
 }
+#trust {
+  background: transparent;
+  margin-top: -80px;
+}
+.trust-container {
+  background: rgba(0,0,0,0.85);
+  padding: 60px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
