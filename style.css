@@ -36,20 +36,29 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
 .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); opacity: 1; }
 
 /* ================= 3. 首屏 Hero 區塊 ================= */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-.hero-bg {
+.hero {
+  min-height: calc(100vh - 80px);
+  padding: 140px 20px 100px;
+  display: flex;
+  align-items: center;
+}}.hero-bg {
     position: absolute; inset: 0; z-index: -1;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
                 url('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?q=80&w=2000') center/cover no-repeat;
 }
-.hero-content { text-align: center; z-index: 5; width: 100%; max-width: 900px; padding-inline: 25px; }
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
 .hero-en-title { font-family: var(--font-heading); font-size: clamp(1rem, 2.5vw, 1.8rem); letter-spacing: 8px; opacity: 0.6; margin-bottom: 10px; }
 .hero-zh-logo { width: 100%; max-width: 380px; margin: 25px auto; display: block; filter: drop-shadow(0 0 15px rgba(201, 169, 110, 0.2)); }
 .hero-subtitle { font-size: 1.3rem; font-weight: 400; letter-spacing: 4px; margin-bottom: 15px; color: var(--accent-gold); }
 .hero-description { font-size: 1rem; letter-spacing: 1.2px; margin-bottom: 40px; opacity: 0.85; line-height: 2; }
 
-.hero-btns { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
-.btn { padding: 14px 35px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; border-radius: 2px; font-size: 0.85rem; transition: var(--transition-smooth); }
+.hero-btns {
+  margin-top: 30px;
+}.btn { padding: 14px 35px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; border-radius: 2px; font-size: 0.85rem; transition: var(--transition-smooth); }
 .btn-primary { background: var(--accent-gold); color: #000 !important; border: 1px solid var(--accent-gold); }
 .btn-primary:hover { background: var(--accent-gold-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(201, 169, 110, 0.2); }
 .btn-outline { background: transparent; color: #fff !important; border: 1px solid rgba(255,255,255,0.4); }
