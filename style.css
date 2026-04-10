@@ -195,3 +195,18 @@ a { text-decoration: none !important; color: inherit; transition: var(--transiti
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.portfolio-item img {
+  width: 100%;
+  display: block;
+}
+
+.portfolio-item p {
+  margin-top: 10px;
+  color: #c9a96e;
+}
