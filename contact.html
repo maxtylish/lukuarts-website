@@ -1,71 +1,110 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" id="html-root">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUKUARTS VISUAL | 青玥影像</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡預約｜LUKUARTS VISUAL 青玥影像</title>
+  <meta name="description" content="與 LUKUARTS 青玥影像聯繫 — 預約人像形象照、商業品牌攝影、活動紀實與攝影教學服務。">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="about-page"> <nav class="navbar">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <ul class="nav-links">
-            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="portfolio.html" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-            <li><a href="blog.html" data-en="Blog" data-zh="部落格">Blog</a></li>
-            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
-        </ul>
-    </nav>
+<body>
 
-    <main class="portfolio-section">
-        <div class="page-header" style="text-align: center; margin-bottom: 50px;">
-            <h1 data-en="Contact Me" data-zh="聯絡預約">Contact Me</h1>
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html" class="active">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="contact-wrap">
+      <span class="section-kicker">Contact</span>
+      <h1>聯絡預約</h1>
+      <p class="lead">有拍攝需求嗎？請留下您的資訊，我將在 24 小時內回覆。</p>
+
+      <form action="https://formspree.io/f/mgonlnrq" method="POST" class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">NAME 姓名</label>
+            <input type="text" id="name" name="name" placeholder="您的姓名" required>
+          </div>
+          <div class="form-group">
+            <label for="email">EMAIL 信箱</label>
+            <input type="email" id="email" name="email" placeholder="您的 Email" required>
+          </div>
         </div>
 
-        <section class="section-padding" style="max-width: 800px; margin: 0 auto; padding: 0 5%;">
-            <form action="https://formspree.io/f/mgonlnrq" method="POST" class="contact-form">
-                
-                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="form-group" style="text-align: left;">
-                        <label style="color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 2px;">NAME</label>
-                        <input type="text" name="name" placeholder="Your Name" required 
-                               style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px;">
-                    </div>
-                    <div class="form-group" style="text-align: left;">
-                        <label style="color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 2px;">EMAIL</label>
-                        <input type="email" name="email" placeholder="Your Email" required 
-                               style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px;">
-                    </div>
-                </div>
+        <div class="form-group">
+          <label for="subject">SUBJECT 主題</label>
+          <input type="text" id="subject" name="subject" placeholder="例：個人形象照、品牌商攝、活動紀錄…">
+        </div>
 
-                <div class="form-group" style="text-align: left; margin-bottom: 1.5rem;">
-                    <label style="color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 2px;">SUBJECT</label>
-                    <input type="text" name="subject" placeholder="e.g. Portrait, Wedding Session..." 
-                           style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px;">
-                </div>
+        <div class="form-group">
+          <label for="message">MESSAGE 訊息</label>
+          <textarea id="message" name="message" rows="6" placeholder="請說明您的拍攝需求、預計日期與地點…" required></textarea>
+        </div>
 
-                <div class="form-group" style="text-align: left; margin-bottom: 2.5rem;">
-                    <label style="color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 2px;">MESSAGE</label>
-                    <textarea name="message" rows="6" placeholder="Tell me about your project..." required 
-                              style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: #fff; margin-top: 5px; resize: none;"></textarea>
-                </div>
+        <div style="text-align:center; margin-top: 8px;">
+          <button type="submit" class="btn btn-primary">SEND MESSAGE 送出</button>
+        </div>
+      </form>
 
-                <div style="text-align: center; margin-top: 30px;">
-    <button type="submit" class="btn btn-primary submit-btn" 
-            data-en="SEND MESSAGE" 
-            data-zh="傳送訊息">SEND MESSAGE</button>
-</div>
-            </form>
-        </section>
-    </main>
+      <p class="contact-alt">
+        或直接透過 <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener">LINE</a>
+        ／ <a href="mailto:maxtylish@gmail.com">maxtylish@gmail.com</a> 聯繫
+      </p>
+    </section>
+  </main>
 
-    <footer style="margin-top: 4rem; padding-bottom: 2rem; opacity: 0.6; font-size: 0.8rem; text-align: center;">
-        <p>&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
-    </footer>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="index.html#services">人像形象攝影</a></li>
+          <li><a href="index.html#services">品牌商業攝影</a></li>
+          <li><a href="index.html#services">活動紀實紀錄</a></li>
+          <li><a href="index.html#services">專業攝影教學</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+  </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,169 +1,269 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUKUARTS VISUAL | 青玥影像 | 台中攝影師：專業人像形象照、品牌商業攝影與引導教學</title>
-    <meta name="description" content="台中攝影師 LUKUARTS 提供具備價值的形象照、商業攝影與活動紀錄。擅長自然光控制與肢體引導，讓不習慣鏡頭的您也能拍出具備品牌質感的專業畫面。">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUKUARTS VISUAL | 青玥影像 ｜ 台中攝影師：人像形象・商業品牌・活動紀錄</title>
+  <meta name="description" content="台中攝影師 LUKUARTS 青玥影像 — 提供具備價值的人像形象照、商業品牌攝影、活動紀錄與攝影教學。擅長自然光影控制與肢體引導，讓不習慣鏡頭的您也能拍出具備品牌質感的專業畫面。">
+  <meta name="keywords" content="台中攝影師,形象照,商業攝影,品牌攝影,活動紀錄,攝影教學,青玥影像,LUKUARTS">
+  <meta property="og:title" content="LUKUARTS VISUAL ｜ 青玥影像">
+  <meta property="og:description" content="讓照片不只是好看，而是有價值。">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  <!-- ============ NAV ============ -->
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">首頁</a></li>
+      <li><a href="#services">服務</a></li>
+      <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div id="sakura-rain" class="sakura-container" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
+        <img src="images/logo-zh.png" alt="青玥影像 — 台中專業攝影品牌" class="hero-zh-logo">
+        <h2 class="hero-subtitle">台中攝影師｜人像形象 ・ 商業品牌 ・ 活動紀錄</h2>
+        <p class="hero-description">
+          讓照片不只是好看，而是有價值。<br>
+          專注自然光影與專業肢體引導，打造具備質感的視覺語言。
+        </p>
+        <div class="hero-btns">
+          <a href="portfolio.html" class="btn btn-outline">瀏覽作品</a>
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="btn btn-primary">LINE 立即諮詢</a>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">首頁</a></li>
-            <li><a href="#services">服務項目</a></li>
-            <li><a href="#portfolio">作品集</a></li>
-            <li><a href="#about">關於我</a></li>
-            <li><a href="#process">拍攝流程</a></li>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">Scroll</div>
+    </section>
+
+    <!-- ============ TRUST ============ -->
+    <section id="trust" class="section-padding">
+      <div class="trust-container">
+        <span class="section-kicker reveal">Why Choose Me</span>
+        <h2 class="section-title reveal">為什麼選擇我</h2>
+        <div class="trust-grid">
+          <div class="trust-item reveal">
+            <span class="trust-icon" aria-hidden="true">◆</span>
+            <h4>專業肢體引導</h4>
+            <p>具備系統化攝影教學背景，擅長緩解鏡頭恐懼，讓每個人都能展現最自然的神情與肢體。</p>
+          </div>
+          <div class="trust-item reveal">
+            <span class="trust-icon" aria-hidden="true">◆</span>
+            <h4>光影氛圍控制</h4>
+            <p>專注於自然光與現場燈光布局，不依賴過度修圖，保留最真實的空氣感與質感氛圍。</p>
+          </div>
+          <div class="trust-item reveal">
+            <span class="trust-icon" aria-hidden="true">◆</span>
+            <h4>商業視覺思維</h4>
+            <p>不只拍攝照片，更思考如何透過畫面傳遞您的品牌核心價值與產品情緒。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section id="services" class="section-padding bg-darker">
+      <span class="section-kicker reveal">Services</span>
+      <h2 class="section-title reveal">服務項目</h2>
+      <div class="services-grid">
+        <article class="service-card reveal" data-target="portrait">
+          <h3>人像形象攝影</h3>
+          <p>專業引導不尷尬，為您的個人品牌打造最具信任感的社群頭像與專業形象照。</p>
+        </article>
+        <article class="service-card reveal" data-target="commercial">
+          <h3>品牌商業攝影</h3>
+          <p>結合美學與商業思維，針對商品、店家空間進行氛圍捕捉，提升品牌轉化價值。</p>
+        </article>
+        <article class="service-card reveal" data-target="event">
+          <h3>活動紀實紀錄</h3>
+          <p>精準控制現場光影，捕捉講座、活動中稍縱即逝的關鍵瞬間與自然互動。</p>
+        </article>
+        <article class="service-card reveal" data-target="teaching">
+          <h3>專業攝影教學</h3>
+          <p>從相機構圖到手機攝影，將多年實戰經驗化為淺顯易懂的教學，提升視覺美學。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PORTFOLIO PREVIEW ============ -->
+    <section id="portfolio" class="section-padding">
+      <span class="section-kicker reveal">Portfolio</span>
+      <h2 class="section-title reveal">作品選集</h2>
+      <div class="portfolio-preview">
+        <div class="portfolio-grid">
+          <a href="portfolio.html?category=portrait" class="portfolio-item reveal">
+            <img src="images/portrait/p001.jpg" alt="人像攝影作品" loading="lazy">
+            <div class="overlay">
+              <span>Portrait</span>
+              <p>人像形象</p>
+            </div>
+          </a>
+          <a href="portfolio.html?category=wedding" class="portfolio-item reveal">
+            <img src="images/wedding/w001.jpg" alt="婚禮紀錄作品" loading="lazy">
+            <div class="overlay">
+              <span>Wedding</span>
+              <p>婚禮紀錄</p>
+            </div>
+          </a>
+          <a href="portfolio.html?category=food" class="portfolio-item reveal">
+            <img src="images/food/f001.jpg" alt="商業美食攝影作品" loading="lazy">
+            <div class="overlay">
+              <span>Commercial</span>
+              <p>商業美食</p>
+            </div>
+          </a>
+          <a href="portfolio.html?category=landscape" class="portfolio-item reveal">
+            <img src="images/landscape/l002.jpg" alt="風景攝影作品" loading="lazy">
+            <div class="overlay">
+              <span>Landscape</span>
+              <p>風景影像</p>
+            </div>
+          </a>
+          <a href="portfolio.html?category=street" class="portfolio-item reveal">
+            <img src="images/street/S001.jpg" alt="街頭紀實作品" loading="lazy">
+            <div class="overlay">
+              <span>Street</span>
+              <p>街頭紀實</p>
+            </div>
+          </a>
+          <a href="portfolio.html?category=creative" class="portfolio-item reveal">
+            <img src="images/creative/c001.jpg" alt="影像創作作品" loading="lazy">
+            <div class="overlay">
+              <span>Creative</span>
+              <p>影像創作</p>
+            </div>
+          </a>
+        </div>
+        <div class="portfolio-cta reveal">
+          <a href="portfolio.html" class="btn btn-outline">查看完整作品集</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section id="process" class="section-padding bg-darker">
+      <span class="section-kicker reveal">Process</span>
+      <h2 class="section-title reveal">拍攝流程</h2>
+      <div class="process-container">
+        <div class="process-step reveal">
+          <span class="step-num">01</span>
+          <h3>需求諮詢與提案</h3>
+          <p>透過 LINE 進行初步溝通，了解您的拍攝需求、用途與風格偏好，提供專業建議與初步報價。</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="step-num">02</span>
+          <h3>現場拍攝與引導</h3>
+          <p>在輕鬆的氛圍中進行拍攝，由我親自引導肢體與眼神，捕捉最具價值與溫度的瞬間。</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="step-num">03</span>
+          <h3>精修與成品交付</h3>
+          <p>進行細膩的色調調整與修飾，確保成品符合品牌質感，並於約定時間內完成交付。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section id="pricing" class="section-padding">
+      <span class="section-kicker reveal">Pricing</span>
+      <h2 class="section-title reveal">方案費用</h2>
+      <div class="pricing-container reveal">
+        <div class="pricing-item">
+          <span class="service-name">個人形象照</span>
+          <span class="price-line"></span>
+          <span class="price-value">NT$3,000 起</span>
+        </div>
+        <div class="pricing-item">
+          <span class="service-name">品牌商業攝影</span>
+          <span class="price-line"></span>
+          <span class="price-value">NT$8,000 起</span>
+        </div>
+        <div class="pricing-item">
+          <span class="service-name">活動紀實紀錄</span>
+          <span class="price-line"></span>
+          <span class="price-value">NT$6,000 起</span>
+        </div>
+        <div class="pricing-item">
+          <span class="service-name">一對一攝影教學</span>
+          <span class="price-line"></span>
+          <span class="price-value">NT$2,500 / hr</span>
+        </div>
+        <p class="price-note">依拍攝時間、地點與成品張數客製化報價，歡迎私訊洽詢詳細內容。</p>
+        <div class="price-btn-wrapper">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="btn btn-primary">立即諮詢預約</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA BAND ============ -->
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="reveal">
+        <h2 id="cta-title">讓影像說出品牌的故事</h2>
+        <p>從形象照、商業品牌到活動紀錄 — 為您量身打造具備價值的視覺內容。</p>
+        <a href="contact.html" class="btn btn-primary">預約拍攝</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
         </ul>
-    </nav>
-
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-bg"></div>
-            <div id="sakura-rain" class="sakura-container"></div>
-            <div class="hero-content">
-                <h1 class="hero-en-title">LUKUARTS VISUAL</h1>
-                <img src="images/logo-zh.png" alt="青玥影像 - 台中專業攝影品牌" class="hero-zh-logo">
-                <h2 class="hero-subtitle">台中攝影師推薦｜人像形象照・商業品牌攝影</h2>
-                <p class="hero-description">讓照片不只是好看，而是有價值。<br>專注自然光影與專業肢體引導，打造具備質感的視覺語言。</p>
-                <div class="hero-btns">
-                    <a href="#portfolio" class="btn btn-outline">查看作品</a>
-                    <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" class="btn btn-primary">立即預約諮詢</a>
-                </div>
-            </div>
-        </section>
-        <section id="trust" class="section-padding">
-            <div class="trust-container">
-                <h2 class="section-title">WHY CHOOSE ME</h2>
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <h4>專業肢體引導</h4>
-                        <p>具備攝影教學背景，擅長緩解鏡頭恐懼，讓每個人都能展現最自然的自我。</p>
-                    </div>
-                    <div class="trust-item">
-                        <h4>光影氛圍控制</h4>
-                        <p>專注於自然光與現場燈光布局，不依賴過度修圖，保留最真實的質感氛圍。</p>
-                    </div>
-                    <div class="trust-item">
-                        <h4>商業視覺思維</h4>
-                        <p>我們不只拍攝照片，更思考如何透過畫面傳遞您的品牌核心價值。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="section-padding bg-darker">
-            <h2 class="section-title">SERVICES</h2>
-            <div class="services-grid">
-                <div class="service-card" data-target="portrait">
-                    <h3>人像形象攝影</h3>
-                    <p>專業引導不尷尬，為您的個人品牌打造最具信任感的社群頭像與專業形象照。</p>
-                </div>
-                <div class="service-card" data-target="commercial">
-                    <h3>品牌商業攝影</h3>
-                    <p>結合美學與商業思維，針對商品、店家空間進行氛圍捕捉，提升品牌轉化價值。</p>
-                </div>
-                <div class="service-card" data-target="event">
-                    <h3>活動紀實紀錄</h3>
-                    <p>精準控制現場光影，捕捉講座、活動中稍縱即逝的關鍵瞬間與自然互動。</p>
-                </div>
-                <div class="service-card" data-target="teaching">
-                    <h3>專業攝影教學</h3>
-                    <p>從相機構圖到手機攝影，將多年實戰經驗化為淺顯易懂的教學，提升您的視覺美學。</p>
-                </div>
-            </div>
-        </section>
-        <section id="portfolio" class="section-padding">
-  <h2 class="section-title">PORTFOLIO</h2>
-
-  <div class="portfolio-grid">
-
-    <div class="portfolio-item">
-      <img src="images/portrait1.jpg" alt="">
-      <p>人像攝影</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">人像形象攝影</a></li>
+          <li><a href="#services">品牌商業攝影</a></li>
+          <li><a href="#services">活動紀實紀錄</a></li>
+          <li><a href="#services">專業攝影教學</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
     </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
+  </footer>
 
-    <div class="portfolio-item">
-      <img src="images/commercial1.jpg" alt="">
-      <p>商業攝影</p>
-    </div>
-
-    <div class="portfolio-item">
-      <img src="images/event1.jpg" alt="">
-      <p>活動紀錄</p>
-    </div>
-
-    <div class="portfolio-item">
-      <img src="images/family1.jpg" alt="">
-      <p>親子寫真</p>
-    </div>
-
-  </div>
-</section>
-
-        
-
-        <section id="process" class="section-padding bg-darker">
-            <h2 class="section-title">PROCESS</h2>
-            <div class="process-container">
-                <div class="process-step">
-                    <span class="step-num">01</span>
-                    <h3>需求諮詢與提案</h3>
-                    <p>透過 LINE 進行初步溝通，了解您的拍攝需求、用途與風格偏好，提供專業建議。</p>
-                </div>
-                <div class="process-step">
-                    <span class="step-num">02</span>
-                    <h3>現場拍攝與引導</h3>
-                    <p>在輕鬆的氛圍中進行拍攝，由我親自引導肢體與眼神，捕捉最具價值的瞬間。</p>
-                </div>
-                <div class="process-step">
-                    <span class="step-num">03</span>
-                    <h3>精修與成品交付</h3>
-                    <p>進行細膩的色調調整與修飾，確保成品符合品牌質感，並於約定時間內完成交付。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing" class="section-padding">
-            <h2 class="section-title">PRICING</h2>
-            <div class="pricing-container">
-                <div class="pricing-item">
-                    <span class="service-name">個人形象照</span>
-                    <span class="price-line"></span>
-                    <span class="price-value">NT$3,000 起</span>
-                </div>
-                <div class="pricing-item">
-                    <span class="service-name">商業攝影</span>
-                    <span class="price-line"></span>
-                    <span class="price-value">NT$8,000 起</span>
-                </div>
-                <div class="pricing-item">
-                    <span class="service-name">活動紀錄</span>
-                    <span class="price-line"></span>
-                    <span class="price-value">NT$6,000 起</span>
-                </div>
-                <p class="price-note">（依需求客製報價，歡迎私訊洽詢詳細內容）</p>
-                <div class="price-btn-wrapper">
-                    <a href="https://line.me/R/ti/p/MAXTYLISH" class="btn btn-primary">👉 立即諮詢預約</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2024 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

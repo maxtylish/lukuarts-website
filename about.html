@@ -1,39 +1,118 @@
-<div class="about-text-area">
-    <h1 class="about-main-title" data-en="ABOUT ME" data-zh="關於我">關於我</h1>
-    <h2 class="about-sub-title" 
-        data-en="Nikon School Official Instructor | Luku Arts Founder" 
-        data-zh="Nikon School 官方攝影講師 | 青玥影像負責人">
-        Nikon School 官方攝影講師 | 青玥影像負責人
-    </h2>
-    
-    <div class="lang-zh" style="display: block;">
-        <p>我是劉志恆（志恆老師），<strong>青玥影像 (Luku Arts)</strong> 負責人。具備多年專業攝影與系統化教學經驗，長期擔任 <strong>Nikon School 尼康學院官方攝影講師</strong>，並與 Nikon Taiwan、NiSi Filters 等品牌深度合作。</p>
-        <p>我的教學與拍攝足跡涵蓋東海及逢甲大學 EMBA、政府部門及各大企業。擅長以淺顯易懂的方式引導學員，並致力於用光影捕捉具備情感溫度的畫面。</p>
-    </div>
-    
-    <div class="lang-en" style="display: none;">
-        <p>I am Chih-Heng Liu, the founder of <strong>Luku Arts Visual</strong>. As an <strong>Official Instructor for Nikon School Taiwan</strong>, I possess extensive experience in professional photography and systematic teaching.</p>
-        <p>I have collaborated with prestigious organizations including Tokai University and Feng Chia University EMBA programs. My expertise lies in capturing emotional warmth through light and shadow.</p>
-    </div>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於｜LUKUARTS VISUAL 青玥影像 ｜ 台中攝影師劉志恆</title>
+  <meta name="description" content="Nikon School 官方攝影講師 ｜ 青玥影像負責人劉志恆，多年專業攝影與系統化教學經驗，擅長人像、婚禮、商業攝影與攝影教學。">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <div class="experience-list" style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-        <h3 style="color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 1px;">Professional Milestones</h3>
-        <ul style="list-style: none; padding: 0; font-size: 0.95rem; line-height: 2.2; opacity: 0.9;">
-            <li>🏆 Nikon School 尼康學院 官方攝影講師</li>
-            <li>🎓 東海/逢甲大學 EMBA 攝影美學社 講師</li>
-            <li>🏛️ 南投之美藝文協會 理事長</li>
-            <li>📷 NiSi Filters 台灣攝影講座 合作老師</li>
-            <li>🖼️ 《藍畫布》攝影個展及多次公益聯展</li>
-            <li>👔 國際同濟會台灣總會 攝影委員會副主委</li>
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="about.html" class="active">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="about-hero">
+      <h1>ABOUT ME</h1>
+      <p>用光影說故事的人</p>
+    </section>
+
+    <section class="about-layout">
+      <aside class="about-portrait reveal">
+        <img src="images/about-profile.jpg" alt="攝影師劉志恆 肖像">
+      </aside>
+
+      <div class="about-text-area reveal">
+        <h2 class="about-main-title">劉志恆（志恆老師）</h2>
+        <p class="about-sub-title">Nikon School 官方攝影講師 ｜ 青玥影像負責人</p>
+
+        <p>我是劉志恆，<strong>青玥影像 (Luku Arts Visual)</strong> 負責人。具備多年專業攝影與系統化教學經驗，長期擔任 <strong>Nikon School 尼康學院官方攝影講師</strong>，並與 Nikon Taiwan、NiSi Filters 等品牌深度合作。</p>
+
+        <p>我的教學與拍攝足跡涵蓋東海及逢甲大學 EMBA、政府部門及各大企業。擅長以淺顯易懂的方式引導學員，並致力於用光影捕捉具備情感溫度的畫面 — 不只是拍下一張照片，而是替每一個被攝者、每一個品牌，保留下真正有價值的影像資產。</p>
+
+        <div class="experience-list">
+          <h3>Professional Milestones</h3>
+          <ul>
+            <li>Nikon School 尼康學院 官方攝影講師</li>
+            <li>東海 / 逢甲大學 EMBA 攝影美學社 講師</li>
+            <li>南投之美藝文協會 理事長</li>
+            <li>NiSi Filters 台灣攝影講座 合作講師</li>
+            <li>《藍畫布》攝影個展及多次公益聯展</li>
+            <li>國際同濟會台灣總會 攝影委員會副主委</li>
+          </ul>
+        </div>
+
+        <div class="skills-container">
+          <span class="skill-tag">Nikon 官方講師</span>
+          <span class="skill-tag">人像攝影</span>
+          <span class="skill-tag">婚禮紀錄</span>
+          <span class="skill-tag">商業攝影</span>
+          <span class="skill-tag">攝影教學</span>
+          <span class="skill-tag">和服體驗紀錄</span>
+        </div>
+
+        <div style="margin-top: 48px;">
+          <a href="contact.html" class="btn btn-primary">預約拍攝</a>
+          <a href="portfolio.html" class="btn btn-outline" style="margin-left: 12px;">看作品</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
         </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="index.html#services">人像形象攝影</a></li>
+          <li><a href="index.html#services">品牌商業攝影</a></li>
+          <li><a href="index.html#services">活動紀實紀錄</a></li>
+          <li><a href="index.html#services">專業攝影教學</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
     </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+  </footer>
 
-    <div class="skills-container" style="margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px;">
-        <span class="skill-tag" data-en="Nikon Instructor" data-zh="Nikon 官方講師">Nikon 官方講師</span>
-        <span class="skill-tag" data-en="Portrait" data-zh="人像攝影">人像攝影</span>
-        <span class="skill-tag" data-en="Wedding" data-zh="婚禮紀錄">婚禮紀錄</span>
-        <span class="skill-tag" data-en="Commercial" data-zh="商業攝影">商業攝影</span>
-        <span class="skill-tag" data-en="Teaching" data-zh="攝影教學">攝影教學</span>
-        <span class="skill-tag" data-en="Kimono Photography" data-zh="和服體驗紀錄">和服體驗紀錄</span>
-    </div>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>

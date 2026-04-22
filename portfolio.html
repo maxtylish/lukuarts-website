@@ -1,53 +1,96 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUKUARTS VISUAL | 青玥影像</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品集｜LUKUARTS VISUAL 青玥影像</title>
+  <meta name="description" content="LUKUARTS 青玥影像 作品集 — 人像、婚禮、街頭、商業美食、活動紀錄、風景、人文與影像創作。">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <ul class="nav-links">
-            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="portfolio.html" class="active" data-en="Portfolio" data-zh="作品集">Portfolio</a></li>
-            <li><a href="blog.html" data-en="Blog" data-zh="部落格">Blog</a></li>
-            <li><a href="about.html" data-en="About" data-zh="關於">About</a></li>
-            <li><button id="lang-toggle" class="lang-btn">EN / 中</button></li>
-        </ul>
-    </nav>
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html" class="active">作品集</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html">聯絡</a></li>
+    </ul>
+  </nav>
 
-   <main>
+  <main>
     <section class="portfolio-section">
-        
-        <h1 class="section-title">Portfolio</h1>
-        
-        <div class="filter-container">
-    <button class="filter-btn active" data-filter="all" data-en="ALL" data-zh="全部作品">ALL</button>
-    <button class="filter-btn" data-filter="portrait" data-en="PORTRAIT" data-zh="人像攝影">PORTRAIT</button>
-    <button class="filter-btn" data-filter="wedding" data-en="WEDDING" data-zh="婚禮紀錄">WEDDING</button>
-    <button class="filter-btn" data-filter="street" data-en="STREET" data-zh="街頭攝影">STREET</button>
-    <button class="filter-btn" data-filter="food" data-en="FOOD" data-zh="商業美食">FOOD</button>
-    <button class="filter-btn" data-filter="event" data-en="EVENT" data-zh="活動紀錄">EVENT</button>
-    <button class="filter-btn" data-filter="landscape" data-en="LANDSCAPE" data-zh="風景攝影">LANDSCAPE</button>
-    <button class="filter-btn" data-filter="culture" data-en="CULTURE" data-zh="人文神像">CULTURE</button>
-    <button class="filter-btn" data-filter="creative" data-en="CREATIVE" data-zh="影像創作">CREATIVE</button>
-</div>
+      <span class="section-kicker">Portfolio</span>
+      <h1 class="section-title">作品集</h1>
 
-        <div class="masonry-gallery" id="gallery"></div>
-        
+      <div class="filter-container" role="tablist" aria-label="作品分類">
+        <button class="filter-btn active" data-filter="all">ALL 全部</button>
+        <button class="filter-btn" data-filter="portrait">PORTRAIT 人像</button>
+        <button class="filter-btn" data-filter="wedding">WEDDING 婚禮</button>
+        <button class="filter-btn" data-filter="street">STREET 街頭</button>
+        <button class="filter-btn" data-filter="food">FOOD 美食</button>
+        <button class="filter-btn" data-filter="event">EVENT 活動</button>
+        <button class="filter-btn" data-filter="landscape">LANDSCAPE 風景</button>
+        <button class="filter-btn" data-filter="culture">CULTURE 人文</button>
+        <button class="filter-btn" data-filter="creative">CREATIVE 創作</button>
+      </div>
+
+      <div class="masonry-gallery" id="gallery" aria-live="polite"></div>
     </section>
-</main>
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-    </div>
+  </main>
 
-    <script src="script.js"></script>
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="圖片預覽">
+    <span class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="">
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="index.html#services">人像形象攝影</a></li>
+          <li><a href="index.html#services">品牌商業攝影</a></li>
+          <li><a href="index.html#services">活動紀實紀錄</a></li>
+          <li><a href="index.html#services">專業攝影教學</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
