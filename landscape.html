@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>風景攝影｜LUKUARTS VISUAL 青玥影像 台灣山海星空</title>
+  <meta name="description" content="LUKUARTS 青玥影像風景攝影作品 — 台灣山川、星空銀河、日出日落、海岸絕景。用光影詮釋台灣土地最壯麗的一面。">
+  <meta name="keywords" content="台灣風景攝影,星空攝影,山岳攝影,海景攝影,日出攝影,台灣攝影,青玥影像,LUKUARTS">
+  <meta property="og:title" content="風景攝影｜LUKUARTS VISUAL 青玥影像">
+  <meta property="og:description" content="台灣山海，每一幕都是詩。用光影詮釋台灣土地最壯麗的一面。">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="canonical" href="landscape.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html" class="active">作品集</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ============ CATEGORY HERO ============ -->
+    <section class="cat-hero" aria-label="風景攝影">
+      <div class="cat-hero-bg" id="cat-hero-bg" style="background-image: url('images/landscape/l001.jpg');"></div>
+      <div class="cat-hero-content">
+        <span class="cat-hero-kicker">Landscape Photography</span>
+        <h1 class="cat-hero-title">風景攝影</h1>
+        <p class="cat-hero-sub">
+          台灣山海，每一幕都是詩<br>
+          星空銀河 · 日出雲海 · 海岸礁石 · 山嶺層巒
+        </p>
+        <div class="cat-hero-btns">
+          <a href="portfolio.html?category=landscape" class="btn btn-primary">瀏覽全部作品</a>
+          <a href="contact.html" class="btn btn-outline">洽談合作</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="cat-gallery-section">
+      <span class="section-kicker">Portfolio</span>
+      <h2 class="section-title">作品精選</h2>
+      <div class="masonry-gallery" id="gallery" data-category="landscape" aria-live="polite"></div>
+    </section>
+
+    <!-- ============ INFO ============ -->
+    <section class="cat-info" aria-label="關於風景攝影">
+      <div class="cat-info-inner">
+        <div class="cat-info-block reveal">
+          <h3>拍攝主題</h3>
+          <ul>
+            <li>高山星空與銀河攝影</li>
+            <li>日出雲海與晨霧風景</li>
+            <li>海岸礁石與長曝光海浪</li>
+            <li>台灣中部山川全景</li>
+          </ul>
+        </div>
+        <div class="cat-info-block reveal">
+          <h3>創作理念</h3>
+          <p>
+            風景攝影是一場與天氣、光線和時間的博弈。<br>
+            我深信最好的風景照不是靠後製堆砌，
+            而是在對的時間到達對的地點，等候那一刻光的降臨。
+          </p>
+        </div>
+        <div class="cat-info-block reveal">
+          <h3>授權 &amp; 合作</h3>
+          <ul>
+            <li>雜誌、媒體圖庫授權</li>
+            <li>企業空間裝置藝術輸出</li>
+            <li>旅遊品牌 / 地方政府合作</li>
+            <li>個人收藏精品輸出</li>
+          </ul>
+        </div>
+        <div class="cat-info-block reveal">
+          <h3>洽談合作</h3>
+          <p>
+            如需授權使用任何風景作品，或有拍攝地點合作提案，
+            歡迎透過 Email 或 LINE 與我聯繫討論。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cat-cta">
+      <div class="cat-cta-inner">
+        <span class="section-kicker">Collaboration</span>
+        <h2 class="section-title">讓台灣的美走進更多人眼中</h2>
+        <p>每一張風景照背後，都是一次跋山涉水的堅持。<br>如果你也感受到這份美，歡迎讓我們一起讓它被更多人看見。</p>
+        <div class="cat-cta-btns">
+          <a href="mailto:maxtylish@gmail.com" class="btn btn-primary">Email 洽談授權</a>
+          <a href="portfolio.html" class="btn btn-outline">回到作品集</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="圖片預覽">
+    <span class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="">
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="wedding.html">婚禮紀實攝影</a></li>
+          <li><a href="food.html">商業美食攝影</a></li>
+          <li><a href="event.html">活動紀實攝影</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const bg = document.getElementById('cat-hero-bg');
+      if (bg) bg.classList.add('loaded');
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

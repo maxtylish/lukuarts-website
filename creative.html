@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>影像創作｜LUKUARTS VISUAL 青玥影像 概念攝影</title>
+  <meta name="description" content="LUKUARTS 青玥影像影像創作系列 — 突破框架的視覺實驗，概念攝影、藝術影像創作。探索光、影、空間與情感的可能性邊界。">
+  <meta name="keywords" content="概念攝影,影像藝術,藝術攝影,創意攝影,實驗攝影,台中攝影師,青玥影像,LUKUARTS">
+  <meta property="og:title" content="影像創作｜LUKUARTS VISUAL 青玥影像">
+  <meta property="og:description" content="突破框架的視覺實驗 — 探索光、影、空間與情感的可能性邊界。">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="canonical" href="creative.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html" class="active">作品集</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ============ CATEGORY HERO ============ -->
+    <section class="cat-hero" aria-label="影像創作">
+      <div class="cat-hero-bg" id="cat-hero-bg" style="background-image: url('images/creative/c001.jpg');"></div>
+      <div class="cat-hero-content">
+        <span class="cat-hero-kicker">Creative Visual</span>
+        <h1 class="cat-hero-title">影像創作</h1>
+        <p class="cat-hero-sub">
+          突破框架的視覺實驗<br>
+          探索光、影、空間與情感的可能性邊界
+        </p>
+        <div class="cat-hero-btns">
+          <a href="portfolio.html?category=creative" class="btn btn-primary">瀏覽全部作品</a>
+          <a href="contact.html" class="btn btn-outline">提案合作</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="cat-gallery-section">
+      <span class="section-kicker">Portfolio</span>
+      <h2 class="section-title">作品精選</h2>
+      <div class="masonry-gallery" id="gallery" data-category="creative" aria-live="polite"></div>
+    </section>
+
+    <!-- ============ INFO ============ -->
+    <section class="cat-info" aria-label="創作說明">
+      <div class="cat-info-inner">
+        <div class="cat-info-block reveal">
+          <h3>創作類型</h3>
+          <ul>
+            <li>概念藝術攝影系列</li>
+            <li>商業廣告視覺創作</li>
+            <li>音樂 MV / 短片視覺</li>
+            <li>品牌聯名合作企劃</li>
+          </ul>
+        </div>
+        <div class="cat-info-block reveal">
+          <h3>創作理念</h3>
+          <p>
+            攝影不只是記錄，它也可以是一種語言。<br>
+            透過刻意的構圖、光影設計與後製風格化，
+            這個系列探索影像在情感與象徵之間的張力，
+            嘗試讓每一格畫面都擁有超越時間的敘事力。
+          </p>
+        </div>
+        <div class="cat-info-block reveal">
+          <h3>合作方式</h3>
+          <ul>
+            <li>藝術家 / 樂團 / 設計師跨域合作</li>
+            <li>品牌創意廣告視覺提案</li>
+            <li>藝廊 / 展覽聯合展出</li>
+            <li>精品輸出 &amp; 作品收藏</li>
+          </ul>
+        </div>
+        <div class="cat-info-block reveal">
+          <h3>提案洽談</h3>
+          <p>
+            有創意的合作都歡迎嘗試。<br>
+            請透過 Email 附上你的提案方向，
+            讓我們看看能碰撞出什麼火花。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cat-cta">
+      <div class="cat-cta-inner">
+        <span class="section-kicker">Collaborate</span>
+        <h2 class="section-title">一起創造新的視覺語言</h2>
+        <p>如果你有一個大膽的想法，正在尋找能夠實現它的影像夥伴，<br>那我們應該聊聊。</p>
+        <div class="cat-cta-btns">
+          <a href="mailto:maxtylish@gmail.com" class="btn btn-primary">Email 提案合作</a>
+          <a href="portfolio.html" class="btn btn-outline">回到作品集</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="圖片預覽">
+    <span class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="">
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="wedding.html">婚禮紀實攝影</a></li>
+          <li><a href="food.html">商業美食攝影</a></li>
+          <li><a href="event.html">活動紀實攝影</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const bg = document.getElementById('cat-hero-bg');
+      if (bg) bg.classList.add('loaded');
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
