@@ -620,6 +620,55 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
 }
 .price-btn-wrapper { text-align: center; margin-top: var(--space-4); }
 
+/* ===== 13. Instagram Feed Section ===== */
+.ig-section {
+  background: var(--bg-darker);
+}
+
+.ig-header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.ig-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-gold);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: calc(-1 * var(--space-4));
+  margin-bottom: var(--space-3);
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.ig-handle:hover { opacity: 0.75; }
+
+/* Behold widget wrapper — let the widget fill the width */
+.ig-widget-wrap {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px);
+}
+
+/* Override Behold widget to match dark theme */
+.ig-widget-wrap behold-widget {
+  --behold-font-family: var(--font-body);
+  --behold-background-color: transparent;
+  width: 100%;
+}
+
+.ig-cta {
+  text-align: center;
+  margin-top: var(--space-5);
+}
+
+.ig-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* ===== 13. CTA band ===== */
 .cta-band {
   text-align: center;
