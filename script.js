@@ -306,6 +306,30 @@
     });
   }
 
+  /* ---------- 9. Lazy-load fade-in ---------- */
+  function initLazyFade() {
+    const imgs = $$('img[loading="lazy"]');
+    imgs.forEach(img => {
+      if (img.complete) { img.classList.add('loaded'); return; }
+      img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+    });
+    // Watch for dynamically added lazy images (gallery renders)
+    if ('MutationObserver' in window) {
+      new MutationObserver(mutations => {
+        mutations.forEach(m => m.addedNodes.forEach(node => {
+          if (node.nodeType !== 1) return;
+          const imgs = node.matches?.('img[loading="lazy"]')
+            ? [node]
+            : Array.from(node.querySelectorAll?.('img[loading="lazy"]') ?? []);
+          imgs.forEach(img => {
+            if (img.complete) img.classList.add('loaded');
+            else img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+          });
+        }));
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
   /* ---------- Boot ---------- */
   document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
@@ -315,6 +339,7 @@
     initGallery();
     initBlogGrid();
     initAnchorOffset();
+    initLazyFade();
     // Lightbox bound lazily when triggers exist (e.g., gallery render)
   });
 })();

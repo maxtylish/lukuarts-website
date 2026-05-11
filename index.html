@@ -10,9 +10,14 @@
   <meta property="og:description" content="讓照片不只是好看，而是有價值。">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <!-- Preload critical above-the-fold resources -->
+  <link rel="preload" href="images/logo-zh.png" as="image">
+  <link rel="preload" href="style.css" as="style">
+  <!-- Google Fonts: preconnect + swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -109,7 +114,7 @@
       <div class="meet-container">
         <div class="meet-photo reveal">
           <div class="meet-photo-frame">
-            <img src="images/me-intro.jpg" alt="攝影師劉志恆" loading="lazy">
+            <img src="images/me-intro.webp" alt="攝影師劉志恆" loading="lazy">
           </div>
           <div class="meet-photo-badge">
             <span>Nikon School</span>
@@ -161,42 +166,42 @@
       <div class="portfolio-preview">
         <div class="portfolio-grid">
           <a href="portfolio.html?category=portrait" class="portfolio-item reveal">
-            <img src="images/portrait/p001.jpg" alt="人像攝影作品" loading="lazy">
+            <img src="images/portrait/p001.webp" alt="人像攝影作品" loading="lazy">
             <div class="overlay">
               <span>Portrait</span>
               <p>人像形象</p>
             </div>
           </a>
           <a href="portfolio.html?category=wedding" class="portfolio-item reveal">
-            <img src="images/wedding/w001.jpg" alt="婚禮紀錄作品" loading="lazy">
+            <img src="images/wedding/w001.webp" alt="婚禮紀錄作品" loading="lazy">
             <div class="overlay">
               <span>Wedding</span>
               <p>婚禮紀錄</p>
             </div>
           </a>
           <a href="portfolio.html?category=food" class="portfolio-item reveal">
-            <img src="images/food/f001.jpg" alt="商業美食攝影作品" loading="lazy">
+            <img src="images/food/f001.webp" alt="商業美食攝影作品" loading="lazy">
             <div class="overlay">
               <span>Commercial</span>
               <p>商業美食</p>
             </div>
           </a>
           <a href="portfolio.html?category=landscape" class="portfolio-item reveal">
-            <img src="images/landscape/l002.jpg" alt="風景攝影作品" loading="lazy">
+            <img src="images/landscape/l002.webp" alt="風景攝影作品" loading="lazy">
             <div class="overlay">
               <span>Landscape</span>
               <p>風景影像</p>
             </div>
           </a>
           <a href="portfolio.html?category=street" class="portfolio-item reveal">
-            <img src="images/street/S001.jpg" alt="街頭紀實作品" loading="lazy">
+            <img src="images/street/S001.webp" alt="街頭紀實作品" loading="lazy">
             <div class="overlay">
               <span>Street</span>
               <p>街頭紀實</p>
             </div>
           </a>
           <a href="portfolio.html?category=creative" class="portfolio-item reveal">
-            <img src="images/creative/c001.jpg" alt="影像創作作品" loading="lazy">
+            <img src="images/creative/c001.webp" alt="影像創作作品" loading="lazy">
             <div class="overlay">
               <span>Creative</span>
               <p>影像創作</p>
@@ -339,15 +344,15 @@
     <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
   </footer>
 
-  <script src="script.js"></script>
-  <!-- Behold.so Instagram widget -->
+  <script src="script.js" defer></script>
+  <!-- Behold.so Instagram widget: load after page is interactive -->
   <script>
-    (() => {
-      const d = document, s = d.createElement('script');
+    window.addEventListener('load', () => {
+      const s = document.createElement('script');
       s.type = 'module';
       s.src = 'https://w.behold.so/widget.js';
-      d.head.append(s);
-    })();
+      document.head.appendChild(s);
+    });
   </script>
 </body>
 </html>

@@ -1,362 +1,362 @@
 [
   {
-    "src": "images/portrait/p001.jpg",
+    "src": "images/portrait/p001.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p002.jpg",
+    "src": "images/portrait/p002.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p003.jpg",
+    "src": "images/portrait/p003.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p004.jpg",
+    "src": "images/portrait/p004.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p005.jpg",
+    "src": "images/portrait/p005.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p006.jpg",
+    "src": "images/portrait/p006.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p007.jpg",
+    "src": "images/portrait/p007.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p008.jpg",
+    "src": "images/portrait/p008.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p009.jpg",
+    "src": "images/portrait/p009.webp",
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p010.jpg",
+    "src": "images/portrait/p010.webp",
     "category": "portrait"
   },
   {
-    "src": "images/wedding/w001.jpg",
+    "src": "images/wedding/w001.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w002.jpg",
+    "src": "images/wedding/w002.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w003.jpg",
+    "src": "images/wedding/w003.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w004.jpg",
+    "src": "images/wedding/w004.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w005.jpg",
+    "src": "images/wedding/w005.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w006.jpg",
+    "src": "images/wedding/w006.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w007.jpg",
+    "src": "images/wedding/w007.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w008.jpg",
+    "src": "images/wedding/w008.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w009.jpg",
+    "src": "images/wedding/w009.webp",
     "category": "wedding"
   },
   {
-    "src": "images/wedding/w010.jpg",
+    "src": "images/wedding/w010.webp",
     "category": "wedding"
   },
   {
-    "src": "images/street/S001.jpg",
+    "src": "images/street/S001.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S002.jpg",
+    "src": "images/street/S002.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S003.jpg",
+    "src": "images/street/S003.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S004.jpg",
+    "src": "images/street/S004.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S005.jpg",
+    "src": "images/street/S005.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S006.jpg",
+    "src": "images/street/S006.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S007.jpg",
+    "src": "images/street/S007.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S008.jpg",
+    "src": "images/street/S008.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S009.jpg",
+    "src": "images/street/S009.webp",
     "category": "street"
   },
   {
-    "src": "images/street/S010.jpg",
+    "src": "images/street/S010.webp",
     "category": "street"
   },
   {
-    "src": "images/food/f001.jpg",
+    "src": "images/food/f001.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f002.jpg",
+    "src": "images/food/f002.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f003.jpg",
+    "src": "images/food/f003.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f004.jpg",
+    "src": "images/food/f004.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f005.jpg",
+    "src": "images/food/f005.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f006.jpg",
+    "src": "images/food/f006.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f007.jpg",
+    "src": "images/food/f007.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f008.jpg",
+    "src": "images/food/f008.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f009.jpg",
+    "src": "images/food/f009.webp",
     "category": "food"
   },
   {
-    "src": "images/food/f010.jpg",
+    "src": "images/food/f010.webp",
     "category": "food"
   },
   {
-    "src": "images/event/e001.jpg",
+    "src": "images/event/e001.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e002.jpg",
+    "src": "images/event/e002.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e003.jpg",
+    "src": "images/event/e003.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e004.jpg",
+    "src": "images/event/e004.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e005.jpg",
+    "src": "images/event/e005.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e006.jpg",
+    "src": "images/event/e006.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e007.jpg",
+    "src": "images/event/e007.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e008.jpg",
+    "src": "images/event/e008.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e009.jpg",
+    "src": "images/event/e009.webp",
     "category": "event"
   },
   {
-    "src": "images/event/e010.jpg",
+    "src": "images/event/e010.webp",
     "category": "event"
   },
   {
-    "src": "images/landscape/l001.jpg",
+    "src": "images/landscape/l001.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l002.jpg",
+    "src": "images/landscape/l002.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l003.jpg",
+    "src": "images/landscape/l003.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l004.jpg",
+    "src": "images/landscape/l004.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l005.jpg",
+    "src": "images/landscape/l005.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l006.jpg",
+    "src": "images/landscape/l006.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l007.jpg",
+    "src": "images/landscape/l007.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l008.jpg",
+    "src": "images/landscape/l008.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l009.jpg",
+    "src": "images/landscape/l009.webp",
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l010.jpg",
+    "src": "images/landscape/l010.webp",
     "category": "landscape"
   },
   {
-    "src": "images/creative/c001.jpg",
+    "src": "images/creative/c001.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c002.jpg",
+    "src": "images/creative/c002.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c003.jpg",
+    "src": "images/creative/c003.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c004.jpg",
+    "src": "images/creative/c004.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c005.jpg",
+    "src": "images/creative/c005.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c006.jpg",
+    "src": "images/creative/c006.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c007.jpg",
+    "src": "images/creative/c007.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c008.jpg",
+    "src": "images/creative/c008.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c009.jpg",
+    "src": "images/creative/c009.webp",
     "category": "creative"
   },
   {
-    "src": "images/creative/c010.jpg",
+    "src": "images/creative/c010.webp",
     "category": "creative"
   },
   {
-    "src": "images/kids/k001.jpg",
+    "src": "images/kids/k001.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k002.jpg",
+    "src": "images/kids/k002.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k003.jpg",
+    "src": "images/kids/k003.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k004.jpg",
+    "src": "images/kids/k004.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k005.jpg",
+    "src": "images/kids/k005.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k006.jpg",
+    "src": "images/kids/k006.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k007.jpg",
+    "src": "images/kids/k007.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k008.jpg",
+    "src": "images/kids/k008.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k009.jpg",
+    "src": "images/kids/k009.webp",
     "category": "kids"
   },
   {
-    "src": "images/kids/k010.jpg",
+    "src": "images/kids/k010.webp",
     "category": "kids"
   },
   {
-    "src": "images/architecture/a001.jpg",
+    "src": "images/architecture/a001.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a002.jpg",
+    "src": "images/architecture/a002.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a003.jpg",
+    "src": "images/architecture/a003.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a004.jpg",
+    "src": "images/architecture/a004.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a005.jpg",
+    "src": "images/architecture/a005.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a006.jpg",
+    "src": "images/architecture/a006.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a007.jpg",
+    "src": "images/architecture/a007.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a008.jpg",
+    "src": "images/architecture/a008.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a009.jpg",
+    "src": "images/architecture/a009.webp",
     "category": "architecture"
   },
   {
-    "src": "images/architecture/a010.jpg",
+    "src": "images/architecture/a010.webp",
     "category": "architecture"
   }
 ]
