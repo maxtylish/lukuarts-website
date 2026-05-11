@@ -4,12 +4,343 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>聯絡預約｜LUKUARTS VISUAL 青玥影像</title>
-  <meta name="description" content="與 LUKUARTS 青玥影像聯繫 — 預約人像形象照、商業品牌攝影、活動紀實與攝影教學服務。">
+  <meta name="description" content="預約青玥影像攝影師劉志恆 — 人像形象照、商業品牌攝影、活動紀實與攝影教學。電話 +886-932-754-860，LINE / IG：LUKUARTS。">
+  <meta name="keywords" content="台中攝影師,預約攝影,人像攝影,婚禮攝影,劉志恆,青玥影像,LUKUARTS">
   <link rel="icon" type="image/png" href="images/logo-zh.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ============================================================
+       Contact Page — Full Redesign
+       ============================================================ */
+
+    /* ── 1. Booking Hero ─────────────────────────────────────── */
+    .booking-hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left: photographer portrait */
+    .booking-hero-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .booking-hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(10%) contrast(1.05);
+      transition: transform 0.8s var(--ease);
+    }
+    .booking-hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        transparent 60%,
+        var(--bg-dark) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Right: intro content */
+    .booking-hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--navbar-h) + 48px) clamp(32px, 5vw, 72px) 64px;
+      background: var(--bg-dark);
+      position: relative;
+      z-index: 1;
+    }
+    .booking-hero-content .section-kicker {
+      margin-bottom: var(--space-3);
+    }
+    .booking-hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      color: var(--text-primary);
+      letter-spacing: 4px;
+      line-height: 1.2;
+      margin-bottom: var(--space-2);
+    }
+    .booking-hero-content h1 span {
+      color: var(--accent-gold);
+    }
+    .booking-hero-name {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--surface-line);
+    }
+    .booking-hero-desc {
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      line-height: 1.9;
+      margin-bottom: var(--space-5);
+      max-width: 460px;
+    }
+    .booking-hero-btns {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    /* ── 2. Featured Works Slider ────────────────────────────── */
+    .works-slider-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-darker);
+    }
+    .works-slider-header {
+      text-align: center;
+      padding: clamp(56px, 8vw, 96px) 0 clamp(32px, 4vw, 48px);
+    }
+    .works-slider-header .section-kicker {
+      margin-bottom: var(--space-2);
+    }
+    .works-slider-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: 6px;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    /* Slideshow container */
+    .slideshow {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      will-change: opacity;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.6) 0%,
+        transparent 50%
+      );
+    }
+    .slide-caption {
+      position: absolute;
+      bottom: clamp(20px, 4vw, 40px);
+      left: clamp(24px, 5vw, 64px);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+    }
+
+    /* Slide dots */
+    .slideshow-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 28px 0 clamp(48px, 6vw, 80px);
+    }
+    .slideshow-dots button {
+      width: 28px;
+      height: 2px;
+      background: var(--surface-line);
+      border: none;
+      cursor: pointer;
+      transition: background var(--dur-base) var(--ease),
+                  width var(--dur-base) var(--ease);
+      padding: 0;
+    }
+    .slideshow-dots button.active {
+      background: var(--accent-gold);
+      width: 48px;
+    }
+
+    /* ── 3. Contact Channels ─────────────────────────────────── */
+    .contact-page-main {
+      padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 48px);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contact-page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 96px);
+      align-items: start;
+    }
+
+    /* Channel cards */
+    .contact-channels-area h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: 4px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .contact-channels-area .section-kicker {
+      margin-bottom: var(--space-3);
+    }
+    .contact-channels-area .lead {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: var(--space-5);
+    }
+
+    .channel-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .channel-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--bg-elevated);
+      border: 1px solid var(--surface-line);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color var(--dur-base) var(--ease),
+                  background var(--dur-base) var(--ease),
+                  transform var(--dur-base) var(--ease);
+      cursor: pointer;
+    }
+    .channel-card:hover {
+      border-color: var(--accent-gold);
+      background: rgba(201, 169, 110, 0.05);
+      transform: translateX(4px);
+    }
+    .channel-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .channel-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--accent-gold);
+    }
+    .channel-info {
+      flex: 1;
+    }
+    .channel-label {
+      font-size: 0.68rem;
+      letter-spacing: 2.5px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .channel-value {
+      font-size: 1rem;
+      color: var(--text-primary);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+    .channel-note {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+    .channel-arrow {
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      transition: color var(--dur-base) var(--ease);
+    }
+    .channel-card:hover .channel-arrow {
+      color: var(--accent-gold);
+    }
+
+    /* No-link card (phone only) */
+    .channel-card.no-link {
+      cursor: default;
+    }
+    .channel-card.no-link:hover {
+      transform: none;
+    }
+
+    /* ── 4. Contact Form ─────────────────────────────────────── */
+    .contact-form-area h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: 4px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .contact-form-area .section-kicker {
+      margin-bottom: var(--space-3);
+    }
+    .contact-form-area .lead {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: var(--space-5);
+    }
+
+    /* ── 5. Responsive ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .booking-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .booking-hero-photo {
+        height: 65vw;
+        max-height: 480px;
+      }
+      .booking-hero-photo::after {
+        background: linear-gradient(
+          to bottom,
+          transparent 60%,
+          var(--bg-dark) 100%
+        );
+      }
+      .booking-hero-content {
+        padding: var(--space-5) clamp(20px, 5vw, 40px) var(--space-6);
+      }
+      .slideshow { aspect-ratio: 4 / 3; }
+      .contact-page-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 540px) {
+      .slideshow { aspect-ratio: 1 / 1; }
+      .booking-hero-btns { flex-direction: column; }
+      .booking-hero-btns .btn { text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
@@ -28,45 +359,224 @@
   </nav>
 
   <main>
-    <section class="contact-wrap">
-      <span class="section-kicker">Contact</span>
-      <h1>聯絡預約</h1>
-      <p class="lead">有拍攝需求嗎？請留下您的資訊，我將在 24 小時內回覆。</p>
 
-      <form action="https://formspree.io/f/mgonlnrq" method="POST" class="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">NAME 姓名</label>
-            <input type="text" id="name" name="name" placeholder="您的姓名" required>
-          </div>
-          <div class="form-group">
-            <label for="email">EMAIL 信箱</label>
-            <input type="email" id="email" name="email" placeholder="您的 Email" required>
-          </div>
+    <!-- ══ 1. BOOKING HERO ══════════════════════════════════════ -->
+    <section class="booking-hero">
+
+      <!-- Left: personal photo -->
+      <div class="booking-hero-photo">
+        <img src="images/about-profile.jpg"
+             alt="攝影師劉志恆 — 青玥影像負責人"
+             loading="eager">
+      </div>
+
+      <!-- Right: intro + CTA -->
+      <div class="booking-hero-content reveal">
+        <span class="section-kicker">Booking &amp; Contact</span>
+        <h1>立即<span>諮詢</span><br>預約拍攝</h1>
+        <p class="booking-hero-name">
+          劉志恆 · Nikon School 官方攝影講師 · 青玥影像
+        </p>
+        <p class="booking-hero-desc">
+          台中專業攝影工作室，專注人像形象、商業品牌與活動紀實。
+          無論是個人形象照、品牌視覺或婚禮紀錄，歡迎直接聯繫，
+          將於 24 小時內回覆。
+        </p>
+        <div class="booking-hero-btns">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="btn btn-primary">
+            LINE 立即諮詢
+          </a>
+          <a href="#contact-form" class="btn btn-outline">
+            填寫表單預約
+          </a>
         </div>
-
-        <div class="form-group">
-          <label for="subject">SUBJECT 主題</label>
-          <input type="text" id="subject" name="subject" placeholder="例：個人形象照、品牌商攝、活動紀錄…">
-        </div>
-
-        <div class="form-group">
-          <label for="message">MESSAGE 訊息</label>
-          <textarea id="message" name="message" rows="6" placeholder="請說明您的拍攝需求、預計日期與地點…" required></textarea>
-        </div>
-
-        <div style="text-align:center; margin-top: 8px;">
-          <button type="submit" class="btn btn-primary">SEND MESSAGE 送出</button>
-        </div>
-      </form>
-
-      <p class="contact-alt">
-        或直接透過 <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener">LINE</a>
-        ／ <a href="mailto:maxtylish@gmail.com">maxtylish@gmail.com</a> 聯繫
-      </p>
+      </div>
     </section>
+
+    <!-- ══ 2. FEATURED WORKS SLIDESHOW ══════════════════════════ -->
+    <section class="works-slider-section">
+      <div class="works-slider-header reveal">
+        <span class="section-kicker">Selected Works</span>
+        <h2>代表作品</h2>
+      </div>
+
+      <div class="slideshow" id="mainSlideshow" aria-label="代表作品幻燈片">
+        <div class="slide active">
+          <img src="images/homepage/H01.jpg" alt="人像攝影作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Portrait — Taichung</span>
+        </div>
+        <div class="slide">
+          <img src="images/homepage/H02.jpg" alt="婚禮攝影作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Wedding — Taiwan</span>
+        </div>
+        <div class="slide">
+          <img src="images/homepage/H03.jpg" alt="商業攝影作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Commercial — Brand Visual</span>
+        </div>
+        <div class="slide">
+          <img src="images/homepage/H04.jpg" alt="活動紀實作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Event — Documentary</span>
+        </div>
+        <div class="slide">
+          <img src="images/homepage/H05.jpg" alt="風景攝影作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Landscape — Taiwan</span>
+        </div>
+        <div class="slide">
+          <img src="images/homepage/H06.jpg" alt="攝影作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Visual Story — LUKUARTS</span>
+        </div>
+        <div class="slide">
+          <img src="images/homepage/H07.jpg" alt="攝影作品" loading="lazy">
+          <div class="slide-overlay"></div>
+          <span class="slide-caption">Visual Story — LUKUARTS</span>
+        </div>
+      </div>
+
+      <div class="slideshow-dots" id="slideshowDots" role="tablist" aria-label="選擇幻燈片"></div>
+    </section>
+
+    <!-- ══ 3. CONTACT CHANNELS + FORM ═══════════════════════════ -->
+    <section class="contact-page-main" id="contact-form">
+      <div class="contact-page-grid">
+
+        <!-- Left: contact channels -->
+        <div class="contact-channels-area reveal">
+          <span class="section-kicker">Get in Touch</span>
+          <h2>聯絡方式</h2>
+          <p class="lead">
+            歡迎透過以下任一方式與我聯繫。LINE 回覆最快，
+            Facebook / Instagram 也會定期更新拍攝動態。
+          </p>
+
+          <div class="channel-list">
+
+            <!-- Phone -->
+            <div class="channel-card no-link">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.02l-2.2 2.18z"/>
+                </svg>
+              </div>
+              <div class="channel-info">
+                <div class="channel-label">Phone 電話</div>
+                <div class="channel-value">+886 932 754 860</div>
+                <div class="channel-note">歡迎來電或傳送簡訊</div>
+              </div>
+            </div>
+
+            <!-- LINE -->
+            <a href="https://line.me/R/ti/p/MAXTYLISH"
+               target="_blank" rel="noopener"
+               class="channel-card"
+               aria-label="LINE 聯繫">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.141h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                </svg>
+              </div>
+              <div class="channel-info">
+                <div class="channel-label">LINE</div>
+                <div class="channel-value">MAXTYLISH</div>
+                <div class="channel-note">請來訊或電聯後加入好友</div>
+              </div>
+              <span class="channel-arrow">→</span>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/lukuarts"
+               target="_blank" rel="noopener"
+               class="channel-card"
+               aria-label="Instagram">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </div>
+              <div class="channel-info">
+                <div class="channel-label">Instagram</div>
+                <div class="channel-value">@lukuarts</div>
+                <div class="channel-note">Follow me for latest works</div>
+              </div>
+              <span class="channel-arrow">→</span>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/Lukuarts1973"
+               target="_blank" rel="noopener"
+               class="channel-card"
+               aria-label="Facebook">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <div class="channel-info">
+                <div class="channel-label">Facebook</div>
+                <div class="channel-value">Lukuarts</div>
+                <div class="channel-note">青玥影像官方粉絲專頁</div>
+              </div>
+              <span class="channel-arrow">→</span>
+            </a>
+
+          </div><!-- /channel-list -->
+        </div><!-- /contact-channels-area -->
+
+        <!-- Right: inquiry form -->
+        <div class="contact-form-area reveal">
+          <span class="section-kicker">Send Enquiry</span>
+          <h2>填寫預約表單</h2>
+          <p class="lead">
+            請填寫以下資訊，說明您的拍攝需求，
+            我將在 24 小時內與您確認細節。
+          </p>
+
+          <form action="https://formspree.io/f/mgonlnrq" method="POST" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">NAME 姓名</label>
+                <input type="text" id="name" name="name" placeholder="您的姓名" required>
+              </div>
+              <div class="form-group">
+                <label for="email">EMAIL 信箱</label>
+                <input type="email" id="email" name="email" placeholder="您的 Email" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">PHONE 電話</label>
+              <input type="tel" id="phone" name="phone" placeholder="您的聯絡電話">
+            </div>
+
+            <div class="form-group">
+              <label for="subject">SUBJECT 拍攝類型</label>
+              <input type="text" id="subject" name="subject" placeholder="例：個人形象照、品牌商攝、婚禮紀錄…">
+            </div>
+
+            <div class="form-group">
+              <label for="message">MESSAGE 拍攝需求</label>
+              <textarea id="message" name="message" rows="5" placeholder="請說明您的拍攝需求、預計日期、地點或其他備注…" required></textarea>
+            </div>
+
+            <div style="text-align:center; margin-top: var(--space-4);">
+              <button type="submit" class="btn btn-primary" style="min-width: 200px;">
+                SEND MESSAGE 送出
+              </button>
+            </div>
+          </form>
+        </div><!-- /contact-form-area -->
+
+      </div><!-- /contact-page-grid -->
+    </section>
+
   </main>
 
+  <!-- ══ FOOTER ════════════════════════════════════════════════ -->
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -97,8 +607,8 @@
         <div class="footer-social">
           <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
           <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          <a href="https://www.facebook.com/Lukuarts" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://instagram.com/lukuarts" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.facebook.com/Lukuarts1973" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
         </div>
       </div>
     </div>
@@ -106,5 +616,55 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    /* ── Slideshow ─────────────────────────────────────────────── */
+    (function () {
+      const slides = document.querySelectorAll('#mainSlideshow .slide');
+      const dotsContainer = document.getElementById('slideshowDots');
+      let current = 0;
+      let timer;
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-label', '幻燈片 ' + (i + 1));
+        btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        if (i === 0) btn.classList.add('active');
+        btn.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(btn);
+      });
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dotsContainer.children[current].classList.remove('active');
+        dotsContainer.children[current].setAttribute('aria-selected', 'false');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dotsContainer.children[current].classList.add('active');
+        dotsContainer.children[current].setAttribute('aria-selected', 'true');
+      }
+
+      function next() { goTo(current + 1); }
+
+      function startAuto() { timer = setInterval(next, 4500); }
+      function stopAuto()  { clearInterval(timer); }
+
+      startAuto();
+
+      // Pause on hover
+      const slideshow = document.getElementById('mainSlideshow');
+      slideshow.addEventListener('mouseenter', stopAuto);
+      slideshow.addEventListener('mouseleave', startAuto);
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      slideshow.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      slideshow.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+    })();
+  </script>
 </body>
 </html>
