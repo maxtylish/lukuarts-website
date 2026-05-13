@@ -102,11 +102,10 @@
     });
   }
 
-  /* ---------- 4. Hero parallax ---------- */
+  /* ---------- 4. Hero parallax (legacy hero) ---------- */
   function initParallax() {
     const bg = $('.hero-bg');
     if (!bg || prefersReducedMotion) return;
-
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (ticking) return;
@@ -117,6 +116,48 @@
         ticking = false;
       });
     }, { passive: true });
+  }
+
+  /* ---------- 4b. Editorial hero slideshow ---------- */
+  function initEdHero() {
+    const slides  = $$('.ed-slide');
+    const curEl   = $('.ed-counter-cur');
+    const totEl   = $('.ed-counter-tot');
+    if (!slides.length) return;
+
+    let idx   = 0;
+    let timer = null;
+    const pad = n => String(n).padStart(2, '0');
+
+    if (totEl) totEl.textContent = pad(slides.length);
+
+    function goTo(next) {
+      slides[idx].classList.remove('active');
+      idx = (next + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      if (curEl) curEl.textContent = pad(idx + 1);
+    }
+
+    function start() { timer = setInterval(() => goTo(idx + 1), 5500); }
+    function stop()  { clearInterval(timer); }
+
+    start();
+
+    // Pause when tab hidden
+    document.addEventListener('visibilitychange', () => {
+      document.hidden ? stop() : start();
+    });
+
+    // Touch swipe
+    const hero = $('.ed-hero');
+    if (hero) {
+      let sx = 0;
+      hero.addEventListener('touchstart', e => { sx = e.changedTouches[0].clientX; }, { passive: true });
+      hero.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 50) { stop(); goTo(idx + (dx < 0 ? 1 : -1)); start(); }
+      }, { passive: true });
+    }
   }
 
   /* ---------- 5. Portfolio gallery (images.json) ---------- */
@@ -336,6 +377,7 @@
     initReveal();
     initSakura();
     initParallax();
+    initEdHero();
     initGallery();
     initBlogGrid();
     initAnchorOffset();
