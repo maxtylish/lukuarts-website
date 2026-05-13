@@ -32,7 +32,7 @@
   </noscript>
 
   <!-- ── Preload critical assets ──────────────────────────────── -->
-  <link rel="preload" href="images/homepage/H01.webp" as="image">
+  <link rel="preload" href="images/portrait/p001.webp" as="image">
   <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
 
@@ -113,48 +113,44 @@
 
   <main>
 
-    <!-- ══ 1. HERO — Full-viewport editorial ════════════════════ -->
+    <!-- ══ 1. HERO — Split editorial layout ════════════════════ -->
     <section id="home" class="ed-hero" aria-label="Hero">
 
-      <!-- Background cycling images -->
-      <div class="ed-hero-slides" aria-hidden="true">
-        <div class="ed-slide active" style="background-image:url('images/homepage/H01.webp')"></div>
-        <div class="ed-slide"        style="background-image:url('images/homepage/H02.webp')"></div>
-        <div class="ed-slide"        style="background-image:url('images/homepage/H03.webp')"></div>
-        <div class="ed-slide"        style="background-image:url('images/homepage/H04.webp')"></div>
-        <div class="ed-slide"        style="background-image:url('images/homepage/H05.webp')"></div>
+      <!-- Left: Image panel -->
+      <div class="ed-hero-img">
+        <img src="images/portrait/p001.webp"       alt="人像形象攝影" class="ed-slide active" loading="eager">
+        <img src="images/architecture/a003.webp"   alt="建築攝影"     class="ed-slide"        loading="lazy">
+        <img src="images/kids/k001.webp"           alt="親子寫真"     class="ed-slide"        loading="lazy">
+        <img src="images/creative/c004.webp"       alt="影像創作"     class="ed-slide"        loading="lazy">
+        <img src="images/landscape/l006.webp"      alt="風景攝影"     class="ed-slide"        loading="lazy">
+        <!-- Slide counter -->
+        <div class="ed-hero-counter" aria-hidden="true">
+          <span class="ed-counter-cur">01</span>
+          <span class="ed-counter-sep"></span>
+          <span class="ed-counter-tot">05</span>
+        </div>
       </div>
-      <div class="ed-hero-overlay" aria-hidden="true"></div>
-      <div id="sakura-rain" class="sakura-container" aria-hidden="true"></div>
 
-      <!-- Content -->
-      <div class="ed-hero-content">
+      <!-- Right: Brand panel -->
+      <div class="ed-hero-brand">
+        <div id="sakura-rain" class="sakura-container" aria-hidden="true"></div>
         <p class="ed-hero-eyebrow">台中 · 青玥影像 · 劉志恆</p>
         <h1 class="ed-hero-title">
           <em>LUKU</em>ARTS
           <span>VISUAL</span>
         </h1>
-        <div class="ed-hero-foot">
-          <p class="ed-hero-sub">人像形象 &thinsp;·&thinsp; 商業品牌 &thinsp;·&thinsp; 婚禮紀錄 &thinsp;·&thinsp; 活動紀實</p>
-          <div class="ed-hero-btns">
-            <a href="#works" class="btn btn-outline">瀏覽作品</a>
-            <a href="contact.html" class="btn btn-primary">預約拍攝</a>
-          </div>
+        <p class="ed-hero-sub">人像形象 &thinsp;·&thinsp; 商業品牌 &thinsp;·&thinsp; 婚禮紀錄 &thinsp;·&thinsp; 活動紀實</p>
+        <div class="ed-hero-btns">
+          <a href="#works" class="btn btn-outline">瀏覽作品</a>
+          <a href="contact.html" class="btn btn-primary">預約拍攝</a>
         </div>
+        <!-- Scroll cue -->
+        <a href="#works" class="ed-scroll-cue" aria-label="向下滾動">
+          <span>SCROLL</span>
+          <div class="ed-scroll-line"></div>
+        </a>
       </div>
 
-      <!-- Slide counter -->
-      <div class="ed-hero-counter" aria-hidden="true">
-        <span class="ed-counter-cur">01</span>
-        <span class="ed-counter-sep"></span>
-        <span class="ed-counter-tot">05</span>
-      </div>
-
-      <!-- Scroll indicator -->
-      <a href="#works" class="ed-scroll-cue" aria-label="向下滾動">
-        <span>SCROLL</span>
-        <div class="ed-scroll-line"></div>
-      </a>
     </section>
 
     <!-- ══ 2. MARQUEE — Services ticker ════════════════════════ -->
