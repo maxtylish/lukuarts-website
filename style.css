@@ -1737,6 +1737,8 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
 .ed-hero-img {
   position: relative;
   overflow: hidden;
+  height: 100%;
+  min-height: 0;
 }
 .ed-hero-img::after {
   content: '';
