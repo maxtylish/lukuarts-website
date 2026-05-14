@@ -138,7 +138,7 @@
       if (curEl) curEl.textContent = pad(idx + 1);
     }
 
-    function start() { timer = setInterval(() => goTo(idx + 1), 5500); }
+    function start() { timer = setInterval(() => goTo(idx + 1), 8000); }
     function stop()  { clearInterval(timer); }
 
     start();
