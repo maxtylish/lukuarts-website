@@ -4,9 +4,9 @@
    ============================================================ */
 
 /* ===== 0. Performance ===== */
-/* Lazy-load fade-in */
-img[loading="lazy"] { opacity: 0; transition: opacity 0.5s ease; }
-img[loading="lazy"].loaded { opacity: 1; }
+/* Lazy-load fade-in — exclude hero slides (controlled by slideshow JS) */
+img[loading="lazy"]:not(.ed-slide) { opacity: 0; transition: opacity 0.5s ease; }
+img[loading="lazy"]:not(.ed-slide).loaded { opacity: 1; }
 
 /* ===== 1. Design Tokens ===== */
 :root {
