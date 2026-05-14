@@ -383,5 +383,9 @@
     initAnchorOffset();
     initLazyFade();
     // Lightbox bound lazily when triggers exist (e.g., gallery render)
+
+    // Remove loader from DOM after animation completes
+    const loader = document.getElementById('page-loader');
+    if (loader) setTimeout(() => loader.remove(), 2500);
   });
 })();
