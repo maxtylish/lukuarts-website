@@ -6,7 +6,11 @@
   <title>聯絡預約｜LUKUARTS VISUAL 青玥影像</title>
   <meta name="description" content="預約青玥影像攝影師劉志恆 — 人像形象照、商業品牌攝影、活動紀實與攝影教學。電話 +886-932-754-860，LINE / IG：LUKUARTS。">
   <meta name="keywords" content="台中攝影師,預約攝影,人像攝影,婚禮攝影,劉志恆,青玥影像,LUKUARTS">
+  <meta property="og:title" content="聯絡預約｜LUKUARTS VISUAL 青玥影像">
+  <meta property="og:description" content="台中攝影師劉志恆，提供人像形象、商業品牌、活動紀實與婚禮攝影服務。">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="canonical" href="contact.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +18,7 @@
 
   <style>
     /* ============================================================
-       Contact Page — Full Redesign
+       Contact Page Styles
        ============================================================ */
 
     /* ── 1. Booking Hero ─────────────────────────────────────── */
@@ -25,8 +29,6 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* Left: photographer portrait */
     .booking-hero-photo {
       position: relative;
       overflow: hidden;
@@ -40,19 +42,16 @@
       filter: grayscale(10%) contrast(1.05);
       transition: transform 0.8s var(--ease);
     }
+    .booking-hero-photo:hover img {
+      transform: scale(1.03);
+    }
     .booking-hero-photo::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        transparent 60%,
-        var(--bg-dark) 100%
-      );
+      background: linear-gradient(to right, transparent 60%, var(--bg-dark) 100%);
       pointer-events: none;
     }
-
-    /* Right: intro content */
     .booking-hero-content {
       display: flex;
       flex-direction: column;
@@ -97,61 +96,710 @@
       gap: var(--space-2);
       flex-wrap: wrap;
     }
-
-    /* ── 2. Featured Works Slider ────────────────────────────── */
-    .works-slider-section {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-darker);
+    .booking-hero-stats {
+      display: flex;
+      gap: var(--space-5);
+      margin-top: var(--space-5);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--surface-line);
     }
-    .works-slider-header {
-      text-align: center;
-      padding: clamp(56px, 8vw, 96px) 0 clamp(32px, 4vw, 48px);
+    .booking-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-    .works-slider-header .section-kicker {
-      margin-bottom: var(--space-2);
-    }
-    .works-slider-header h2 {
+    .booking-stat-num {
       font-family: var(--font-heading);
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      letter-spacing: 6px;
-      color: var(--text-primary);
+      font-size: 1.8rem;
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+    .booking-stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--text-dim);
       text-transform: uppercase;
     }
 
-    /* Slideshow container */
-    .slideshow {
-      position: relative;
+    /* ── 2. Contact Form Section ─────────────────────────────── */
+    .contact-section {
+      background: var(--bg-darker);
+      padding: var(--section-py) 0;
+    }
+    .contact-section-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(48px, 6vw, 96px);
+      align-items: start;
+    }
+    .contact-info-col {
+      position: sticky;
+      top: calc(var(--navbar-h) + 32px);
+    }
+    .contact-info-col .section-kicker {
+      margin-bottom: var(--space-3);
+    }
+    .contact-info-col h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--text-primary);
+      letter-spacing: 3px;
+      line-height: 1.25;
+      margin-bottom: var(--space-3);
+    }
+    .contact-info-col h2 em {
+      color: var(--accent-gold);
+      font-style: normal;
+    }
+    .contact-info-col > p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: var(--space-5);
+    }
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: 1px solid var(--surface-line);
+      background: var(--bg-elevated);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .contact-channel:hover {
+      border-color: var(--accent-gold);
+      background: var(--accent-soft);
+    }
+    .contact-channel-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--surface-line);
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .contact-channel-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .contact-channel-label {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .contact-channel-value {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+    .contact-response-note {
+      margin-top: var(--space-4);
+      padding: var(--space-3);
+      border-left: 2px solid var(--accent-gold);
+      background: var(--accent-soft);
+    }
+    .contact-response-note p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── 3. Inquiry Form ─────────────────────────────────────── */
+    .inquiry-form-wrap {
+      background: var(--bg-elevated);
+      border: 1px solid var(--surface-line);
+      padding: clamp(32px, 4vw, 56px);
+    }
+    .inquiry-form-header {
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--surface-line);
+    }
+    .inquiry-form-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      letter-spacing: 3px;
+      margin-bottom: var(--space-1);
+    }
+    .inquiry-form-header p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    /* Service type tabs */
+    .service-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: var(--space-4);
+    }
+    .service-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 8px;
+      border: 1px solid var(--surface-line);
+      background: transparent;
+      cursor: pointer;
+      color: var(--text-dim);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+    .service-tab:hover {
+      border-color: rgba(201,169,110,0.4);
+      color: var(--text-muted);
+    }
+    .service-tab.active {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      background: var(--accent-soft);
+    }
+    .service-tab-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* Form fields */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .form-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .form-label .required {
+      color: var(--accent-gold);
+      margin-left: 2px;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: var(--bg-dark);
+      border: 1px solid var(--surface-line);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.93rem;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.25s ease;
       width: 100%;
-      aspect-ratio: 16 / 7;
-      overflow: hidden;
+      box-sizing: border-box;
+      appearance: none;
+      -webkit-appearance: none;
     }
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-      will-change: opacity;
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a96e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
     }
-    .slide.active {
-      opacity: 1;
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.7;
     }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--accent-gold);
     }
-    .slide-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.6) 0%,
-        transparent 50%
-      );
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-dim);
     }
-    .slide-caption {
-      position: absolute;
-      bottom: clamp(20px, 4vw, 40px);
-      left
+    .form-input:focus::placeholder,
+    .form-textarea:focus::placeholder {
+      color: transparent;
+    }
+    .form-submit-row {
+      margin-top: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+    .form-submit-note {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      flex: 1;
+      min-width: 180px;
+    }
+    .form-success {
+      display: none;
+      padding: var(--space-4);
+      border: 1px solid var(--accent-gold);
+      background: var(--accent-soft);
+      text-align: center;
+      margin-top: var(--space-3);
+    }
+    .form-success p {
+      color: var(--text-primary);
+      font-size: 0.93rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .form-success p strong {
+      color: var(--accent-gold);
+    }
+
+    /* ── 4. FAQ Strip ────────────────────────────────────────── */
+    .faq-strip {
+      background: var(--bg-dark);
+      padding: var(--section-py) 0;
+    }
+    .faq-strip-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+    .faq-strip-header {
+      text-align: center;
+      margin-bottom: clamp(40px, 6vw, 64px);
+    }
+    .faq-strip-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: var(--text-primary);
+      letter-spacing: 4px;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--surface-line);
+      border: 1px solid var(--surface-line);
+    }
+    .faq-item {
+      background: var(--bg-dark);
+      padding: var(--space-4) var(--space-5);
+    }
+    .faq-item h4 {
+      font-size: 0.88rem;
+      color: var(--accent-gold);
+      letter-spacing: 1px;
+      margin-bottom: var(--space-2);
+      font-weight: 500;
+    }
+    .faq-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ── 5. Responsive ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .booking-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .booking-hero-photo {
+        height: 45vh;
+      }
+      .booking-hero-photo::after {
+        background: linear-gradient(to bottom, transparent 60%, var(--bg-dark) 100%);
+      }
+      .booking-hero-content {
+        padding: var(--space-5) clamp(24px, 5vw, 48px) var(--space-6);
+      }
+      .contact-section-inner {
+        grid-template-columns: 1fr;
+      }
+      .contact-info-col {
+        position: static;
+      }
+      .service-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width {
+        grid-column: auto;
+      }
+    }
+    @media (max-width: 480px) {
+      .booking-hero-stats {
+        gap: var(--space-4);
+      }
+      .service-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-brand">
+      <span class="loader-luku">LUKU</span><span class="loader-arts">ARTS</span>
+      <span class="loader-visual">VISUAL</span>
+    </div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="pricing.html">方案報價</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html" class="active">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ============ BOOKING HERO ============ -->
+    <section class="booking-hero" aria-label="預約攝影">
+      <div class="booking-hero-photo">
+        <img src="images/me001.webp" alt="攝影師劉志恆 LUKUARTS" loading="eager">
+      </div>
+      <div class="booking-hero-content">
+        <span class="section-kicker">Book a Session</span>
+        <h1>開始一段<br><span>影像旅程</span></h1>
+        <p class="booking-hero-name">劉志恆 — LUKUARTS VISUAL</p>
+        <p class="booking-hero-desc">
+          每一次合作都從一段對話開始。<br>
+          告訴我你想留下什麼樣的影像，<br>
+          我們一起找到最合適的方式呈現。
+        </p>
+        <div class="booking-hero-btns">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="btn btn-primary">LINE 立即諮詢</a>
+          <a href="#inquiry-form" class="btn btn-outline">填寫詢問表單</a>
+        </div>
+        <div class="booking-hero-stats">
+          <div class="booking-stat-item">
+            <span class="booking-stat-num">8+</span>
+            <span class="booking-stat-label">年攝影經歷</span>
+          </div>
+          <div class="booking-stat-item">
+            <span class="booking-stat-num">500+</span>
+            <span class="booking-stat-label">服務客戶</span>
+          </div>
+          <div class="booking-stat-item">
+            <span class="booking-stat-num">24h</span>
+            <span class="booking-stat-label">回覆時效</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT + FORM ============ -->
+    <section class="contact-section" id="inquiry-form" aria-label="詢問表單">
+      <div class="contact-section-inner">
+
+        <!-- Left: info column -->
+        <div class="contact-info-col reveal">
+          <span class="section-kicker">Get in Touch</span>
+          <h2>讓我們<br><em>聊聊你的案子</em></h2>
+          <p>
+            無論是個人品牌形象、企業商業攝影、
+            婚禮紀錄還是活動紀實，歡迎透過以下方式
+            與我聯繫，我會在 24 小時內回覆。
+          </p>
+
+          <div class="contact-channels">
+            <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="contact-channel">
+              <div class="contact-channel-icon">LI</div>
+              <div class="contact-channel-body">
+                <span class="contact-channel-label">LINE 即時諮詢</span>
+                <span class="contact-channel-value">@MAXTYLISH</span>
+              </div>
+            </a>
+            <a href="tel:+886932754860" class="contact-channel">
+              <div class="contact-channel-icon">TEL</div>
+              <div class="contact-channel-body">
+                <span class="contact-channel-label">電話</span>
+                <span class="contact-channel-value">+886-932-754-860</span>
+              </div>
+            </a>
+            <a href="mailto:maxtylish@gmail.com" class="contact-channel">
+              <div class="contact-channel-icon">@</div>
+              <div class="contact-channel-body">
+                <span class="contact-channel-label">Email</span>
+                <span class="contact-channel-value">maxtylish@gmail.com</span>
+              </div>
+            </a>
+            <a href="https://instagram.com/lukuarts" target="_blank" rel="noopener" class="contact-channel">
+              <div class="contact-channel-icon">IG</div>
+              <div class="contact-channel-body">
+                <span class="contact-channel-label">Instagram</span>
+                <span class="contact-channel-value">@lukuarts</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact-response-note">
+            <p>
+              婚禮檔期建議提前 <strong style="color:var(--accent-gold)">3–6 個月</strong> 預約。<br>
+              商業攝影與人像形象照通常可安排於 2–4 週內。
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: inquiry form -->
+        <div class="inquiry-form-wrap reveal">
+          <div class="inquiry-form-header">
+            <h3>INQUIRY FORM</h3>
+            <p>填寫下方表單，我將盡快與你聯繫確認細節</p>
+          </div>
+
+          <!-- Service type selector -->
+          <div class="service-tabs" role="group" aria-label="選擇拍攝類型">
+            <button type="button" class="service-tab active" data-service="portrait" aria-pressed="true">
+              <span class="service-tab-icon">◈</span>
+              人像形象
+            </button>
+            <button type="button" class="service-tab" data-service="commercial" aria-pressed="false">
+              <span class="service-tab-icon">◉</span>
+              品牌商業
+            </button>
+            <button type="button" class="service-tab" data-service="event" aria-pressed="false">
+              <span class="service-tab-icon">◎</span>
+              活動紀實
+            </button>
+            <button type="button" class="service-tab" data-service="wedding" aria-pressed="false">
+              <span class="service-tab-icon">◇</span>
+              婚禮紀錄
+            </button>
+          </div>
+
+          <!-- Form -->
+          <!-- Replace action URL with your Formspree endpoint: https://formspree.io/f/YOUR_ID -->
+          <form class="form-grid" id="contactForm" action="https://formspree.io/f/mgonlnrq" method="POST" novalidate>
+            <input type="hidden" name="service_type" id="serviceTypeInput" value="人像形象攝影">
+
+            <div class="form-group">
+              <label class="form-label" for="name">姓名 <span class="required">*</span></label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="你的姓名" required autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">電話 / LINE ID <span class="required">*</span></label>
+              <input type="text" id="phone" name="phone" class="form-input" placeholder="0912-345-678 或 LINE ID" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="email">電子郵件</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" autocomplete="email">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="shoot-date">預計拍攝日期</label>
+              <input type="date" id="shoot-date" name="shoot_date" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="location">拍攝地點 / 城市</label>
+              <input type="text" id="location" name="location" class="form-input" placeholder="台中市、台北市…">
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="budget">預算範圍</label>
+              <select id="budget" name="budget" class="form-select">
+                <option value="" disabled selected>請選擇預算範圍</option>
+                <option value="under-5k">NT$5,000 以下</option>
+                <option value="5k-10k">NT$5,000 – NT$10,000</option>
+                <option value="10k-20k">NT$10,000 – NT$20,000</option>
+                <option value="20k-40k">NT$20,000 – NT$40,000</option>
+                <option value="40k+">NT$40,000 以上</option>
+                <option value="discuss">依需求再討論</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="message">需求說明 <span class="required">*</span></label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="請描述你的拍攝需求、用途、風格偏好，或任何想讓我事先了解的事情…" required></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <div class="form-submit-row">
+                <button type="submit" class="btn btn-primary">送出詢問</button>
+                <p class="form-submit-note">填寫完成後我將在 24 小時內以電話或 LINE 與你聯繫確認細節。</p>
+              </div>
+              <div class="form-success" id="formSuccess">
+                <p>✦ &nbsp;<strong>已收到你的詢問！</strong><br>我將在 24 小時內回覆，感謝你的信任。</p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ FAQ STRIP ============ -->
+    <section class="faq-strip" aria-label="常見問題">
+      <div class="faq-strip-inner">
+        <div class="faq-strip-header reveal">
+          <span class="section-kicker">FAQ</span>
+          <h2>常見問題</h2>
+        </div>
+        <div class="faq-grid">
+          <div class="faq-item reveal">
+            <h4>多久前需要預約？</h4>
+            <p>人像與商業攝影通常 2–4 週可安排；婚禮建議提前 3–6 個月確認檔期，熱門日期更建議提早。</p>
+          </div>
+          <div class="faq-item reveal">
+            <h4>照片何時交付？</h4>
+            <p>精選後製完成後約 7–14 個工作天交付；婚禮全套為 30 天內。交付方式為雲端相簿下載連結。</p>
+          </div>
+          <div class="faq-item reveal">
+            <h4>可以指定拍攝風格嗎？</h4>
+            <p>當然可以。諮詢時歡迎提供參考圖片或說明偏好風格，我會根據你的需求調整拍攝與後製方向。</p>
+          </div>
+          <div class="faq-item reveal">
+            <h4>需要付訂金嗎？</h4>
+            <p>確認合作後需支付 30% 訂金以保留檔期，餘款於拍攝當日或交付前結清，詳細條款依合約為準。</p>
+          </div>
+          <div class="faq-item reveal">
+            <h4>提供授權使用嗎？</h4>
+            <p>基本授權包含個人、社群與非商業用途。商業授權（廣告投放、媒體出版等）請於諮詢時告知，另行報價。</p>
+          </div>
+          <div class="faq-item reveal">
+            <h4>拍攝當天如果下雨怎麼辦？</h4>
+            <p>戶外拍攝遇惡劣天候可提前協商改期，一次免費更改；室內棚拍不受影響。詳情依合約條款執行。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="pricing.html">方案報價</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="wedding.html">婚禮紀實攝影</a></li>
+          <li><a href="food.html">商業美食攝影</a></li>
+          <li><a href="event.html">活動紀實攝影</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/lukuarts" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.facebook.com/Lukuarts" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
+  </footer>
+
+  <script>
+    // Service type tab switcher
+    const tabs = document.querySelectorAll('.service-tab');
+    const serviceInput = document.getElementById('serviceTypeInput');
+    const serviceLabels = {
+      portrait: '人像形象攝影',
+      commercial: '品牌商業攝影',
+      event: '活動紀實攝影',
+      wedding: '婚禮紀錄攝影'
+    };
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
+        tab.classList.add('active');
+        tab.setAttribute('aria-pressed', 'true');
+        serviceInput.value = serviceLabels[tab.dataset.service] || tab.dataset.service;
+      });
+    });
+
+    // Form submission (Formspree AJAX)
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('formSuccess');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+          } else {
+            alert('送出失敗，請直接以 LINE 或 Email 與我聯繫，謝謝。');
+          }
+        } catch {
+          alert('網路錯誤，請直接以 LINE 或 Email 與我聯繫，謝謝。');
+        }
+      });
+    }
+
+    // Smooth scroll for anchor link
+    document.querySelector('a[href="#inquiry-form"]')?.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>攝影方案報價｜LUKUARTS VISUAL 青玥影像 台中攝影師</title>
+  <meta name="description" content="青玥影像攝影方案報價 — 人像形象照 NT$3,000 起、品牌商業攝影 NT$8,000 起、活動紀實 NT$6,000 起、婚禮紀錄洽詢。台中攝影師劉志恆。">
+  <meta name="keywords" content="台中攝影師報價,攝影方案,人像攝影費用,婚禮攝影費用,商業攝影報價,青玥影像,LUKUARTS">
+  <meta property="og:title" content="攝影方案報價｜LUKUARTS VISUAL 青玥影像">
+  <meta property="og:description" content="人像形象、品牌商業、活動紀實、婚禮紀錄攝影方案報價。台中攝影師劉志恆。">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="images/logo-zh.png">
+  <link rel="canonical" href="pricing.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ============================================================
+       Pricing Page Styles
+       ============================================================ */
+
+    /* ── 1. Pricing Hero ─────────────────────────────────────── */
+    .pricing-hero {
+      min-height: 52vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--navbar-h) + 64px) clamp(24px, 5vw, 80px) 72px;
+      background: var(--bg-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(201,169,110,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pricing-hero-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--accent-gold));
+      margin: 0 auto var(--space-4);
+    }
+    .pricing-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: var(--text-primary);
+      letter-spacing: 6px;
+      line-height: 1.15;
+      margin-bottom: var(--space-3);
+    }
+    .pricing-hero h1 em {
+      color: var(--accent-gold);
+      font-style: normal;
+    }
+    .pricing-hero-sub {
+      font-size: clamp(0.88rem, 1.5vw, 1rem);
+      color: var(--text-muted);
+      line-height: 1.85;
+      max-width: 560px;
+      margin: 0 auto var(--space-5);
+    }
+    .pricing-nav-tabs {
+      display: flex;
+      gap: 2px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--surface-line);
+      padding: 4px;
+    }
+    .pricing-nav-tab {
+      padding: 10px 24px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .pricing-nav-tab:hover {
+      color: var(--text-muted);
+    }
+    .pricing-nav-tab.active {
+      background: var(--accent-gold);
+      color: var(--bg-dark);
+      font-weight: 600;
+    }
+
+    /* ── 2. Pricing Sections ─────────────────────────────────── */
+    .pricing-section {
+      padding: var(--section-py) 0;
+      display: none;
+    }
+    .pricing-section.active {
+      display: block;
+    }
+    .pricing-section:nth-child(odd) {
+      background: var(--bg-darker);
+    }
+    .pricing-section:nth-child(even) {
+      background: var(--bg-dark);
+    }
+    /* Override — alternate BG by section ID */
+    #sec-portrait  { background: var(--bg-darker); }
+    #sec-commercial { background: var(--bg-dark); }
+    #sec-event     { background: var(--bg-darker); }
+    #sec-wedding   { background: var(--bg-dark); }
+
+    .pricing-section-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+    .pricing-section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 4vw, 64px);
+      align-items: end;
+      margin-bottom: clamp(48px, 6vw, 72px);
+      padding-bottom: clamp(32px, 4vw, 48px);
+      border-bottom: 1px solid var(--surface-line);
+    }
+    .pricing-section-meta .section-kicker {
+      margin-bottom: var(--space-2);
+    }
+    .pricing-section-meta h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--text-primary);
+      letter-spacing: 3px;
+      margin-bottom: var(--space-2);
+    }
+    .pricing-section-meta p {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      line-height: 1.85;
+      max-width: 440px;
+    }
+    .pricing-section-note {
+      text-align: right;
+    }
+    .pricing-from-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .pricing-from-label {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .pricing-from-price {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+    .pricing-from-unit {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    /* Package cards */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--surface-line);
+      border: 1px solid var(--surface-line);
+      margin-bottom: var(--space-5);
+    }
+    .pricing-card {
+      background: var(--bg-elevated);
+      padding: clamp(28px, 3vw, 44px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+    .pricing-card:hover {
+      background: #181818;
+    }
+    .pricing-card.featured {
+      background: #141414;
+    }
+    .pricing-card.featured::before {
+      content: 'POPULAR';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent-gold);
+      color: var(--bg-dark);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 5px 12px;
+    }
+    .pricing-card-tier {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+      font-weight: 500;
+    }
+    .pricing-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      letter-spacing: 2px;
+      margin-bottom: var(--space-3);
+    }
+    .pricing-card-price {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--accent-gold);
+      line-height: 1;
+      margin-bottom: var(--space-1);
+    }
+    .pricing-card-price-note {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: var(--space-4);
+      letter-spacing: 1px;
+    }
+    .pricing-card-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--surface-line);
+      margin-bottom: var(--space-3);
+    }
+    .pricing-card-includes {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-5) 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .pricing-card-includes li {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      gap: 10px;
+    }
+    .pricing-card-includes li::before {
+      content: '—';
+      color: var(--accent-gold);
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+    .pricing-card-includes li.highlight {
+      color: var(--text-primary);
+    }
+    .pricing-card-includes li.muted {
+      color: var(--text-dim);
+    }
+    .pricing-card .btn {
+      margin-top: auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Add-on strip */
+    .pricing-addons {
+      padding: var(--space-4);
+      border: 1px solid var(--surface-line);
+      background: var(--bg-dark);
+    }
+    .pricing-addons-title {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: var(--space-3);
+    }
+    .pricing-addons-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .pricing-addon-tag {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border: 1px solid var(--surface-line);
+      background: var(--bg-elevated);
+    }
+    .pricing-addon-tag strong {
+      color: var(--accent-gold);
+      font-weight: 400;
+    }
+
+    /* ── 3. All-in-one comparison ────────────────────────────── */
+    .pricing-compare {
+      background: var(--bg-dark);
+      padding: var(--section-py) 0;
+    }
+    .pricing-compare-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+    .pricing-compare-header {
+      text-align: center;
+      margin-bottom: clamp(40px, 6vw, 64px);
+    }
+    .pricing-compare-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: var(--text-primary);
+      letter-spacing: 4px;
+    }
+    .compare-table-wrap {
+      overflow-x: auto;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+    .compare-table th,
+    .compare-table td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--surface-line);
+      font-size: 0.88rem;
+    }
+    .compare-table thead th {
+      color: var(--accent-gold);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: var(--bg-elevated);
+    }
+    .compare-table thead th:first-child {
+      color: var(--text-dim);
+    }
+    .compare-table tbody td {
+      color: var(--text-muted);
+    }
+    .compare-table tbody td:first-child {
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+    .compare-table tbody tr:hover td {
+      background: var(--bg-elevated);
+    }
+    .compare-price {
+      color: var(--accent-gold) !important;
+      font-family: var(--font-heading);
+      font-size: 1rem !important;
+    }
+
+    /* ── 4. CTA ──────────────────────────────────────────────── */
+    .pricing-cta {
+      background: var(--bg-darker);
+      padding: var(--section-py) 0;
+    }
+    .pricing-cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+      text-align: center;
+    }
+    .pricing-cta h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--text-primary);
+      letter-spacing: 4px;
+      margin-bottom: var(--space-3);
+    }
+    .pricing-cta h2 em {
+      color: var(--accent-gold);
+      font-style: normal;
+    }
+    .pricing-cta p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: var(--space-5);
+    }
+    .pricing-cta-btns {
+      display: flex;
+      gap: var(--space-2);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── 5. Responsive ───────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .pricing-section-header {
+        grid-template-columns: 1fr;
+      }
+      .pricing-section-note {
+        text-align: left;
+      }
+      .pricing-from-badge {
+        align-items: flex-start;
+      }
+      .pricing-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 540px) {
+      .pricing-nav-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .pricing-nav-tab {
+        padding: 10px 16px;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-brand">
+      <span class="loader-luku">LUKU</span><span class="loader-arts">ARTS</span>
+      <span class="loader-visual">VISUAL</span>
+    </div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" aria-label="Primary">
+    <a href="index.html" class="logo">LUKUARTS</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="pricing.html" class="active">方案報價</a></li>
+      <li><a href="about.html">關於</a></li>
+      <li><a href="blog.html">部落格</a></li>
+      <li><a href="contact.html">聯絡</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="pricing-hero" aria-label="攝影方案報價">
+      <div class="pricing-hero-line" aria-hidden="true"></div>
+      <span class="section-kicker">Pricing &amp; Packages</span>
+      <h1>攝影方案<br><em>透明報價</em></h1>
+      <p class="pricing-hero-sub">
+        每個方案都以起始價格呈現，實際費用依拍攝時數、地點與需求客製。
+        不確定哪個方案適合你？歡迎直接詢問。
+      </p>
+      <!-- Tab navigation -->
+      <div class="pricing-nav-tabs" role="tablist" aria-label="選擇服務類型">
+        <button class="pricing-nav-tab active" role="tab" aria-selected="true" aria-controls="sec-portrait" data-target="sec-portrait">人像形象</button>
+        <button class="pricing-nav-tab" role="tab" aria-selected="false" aria-controls="sec-commercial" data-target="sec-commercial">品牌商業</button>
+        <button class="pricing-nav-tab" role="tab" aria-selected="false" aria-controls="sec-event" data-target="sec-event">活動紀實</button>
+        <button class="pricing-nav-tab" role="tab" aria-selected="false" aria-controls="sec-wedding" data-target="sec-wedding">婚禮紀錄</button>
+      </div>
+    </section>
+
+    <!-- ============ PORTRAIT PRICING ============ -->
+    <section class="pricing-section active" id="sec-portrait" role="tabpanel" aria-label="人像形象攝影方案">
+      <div class="pricing-section-inner">
+        <div class="pricing-section-header">
+          <div class="pricing-section-meta reveal">
+            <span class="section-kicker">Portrait Photography</span>
+            <h2>人像形象攝影</h2>
+            <p>專業引導消除鏡頭恐懼，打造最具個人特色的品牌形象與社群視覺。適合 LinkedIn 頭像、個人品牌、藝術家形象照等需求。</p>
+          </div>
+          <div class="pricing-section-note reveal">
+            <div class="pricing-from-badge">
+              <span class="pricing-from-label">Starting From</span>
+              <span class="pricing-from-price">NT$3,000</span>
+              <span class="pricing-from-unit">含精選後製</span>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-cards">
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Basic</span>
+            <h3 class="pricing-card-name">個人形象</h3>
+            <div class="pricing-card-price">NT$3,000</div>
+            <p class="pricing-card-price-note">1 小時拍攝 / 1 個場景</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">拍攝時間 1 小時</li>
+              <li>1 個拍攝場景或背景</li>
+              <li>精選 15 張後製交付</li>
+              <li>線上相簿雲端下載</li>
+              <li class="muted">不含造型協助</li>
+            </ul>
+            <a href="contact.html?service=portrait" class="btn btn-outline">預約諮詢</a>
+          </div>
+          <div class="pricing-card featured reveal">
+            <span class="pricing-card-tier">Standard</span>
+            <h3 class="pricing-card-name">品牌形象全套</h3>
+            <div class="pricing-card-price">NT$6,000</div>
+            <p class="pricing-card-price-note">2 小時拍攝 / 多場景</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">拍攝時間 2 小時</li>
+              <li>2–3 個拍攝場景</li>
+              <li>換裝 1–2 套</li>
+              <li class="highlight">精選 30 張後製交付</li>
+              <li>個人風格引導與建議</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=portrait" class="btn btn-primary">預約諮詢</a>
+          </div>
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Premium</span>
+            <h3 class="pricing-card-name">完整品牌視覺</h3>
+            <div class="pricing-card-price">NT$10,000</div>
+            <p class="pricing-card-price-note">半天拍攝 / 客製規劃</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">拍攝時間 4 小時</li>
+              <li>多場景規劃與場堪</li>
+              <li>換裝 3 套以上</li>
+              <li class="highlight">精選 60 張後製交付</li>
+              <li>造型顧問建議</li>
+              <li>社群用圖裁切輸出</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=portrait" class="btn btn-outline">預約諮詢</a>
+          </div>
+        </div>
+        <div class="pricing-addons reveal">
+          <p class="pricing-addons-title">加購選項</p>
+          <div class="pricing-addons-list">
+            <span class="pricing-addon-tag">加場景 <strong>+NT$800</strong></span>
+            <span class="pricing-addon-tag">加精選張數（每 10 張）<strong>+NT$500</strong></span>
+            <span class="pricing-addon-tag">急件處理（3 日內交稿）<strong>+20%</strong></span>
+            <span class="pricing-addon-tag">商業授權（廣告投放）<strong>另計</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMMERCIAL PRICING ============ -->
+    <section class="pricing-section" id="sec-commercial" role="tabpanel" aria-label="品牌商業攝影方案">
+      <div class="pricing-section-inner">
+        <div class="pricing-section-header">
+          <div class="pricing-section-meta reveal">
+            <span class="section-kicker">Commercial Photography</span>
+            <h2>品牌商業攝影</h2>
+            <p>結合美學與商業思維，針對商品、空間與餐飲進行氛圍捕捉。提升品牌視覺質感，增加轉化率。</p>
+          </div>
+          <div class="pricing-section-note reveal">
+            <div class="pricing-from-badge">
+              <span class="pricing-from-label">Starting From</span>
+              <span class="pricing-from-price">NT$8,000</span>
+              <span class="pricing-from-unit">依專案規模報價</span>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-cards">
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Essential</span>
+            <h3 class="pricing-card-name">商品攝影</h3>
+            <div class="pricing-card-price">NT$8,000</div>
+            <p class="pricing-card-price-note">半天 / 10 件商品以內</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">棚拍或外拍半天（4 小時）</li>
+              <li>10 件商品以內</li>
+              <li>精選 20 張後製交付</li>
+              <li>白底版本 + 情境版本</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=commercial" class="btn btn-outline">詢問報價</a>
+          </div>
+          <div class="pricing-card featured reveal">
+            <span class="pricing-card-tier">Brand</span>
+            <h3 class="pricing-card-name">品牌形象拍攝</h3>
+            <div class="pricing-card-price">NT$15,000</div>
+            <p class="pricing-card-price-note">全天 / 含空間與人物</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">全天拍攝（8 小時）</li>
+              <li>品牌空間 + 商品 + 人像</li>
+              <li class="highlight">精選 50 張後製交付</li>
+              <li>品牌故事視覺規劃建議</li>
+              <li>社群 / 官網多格式輸出</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=commercial" class="btn btn-primary">詢問報價</a>
+          </div>
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">F&amp;B</span>
+            <h3 class="pricing-card-name">餐飲美食攝影</h3>
+            <div class="pricing-card-price">NT$10,000</div>
+            <p class="pricing-card-price-note">半天 / 菜單前置規劃</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">現場拍攝半天（4 小時）</li>
+              <li>菜單規劃最多 15 道</li>
+              <li class="highlight">精選 30 張後製交付</li>
+              <li>菜單視覺排版建議</li>
+              <li>外送平台用圖優化</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=commercial" class="btn btn-outline">詢問報價</a>
+          </div>
+        </div>
+        <div class="pricing-addons reveal">
+          <p class="pricing-addons-title">加購選項</p>
+          <div class="pricing-addons-list">
+            <span class="pricing-addon-tag">額外攝影師協助 <strong>+NT$3,000/人</strong></span>
+            <span class="pricing-addon-tag">造型師 / 食物造型 <strong>另計</strong></span>
+            <span class="pricing-addon-tag">加精選張數（每 10 張）<strong>+NT$800</strong></span>
+            <span class="pricing-addon-tag">商業授權（廣告投放）<strong>另計</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EVENT PRICING ============ -->
+    <section class="pricing-section" id="sec-event" role="tabpanel" aria-label="活動紀實攝影方案">
+      <div class="pricing-section-inner">
+        <div class="pricing-section-header">
+          <div class="pricing-section-meta reveal">
+            <span class="section-kicker">Event Photography</span>
+            <h2>活動紀實攝影</h2>
+            <p>精準掌握現場光影，捕捉活動、講座、展覽中稍縱即逝的關鍵瞬間。從企業年會到藝術展演，全方位的現場紀實服務。</p>
+          </div>
+          <div class="pricing-section-note reveal">
+            <div class="pricing-from-badge">
+              <span class="pricing-from-label">Starting From</span>
+              <span class="pricing-from-price">NT$6,000</span>
+              <span class="pricing-from-unit">依時數計算</span>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-cards">
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Half Day</span>
+            <h3 class="pricing-card-name">半天活動紀實</h3>
+            <div class="pricing-card-price">NT$6,000</div>
+            <p class="pricing-card-price-note">最多 4 小時拍攝</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">現場拍攝最多 4 小時</li>
+              <li>精選 40 張後製交付</li>
+              <li>48 小時快速交稿</li>
+              <li>線上相簿雲端下載</li>
+              <li class="muted">不含第二位攝影師</li>
+            </ul>
+            <a href="contact.html?service=event" class="btn btn-outline">詢問報價</a>
+          </div>
+          <div class="pricing-card featured reveal">
+            <span class="pricing-card-tier">Full Day</span>
+            <h3 class="pricing-card-name">全天活動紀實</h3>
+            <div class="pricing-card-price">NT$12,000</div>
+            <p class="pricing-card-price-note">最多 8 小時拍攝</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">現場拍攝最多 8 小時</li>
+              <li class="highlight">精選 80 張後製交付</li>
+              <li>48 小時快速交稿</li>
+              <li>現場與細節兩角度</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=event" class="btn btn-primary">詢問報價</a>
+          </div>
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Corporate</span>
+            <h3 class="pricing-card-name">企業長期合作</h3>
+            <div class="pricing-card-price">洽談</div>
+            <p class="pricing-card-price-note">月包 / 季包方案</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">每月固定場次保留</li>
+              <li>企業識別一致性規劃</li>
+              <li>優先檔期安排</li>
+              <li class="highlight">月費優惠折扣</li>
+              <li>專屬素材庫管理</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=event" class="btn btn-outline">聯繫洽談</a>
+          </div>
+        </div>
+        <div class="pricing-addons reveal">
+          <p class="pricing-addons-title">加購選項</p>
+          <div class="pricing-addons-list">
+            <span class="pricing-addon-tag">第二位攝影師 <strong>+NT$4,000</strong></span>
+            <span class="pricing-addon-tag">加精選張數（每 20 張）<strong>+NT$600</strong></span>
+            <span class="pricing-addon-tag">隔日急件交稿 <strong>+20%</strong></span>
+            <span class="pricing-addon-tag">活動紀錄影片 <strong>另計</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WEDDING PRICING ============ -->
+    <section class="pricing-section" id="sec-wedding" role="tabpanel" aria-label="婚禮紀錄攝影方案">
+      <div class="pricing-section-inner">
+        <div class="pricing-section-header">
+          <div class="pricing-section-meta reveal">
+            <span class="section-kicker">Wedding Photography</span>
+            <h2>婚禮紀錄</h2>
+            <p>細膩視角紀錄婚禮中每一個珍貴時刻。以紀實為基底，不干預、不擺拍，保留情感最真實的溫度。建議提前 3–6 個月預約。</p>
+          </div>
+          <div class="pricing-section-note reveal">
+            <div class="pricing-from-badge">
+              <span class="pricing-from-label">Starting From</span>
+              <span class="pricing-from-price">NT$28,000</span>
+              <span class="pricing-from-unit">依時程 / 地點報價</span>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-cards">
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Essential</span>
+            <h3 class="pricing-card-name">迎娶 + 宴客</h3>
+            <div class="pricing-card-price">NT$28,000</div>
+            <p class="pricing-card-price-note">單攝影師 / 8 小時</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">單攝影師，最多 8 小時</li>
+              <li>迎娶儀式至宴客尾聲</li>
+              <li class="highlight">精選 200 張後製交付</li>
+              <li>30 天內完整交稿</li>
+              <li>線上相簿雲端下載</li>
+              <li class="muted">不含婚紗前拍</li>
+            </ul>
+            <a href="contact.html?service=wedding" class="btn btn-outline">確認檔期</a>
+          </div>
+          <div class="pricing-card featured reveal">
+            <span class="pricing-card-tier">Classic</span>
+            <h3 class="pricing-card-name">全日雙機紀錄</h3>
+            <div class="pricing-card-price">NT$45,000</div>
+            <p class="pricing-card-price-note">雙攝影師 / 全日</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">雙攝影師，全天無限時</li>
+              <li>婚前至送客完整紀錄</li>
+              <li class="highlight">精選 400 張後製交付</li>
+              <li>多角度同時捕捉</li>
+              <li>30 天內完整交稿</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=wedding" class="btn btn-primary">確認檔期</a>
+          </div>
+          <div class="pricing-card reveal">
+            <span class="pricing-card-tier">Premium</span>
+            <h3 class="pricing-card-name">完整婚禮視覺</h3>
+            <div class="pricing-card-price">洽談</div>
+            <p class="pricing-card-price-note">含前拍 + 婚禮全紀錄</p>
+            <div class="pricing-card-divider"></div>
+            <ul class="pricing-card-includes">
+              <li class="highlight">婚紗前拍（外拍半天）</li>
+              <li>婚禮全日雙機紀錄</li>
+              <li class="highlight">精選 500+ 張後製交付</li>
+              <li>婚禮前場堪排程規劃</li>
+              <li>精裝相本製作（選配）</li>
+              <li>線上相簿雲端下載</li>
+            </ul>
+            <a href="contact.html?service=wedding" class="btn btn-outline">洽詢客製方案</a>
+          </div>
+        </div>
+        <div class="pricing-addons reveal">
+          <p class="pricing-addons-title">加購選項</p>
+          <div class="pricing-addons-list">
+            <span class="pricing-addon-tag">延長拍攝（每小時）<strong>+NT$2,500</strong></span>
+            <span class="pricing-addon-tag">婚紗前拍外加 <strong>+NT$12,000</strong></span>
+            <span class="pricing-addon-tag">精裝相本製作 <strong>另計</strong></span>
+            <span class="pricing-addon-tag">婚禮紀錄影片 <strong>另計</strong></span>
+            <span class="pricing-addon-tag">外縣市加收交通費 <strong>實報實銷</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMPARISON TABLE ============ -->
+    <section class="pricing-compare reveal" aria-label="方案總覽比較">
+      <div class="pricing-compare-inner">
+        <div class="pricing-compare-header">
+          <span class="section-kicker">Overview</span>
+          <h2>各類型起始報價總覽</h2>
+        </div>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>服務類型</th>
+                <th>起始方案</th>
+                <th>起始價格</th>
+                <th>交付時間</th>
+                <th>適合需求</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>人像形象攝影</td>
+                <td>個人形象（1 小時）</td>
+                <td class="compare-price">NT$3,000</td>
+                <td>7–14 工作天</td>
+                <td>個人品牌、履歷、社群</td>
+              </tr>
+              <tr>
+                <td>品牌商業攝影</td>
+                <td>商品攝影（半天）</td>
+                <td class="compare-price">NT$8,000</td>
+                <td>7–14 工作天</td>
+                <td>電商、官網、品牌素材</td>
+              </tr>
+              <tr>
+                <td>活動紀實攝影</td>
+                <td>半天活動紀實</td>
+                <td class="compare-price">NT$6,000</td>
+                <td>48 小時快稿</td>
+                <td>講座、發表會、展覽</td>
+              </tr>
+              <tr>
+                <td>婚禮紀錄</td>
+                <td>迎娶 + 宴客</td>
+                <td class="compare-price">NT$28,000</td>
+                <td>30 天內完整交稿</td>
+                <td>婚禮全程、迎娶宴客</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="pricing-cta" aria-label="預約諮詢">
+      <div class="pricing-cta-inner">
+        <span class="section-kicker">Ready to Start?</span>
+        <h2>找不到合適方案？<br><em>讓我們客製</em></h2>
+        <p>
+          以上方案均為起始參考價，每個案子都值得獨立討論。
+          告訴我你的需求，我們一起規劃最適合的拍攝計畫。
+        </p>
+        <div class="pricing-cta-btns">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="btn btn-primary">LINE 立即諮詢</a>
+          <a href="contact.html" class="btn btn-outline">填寫詢問表單</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+          <li><a href="pricing.html">方案報價</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="wedding.html">婚禮紀實攝影</a></li>
+          <li><a href="food.html">商業美食攝影</a></li>
+          <li><a href="event.html">活動紀實攝影</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <div class="footer-social">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://instagram.com/lukuarts" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.facebook.com/Lukuarts" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
+  </footer>
+
+  <script>
+    // Pricing tab switcher
+    const pricingTabs = document.querySelectorAll('.pricing-nav-tab');
+    const pricingSections = document.querySelectorAll('.pricing-section');
+
+    pricingTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+
+        // Update tabs
+        pricingTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Update sections
+        pricingSections.forEach(sec => sec.classList.remove('active'));
+        const targetSec = document.getElementById(target);
+        if (targetSec) {
+          targetSec.classList.add('active');
+          // Smooth scroll to section (offset for navbar)
+          const offset = targetSec.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Handle URL hash on load (e.g., pricing.html#sec-wedding)
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const tab = document.querySelector(`[data-target="${hash}"]`);
+        if (tab) tab.click();
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
