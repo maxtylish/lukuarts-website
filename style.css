@@ -329,6 +329,20 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   border-color: var(--accent-gold);
   color: var(--accent-gold);
 }
+.btn-ghost {
+  color: var(--text-dim);
+  border-color: transparent;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(201,169,110,0.3);
+  padding: 14px 16px;
+}
+.btn-ghost:hover {
+  color: var(--accent-gold);
+  text-decoration-color: var(--accent-gold);
+}
 
 /* ===== 6. Hero ===== */
 .hero {
