@@ -27,7 +27,10 @@ Desktop.ini
 *.lrcat
 *.lrdata
 
-# --- 4. 影片剪輯大檔案 (如有) ---
+# --- 4. 本地工具（不對外公開）---
+image-manager.html
+
+# --- 5. 影片剪輯大檔案 (如有) ---
 *.prproj
 *.drp
 *.mp4
