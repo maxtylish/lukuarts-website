@@ -45,6 +45,14 @@
   }
 }
   </script>
+  <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "GA_MEASUREMENT_ID");
+  </script>
 </head>
 <body>
 
@@ -147,7 +155,7 @@
 
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="圖片預覽">
     <span class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" alt="">
+    <img class="lightbox-content" id="lightbox-img" alt="作品圖片預覽">
   </div>
 
   <footer class="footer">

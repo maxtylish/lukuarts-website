@@ -5,11 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>作品集｜LUKUARTS VISUAL 青玥影像</title>
   <meta name="description" content="LUKUARTS 青玥影像 作品集 — 人像、婚禮、街頭、商業美食、活動紀錄、風景、人文與影像創作。">
+  <link rel="canonical" href="https://lukuarts.com/portfolio.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="作品集｜LUKUARTS VISUAL 青玥影像">
+  <meta property="og:description" content="台中攝影師劉志恆的攝影作品集 — 人像形象、婚禮紀實、街頭攝影、商業美食、活動記錄、風景與人文影像。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lukuarts.com/portfolio.html">
+  <meta property="og:image" content="https://lukuarts.com/images/homepage/H001.webp">
+  <meta property="og:image:alt" content="LUKUARTS VISUAL 青玥影像 攝影作品集">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="LUKUARTS VISUAL 青玥影像">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="作品集｜LUKUARTS VISUAL 青玥影像">
+  <meta name="twitter:description" content="台中攝影師劉志恆的攝影作品集 — 人像、婚禮、商業、風景。">
+  <meta name="twitter:image" content="https://lukuarts.com/images/homepage/H001.webp">
+  <!-- ImageGallery Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "LUKUARTS VISUAL 青玥影像 作品集",
+    "description": "台中攝影師劉志恆的攝影作品集，涵蓋人像形象、婚禮紀實、街頭攝影、商業美食、活動記錄、風景與人文影像。",
+    "url": "https://lukuarts.com/portfolio.html",
+    "author": {
+      "@type": "Person",
+      "name": "劉志恆",
+      "url": "https://lukuarts.com/about.html"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "LUKUARTS VISUAL 青玥影像",
+      "url": "https://lukuarts.com"
+    },
+    "about": [
+      {"@type": "Thing", "name": "人像攝影"},
+      {"@type": "Thing", "name": "婚禮攝影"},
+      {"@type": "Thing", "name": "商業攝影"},
+      {"@type": "Thing", "name": "風景攝影"},
+      {"@type": "Thing", "name": "活動攝影"}
+    ]
+  }
+  </script>
   <link rel="icon" type="image/png" href="images/logo-zh.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "GA_MEASUREMENT_ID");
+  </script>
 </head>
 <body>
 
@@ -43,57 +92,4 @@
         <button class="filter-btn" data-filter="landscape">LANDSCAPE 風景</button>
         <button class="filter-btn" data-filter="kids">KIDS 兒童</button>
         <button class="filter-btn" data-filter="architecture">ARCHITECTURE 建築</button>
-        <button class="filter-btn" data-filter="creative">CREATIVE 創作</button>
-      </div>
-
-      <div class="masonry-gallery" id="gallery" aria-live="polite"></div>
-    </section>
-  </main>
-
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="圖片預覽">
-    <span class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" alt="">
-  </div>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo">LUKUARTS</a>
-        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
-      </div>
-      <div>
-        <h5>Navigate</h5>
-        <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="portfolio.html">作品集</a></li>
-          <li><a href="pricing.html">方案報價</a></li>
-          <li><a href="about.html">關於</a></li>
-          <li><a href="blog.html">部落格</a></li>
-          <li><a href="contact.html">聯絡</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Services</h5>
-        <ul>
-          <li><a href="index.html#services">人像形象攝影</a></li>
-          <li><a href="index.html#services">品牌商業攝影</a></li>
-          <li><a href="index.html#services">活動紀實紀錄</a></li>
-          <li><a href="index.html#services">專業攝影教學</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Connect</h5>
-        <div class="footer-social">
-          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
-          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          <a href="https://www.facebook.com/Lukuarts" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-        </div>
-      </div>
-    </div>
-    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+        <button class="filter-btn" data-filter="creative">CREATIVE �

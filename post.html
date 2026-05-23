@@ -7,8 +7,163 @@
   <link rel="icon" type="image/png" href="images/logo-zh.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYJT8N52L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-MLYJT8N52L");
+  </script>
+  <style>
+    /* ── Post page styles ── */
+    .post-container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px var(--gutter, 48px) 100px;
+    }
+
+    /* Breadcrumb */
+    .post-breadcrumb {
+      font-size: 0.78rem;
+      color: var(--text-muted, #666);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .post-breadcrumb a {
+      color: var(--text-secondary, #a0a0a0);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .post-breadcrumb a:hover { color: var(--accent-gold, #c8a96e); }
+    .post-breadcrumb span { color: var(--text-muted, #666); }
+
+    /* Header */
+    .post-header { margin-bottom: 40px; }
+    .post-cat {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold, #c8a96e);
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .post-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+    }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--text-secondary, #a0a0a0);
+    }
+    .post-meta-dot { color: var(--text-muted, #666); }
+
+    /* Hero image */
+    .post-hero-img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    /* Content */
+    .post-content {
+      color: var(--text-primary, #f8f6f3);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+    .post-content h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5em 0 0.8em;
+    }
+    .post-content h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2em 0 0.6em;
+    }
+    .post-content p { margin-bottom: 1.4em; }
+    .post-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 1.5em 0;
+      display: block;
+    }
+    .post-content blockquote {
+      border-left: 3px solid var(--accent-gold, #c8a96e);
+      padding: 12px 24px;
+      margin: 2em 0;
+      color: var(--text-secondary, #a0a0a0);
+      font-style: italic;
+      background: rgba(200,169,110,0.06);
+      border-radius: 0 8px 8px 0;
+    }
+    .post-content ul, .post-content ol {
+      padding-left: 1.5em;
+      margin-bottom: 1.4em;
+    }
+    .post-content li { margin-bottom: 0.5em; }
+    .post-content a {
+      color: var(--accent-gold, #c8a96e);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .post-content code {
+      background: rgba(200,169,110,0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+    .post-content pre {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 1.5em 0;
+    }
+    .post-content pre code { background: none; padding: 0; }
+
+    /* Footer divider */
+    .post-divider {
+      border: none;
+      border-top: 1px solid #333;
+      margin: 56px 0 40px;
+    }
+
+    /* Loading / error */
+    .loading-msg {
+      text-align: center;
+      padding: 120px 0;
+      color: var(--text-muted, #666);
+    }
+    .loading-spinner {
+      display: inline-block;
+      width: 32px; height: 32px;
+      border: 2px solid rgba(200,169,110,0.2);
+      border-top-color: var(--accent-gold, #c8a96e);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
 
@@ -20,7 +175,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">首頁</a></li>
       <li><a href="portfolio.html">作品集</a></li>
-          <li><a href="pricing.html">方案報價</a></li>
+      <li><a href="pricing.html">方案報價</a></li>
       <li><a href="about.html">關於</a></li>
       <li><a href="blog.html" class="active">部落格</a></li>
       <li><a href="contact.html">聯絡</a></li>
@@ -28,7 +183,10 @@
   </nav>
 
   <main class="post-container" id="single-post-content">
-    <div class="loading-msg">載入中…</div>
+    <div class="loading-msg">
+      <div class="loading-spinner"></div>
+      <p>載入中…</p>
+    </div>
   </main>
 
   <footer class="footer">
@@ -51,10 +209,10 @@
       <div>
         <h5>Services</h5>
         <ul>
-          <li><a href="index.html#services">人像形象攝影</a></li>
-          <li><a href="index.html#services">品牌商業攝影</a></li>
-          <li><a href="index.html#services">活動紀實紀錄</a></li>
-          <li><a href="index.html#services">專業攝影教學</a></li>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="wedding.html">婚禮紀實攝影</a></li>
+          <li><a href="food.html">商業美食攝影</a></li>
+          <li><a href="event.html">活動紀實記錄</a></li>
         </ul>
       </div>
       <div>
@@ -71,54 +229,128 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const postContainer = document.getElementById('single-post-content');
-      const urlParams = new URLSearchParams(window.location.search);
-      const postId = urlParams.get('id');
+    /* ── Firebase init ── */
+    const firebaseConfig = {
+      apiKey: "AIzaSyBpnr_ttPPx9I8DpN78ffEhRyTC7tXlLCE",
+      authDomain: "lukuarts-visual.firebaseapp.com",
+      projectId: "lukuarts-visual",
+      storageBucket: "lukuarts-visual.firebasestorage.app",
+      messagingSenderId: "872118012774",
+      appId: "1:872118012774:web:59787591cd8fc18ba856a7",
+      measurementId: "G-MLYJT8N52L"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-      if (!postId) { showError(); return; }
+    const CATEGORY_LABELS = {
+      'shooting-notes': '拍攝幕後',
+      'light-notes':    '光影筆記',
+      'tech-tips':      '技術分享',
+      'travel':         '旅行紀錄',
+      'gear':           '器材評測',
+      'thoughts':       '攝影思考',
+    };
 
-      fetch('blogs.json')
-        .then(res => res.json())
-        .then(posts => {
-          const post = posts.find(p => String(p.id) === String(postId));
-          post ? renderPost(post) : showError();
-        })
-        .catch(() => showError());
+    const postContainer = document.getElementById('single-post-content');
+    const postId = new URLSearchParams(window.location.search).get('id');
 
-      function renderPost(post) {
-        const title = post.title_zh || post.title_en;
-        const content = post.content_zh || post.content_en || post.excerpt_zh || '';
-        const author = post.author_zh || '青玥影像';
-        document.title = `${title} | LUKUARTS VISUAL`;
+    if (!postId) {
+      showError();
+    } else {
+      loadPost(postId);
+    }
 
-        postContainer.innerHTML = `
-          <div class="post-header">
-            <div class="post-meta">
-              <span>${post.date || ''}</span>
-              <span>•</span>
-              <span>${author}</span>
-            </div>
-            <h1 class="post-title">${title}</h1>
-          </div>
-          <img src="${post.image}" alt="${title}" class="post-hero-img">
-          <div class="post-content">${content}</div>
-          <div class="back-btn-container">
-            <a href="blog.html" class="btn btn-primary">回到部落格</a>
-          </div>
-        `;
+    async function loadPost(id) {
+      try {
+        const docSnap = await db.collection('posts').doc(id).get();
+        if (!docSnap.exists || docSnap.data().status !== 'published') {
+          showError();
+          return;
+        }
+        renderPost({ id: docSnap.id, ...docSnap.data() });
+      } catch (err) {
+        console.error('Failed to load post:', err);
+        showError();
       }
+    }
 
-      function showError() {
-        postContainer.innerHTML = `
-          <div class="loading-msg" style="padding: 120px 0;">
-            <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--accent-gold); margin-bottom: 24px;">找不到文章</h2>
-            <a href="blog.html" class="btn btn-primary">回到部落格</a>
+    function renderPost(post) {
+      const title    = post.title || '(無標題)';
+      const content  = post.content || '';
+      const catLabel = CATEGORY_LABELS[post.category] || post.category || '';
+      const date = post.createdAt
+        ? new Date(post.createdAt.seconds * 1000).toLocaleDateString('zh-TW', {year:'numeric', month:'long', day:'numeric'})
+        : '';
+
+      /* Update document title */
+      document.title = `${title} | LUKUARTS VISUAL`;
+
+      /* Inject BlogPosting schema for SEO */
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "image": post.coverImage || "https://lukuarts.com/images/homepage/H001.webp",
+        "datePublished": post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : "",
+        "dateModified":  post.updatedAt ? new Date(post.updatedAt.seconds * 1000).toISOString() : "",
+        "author": { "@type": "Person", "name": "劉志恆", "url": "https://lukuarts.com/about.html" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LUKUARTS VISUAL 青玥影像",
+          "url": "https://lukuarts.com",
+          "logo": { "@type": "ImageObject", "url": "https://lukuarts.com/images/logo-zh.png" }
+        },
+        "url": `https://lukuarts.com/post.html?id=${post.id}`,
+        "inLanguage": "zh-Hant"
+      };
+      const schemaTag = document.createElement('script');
+      schemaTag.type = 'application/ld+json';
+      schemaTag.textContent = JSON.stringify(schema);
+      document.head.appendChild(schemaTag);
+
+      /* Render post */
+      const heroImg = post.coverImage
+        ? `<img src="${post.coverImage}" alt="${title}" class="post-hero-img">`
+        : '';
+
+      postContainer.innerHTML = `
+        <nav class="post-breadcrumb" aria-label="Breadcrumb">
+          <a href="blog.html">部落格</a>
+          <span>›</span>
+          <span>${catLabel || '文章'}</span>
+        </nav>
+        <header class="post-header">
+          ${catLabel ? `<span class="post-cat">${catLabel}</span>` : ''}
+          <h1 class="post-title">${title}</h1>
+          <div class="post-meta">
+            <span>青玥影像</span>
+            ${date ? `<span class="post-meta-dot">·</span><span>${date}</span>` : ''}
           </div>
-        `;
-      }
-    });
+        </header>
+        ${heroImg}
+        <article class="post-content">${content}</article>
+        <hr class="post-divider">
+        <div class="back-btn-container">
+          <a href="blog.html" class="btn btn-primary">← 回到部落格</a>
+        </div>
+      `;
+    }
+
+    function showError() {
+      postContainer.innerHTML = `
+        <div class="loading-msg">
+          <h2 style="font-family:var(--font-heading); font-size:2rem; color:var(--accent-gold); margin-bottom:16px;">找不到文章</h2>
+          <p style="margin-bottom:32px; color:var(--text-secondary)">這篇文章可能已移除或尚未發布</p>
+          <a href="blog.html" class="btn btn-primary">回到部落格</a>
+        </div>
+      `;
+    }
   </script>
 </body>
 </html>

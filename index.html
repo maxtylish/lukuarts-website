@@ -92,6 +92,14 @@
     }
   }
   </script>
+  <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "GA_MEASUREMENT_ID");
+  </script>
 </head>
 <body>
 

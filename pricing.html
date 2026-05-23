@@ -10,7 +10,83 @@
   <meta property="og:description" content="人像形象、品牌商業、活動紀實、婚禮紀錄攝影方案報價。台中攝影師劉志恆。">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="images/logo-zh.png">
-  <link rel="canonical" href="pricing.html">
+  <link rel="canonical" href="https://lukuarts.com/pricing.html">
+  <!-- Offer / PriceSpecification Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "專業攝影服務 — LUKUARTS VISUAL 青玥影像",
+    "description": "台中攝影師劉志恆提供人像形象、品牌商業、活動紀實與婚禮紀錄攝影服務。",
+    "url": "https://lukuarts.com/pricing.html",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "LUKUARTS VISUAL 青玥影像",
+      "url": "https://lukuarts.com",
+      "telephone": "+886-932-754-860",
+      "email": "maxtylish@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "台中市",
+        "addressCountry": "TW"
+      },
+      "areaServed": "台灣",
+      "image": "https://lukuarts.com/images/logo-zh.png"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "攝影方案報價",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "人像形象攝影",
+          "description": "個人品牌形象、職業形象照、個人寫真",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": 3000,
+            "priceCurrency": "TWD",
+            "minPrice": 3000,
+            "valueAddedTaxIncluded": false
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "品牌商業攝影",
+          "description": "產品、美食、空間、企業形象攝影",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": 8000,
+            "priceCurrency": "TWD",
+            "minPrice": 8000,
+            "valueAddedTaxIncluded": false
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "活動紀實攝影",
+          "description": "企業活動、演講、展覽、派對攝影記錄",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": 6000,
+            "priceCurrency": "TWD",
+            "minPrice": 6000,
+            "valueAddedTaxIncluded": false
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "婚禮紀錄攝影",
+          "description": "婚禮全日紀實、婚宴攝影",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "TWD",
+            "description": "依需求洽詢"
+          }
+        }
+      ]
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -427,6 +503,14 @@
       }
     }
   </style>
+  <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "GA_MEASUREMENT_ID");
+  </script>
 </head>
 <body>
 
@@ -873,70 +957,4 @@
           <li><a href="portfolio.html">作品集</a></li>
           <li><a href="pricing.html">方案報價</a></li>
           <li><a href="about.html">關於</a></li>
-          <li><a href="blog.html">部落格</a></li>
-          <li><a href="contact.html">聯絡</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Services</h5>
-        <ul>
-          <li><a href="portrait.html">人像形象攝影</a></li>
-          <li><a href="wedding.html">婚禮紀實攝影</a></li>
-          <li><a href="food.html">商業美食攝影</a></li>
-          <li><a href="event.html">活動紀實攝影</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Connect</h5>
-        <div class="footer-social">
-          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
-          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
-          <a href="https://instagram.com/lukuarts" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          <a href="https://www.facebook.com/Lukuarts" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-        </div>
-      </div>
-    </div>
-    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
-  </footer>
-
-  <script>
-    // Pricing tab switcher
-    const pricingTabs = document.querySelectorAll('.pricing-nav-tab');
-    const pricingSections = document.querySelectorAll('.pricing-section');
-
-    pricingTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.target;
-
-        // Update tabs
-        pricingTabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
-        // Update sections
-        pricingSections.forEach(sec => sec.classList.remove('active'));
-        const targetSec = document.getElementById(target);
-        if (targetSec) {
-          targetSec.classList.add('active');
-          // Smooth scroll to section (offset for navbar)
-          const offset = targetSec.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: offset, behavior: 'smooth' });
-        }
-      });
-    });
-
-    // Handle URL hash on load (e.g., pricing.html#sec-wedding)
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const tab = document.querySelector(`[data-target="${hash}"]`);
-        if (tab) tab.click();
-      }
-    });
-  </script>
-  <script src="script.js"></script>
-</body>
-</html>
+          <l

@@ -10,11 +10,51 @@
   <meta property="og:description" content="台灣山海，每一幕都是詩。用光影詮釋台灣土地最壯麗的一面。">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="images/logo-zh.png">
-  <link rel="canonical" href="landscape.html">
+  <link rel="canonical" href="https://lukuarts.com/landscape.html">
+  <!-- ImageGallery Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "台灣風景攝影 — LUKUARTS VISUAL 青玥影像",
+    "description": "台灣山川、星空銀河、日出日落、海岸絕景。用光影詮釋台灣土地最壯麗的一面。",
+    "url": "https://lukuarts.com/landscape.html",
+    "author": {
+      "@type": "Person",
+      "name": "劉志恆",
+      "url": "https://lukuarts.com/about.html"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "LUKUARTS VISUAL 青玥影像",
+      "url": "https://lukuarts.com"
+    },
+    "about": [
+      {"@type": "Thing", "name": "台灣風景攝影"},
+      {"@type": "Thing", "name": "星空攝影"},
+      {"@type": "Thing", "name": "山岳攝影"},
+      {"@type": "Thing", "name": "海景攝影"},
+      {"@type": "Thing", "name": "日出攝影"}
+    ],
+    "locationCreated": {
+      "@type": "Place",
+      "name": "台灣",
+      "addressCountry": "TW"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "GA_MEASUREMENT_ID");
+  </script>
 </head>
 <body>
 
@@ -115,7 +155,7 @@
 
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="圖片預覽">
     <span class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" alt="">
+    <img class="lightbox-content" id="lightbox-img" alt="作品圖片預覽">
   </div>
 
   <footer class="footer">
@@ -139,30 +179,4 @@
         <h5>Services</h5>
         <ul>
           <li><a href="portrait.html">人像形象攝影</a></li>
-          <li><a href="wedding.html">婚禮紀實攝影</a></li>
-          <li><a href="food.html">商業美食攝影</a></li>
-          <li><a href="event.html">活動紀實攝影</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Connect</h5>
-        <div class="footer-social">
-          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
-          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          <a href="https://www.facebook.com/Lukuarts" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-        </div>
-      </div>
-    </div>
-    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. 台中專業攝影師</p>
-  </footer>
-
-  <script>
-    window.addEventListener('load', () => {
-      const bg = document.getElementById('cat-hero-bg');
-      if (bg) bg.classList.add('loaded');
-    });
-  </script>
-  <script src="script.js"></script>
-</body>
-</html>
+   

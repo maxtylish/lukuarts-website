@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# 排除本地工具頁
+Disallow: /image-manager.html
+Disallow: /generate-json.html
+
+# Sitemap
+Sitemap: https://lukuarts.com/sitemap.xml
