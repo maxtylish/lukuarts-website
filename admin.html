@@ -967,6 +967,7 @@ const auth = firebase.auth();
 const db   = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
+const authReady = auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 /* ═══════════════════════════════════════════
    STATE
@@ -1063,7 +1064,10 @@ function authErrorMessage(err) {
     return '登入視窗已關閉，請再試一次。';
   }
   if (err?.code === 'auth/popup-blocked') {
-    return '瀏覽器封鎖了登入視窗，正在改用跳轉登入。';
+    return '瀏覽器封鎖了登入視窗，請允許此網站開啟彈出式視窗後再試一次。';
+  }
+  if (err?.code === 'auth/operation-not-supported-in-this-environment') {
+    return '目前瀏覽環境不支援彈窗登入，請改用一般瀏覽器分頁開啟後台。';
   }
   return err?.message || '登入失敗，請稍後再試。';
 }
@@ -1073,22 +1077,11 @@ async function signInWithGoogle() {
   btnGoogleSign.innerHTML = '<span class="spinner"></span> 登入中…';
 
   try {
+    await authReady;
     await auth.signInWithPopup(googleProvider);
   } catch (err) {
-    if (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment') {
-      toast(authErrorMessage(err), 'info');
-      btnGoogleSign.innerHTML = '<span class="spinner"></span> 跳轉登入中…';
-      try {
-        await auth.signInWithRedirect(googleProvider);
-        return;
-      } catch (redirectErr) {
-        console.error('Google redirect login failed:', redirectErr);
-        toast(authErrorMessage(redirectErr), 'error');
-      }
-    } else {
-      console.error('Google popup login failed:', err);
-      toast(authErrorMessage(err), 'error');
-    }
+    console.error('Google popup login failed:', err);
+    toast(authErrorMessage(err), 'error');
     resetLoginButton();
   }
 }
