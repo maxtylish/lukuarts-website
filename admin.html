@@ -1158,15 +1158,45 @@ function initQuill() {
 ═══════════════════════════════════════════ */
 async function loadAllPosts() {
   try {
-    const snap = await db.collection('posts')
-      .orderBy('createdAt', 'desc')
-      .get();
+    let snap;
+    try {
+      snap = await db.collection('posts')
+        .orderBy('createdAt', 'desc')
+        .get();
+    } catch (orderedErr) {
+      console.warn('Ordered post query failed, retrying without orderBy:', orderedErr);
+      snap = await db.collection('posts').get();
+    }
     allPosts = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    allPosts.sort((a, b) => postTime(b) - postTime(a));
     updateStats();
   } catch (err) {
     console.error('Failed to load posts:', err);
-    toast('載入文章失敗', 'error');
+    toast(`載入文章失敗：${err.message || '請稍後再試'}`, 'error');
   }
+}
+
+function postTime(post) {
+  const value = post.createdAt || post.updatedAt;
+  if (!value) return 0;
+  if (typeof value.toMillis === 'function') return value.toMillis();
+  if (typeof value.seconds === 'number') return value.seconds * 1000;
+  if (value instanceof Date) return value.getTime();
+  const parsed = Date.parse(value);
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+function formatPostDate(value) {
+  if (!value) return '—';
+  const ms = typeof value.toMillis === 'function'
+    ? value.toMillis()
+    : typeof value.seconds === 'number'
+      ? value.seconds * 1000
+      : value instanceof Date
+        ? value.getTime()
+        : Date.parse(value);
+  if (!Number.isFinite(ms)) return '—';
+  return new Date(ms).toLocaleDateString('zh-TW', {year:'numeric',month:'2-digit',day:'2-digit'});
 }
 
 function updateStats() {
@@ -1223,9 +1253,7 @@ function postRowHTML(post, compact = false) {
   const badge = post.status === 'published'
     ? `<span class="status-badge published">已發布</span>`
     : `<span class="status-badge draft">草稿</span>`;
-  const date = post.createdAt
-    ? new Date(post.createdAt.seconds * 1000).toLocaleDateString('zh-TW', {year:'numeric',month:'2-digit',day:'2-digit'})
-    : '—';
+  const date = formatPostDate(post.createdAt || post.updatedAt);
   const catLabel = compact ? '' : `<td>${CATEGORY_LABELS[post.category] || post.category || '—'}</td>`;
   return `
     <tr data-id="${post.id}">
@@ -1428,6 +1456,7 @@ async function savePost() {
       toast('文章已儲存', 'success');
     }
     await loadAllPosts();
+    renderPostsTable(currentFilter);
     updateStats();
   } catch (err) {
     toast('儲存失敗：' + err.message, 'error');
