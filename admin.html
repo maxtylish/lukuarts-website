@@ -975,6 +975,7 @@ const authReady = auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 let allPosts = [];
 let currentFilter = 'all';
 let quill = null;
+let authPersistenceReady = false;
 
 /* ═══════════════════════════════════════════
    DOM REFS
@@ -986,6 +987,9 @@ const btnSignout    = document.getElementById('btn-signout');
 const userNameEl    = document.getElementById('user-name');
 const userEmailEl   = document.getElementById('user-email');
 const userAvatarWrap= document.getElementById('user-avatar-wrap');
+
+btnGoogleSign.disabled = true;
+btnGoogleSign.innerHTML = '<span class="spinner"></span> 初始化登入…';
 
 /* ═══════════════════════════════════════════
    TOAST
@@ -1052,7 +1056,7 @@ document.addEventListener('click', e => {
    AUTH
 ═══════════════════════════════════════════ */
 function resetLoginButton() {
-  btnGoogleSign.disabled = false;
+  btnGoogleSign.disabled = !authPersistenceReady;
   btnGoogleSign.innerHTML = GOOGLE_SIGNIN_HTML;
 }
 
@@ -1077,7 +1081,6 @@ async function signInWithGoogle() {
   btnGoogleSign.innerHTML = '<span class="spinner"></span> 登入中…';
 
   try {
-    await authReady;
     await auth.signInWithPopup(googleProvider);
   } catch (err) {
     console.error('Google popup login failed:', err);
@@ -1088,6 +1091,17 @@ async function signInWithGoogle() {
 
 btnGoogleSign.innerHTML = GOOGLE_SIGNIN_HTML;
 btnGoogleSign.addEventListener('click', signInWithGoogle);
+
+authReady
+  .then(() => {
+    authPersistenceReady = true;
+    resetLoginButton();
+  })
+  .catch(err => {
+    console.error('Firebase auth persistence failed:', err);
+    toast(authErrorMessage(err), 'error');
+    resetLoginButton();
+  });
 
 /* Handle redirect result on page load */
 auth.getRedirectResult().then(result => {
