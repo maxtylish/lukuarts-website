@@ -948,7 +948,9 @@
 ═══════════════════════════════════════════ */
 const firebaseConfig = {
   apiKey: "AIzaSyBpnr_ttPPx9I8DpN78ffEhRyTC7tXlLCE",
-  authDomain: "lukuarts-visual.firebaseapp.com",
+  authDomain: window.location.hostname === 'localhost'
+    ? "lukuarts-visual.firebaseapp.com"
+    : window.location.hostname,
   projectId: "lukuarts-visual",
   storageBucket: "lukuarts-visual.firebasestorage.app",
   messagingSenderId: "872118012774",
@@ -1064,26 +1066,18 @@ function authErrorMessage(err) {
   if (err?.code === 'auth/unauthorized-domain') {
     return '此網域尚未加入 Firebase 授權網域，請到 Firebase Authentication 設定允許目前網址。';
   }
-  if (err?.code === 'auth/popup-closed-by-user') {
-    return '登入視窗已關閉，請再試一次。';
-  }
-  if (err?.code === 'auth/popup-blocked') {
-    return '瀏覽器封鎖了登入視窗，請允許此網站開啟彈出式視窗後再試一次。';
-  }
-  if (err?.code === 'auth/operation-not-supported-in-this-environment') {
-    return '目前瀏覽環境不支援彈窗登入，請改用一般瀏覽器分頁開啟後台。';
-  }
   return err?.message || '登入失敗，請稍後再試。';
 }
 
 async function signInWithGoogle() {
   btnGoogleSign.disabled = true;
-  btnGoogleSign.innerHTML = '<span class="spinner"></span> 登入中…';
+  btnGoogleSign.innerHTML = '<span class="spinner"></span> 跳轉登入中…';
 
   try {
-    await auth.signInWithPopup(googleProvider);
+    await authReady;
+    await auth.signInWithRedirect(googleProvider);
   } catch (err) {
-    console.error('Google popup login failed:', err);
+    console.error('Google redirect login failed:', err);
     toast(authErrorMessage(err), 'error');
     resetLoginButton();
   }
