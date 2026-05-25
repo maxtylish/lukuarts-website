@@ -12,15 +12,7 @@
     "category": "portrait"
   },
   {
-    "src": "images/portrait/p004.webp",
-    "category": "portrait"
-  },
-  {
     "src": "images/portrait/p005.webp",
-    "category": "portrait"
-  },
-  {
-    "src": "images/portrait/p006.webp",
     "category": "portrait"
   },
   {
@@ -33,10 +25,6 @@
   },
   {
     "src": "images/portrait/p009.webp",
-    "category": "portrait"
-  },
-  {
-    "src": "images/portrait/p010.webp",
     "category": "portrait"
   },
   {
@@ -104,22 +92,6 @@
     "category": "street"
   },
   {
-    "src": "images/street/S007.webp",
-    "category": "street"
-  },
-  {
-    "src": "images/street/S008.webp",
-    "category": "street"
-  },
-  {
-    "src": "images/street/S009.webp",
-    "category": "street"
-  },
-  {
-    "src": "images/street/S010.webp",
-    "category": "street"
-  },
-  {
     "src": "images/food/f001.webp",
     "category": "food"
   },
@@ -148,55 +120,7 @@
     "category": "food"
   },
   {
-    "src": "images/food/f008.webp",
-    "category": "food"
-  },
-  {
-    "src": "images/food/f009.webp",
-    "category": "food"
-  },
-  {
-    "src": "images/food/f010.webp",
-    "category": "food"
-  },
-  {
     "src": "images/event/e001.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e002.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e003.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e004.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e005.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e006.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e007.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e008.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e009.webp",
-    "category": "event"
-  },
-  {
-    "src": "images/event/e010.webp",
     "category": "event"
   },
   {
@@ -228,18 +152,6 @@
     "category": "landscape"
   },
   {
-    "src": "images/landscape/l008.webp",
-    "category": "landscape"
-  },
-  {
-    "src": "images/landscape/l009.webp",
-    "category": "landscape"
-  },
-  {
-    "src": "images/landscape/l010.webp",
-    "category": "landscape"
-  },
-  {
     "src": "images/creative/c001.webp",
     "category": "creative"
   },
@@ -253,30 +165,6 @@
   },
   {
     "src": "images/creative/c004.webp",
-    "category": "creative"
-  },
-  {
-    "src": "images/creative/c005.webp",
-    "category": "creative"
-  },
-  {
-    "src": "images/creative/c006.webp",
-    "category": "creative"
-  },
-  {
-    "src": "images/creative/c007.webp",
-    "category": "creative"
-  },
-  {
-    "src": "images/creative/c008.webp",
-    "category": "creative"
-  },
-  {
-    "src": "images/creative/c009.webp",
-    "category": "creative"
-  },
-  {
-    "src": "images/creative/c010.webp",
     "category": "creative"
   },
   {
@@ -329,34 +217,6 @@
   },
   {
     "src": "images/architecture/a003.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a004.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a005.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a006.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a007.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a008.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a009.webp",
-    "category": "architecture"
-  },
-  {
-    "src": "images/architecture/a010.webp",
     "category": "architecture"
   }
 ]
