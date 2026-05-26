@@ -2296,8 +2296,4 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   }
   .ed-work--tall,
   .ed-works-grid .ed-work-item:nth-child(n) { grid-column: 1; grid-row: auto; }
-  .ed-works-header { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
-  .ed-hero-btns { flex-direction: column; }
-  .ed-scroll-cue { display: none; }
-  .ed-about-stats { flex-wrap: wrap; gap: var(--space-3); }
-}
+  .ed-works-header { flex-direction: column; align-items: flex-start; 
