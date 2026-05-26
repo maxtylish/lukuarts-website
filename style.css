@@ -845,6 +845,14 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   color: var(--text-dim);
   letter-spacing: 1px;
 }
+.footer-version {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 0.7rem;
+  color: var(--text-muted, #555);
+  letter-spacing: 0.5px;
+  opacity: 0.5;
+}
 
 /* ===== 15. Portfolio page ===== */
 .portfolio-section {

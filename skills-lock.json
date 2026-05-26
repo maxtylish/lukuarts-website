@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "video-spec-builder": {
+      "source": "feicaiclub/video-spec-builder",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "2fb5e96823731215f47159607b29088a77ca339d6d0b527e759257e683ea7ecd"
+    }
+  }
+}
