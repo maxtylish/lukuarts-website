@@ -504,12 +504,12 @@
     }
   </style>
   <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLYJT8N52L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
-    gtag("config", "GA_MEASUREMENT_ID");
+    gtag("config", "G-MLYJT8N52L");
   </script>
 </head>
 <body>
@@ -957,4 +957,67 @@
           <li><a href="portfolio.html">作品集</a></li>
           <li><a href="pricing.html">方案報價</a></li>
           <li><a href="about.html">關於</a></li>
-          <l
+          <li><a href="blog.html">部落格</a></li>
+          <li><a href="contact.html">聯絡</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="food.html">品牌商業攝影</a></li>
+          <li><a href="wedding.html">婚禮紀錄</a></li>
+          <li><a href="event.html">活動紀實紀錄</a></li>
+          <li><a href="landscape.html">風景攝影</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+886932754860">+886 932 754 860</a></li>
+          <li><a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener">LINE: MAXTYLISH</a></li>
+          <li><a href="mailto:maxtylish@gmail.com">maxtylish@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener">IG: @lukuarts</a></li>
+          <li><a href="https://www.facebook.com/Lukuarts1973" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL 青玥影像. All Rights Reserved. 台中專業攝影師 劉志恆</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script>
+    /* Pricing tab switcher */
+    (function () {
+      const tabs     = document.querySelectorAll('.pricing-nav-tab');
+      const sections = document.querySelectorAll('.pricing-section');
+
+      function activate(target) {
+        tabs.forEach(t => {
+          const isActive = t.dataset.target === target;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        sections.forEach(s => {
+          s.classList.toggle('active', s.id === target);
+        });
+        // Scroll to the active section smoothly
+        const el = document.getElementById(target);
+        if (el) {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h')) || 72;
+          const y = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => activate(tab.dataset.target));
+      });
+
+      // Support deep-linking via hash: pricing.html#sec-event
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) activate(hash);
+    })();
+  </script>
+</body>
+</html>

@@ -292,6 +292,8 @@
   function initBlogGrid() {
     const grid = $('#blog-grid');
     if (!grid) return;
+    // Skip if this page uses Firebase to load blog posts
+    if (window.__BLOG_USE_FIREBASE) return;
 
     fetch('blogs.json')
       .then(res => res.json())

@@ -68,6 +68,10 @@
     "category": "wedding"
   },
   {
+    "src": "images/wedding/w011.webp",
+    "category": "wedding"
+  },
+  {
     "src": "images/street/S001.webp",
     "category": "street"
   },
@@ -205,6 +209,42 @@
   },
   {
     "src": "images/kids/k010.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k011.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k012.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k013.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k014.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k015.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k016.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k017.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k018.webp",
+    "category": "kids"
+  },
+  {
+    "src": "images/kids/k019.webp",
     "category": "kids"
   },
   {
