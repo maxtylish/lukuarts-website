@@ -1756,8 +1756,9 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
 .ed-hero {
   display: grid;
   grid-template-columns: 55fr 45fr;
-  height: 100vh;
-  min-height: 600px;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
 }
 
@@ -2280,15 +2281,21 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   .ed-works-grid .ed-work-item:nth-child(5) { grid-column: 2; grid-row: 3; }
 }
 @media (max-width: 860px) {
+  /* Block layout: hero can never clip its content */
   .ed-hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: 46vh auto;
+    display: block;
     height: auto;
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: 0;
     overflow: visible;
   }
-  .ed-hero-img { height: 46vh; }
+  .ed-hero-img { height: 46vh; min-height: 280px; }
+  .ed-hero-brand {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
   .ed-hero-brand { padding: clamp(20px, 4vw, 40px) clamp(20px, 5vw, 48px) clamp(32px, 5vw, 56px); justify-content: flex-start; padding-top: clamp(24px, 4vw, 40px); }
   .ed-hero-title { font-size: clamp(2.8rem, 12vw, 5.5rem); }
   .ed-hero-counter { display: none; }
@@ -2473,4 +2480,15 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
 }
 @media (max-width: 400px) {
   .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Stage 2: short-viewport hero compression (laptops / landscape phones) --- */
+@media (max-height: 800px) and (min-width: 861px) {
+  .ed-hero-title { font-size: clamp(2.8rem, 5.5vw, 5.5rem); margin-bottom: 16px; }
+  .ed-hero-sub { margin-bottom: 16px; }
+  .ed-hero-tagline { margin-bottom: 20px; }
+  .ed-hero-eyebrow { margin-bottom: 12px; }
+}
+@media (max-height: 700px) {
+  .ed-scroll-cue { display: none; }
 }
