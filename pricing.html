@@ -499,13 +499,19 @@
     }
     @media (max-width: 540px) {
       .pricing-nav-tabs {
-        flex-wrap: wrap;
-        justify-content: center;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
       }
+      .pricing-nav-tabs::-webkit-scrollbar { display: none; }
       .pricing-nav-tab {
         padding: 10px 16px;
         font-size: 0.75rem;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
+      .pricing-cards { grid-template-columns: 1fr; }
     }
   </style>
   <!-- Google Analytics GA4 | 將 GA_MEASUREMENT_ID 替換為你的 Measurement ID（格式：G-XXXXXXXXXX）-->

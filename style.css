@@ -1385,9 +1385,8 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   .masonry-gallery { column-count: 2; }
 }
 
-@media (max-width: 720px) {
-  :root { --navbar-h: 64px; }
-
+/* Mobile nav drawer — 880px covers 6-link navbar overflow on tablets */
+@media (max-width: 880px) {
   .menu-toggle { display: flex; }
 
   .nav-links {
@@ -1397,6 +1396,7 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
     height: 100vh;
     background: rgba(5, 5, 5, 0.98);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1404,9 +1404,14 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
     padding: var(--space-6) var(--space-3);
     transition: right var(--dur-slow) var(--ease-out-expo);
     border-left: 1px solid var(--surface-line);
+    z-index: 1001;
   }
   .nav-links.open { right: 0; }
   .nav-links a { font-size: 0.95rem; letter-spacing: 3px; }
+}
+
+@media (max-width: 720px) {
+  :root { --navbar-h: 64px; }
 
   .hero-zh-logo { max-width: 240px; }
   .hero-btns .btn { padding: 12px 24px; font-size: 0.72rem; }
@@ -2275,8 +2280,15 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   .ed-works-grid .ed-work-item:nth-child(5) { grid-column: 2; grid-row: 3; }
 }
 @media (max-width: 860px) {
-  .ed-hero { grid-template-columns: 1fr; grid-template-rows: 52vh 1fr; }
-  .ed-hero-img { height: 52vh; }
+  .ed-hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 46vh auto;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: visible;
+  }
+  .ed-hero-img { height: 46vh; }
   .ed-hero-brand { padding: clamp(20px, 4vw, 40px) clamp(20px, 5vw, 48px) clamp(32px, 5vw, 56px); justify-content: flex-start; padding-top: clamp(24px, 4vw, 40px); }
   .ed-hero-title { font-size: clamp(2.8rem, 12vw, 5.5rem); }
   .ed-hero-counter { display: none; }
@@ -2435,4 +2447,30 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   }
   .filter-container::-webkit-scrollbar { display: none; }
   .filter-btn { flex-shrink: 0; }
+}
+
+/* --- Stage 2: mobile refinements --- */
+@media (max-width: 860px) {
+  /* Hero brand panel: comfortable spacing, no clipping */
+  .ed-hero-brand {
+    padding-top: clamp(28px, 5vw, 44px);
+    padding-bottom: clamp(40px, 7vw, 64px);
+  }
+  .ed-hero-sub { margin-bottom: clamp(16px, 2.5vh, 28px); }
+  .ed-hero-tagline br { display: none; }   /* let it wrap naturally on phones */
+  .ed-hero-tagline { max-width: none; }
+}
+@media (max-width: 640px) {
+  .ed-hero-title { font-size: clamp(2.6rem, 14vw, 3.6rem); }
+  .ed-hero-btns .btn { width: 100%; text-align: center; }
+  .section-title { letter-spacing: 2px; }
+  .cat-cta-btns .btn,
+  .pricing-cta-btns .btn { width: 100%; text-align: center; }
+  .trust-strip-list { gap: var(--space-2) var(--space-3); }
+  .trust-strip-list span { font-size: 0.9rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 400px) {
+  .footer-grid { grid-template-columns: 1fr; }
 }
