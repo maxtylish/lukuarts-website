@@ -192,8 +192,10 @@
         item.dataset.category = img.category;
         item.style.animationDelay = `${Math.min(i * 40, 600)}ms`;
         const label = categoryLabel[img.category] || img.category;
+        // Allow optional per-image alt text from images.json; fall back to SEO-friendly default
+        const altText = img.alt || `${label}作品 — 台中攝影師 劉志恆 LUKUARTS`;
         item.innerHTML = `
-          <img src="${img.src}" alt="${label}" class="lightbox-trigger" loading="lazy">
+          <img src="${img.src}" alt="${altText}" class="lightbox-trigger" loading="lazy">
         `;
         frag.appendChild(item);
       });

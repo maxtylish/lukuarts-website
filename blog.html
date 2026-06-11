@@ -2,13 +2,13 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <meta name="version" content="1.11.0">
+  <meta name="version" content="1.12.0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>部落格｜LUKUARTS VISUAL 青玥影像</title>
+  <title>影像筆記｜LUKUARTS VISUAL 青玥影像 — 拍攝幕後與光影筆記</title>
   <meta name="description" content="青玥影像的影像隨筆 — 拍攝幕後、光影筆記、技術分享與旅行紀錄。">
   <link rel="canonical" href="https://lukuarts.com/blog.html">
   <!-- Open Graph -->
-  <meta property="og:title" content="影像隨筆｜LUKUARTS VISUAL 青玥影像部落格">
+  <meta property="og:title" content="影像筆記｜LUKUARTS VISUAL 青玥影像">
   <meta property="og:description" content="青玥影像的影像隨筆 — 拍攝幕後、光影筆記、攝影技術分享與旅行紀錄。台中攝影師劉志恆的創作日誌。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lukuarts.com/blog.html">
@@ -17,7 +17,7 @@
   <meta property="og:locale" content="zh_TW">
   <meta property="og:site_name" content="LUKUARTS VISUAL 青玥影像">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="影像隨筆｜LUKUARTS VISUAL 部落格">
+  <meta name="twitter:title" content="影像筆記｜LUKUARTS VISUAL">
   <meta name="twitter:description" content="拍攝幕後、光影筆記、攝影技術分享。台中攝影師劉志恆的創作日誌。">
   <meta name="twitter:image" content="https://lukuarts.com/images/homepage/H01.webp">
   <!-- Blog Schema -->
@@ -25,7 +25,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "影像隨筆 — LUKUARTS VISUAL 青玥影像",
+    "name": "影像筆記 — LUKUARTS VISUAL 青玥影像",
     "description": "台中攝影師劉志恆的影像隨筆，包含拍攝幕後、光影筆記、攝影技術分享與旅行紀錄。",
     "url": "https://lukuarts.com/blog.html",
     "inLanguage": "zh-Hant",
@@ -76,7 +76,7 @@
       margin-bottom: 16px;
     }
     .blog-hero-sub {
-      color: var(--text-secondary);
+      color: var(--text-muted);
       font-size: 1rem;
       max-width: 480px;
       margin: 0 auto;
@@ -94,9 +94,9 @@
     .blog-filter-btn {
       padding: 8px 20px;
       border-radius: 24px;
-      border: 1px solid var(--border, #333);
+      border: 1px solid var(--surface-line);
       background: transparent;
-      color: var(--text-secondary, #a0a0a0);
+      color: var(--text-muted);
       font-family: var(--font-body);
       font-size: 0.82rem;
       letter-spacing: 0.04em;
@@ -130,9 +130,9 @@
 
     /* Post card */
     .blog-card {
-      background: var(--bg-card, #242424);
-      border: 1px solid var(--border, #333);
-      border-radius: 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--surface-line);
+      border-radius: 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -200,7 +200,7 @@
     }
     .blog-card-excerpt {
       font-size: 0.85rem;
-      color: var(--text-secondary, #a0a0a0);
+      color: var(--text-muted);
       line-height: 1.7;
       flex: 1;
       display: -webkit-box;
@@ -240,7 +240,14 @@
       grid-column: 1 / -1;
       text-align: center;
       padding: 80px 0;
-      color: var(--text-secondary, #a0a0a0);
+      color: var(--text-muted);
+    }
+    .blog-empty p { margin-bottom: 28px; line-height: 1.8; }
+    .blog-empty-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .blog-empty h3 {
       font-family: var(--font-heading);
@@ -262,8 +269,8 @@
       <li><a href="portfolio.html">作品集</a></li>
       <li><a href="pricing.html">方案報價</a></li>
       <li><a href="about.html">關於</a></li>
-      <li><a href="blog.html" class="active">部落格</a></li>
-      <li><a href="contact.html">聯絡</a></li>
+      <li><a href="blog.html" class="active">影像筆記</a></li>
+      <li><a href="contact.html">聯絡預約</a></li>
     </ul>
   </nav>
 
@@ -272,7 +279,7 @@
     <!-- Hero -->
     <section class="blog-hero">
       <span class="section-kicker">Journal</span>
-      <h1 class="blog-hero-title">影像隨筆</h1>
+      <h1 class="blog-hero-title">影像筆記</h1>
       <p class="blog-hero-sub">拍攝幕後 · 光影筆記 · 技術分享 · 旅行紀錄</p>
     </section>
 
@@ -303,39 +310,48 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="logo">LUKUARTS</a>
-        <p>青玥影像 — 台中專業攝影工作室。專注人像、商業與活動紀實，用光影說故事。</p>
-      </div>
-      <div>
-        <h5>Navigate</h5>
-        <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="portfolio.html">作品集</a></li>
-          <li><a href="pricing.html">方案報價</a></li>
-          <li><a href="about.html">關於</a></li>
-          <li><a href="blog.html">部落格</a></li>
-          <li><a href="contact.html">聯絡</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Services</h5>
-        <ul>
-          <li><a href="portrait.html">人像形象攝影</a></li>
-          <li><a href="wedding.html">婚禮紀實攝影</a></li>
-          <li><a href="food.html">商業美食攝影</a></li>
-          <li><a href="event.html">活動紀實記錄</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Connect</h5>
-        <div class="footer-social">
+        <p>青玥影像 — 台中專業攝影工作室。<br>專注人像、商業與活動紀實，用光影說故事。</p>
+        <div class="footer-social" style="margin-top:16px">
           <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
           <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
           <a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
           <a href="https://www.facebook.com/Lukuarts1973" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
         </div>
       </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="pricing.html">方案報價</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">影像筆記</a></li>
+          <li><a href="contact.html">聯絡預約</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="food.html">品牌商業攝影</a></li>
+          <li><a href="wedding.html">婚禮紀錄</a></li>
+          <li><a href="event.html">活動紀實紀錄</a></li>
+          <li><a href="landscape.html">風景攝影</a></li>
+          <li><a href="creative.html">影像創作</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+886932754860">+886 932 754 860</a></li>
+          <li><a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener">LINE: MAXTYLISH</a></li>
+          <li><a href="mailto:maxtylish@gmail.com">maxtylish@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener">IG: @lukuarts</a></li>
+          <li><a href="https://www.facebook.com/Lukuarts1973" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL. All Rights Reserved. <span class="footer-version">v1.11.0</span></p>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL 青玥影像. All Rights Reserved. 台中專業攝影師 劉志恆 <span class="footer-version">v1.12.0</span></p>
   </footer>
 
   <!-- Tell script.js to skip the blogs.json loader on this page (Firebase handles it) -->
@@ -386,8 +402,12 @@
         console.error('Failed to load posts:', err);
         grid.innerHTML = `
           <div class="blog-empty">
-            <h3>暫時無法載入文章</h3>
-            <p>請稍後再試</p>
+            <h3>影像筆記整理中</h3>
+            <p>近期的拍攝幕後與光影心得正在整理。<br>想先看最新動態，歡迎到 Instagram 或作品集逛逛。</p>
+            <div class="blog-empty-btns">
+              <a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener" class="btn btn-primary">Instagram 最新作品</a>
+              <a href="portfolio.html" class="btn btn-outline">瀏覽作品集</a>
+            </div>
           </div>`;
       }
     }
@@ -400,11 +420,17 @@
         : allPosts.filter(p => p.category === currentCat);
 
       if (!filtered.length) {
-        grid.innerHTML = `
+        grid.innerHTML = currentCat === 'all'
+          ? `
           <div class="blog-empty">
-            <h3>目前還沒有文章</h3>
-            <p>請期待即將發布的內容</p>
-          </div>`;
+            <h3>影像筆記整理中</h3>
+            <p>近期的拍攝幕後與光影心得正在整理。<br>想先看最新動態，歡迎到 Instagram 或作品集逛逛。</p>
+            <div class="blog-empty-btns">
+              <a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener" class="btn btn-primary">Instagram 最新作品</a>
+              <a href="portfolio.html" class="btn btn-outline">瀏覽作品集</a>
+            </div>
+          </div>`
+          : `<div class="blog-empty"><h3>此分類暫無筆記</h3><p>換個分類看看，或先瀏覽 <a href="portfolio.html" style="color:var(--accent-gold)">作品集</a>。</p></div>`;
         return;
       }
 

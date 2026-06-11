@@ -571,11 +571,9 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   line-height: 1.7;
 }
 
-/* Per-card background images */
-.service-card[data-target="portrait"]   { background-image: url('images/portrait/p001.jpg'); }
-.service-card[data-target="commercial"] { background-image: url('images/food/f001.jpg'); }
-.service-card[data-target="event"]      { background-image: url('images/homepage/H02.jpg'); }
-.service-card[data-target="teaching"]   { background-image: url('images/homepage/H05.jpg'); }
+/* Per-card background images (webp) */
+.service-card[data-target="portrait"]   { background-image: url('images/portrait/p001.webp'); }
+.service-card[data-target="commercial"] { background-image: url('images/food/f001.webp'); }
 
 /* ===== 10. Portfolio preview (index) ===== */
 .portfolio-preview {
@@ -773,7 +771,7 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   padding: var(--section-py) 20px;
   background:
     linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
-    url('images/homepage/H06.jpg') center / cover no-repeat;
+    url('images/homepage/H06.webp') center / cover no-repeat;
   background-attachment: fixed;
 }
 .cta-band h2 {
@@ -2300,4 +2298,141 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   .ed-hero-btns { flex-direction: column; }
   .ed-scroll-cue { display: none; }
   .ed-about-stats { flex-wrap: wrap; gap: var(--space-3); }
+}
+
+/* ============================================================
+   Stage 2 Optimization — shared components
+   ============================================================ */
+
+/* --- Hero positioning tagline (index) --- */
+.ed-hero-tagline {
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  color: var(--text-muted);
+  line-height: 1.9;
+  max-width: 420px;
+  margin-bottom: var(--space-4);
+}
+.ed-hero-tagline strong {
+  color: var(--accent-gold);
+  font-weight: 500;
+}
+
+/* --- Portfolio page intro --- */
+.portfolio-intro {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  max-width: 560px;
+  margin: 0 auto var(--space-5);
+}
+
+/* --- Booking process steps (contact / pricing) --- */
+.process-steps {
+  background: var(--bg-dark);
+  padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 80px);
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+}
+.process-steps-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.process-steps-header {
+  text-align: center;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.process-steps-header h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--text-primary);
+  letter-spacing: 4px;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--surface-line);
+  border: 1px solid var(--surface-line);
+}
+.process-step {
+  background: var(--bg-elevated);
+  padding: clamp(24px, 3vw, 40px);
+  position: relative;
+}
+.process-step-num {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--accent-gold);
+  opacity: 0.55;
+  line-height: 1;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.process-step h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  margin-bottom: var(--space-1);
+  font-weight: 500;
+}
+.process-step p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Trust strip: partner / credential list (about) --- */
+.trust-strip {
+  background: var(--bg-darker);
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+  padding: clamp(32px, 5vw, 56px) clamp(24px, 5vw, 80px);
+}
+.trust-strip-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  text-align: center;
+}
+.trust-strip-label {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.trust-strip-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-5);
+}
+.trust-strip-list span {
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* --- Mobile: portfolio filter bar becomes horizontal scroll --- */
+@media (max-width: 720px) {
+  .filter-container {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 4px 12px;
+  }
+  .filter-container::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0; }
 }
