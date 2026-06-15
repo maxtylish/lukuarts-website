@@ -139,7 +139,14 @@ img[loading="lazy"]:not(.ed-slide).loaded { opacity: 1; }
 *::before,
 *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* Root font-size scaled up for readability (esp. older readers).
+   All type uses rem, so this proportionally enlarges the whole site
+   while preserving visual hierarchy. ~17.5px mobile → 18px desktop. */
+html {
+  font-size: clamp(17px, 1.0625rem + 0.13vw, 18px);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   background: var(--bg-dark);
