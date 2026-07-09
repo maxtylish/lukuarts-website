@@ -286,7 +286,7 @@
       if (!video) return;
       img.style.display = 'none';
       img.src = '';
-      video.style.display = '';
+      video.style.display = 'block';
       if (poster) video.poster = poster;
       video.src = src;
       video.setAttribute('aria-label', alt);
