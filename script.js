@@ -176,7 +176,8 @@
       landscape: '風景攝影',
       culture:   '人文神像',
       creative:  '影像創作',
-      kids:      '親子寫真'
+      kids:      '親子寫真',
+      video:     '短影音剪輯'
     };
 
     const render = (data) => {
@@ -194,9 +195,23 @@
         const label = categoryLabel[img.category] || img.category;
         // Allow optional per-image alt text from images.json; fall back to SEO-friendly default
         const altText = img.alt || `${label}作品 — 台中攝影師 劉志恆 LUKUARTS`;
-        item.innerHTML = `
-          <img src="${img.src}" alt="${altText}" class="lightbox-trigger" loading="lazy">
-        `;
+
+        if (img.type === 'video') {
+          // Video case study: poster thumbnail + play icon, opens in lightbox <video>
+          item.classList.add('masonry-item--video');
+          item.innerHTML = `
+            <div class="video-trigger" data-video-src="${img.src}" data-poster="${img.poster || ''}" tabindex="0" role="button" aria-label="播放影片：${altText}">
+              <img src="${img.poster || ''}" alt="${altText}" loading="lazy">
+              <span class="video-play-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          `;
+        } else {
+          item.innerHTML = `
+            <img src="${img.src}" alt="${altText}" class="lightbox-trigger" loading="lazy">
+          `;
+        }
         frag.appendChild(item);
       });
       gallery.appendChild(frag);
@@ -248,7 +263,7 @@
       });
   }
 
-  /* ---------- 6. Lightbox (keyboard + click) ---------- */
+  /* ---------- 6. Lightbox (keyboard + click; images + video case studies) ---------- */
   let lightboxBound = false;
   function initLightbox() {
     if (lightboxBound) return;
@@ -256,17 +271,33 @@
     if (!lightbox) return;
 
     const img = $('#lightbox-img');
+    const video = $('#lightbox-video');
     const closeBtn = $('#lightbox-close');
 
     const open = (src, alt = '') => {
+      if (video) { video.pause(); video.removeAttribute('src'); video.load(); video.style.display = 'none'; }
+      img.style.display = '';
       img.src = src;
       img.alt = alt;
       lightbox.classList.add('is-open');
       document.body.style.overflow = 'hidden';
     };
+    const openVideo = (src, poster = '', alt = '') => {
+      if (!video) return;
+      img.style.display = 'none';
+      img.src = '';
+      video.style.display = '';
+      if (poster) video.poster = poster;
+      video.src = src;
+      video.setAttribute('aria-label', alt);
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      video.play().catch(() => {});
+    };
     const close = () => {
       lightbox.classList.remove('is-open');
       img.src = '';
+      if (video) { video.pause(); video.removeAttribute('src'); video.load(); }
       document.body.style.overflow = '';
     };
 
@@ -279,7 +310,7 @@
     });
 
     // Expose opener to gallery
-    window.__LUKU_lightbox = { open, close };
+    window.__LUKU_lightbox = { open, openVideo, close };
     lightboxBound = true;
   }
 
@@ -287,6 +318,17 @@
     initLightbox();
     $$('.lightbox-trigger').forEach(img => {
       img.onclick = () => window.__LUKU_lightbox?.open(img.src, img.alt);
+    });
+    $$('.video-trigger').forEach(trigger => {
+      const openVideo = () => window.__LUKU_lightbox?.openVideo(
+        trigger.dataset.videoSrc,
+        trigger.dataset.poster,
+        trigger.getAttribute('aria-label')
+      );
+      trigger.onclick = openVideo;
+      trigger.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVideo(); }
+      };
     });
   }
 
@@ -341,55 +383,4 @@
       if (!hash || hash === '#' || hash.length < 2) return;
       a.addEventListener('click', (e) => {
         const target = document.querySelector(hash);
-        if (!target) return;
-        e.preventDefault();
-        const navbarH =
-          parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h')) || 72;
-        const y = target.getBoundingClientRect().top + window.scrollY - navbarH + 1;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      });
-    });
-  }
-
-  /* ---------- 9. Lazy-load fade-in ---------- */
-  function initLazyFade() {
-    const imgs = $$('img[loading="lazy"]');
-    imgs.forEach(img => {
-      if (img.complete) { img.classList.add('loaded'); return; }
-      img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
-    });
-    // Watch for dynamically added lazy images (gallery renders)
-    if ('MutationObserver' in window) {
-      new MutationObserver(mutations => {
-        mutations.forEach(m => m.addedNodes.forEach(node => {
-          if (node.nodeType !== 1) return;
-          const imgs = node.matches?.('img[loading="lazy"]')
-            ? [node]
-            : Array.from(node.querySelectorAll?.('img[loading="lazy"]') ?? []);
-          imgs.forEach(img => {
-            if (img.complete) img.classList.add('loaded');
-            else img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
-          });
-        }));
-      }).observe(document.body, { childList: true, subtree: true });
-    }
-  }
-
-  /* ---------- Boot ---------- */
-  document.addEventListener('DOMContentLoaded', () => {
-    initNavbar();
-    initReveal();
-    initSakura();
-    initParallax();
-    initEdHero();
-    initGallery();
-    initBlogGrid();
-    initAnchorOffset();
-    initLazyFade();
-    // Lightbox bound lazily when triggers exist (e.g., gallery render)
-
-    // Remove loader from DOM after animation completes
-    const loader = document.getElementById('page-loader');
-    if (loader) setTimeout(() => loader.remove(), 2500);
-  });
-})();
+        if (!target) retu
