@@ -1058,4 +1058,118 @@
           <div class="process-step reveal">
             <span class="process-step-num">03</span>
             <h3>拍攝當日</h3>
-            <p>全程
+            <p>全程專業引導，不需要任何上鏡經驗，輕鬆自在完成拍攝。</p>
+          </div>
+          <div class="process-step reveal">
+            <span class="process-step-num">04</span>
+            <h3>精修交付</h3>
+            <p>精選後製 7–14 個工作天交付（活動 48 小時、婚禮 30 天內），雲端相簿下載。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="pricing-cta" aria-label="預約諮詢">
+      <div class="pricing-cta-inner">
+        <span class="section-kicker">Ready to Start?</span>
+        <h2>找不到合適方案？<br><em>讓我們客製</em></h2>
+        <p>
+          以上方案均為起始參考價，每個案子都值得獨立討論。
+          告訴我你的需求，我們一起規劃最適合的拍攝計畫。
+        </p>
+        <div class="pricing-cta-btns">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" class="btn btn-primary">LINE 立即諮詢</a>
+          <a href="contact.html" class="btn btn-outline">填寫詢問表單</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LUKUARTS</a>
+        <p>青玥影像 — 台中專業攝影工作室。<br>專注人像、商業與活動紀實，用光影說故事。</p>
+        <div class="footer-social" style="margin-top:16px">
+          <a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener" aria-label="LINE">LI</a>
+          <a href="mailto:maxtylish@gmail.com" aria-label="Email">@</a>
+          <a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.facebook.com/Lukuarts1973" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="portfolio.html">作品集</a></li>
+      <li><a href="pricing.html">方案報價</a></li>
+          <li><a href="about.html">關於</a></li>
+          <li><a href="blog.html">影像筆記</a></li>
+          <li><a href="contact.html">聯絡預約</a></li>
+          <li><a href="downloads.html">資源下載</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="portrait.html">人像形象攝影</a></li>
+          <li><a href="food.html">品牌商業攝影</a></li>
+          <li><a href="wedding.html">婚禮紀錄</a></li>
+          <li><a href="event.html">活動紀實紀錄</a></li>
+          <li><a href="landscape.html">風景攝影</a></li>
+          <li><a href="creative.html">影像創作</a></li>
+          <li><a href="video.html">短影音剪輯</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+886932754860">+886 932 754 860</a></li>
+          <li><a href="https://line.me/R/ti/p/MAXTYLISH" target="_blank" rel="noopener">LINE: MAXTYLISH</a></li>
+          <li><a href="mailto:maxtylish@gmail.com">maxtylish@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/lukuarts/" target="_blank" rel="noopener">IG: @lukuarts</a></li>
+          <li><a href="https://www.facebook.com/Lukuarts1973" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 LUKUARTS VISUAL 青玥影像. All Rights Reserved. 台中專業攝影師 劉志恆 <span class="footer-version">v1.12.1</span></p>
+  </footer>
+
+  <script src="script.js?v=1.13.0" defer></script>
+  <script>
+    /* Pricing tab switcher */
+    (function () {
+      const tabs     = document.querySelectorAll('.pricing-nav-tab');
+      const sections = document.querySelectorAll('.pricing-section');
+
+      function activate(target) {
+        tabs.forEach(t => {
+          const isActive = t.dataset.target === target;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        sections.forEach(s => {
+          s.classList.toggle('active', s.id === target);
+        });
+        // Scroll to the active section smoothly
+        const el = document.getElementById(target);
+        if (el) {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h')) || 72;
+          const y = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => activate(tab.dataset.target));
+      });
+
+      // Support deep-linking via hash: pricing.html#sec-event
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) activate(hash);
+    })();
+  </script>
+</body>
+</html>

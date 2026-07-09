@@ -2513,4 +2513,94 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   line-height: 1.8;
   margin: 0;
 }
-@media (ma
+@media (ma@media (max-width: 900px) {
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Trust strip: partner / credential list (about) --- */
+.trust-strip {
+  background: var(--bg-darker);
+  border-top: 1px solid var(--surface-line);
+  border-bottom: 1px solid var(--surface-line);
+  padding: clamp(32px, 5vw, 56px) clamp(24px, 5vw, 80px);
+}
+.trust-strip-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  text-align: center;
+}
+.trust-strip-label {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.trust-strip-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-5);
+}
+.trust-strip-list span {
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* --- Mobile: portfolio filter bar becomes horizontal scroll --- */
+@media (max-width: 720px) {
+  .filter-container {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 4px 12px;
+  }
+  .filter-container::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0; }
+}
+
+/* --- Stage 2: mobile refinements --- */
+@media (max-width: 860px) {
+  /* Hero brand panel: comfortable spacing, no clipping */
+  .ed-hero-brand {
+    padding-top: clamp(28px, 5vw, 44px);
+    padding-bottom: clamp(40px, 7vh, 64px);
+  }
+  .ed-hero-sub { margin-bottom: clamp(16px, 2.5vh, 28px); }
+  .ed-hero-tagline br { display: none; }   /* let it wrap naturally on phones */
+  .ed-hero-tagline { max-width: none; }
+}
+@media (max-width: 640px) {
+  .ed-hero-title { font-size: clamp(2.6rem, 14vw, 3.6rem); }
+  .ed-hero-btns .btn { width: 100%; text-align: center; }
+  .section-title { letter-spacing: 2px; }
+  .cat-cta-btns .btn,
+  .pricing-cta-btns .btn { width: 100%; text-align: center; }
+  .trust-strip-list { gap: var(--space-2) var(--space-3); }
+  .trust-strip-list span { font-size: 0.9rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 400px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Stage 2: short-viewport hero compression (laptops / landscape phones) --- */
+@media (max-height: 800px) and (min-width: 861px) {
+  .ed-hero-title { font-size: clamp(2.8rem, 5.5vw, 5.5rem); margin-bottom: 16px; }
+  .ed-hero-sub { margin-bottom: 16px; }
+  .ed-hero-tagline { margin-bottom: 20px; }
+  .ed-hero-eyebrow { margin-bottom: 12px; }
+}
+@media (max-height: 700px) {
+  .ed-scroll-cue { display: none; }
+}

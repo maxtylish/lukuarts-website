@@ -87,4 +87,18 @@
 
   <!-- 聯絡 -->
   <url>
-    
+    <loc>https://lukuarts.com/contact.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 資源下載 -->
+  <url>
+    <loc>https://lukuarts.com/downloads.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
