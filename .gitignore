@@ -35,3 +35,5 @@ image-manager.html
 *.drp
 *.mp4
 *.mov
+# 例外：/videos 資料夾內是網站要播放的最終成品短影音，需要上傳
+!/videos/*.mp4
