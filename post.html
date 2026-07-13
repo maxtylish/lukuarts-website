@@ -314,6 +314,27 @@
       /* Update document title */
       document.title = `${title} | LUKUARTS VISUAL`;
 
+      /* Update canonical + OG URL to point at this specific post
+         (was hardcoded to blog.html, causing Google to treat every
+         post as a duplicate of blog.html and skip indexing it) */
+      const postUrl = `https://lukuarts.com/post.html?id=${post.id}`;
+      let canonicalTag = document.querySelector('link[rel="canonical"]');
+      if (!canonicalTag) {
+        canonicalTag = document.createElement('link');
+        canonicalTag.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalTag);
+      }
+      canonicalTag.setAttribute('href', postUrl);
+
+      const ogUrlTag = document.querySelector('meta[property="og:url"]');
+      if (ogUrlTag) ogUrlTag.setAttribute('content', postUrl);
+
+      const ogTitleTag = document.querySelector('meta[property="og:title"]');
+      if (ogTitleTag) ogTitleTag.setAttribute('content', `${title} | LUKUARTS VISUAL`);
+
+      const descTag = document.querySelector('meta[name="description"]');
+      if (descTag && post.excerpt) descTag.setAttribute('content', post.excerpt);
+
       /* Inject BlogPosting schema for SEO */
       const schema = {
         "@context": "https://schema.org",
