@@ -9,6 +9,15 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
+  /** Escape strings before injecting them into generated HTML */
+  const esc = (str = '') =>
+    String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
   const prefersReducedMotion =
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -196,20 +205,40 @@
         // Allow optional per-image alt text from images.json; fall back to SEO-friendly default
         const altText = img.alt || `${label}作品 — 台中攝影師 劉志恆 LUKUARTS`;
 
-        if (img.type === 'video') {
-          // Video case study: poster thumbnail + play icon, opens in lightbox <video>
-          item.classList.add('masonry-item--video');
-          item.innerHTML = `
-            <div class="video-trigger" data-video-src="${img.src}" data-poster="${img.poster || ''}" tabindex="0" role="button" aria-label="播放影片：${altText}">
-              <img src="${img.poster || ''}" alt="${altText}" loading="lazy">
+        const playIcon = `
               <span class="video-play-icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </span>
+              </span>`;
+
+        if (img.type === 'youtube') {
+          // YouTube-hosted short-form video.
+          // Lazy facade: only the poster image loads here — the player iframe is
+          // created on click, so a page full of Shorts stays cheap to load.
+          const ytId = encodeURIComponent(img.youtubeId || '');
+          const isLandscape = img.orientation === 'landscape';
+          // oardefault = original aspect ratio (vertical for Shorts); falls back to hqdefault
+          const poster = img.poster || `https://i.ytimg.com/vi/${ytId}/oardefault.jpg`;
+          item.classList.add('masonry-item--video');
+          if (!isLandscape) item.classList.add('masonry-item--short');
+          item.innerHTML = `
+            <div class="video-trigger" data-youtube-id="${ytId}" data-orientation="${isLandscape ? 'landscape' : 'portrait'}" tabindex="0" role="button" aria-label="播放短影音：${esc(altText)}">
+              <img src="${esc(poster)}" data-fallback="https://i.ytimg.com/vi/${ytId}/hqdefault.jpg" alt="${esc(altText)}" loading="lazy" decoding="async">
+              ${playIcon}
+              ${isLandscape ? '' : '<span class="video-badge" aria-hidden="true">SHORTS</span>'}
+            </div>
+          `;
+        } else if (img.type === 'video') {
+          // Self-hosted video case study: poster thumbnail + play icon, opens in lightbox <video>
+          item.classList.add('masonry-item--video');
+          item.innerHTML = `
+            <div class="video-trigger" data-video-src="${esc(img.src)}" data-poster="${esc(img.poster || '')}" tabindex="0" role="button" aria-label="播放影片：${esc(altText)}">
+              <img src="${esc(img.poster || '')}" alt="${esc(altText)}" loading="lazy">
+              ${playIcon}
             </div>
           `;
         } else {
           item.innerHTML = `
-            <img src="${img.src}" alt="${altText}" class="lightbox-trigger" loading="lazy">
+            <img src="${esc(img.src)}" alt="${esc(altText)}" class="lightbox-trigger" loading="lazy">
           `;
         }
         frag.appendChild(item);
@@ -226,7 +255,8 @@
       }
     };
 
-    fetch('images.json')
+    // no-cache: always revalidate, so a freshly saved images.json shows up immediately
+    fetch('images.json', { cache: 'no-cache' })
       .then(res => res.json())
       .then(images => {
         allImages = images;
@@ -263,7 +293,7 @@
       });
   }
 
-  /* ---------- 6. Lightbox (keyboard + click; images + video case studies) ---------- */
+  /* ---------- 6. Lightbox (images + self-hosted video + YouTube) ---------- */
   let lightboxBound = false;
   function initLightbox() {
     if (lightboxBound) return;
@@ -274,43 +304,96 @@
     const video = $('#lightbox-video');
     const closeBtn = $('#lightbox-close');
 
-    const open = (src, alt = '') => {
-      if (video) { video.pause(); video.removeAttribute('src'); video.load(); video.style.display = 'none'; }
-      img.style.display = '';
-      img.src = src;
-      img.alt = alt;
+    // Created on demand so existing page markup needs no changes
+    let frame = $('#lightbox-frame');
+    if (!frame) {
+      frame = document.createElement('div');
+      frame.id = 'lightbox-frame';
+      frame.className = 'lightbox-content lightbox-frame';
+      lightbox.appendChild(frame);
+    }
+
+    // Tear down every media type so nothing keeps playing or downloading
+    const resetMedia = () => {
+      img.style.display = 'none';
+      img.src = '';
+      if (video) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        video.style.display = 'none';
+      }
+      frame.innerHTML = '';
+      frame.style.display = 'none';
+      frame.classList.remove('is-landscape');
+    };
+
+    const show = () => {
       lightbox.classList.add('is-open');
       document.body.style.overflow = 'hidden';
     };
+
+    const open = (src, alt = '') => {
+      resetMedia();
+      img.style.display = '';
+      img.src = src;
+      img.alt = alt;
+      show();
+    };
+
     const openVideo = (src, poster = '', alt = '') => {
       if (!video) return;
-      img.style.display = 'none';
-      img.src = '';
+      resetMedia();
       video.style.display = 'block';
       if (poster) video.poster = poster;
       video.src = src;
       video.setAttribute('aria-label', alt);
-      lightbox.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
+      show();
       video.play().catch(() => {});
     };
+
+    const openYouTube = (id, alt = '', orientation = 'portrait') => {
+      if (!id) return;
+      resetMedia();
+      frame.style.display = 'block';
+      if (orientation === 'landscape') frame.classList.add('is-landscape');
+      // youtube-nocookie: no tracking cookie until the visitor actually plays
+      frame.innerHTML =
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+        '?autoplay=1&rel=0&modestbranding=1&playsinline=1"' +
+        ' title="' + esc(alt) + '"' +
+        ' referrerpolicy="strict-origin-when-cross-origin"' +
+        ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"' +
+        ' allowfullscreen></iframe>';
+      show();
+    };
+
     const close = () => {
       lightbox.classList.remove('is-open');
-      img.src = '';
-      if (video) { video.pause(); video.removeAttribute('src'); video.load(); }
+      resetMedia();
       document.body.style.overflow = '';
     };
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) close();
     });
-    if (closeBtn) closeBtn.addEventListener('click', close);
+    if (closeBtn) {
+      closeBtn.addEventListener('click', close);
+      // Make the close affordance keyboard-reachable
+      if (!closeBtn.hasAttribute('tabindex')) {
+        closeBtn.setAttribute('tabindex', '0');
+        closeBtn.setAttribute('role', 'button');
+      }
+      closeBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); close(); }
+      });
+    }
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('is-open')) close();
     });
 
-    // Expose opener to gallery
-    window.__LUKU_lightbox = { open, openVideo, close };
+    // Expose openers to gallery
+    window.__LUKU_lightbox = { open, openVideo, openYouTube, close };
     lightboxBound = true;
   }
 
@@ -319,15 +402,28 @@
     $$('.lightbox-trigger').forEach(img => {
       img.onclick = () => window.__LUKU_lightbox?.open(img.src, img.alt);
     });
+    // YouTube serves oardefault.jpg only for some videos — fall back to hqdefault
+    $$('img[data-fallback]').forEach(im => {
+      if (im.dataset.fallbackBound) return;
+      im.dataset.fallbackBound = '1';
+      im.addEventListener('error', () => { im.src = im.dataset.fallback; }, { once: true });
+    });
     $$('.video-trigger').forEach(trigger => {
-      const openVideo = () => window.__LUKU_lightbox?.openVideo(
-        trigger.dataset.videoSrc,
-        trigger.dataset.poster,
-        trigger.getAttribute('aria-label')
-      );
-      trigger.onclick = openVideo;
+      const ytId = trigger.dataset.youtubeId;
+      const openMedia = ytId
+        ? () => window.__LUKU_lightbox?.openYouTube(
+            ytId,
+            trigger.getAttribute('aria-label'),
+            trigger.dataset.orientation
+          )
+        : () => window.__LUKU_lightbox?.openVideo(
+            trigger.dataset.videoSrc,
+            trigger.dataset.poster,
+            trigger.getAttribute('aria-label')
+          );
+      trigger.onclick = openMedia;
       trigger.onkeydown = (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVideo(); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMedia(); }
       };
     });
   }
@@ -339,7 +435,7 @@
     // Skip if this page uses Firebase to load blog posts
     if (window.__BLOG_USE_FIREBASE) return;
 
-    fetch('blogs.json')
+    fetch('blogs.json', { cache: 'no-cache' })
       .then(res => res.json())
       .then(posts => {
         if (!Array.isArray(posts) || !posts.length) {

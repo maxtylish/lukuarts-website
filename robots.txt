@@ -4,6 +4,7 @@ Allow: /
 # 排除本地工具頁
 Disallow: /image-manager.html
 Disallow: /generate-json.html
+Disallow: /video-manager.html
 
 # Sitemap
 Sitemap: https://lukuarts.com/sitemap.xml
