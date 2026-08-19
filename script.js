@@ -189,14 +189,28 @@
       video:     '短影音剪輯'
     };
 
-    const render = (data) => {
-      gallery.innerHTML = '';
-      if (!data.length) {
-        gallery.innerHTML = `<div class="loading-msg">此分類暫無作品</div>`;
-        return;
-      }
+    // Optional sub-grouping inside a category page (opt in with data-grouped="true")
+    const groupMeta = {
+      space:    { zh: '空間紀錄', en: 'Space & Interior' },
+      identity: { zh: '形象影片', en: 'Brand & Identity' },
+      event:    { zh: '活動精華', en: 'Event Highlights' },
+      other:    { zh: '其他作品', en: 'More Work' }
+    };
+    const groupOrder = ['space', 'identity', 'event', 'other'];
+    const isGrouped = gallery.dataset.grouped === 'true';
+
+    // Build the DOM for one run of items; returns a .masonry-gallery element
+    const buildGrid = (data, startIndex = 0) => {
+      const grid = document.createElement('div');
+      grid.className = 'masonry-gallery';
+      grid.appendChild(buildItems(data, startIndex));
+      return grid;
+    };
+
+    const buildItems = (data, startIndex = 0) => {
       const frag = document.createDocumentFragment();
-      data.forEach((img, i) => {
+      data.forEach((img, n) => {
+        const i = startIndex + n;
         const item = document.createElement('div');
         item.className = 'masonry-item';
         item.dataset.category = img.category;
@@ -243,7 +257,45 @@
         }
         frag.appendChild(item);
       });
-      gallery.appendChild(frag);
+      return frag;
+    };
+
+    const render = (data) => {
+      gallery.innerHTML = '';
+      if (!data.length) {
+        gallery.innerHTML = `<div class="loading-msg">此分類暫無作品</div>`;
+        return;
+      }
+
+      if (isGrouped) {
+        // Split into labelled blocks; a group with no items simply never renders
+        const buckets = new Map();
+        data.forEach(img => {
+          const key = groupMeta[img.group] ? img.group : 'other';
+          if (!buckets.has(key)) buckets.set(key, []);
+          buckets.get(key).push(img);
+        });
+        let offset = 0;
+        groupOrder.forEach(key => {
+          const items = buckets.get(key);
+          if (!items || !items.length) return;
+          const meta = groupMeta[key];
+          const section = document.createElement('section');
+          section.className = 'gallery-group';
+          section.innerHTML =
+            `<h3 class="gallery-group-title">` +
+            `<span class="gallery-group-en">${esc(meta.en)}</span>` +
+            `<span class="gallery-group-zh">${esc(meta.zh)}</span>` +
+            `<span class="gallery-group-count">${items.length}</span>` +
+            `</h3>`;
+          section.appendChild(buildGrid(items, offset));
+          offset += items.length;
+          gallery.appendChild(section);
+        });
+      } else {
+        gallery.appendChild(buildItems(data));
+      }
+
       bindLightboxTriggers();
     };
 

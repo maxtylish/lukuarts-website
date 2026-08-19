@@ -925,6 +925,47 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Sub-groups inside a category page (labelled blocks, no filter tabs) */
+.gallery-group + .gallery-group { margin-top: clamp(48px, 6vw, 88px); }
+.gallery-group { display: block; }
+.gallery-group-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  text-align: left;
+  margin-bottom: var(--space-4, 28px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--surface-line);
+  font-weight: 400;
+}
+.gallery-group-en {
+  order: 1;
+  flex: 0 0 100%;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 6px;
+}
+.gallery-group-zh {
+  order: 2;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  letter-spacing: 2px;
+  color: var(--text, #eee);
+}
+.gallery-group-count {
+  order: 3;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  border: 1px solid var(--surface-line);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.gallery-group-count::before { content: "共 "; }
+.gallery-group-count::after { content: " 支"; }
+
 /* Video case-study thumbnail (masonry item with poster + play icon) */
 .video-trigger {
   position: relative;
