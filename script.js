@@ -391,10 +391,44 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('is-open')) close();
     });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') stopInline();
+    });
 
     // Expose openers to gallery
     window.__LUKU_lightbox = { open, openVideo, openYouTube, close };
     lightboxBound = true;
+  }
+
+  /* ---------- 6b. Inline YouTube playback (plays inside the card) ---------- */
+  let inlinePlayer = null;   // { host, html } — only one card plays at a time
+
+  function stopInline() {
+    if (!inlinePlayer) return;
+    const { host, html } = inlinePlayer;
+    inlinePlayer = null;               // clear first so re-binding can't recurse
+    host.innerHTML = html;             // restoring the markup kills the iframe
+    host.classList.remove('is-playing');
+    host.style.aspectRatio = '';
+    bindLightboxTriggers();
+  }
+
+  function playInline(trigger, id, alt = '', orientation = 'portrait') {
+    if (!id) return;
+    stopInline();
+    inlinePlayer = { host: trigger, html: trigger.innerHTML };
+    trigger.classList.add('is-playing');
+    trigger.style.aspectRatio = orientation === 'landscape' ? '16 / 9' : '9 / 16';
+    trigger.innerHTML =
+      '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+      '?autoplay=1&rel=0&modestbranding=1&playsinline=1"' +
+      ' title="' + esc(alt) + '"' +
+      ' referrerpolicy="strict-origin-when-cross-origin"' +
+      ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"' +
+      ' allowfullscreen></iframe>' +
+      '<button type="button" class="video-close" aria-label="關閉影片">&times;</button>';
+    const closeBtn = trigger.querySelector('.video-close');
+    closeBtn.addEventListener('click', (e) => { e.stopPropagation(); stopInline(); });
   }
 
   function bindLightboxTriggers() {
@@ -411,7 +445,8 @@
     $$('.video-trigger').forEach(trigger => {
       const ytId = trigger.dataset.youtubeId;
       const openMedia = ytId
-        ? () => window.__LUKU_lightbox?.openYouTube(
+        ? () => playInline(
+            trigger,
             ytId,
             trigger.getAttribute('aria-label'),
             trigger.dataset.orientation
@@ -421,8 +456,9 @@
             trigger.dataset.poster,
             trigger.getAttribute('aria-label')
           );
-      trigger.onclick = openMedia;
+      trigger.onclick = () => { if (!trigger.classList.contains('is-playing')) openMedia(); };
       trigger.onkeydown = (e) => {
+        if (trigger.classList.contains('is-playing')) return;
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMedia(); }
       };
     });
