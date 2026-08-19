@@ -5,6 +5,7 @@ Allow: /
 Disallow: /image-manager.html
 Disallow: /generate-json.html
 Disallow: /video-manager.html
+Disallow: /studio.html
 
 # Sitemap
 Sitemap: https://lukuarts.com/sitemap.xml

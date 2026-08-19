@@ -39,6 +39,7 @@ image-manager.html
 # 舊的 !/videos/*.mp4 例外已移除
 
 # --- 6. 短影音上架工具與其備份（本地用，不部署）---
+studio.html
 video-manager.html
 images.backup.json
 _to_delete/
