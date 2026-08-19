@@ -1,263 +1,647 @@
 [
   {
     "src": "images/portrait/p001.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 1920,
+    "h": 2880,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/portrait/p002.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/portrait/p003.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 786,
+    "h": 675,
+    "thumbs": [
+      600
+    ]
   },
   {
     "src": "images/portrait/p005.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 533,
+    "h": 800
   },
   {
     "src": "images/portrait/p007.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/portrait/p008.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/portrait/p009.webp",
-    "category": "portrait"
+    "category": "portrait",
+    "w": 1920,
+    "h": 2880,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w001.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1333,
+    "h": 2000,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w002.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 834,
+    "h": 960,
+    "thumbs": [
+      600
+    ]
   },
   {
     "src": "images/wedding/w003.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1250,
+    "h": 1875,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w004.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w005.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w006.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w007.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w008.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1920,
+    "h": 2880,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w009.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 2048,
+    "h": 1365,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w010.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/wedding/w011.webp",
-    "category": "wedding"
+    "category": "wedding",
+    "w": 2048,
+    "h": 1365,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/street/S001.webp",
-    "category": "street"
+    "category": "street",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/street/S002.webp",
-    "category": "street"
+    "category": "street",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/street/S003.webp",
-    "category": "street"
+    "category": "street",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/street/S004.webp",
-    "category": "street"
+    "category": "street",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/street/S005.webp",
-    "category": "street"
+    "category": "street",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/street/S006.webp",
-    "category": "street"
+    "category": "street",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f001.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f002.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f003.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f004.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f005.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f006.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/food/f007.webp",
-    "category": "food"
+    "category": "food",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/event/e001.webp",
-    "category": "event"
+    "category": "event",
+    "w": 1920,
+    "h": 1278,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l001.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1920,
+    "h": 1278,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l002.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1920,
+    "h": 1688,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l003.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1363,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l004.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l005.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1608,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l006.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/landscape/l007.webp",
-    "category": "landscape"
+    "category": "landscape",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/creative/c001.webp",
-    "category": "creative"
+    "category": "creative",
+    "w": 1920,
+    "h": 1688,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/creative/c002.webp",
-    "category": "creative"
+    "category": "creative",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/creative/c003.webp",
-    "category": "creative"
+    "category": "creative",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/creative/c004.webp",
-    "category": "creative"
+    "category": "creative",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k001.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k002.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k003.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k004.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1365,
+    "h": 2048,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k005.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k006.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k007.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k008.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k009.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k010.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k011.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k012.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k013.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k014.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k015.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k016.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1597,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k017.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1597,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k018.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/kids/k019.webp",
-    "category": "kids"
+    "category": "kids",
+    "w": 1600,
+    "h": 2400,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/architecture/a001.webp",
-    "category": "architecture"
+    "category": "architecture",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/architecture/a002.webp",
-    "category": "architecture"
+    "category": "architecture",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "src": "images/architecture/a003.webp",
-    "category": "architecture"
+    "category": "architecture",
+    "w": 1920,
+    "h": 1280,
+    "thumbs": [
+      600,
+      900
+    ]
   },
   {
     "youtubeId": "Pp_I3xe5Oak",
@@ -265,7 +649,9 @@
     "type": "youtube",
     "alt": "落腳設計莿桐老屋翻修 柔和版片頭縮短 — 台中短影音剪輯 LUKUARTS",
     "poster": "images/video/yt-Pp_I3xe5Oak.webp",
-    "group": "space"
+    "group": "space",
+    "w": 1080,
+    "h": 1920
   },
   {
     "youtubeId": "ym_HnEd0JRs",
@@ -273,7 +659,9 @@
     "type": "youtube",
     "alt": "落腳設計斗六透天 — 台中短影音剪輯 LUKUARTS",
     "poster": "images/video/yt-ym_HnEd0JRs.webp",
-    "group": "space"
+    "group": "space",
+    "w": 1080,
+    "h": 1920
   },
   {
     "youtubeId": "hpQEfIL6j0s",
@@ -281,7 +669,9 @@
     "type": "youtube",
     "alt": "落腳設計 梅山透天 山暮 — 台中短影音剪輯 LUKUARTS",
     "poster": "images/video/yt-hpQEfIL6j0s.webp",
-    "group": "space"
+    "group": "space",
+    "w": 1080,
+    "h": 1920
   },
   {
     "youtubeId": "wazthJnpM4c",
@@ -289,6 +679,8 @@
     "type": "youtube",
     "alt": "斗六戶政 - 美麗雲林5S 新住民宣導 — 台中短影音剪輯 LUKUARTS",
     "group": "identity",
-    "poster": "images/video/yt-wazthJnpM4c.webp?v=3"
+    "poster": "images/video/yt-wazthJnpM4c.webp?v=3",
+    "w": 1080,
+    "h": 1920
   }
 ]

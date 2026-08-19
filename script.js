@@ -198,6 +198,9 @@
     };
     const groupOrder = ['space', 'identity', 'event', 'other'];
 
+    // Matches the masonry breakpoints: 1 col ≤720px, 2 cols ≤960px, else 3 cols in a 1280px container
+    const GRID_SIZES = '(max-width: 720px) calc(100vw - 40px), (max-width: 960px) 45vw, 381px';
+
     // Card caption: prefer an explicit title, else the part of alt before the SEO tail
     const displayTitle = (img) =>
       img.title || String(img.alt || '').split(/\s*[—–]\s*/)[0].trim();
@@ -245,7 +248,7 @@
           if (!isLandscape) item.classList.add('masonry-item--short');
           item.innerHTML = `
             <div class="video-trigger" data-youtube-id="${ytId}" data-orientation="${isLandscape ? 'landscape' : 'portrait'}" tabindex="0" role="button" aria-label="播放短影音：${esc(altText)}">
-              <img src="${esc(poster)}" data-fallback="https://i.ytimg.com/vi/${ytId}/hqdefault.jpg" alt="${esc(altText)}" loading="lazy" decoding="async">
+              <img src="${esc(poster)}" data-fallback="https://i.ytimg.com/vi/${ytId}/hqdefault.jpg" alt="${esc(altText)}" loading="lazy" decoding="async"${(img.w && img.h) ? ` width="${img.w}" height="${img.h}"` : ''}>
               ${playIcon}
               ${isLandscape ? '' : '<span class="video-badge" aria-hidden="true">SHORTS</span>'}
             </div>
@@ -261,8 +264,15 @@
             </div>
           `;
         } else {
+          // width/height stop the layout jumping while images load (CLS)
+          const dims = (img.w && img.h) ? ` width="${img.w}" height="${img.h}"` : '';
+          // Responsive variants keep the grid light; the lightbox still opens the original
+          const base = String(img.src).replace(/\.webp$/i, '');
+          const widths = Array.isArray(img.thumbs) ? img.thumbs : [];
+          const srcset = widths.map(w => `${base}-${w}.webp ${w}w`).join(', ');
+          const displaySrc = widths.length ? `${base}-${widths[0]}.webp` : img.src;
           item.innerHTML = `
-            <img src="${esc(img.src)}" alt="${esc(altText)}" class="lightbox-trigger" loading="lazy">
+            <img src="${esc(displaySrc)}"${srcset ? ` srcset="${esc(srcset)}" sizes="${GRID_SIZES}"` : ''} data-full="${esc(img.src)}" alt="${esc(altText)}" class="lightbox-trigger" loading="lazy" decoding="async"${dims}>
           `;
         }
         frag.appendChild(item);
@@ -497,7 +507,8 @@
   function bindLightboxTriggers() {
     initLightbox();
     $$('.lightbox-trigger').forEach(img => {
-      img.onclick = () => window.__LUKU_lightbox?.open(img.src, img.alt);
+      // data-full is the untouched original; src may be a small grid variant
+      img.onclick = () => window.__LUKU_lightbox?.open(img.dataset.full || img.src, img.alt);
     });
     // YouTube serves oardefault.jpg only for some videos — fall back to hqdefault
     $$('img[data-fallback]').forEach(im => {
