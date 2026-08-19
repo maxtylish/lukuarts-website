@@ -197,12 +197,21 @@
       other:    { zh: '其他作品', en: 'More Work' }
     };
     const groupOrder = ['space', 'identity', 'event', 'other'];
+
+    // Card caption: prefer an explicit title, else the part of alt before the SEO tail
+    const displayTitle = (img) =>
+      img.title || String(img.alt || '').split(/\s*[—–]\s*/)[0].trim();
+
+    // Uniform 9:16 cards look wrong in CSS columns (empty trailing column, and the
+    // reading order goes down-then-across). Switch those grids to CSS grid.
+    const allVideo = (data) =>
+      data.length > 0 && data.every(x => x.type === 'youtube' || x.type === 'video');
     const isGrouped = gallery.dataset.grouped === 'true';
 
     // Build the DOM for one run of items; returns a .masonry-gallery element
     const buildGrid = (data, startIndex = 0) => {
       const grid = document.createElement('div');
-      grid.className = 'masonry-gallery';
+      grid.className = 'masonry-gallery' + (allVideo(data) ? ' masonry-gallery--video' : '');
       grid.appendChild(buildItems(data, startIndex));
       return grid;
     };
@@ -240,6 +249,7 @@
               ${playIcon}
               ${isLandscape ? '' : '<span class="video-badge" aria-hidden="true">SHORTS</span>'}
             </div>
+            ${displayTitle(img) ? `<p class="video-caption">${esc(displayTitle(img))}</p>` : ''}
           `;
         } else if (img.type === 'video') {
           // Self-hosted video case study: poster thumbnail + play icon, opens in lightbox <video>
@@ -293,6 +303,7 @@
           gallery.appendChild(section);
         });
       } else {
+        gallery.classList.toggle('masonry-gallery--video', allVideo(data));
         gallery.appendChild(buildItems(data));
       }
 
