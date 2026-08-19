@@ -35,8 +35,8 @@ image-manager.html
 *.drp
 *.mp4
 *.mov
-# 例外：/videos 資料夾內是網站要播放的最終成品短影音，需要上傳
-!/videos/*.mp4
+# 影音作品一律放 YouTube 嵌入，不再自架 mp4（見專案文件「短影音上架規範」）
+# 舊的 !/videos/*.mp4 例外已移除
 
 # --- 6. 短影音上架工具與其備份（本地用，不部署）---
 video-manager.html
